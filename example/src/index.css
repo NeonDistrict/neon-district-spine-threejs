@@ -1,0 +1,48 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: #001015;
+	color: hsla(0,0%,100%,.96);
+	font-family: "Roboto",sans-serif;
+}
+
+div.site-bg-holder {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  z-index: -2;
+  opacity: .15;
+  background: url('./img/backgrounds/bg_1.jpg');
+}
+
+div.navigation {
+	background: #202324;
+	padding:0.6em;
+	height: 20px;
+	border-bottom: 2px solid #494949;
+}
+
+div.navigation a {
+	padding: 0 0.8em;
+	vertical-align: top;
+	color: white;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+div.navigation a:hover {
+	color: #ff7db6;
+}
+
+div.navigation img {
+	height: 100%;
+	padding-right:2em;
+}
+
+div.container {
+	padding: 0.5em 2em;
+}
