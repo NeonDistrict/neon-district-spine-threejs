@@ -11,6 +11,7 @@ export default function Navigation(props) {
 		<Link to="/test">Default Package Test</Link>
 		<Link to="/cube-test">Cube Test</Link>
 		<Link to="/combat-test">Combat Test</Link>
+		<Link to="/character-equipment">Character Equipment</Link>
 	</div>
 	)
 }

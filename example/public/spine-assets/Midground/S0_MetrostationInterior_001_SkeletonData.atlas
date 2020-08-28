@@ -1,0 +1,104 @@
+
+S0_MetrostationInterior_001_SkeletonData.png
+size: 1925,6750
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BG-Name/Foreground/Lights/Light_01
+  rotate: false
+  xy: 2, 433
+  size: 1356, 304
+  orig: 1357, 306
+  offset: 1, 1
+  index: -1
+BG-Name/Foreground/Lights/Light_02
+  rotate: false
+  xy: 2, 5667
+  size: 1921, 1081
+  orig: 1921, 1081
+  offset: 0, 0
+  index: -1
+BG-Name/Foreground/Lights/Light_03
+  rotate: false
+  xy: 2, 2433
+  size: 1779, 1066
+  orig: 1785, 1078
+  offset: 1, 12
+  index: -1
+BG-Name/Foreground/Lights/Light_04
+  rotate: false
+  xy: 2, 2
+  size: 1286, 171
+  orig: 1299, 191
+  offset: 5, 10
+  index: -1
+BG-Name/Foreground/Lights/Light_05
+  rotate: false
+  xy: 1290, 82
+  size: 417, 91
+  orig: 429, 101
+  offset: 6, 5
+  index: -1
+BG-Name/Foreground/Lights/Light_06
+  rotate: false
+  xy: 1452, 175
+  size: 396, 86
+  orig: 398, 90
+  offset: 1, 1
+  index: -1
+BG-Name/Foreground/Lights/Light_07
+  rotate: false
+  xy: 2, 176
+  size: 1448, 256
+  orig: 1449, 256
+  offset: 1, 0
+  index: -1
+BG-Name/Foreground/Lights/Light_08
+  rotate: false
+  xy: 1290, 3
+  size: 24, 77
+  orig: 26, 77
+  offset: 1, 0
+  index: -1
+BG-Name/Foreground/Structural objects/Structural_01
+  rotate: false
+  xy: 2, 739
+  size: 1890, 362
+  orig: 1890, 363
+  offset: 0, 1
+  index: -1
+BG-Name/Foreground/Structural objects/Structural_02
+  rotate: false
+  xy: 2, 4584
+  size: 1921, 1081
+  orig: 1921, 1081
+  offset: 0, 0
+  index: -1
+BG-Name/Midground/Environmental Objects/EnvObj_01
+  rotate: false
+  xy: 2, 1546
+  size: 1893, 440
+  orig: 1893, 440
+  offset: 0, 0
+  index: -1
+BG-Name/Midground/Environmental Objects/EnvObj_02
+  rotate: false
+  xy: 2, 1103
+  size: 1875, 441
+  orig: 1921, 441
+  offset: 0, 0
+  index: -1
+BG-Name/Midground/Structural objects/Structural_01
+  rotate: false
+  xy: 2, 1988
+  size: 1921, 443
+  orig: 1921, 492
+  offset: 0, 23
+  index: -1
+BG-Name/Midground/Structural objects/Structural_02
+  rotate: false
+  xy: 2, 3501
+  size: 1921, 1081
+  orig: 1921, 1081
+  offset: 0, 0
+  index: -1

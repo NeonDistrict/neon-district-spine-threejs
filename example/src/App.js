@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Test from "./pages/Test";
 import CubeTest from "./pages/CubeTest";
 import CombatTest from "./pages/CombatTest";
+import CharacterEquipment from "./pages/CharacterEquipment";
 
 export default class App extends Component {
   render() {
@@ -24,6 +25,7 @@ export default class App extends Component {
           <Route path="/test" component={Test} />
           <Route path="/cube-test" component={CubeTest} />
           <Route path="/combat-test" component={CombatTest} />
+          <Route path="/character-equipment" component={CharacterEquipment} />
 
         </div>
 

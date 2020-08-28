@@ -1,0 +1,517 @@
+
+MediumMaleHeavySkinTest.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BaseBody/F Body/back arm/back arm_001
+  rotate: false
+  xy: 16, 988
+  size: 260, 462
+  orig: 260, 462
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/back arm/hands/handsbasegripb_001
+  rotate: false
+  xy: 1891, 2327
+  size: 198, 194
+  orig: 198, 194
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/back arm/hands/handscradlegripb_001
+  rotate: false
+  xy: 1674, 1782
+  size: 198, 194
+  orig: 198, 194
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/back arm/hands/handspointgripb_001
+  rotate: false
+  xy: 1674, 1572
+  size: 198, 194
+  orig: 198, 194
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/back arm/hands/handspolegripb_001
+  rotate: false
+  xy: 1886, 1362
+  size: 198, 194
+  orig: 198, 194
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/back arm/hands/handsreleasegripb_001
+  rotate: false
+  xy: 1956, 1152
+  size: 198, 194
+  orig: 198, 194
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/front arm/front arm_001
+  rotate: false
+  xy: 1506, 74
+  size: 206, 455
+  orig: 206, 455
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/front arm/hands/handsbasegrip_001
+  rotate: false
+  xy: 413, 2465
+  size: 197, 205
+  orig: 197, 205
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/front arm/hands/handscarrygrip_001
+  rotate: false
+  xy: 626, 2465
+  size: 197, 205
+  orig: 197, 205
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/front arm/hands/handsreleasegrip_001
+  rotate: false
+  xy: 839, 2465
+  size: 197, 205
+  orig: 197, 205
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/front arm/hands/handsrestinggrip_001
+  rotate: false
+  xy: 1367, 2302
+  size: 197, 205
+  orig: 197, 205
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/front arm/hands/handstriggergrip_001
+  rotate: false
+  xy: 1367, 2081
+  size: 197, 205
+  orig: 197, 205
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/head/head_001
+  rotate: false
+  xy: 2163, 2602
+  size: 189, 191
+  orig: 189, 191
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/legs/back leg/back leg_001
+  rotate: false
+  xy: 326, 1523
+  size: 291, 636
+  orig: 291, 636
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/legs/front leg/front leg_001
+  rotate: false
+  xy: 2045, 2809
+  size: 294, 693
+  orig: 294, 693
+  offset: 0, 0
+  index: -1
+BaseBody/F Body/torso/torso_001
+  rotate: false
+  xy: 461, 3518
+  size: 416, 556
+  orig: 416, 556
+  offset: 0, 0
+  index: -1
+BaseBody/M body/back arm/back arm_001
+  rotate: false
+  xy: 292, 570
+  size: 260, 462
+  orig: 260, 462
+  offset: 0, 0
+  index: -1
+BaseBody/M body/back arm/hands/handsbasegripb_001
+  rotate: false
+  xy: 1956, 942
+  size: 198, 194
+  orig: 198, 194
+  offset: 0, 0
+  index: -1
+BaseBody/M body/back arm/hands/handscradlegripb_001
+  rotate: false
+  xy: 1888, 1782
+  size: 198, 194
+  orig: 198, 194
+  offset: 0, 0
+  index: -1
+BaseBody/M body/back arm/hands/handspointgripb_001
+  rotate: false
+  xy: 1888, 1572
+  size: 198, 194
+  orig: 198, 194
+  offset: 0, 0
+  index: -1
+BaseBody/M body/back arm/hands/handspolegripb_001
+  rotate: false
+  xy: 2100, 1362
+  size: 198, 194
+  orig: 198, 194
+  offset: 0, 0
+  index: -1
+BaseBody/M body/back arm/hands/handsreleasegripb_001
+  rotate: false
+  xy: 1946, 2117
+  size: 198, 194
+  orig: 198, 194
+  offset: 0, 0
+  index: -1
+BaseBody/M body/front arm/front arm_001
+  rotate: false
+  xy: 1728, 191
+  size: 206, 455
+  orig: 206, 455
+  offset: 0, 0
+  index: -1
+BaseBody/M body/front arm/hands/handsbackgrip_001
+  rotate: false
+  xy: 16, 16
+  size: 197, 205
+  orig: 197, 205
+  offset: 0, 0
+  index: -1
+BaseBody/M body/front arm/hands/handsbasegrip_001
+  rotate: false
+  xy: 229, 16
+  size: 197, 205
+  orig: 197, 205
+  offset: 0, 0
+  index: -1
+BaseBody/M body/front arm/hands/handscarrygrip_001
+  rotate: false
+  xy: 442, 16
+  size: 197, 205
+  orig: 197, 205
+  offset: 0, 0
+  index: -1
+BaseBody/M body/front arm/hands/handsreleasegrip_001
+  rotate: false
+  xy: 1247, 1208
+  size: 197, 205
+  orig: 197, 205
+  offset: 0, 0
+  index: -1
+BaseBody/M body/front arm/hands/handsrestinggrip_001
+  rotate: false
+  xy: 1460, 1208
+  size: 197, 205
+  orig: 197, 205
+  offset: 0, 0
+  index: -1
+BaseBody/M body/front arm/hands/handstriggergrip_001
+  rotate: false
+  xy: 1673, 1208
+  size: 197, 205
+  orig: 197, 205
+  offset: 0, 0
+  index: -1
+BaseBody/M body/head/head_001
+  rotate: false
+  xy: 2170, 1155
+  size: 189, 191
+  orig: 189, 191
+  offset: 0, 0
+  index: -1
+BaseBody/M body/legs/back leg/back leg_001
+  rotate: false
+  xy: 633, 1523
+  size: 291, 636
+  orig: 291, 636
+  offset: 0, 0
+  index: -1
+BaseBody/M body/legs/front leg/front leg_001
+  rotate: false
+  xy: 1581, 2264
+  size: 294, 693
+  orig: 294, 693
+  offset: 0, 0
+  index: -1
+BaseBody/M body/torso/torso_001
+  rotate: false
+  xy: 893, 3518
+  size: 416, 556
+  orig: 416, 556
+  offset: 0, 0
+  index: -1
+BaseBody/Place Holder/Back Arm/slot_holder_backarm_001
+  rotate: false
+  xy: 633, 1045
+  size: 260, 462
+  orig: 260, 462
+  offset: 0, 0
+  index: -1
+BaseBody/Place Holder/Back Leg/slot_holder_backleg_001
+  rotate: false
+  xy: 1367, 1429
+  size: 291, 636
+  orig: 291, 636
+  offset: 0, 0
+  index: -1
+BaseBody/Place Holder/Font Leg/slot_holder_frontleg_001
+  rotate: false
+  xy: 1057, 1814
+  size: 294, 693
+  orig: 294, 693
+  offset: 0, 0
+  index: -1
+BaseBody/Place Holder/Front Arm/slot_holder_frontarm_001
+  rotate: false
+  xy: 1950, 193
+  size: 206, 455
+  orig: 206, 455
+  offset: 0, 0
+  index: -1
+BaseBody/Place Holder/Head/slot_holder_head_001
+  rotate: false
+  xy: 2170, 948
+  size: 189, 191
+  orig: 189, 191
+  offset: 0, 0
+  index: -1
+BaseBody/Place Holder/Torso/slot_holder_torso_001
+  rotate: false
+  xy: 1325, 3518
+  size: 416, 556
+  orig: 416, 556
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/backarm/medhuman_mf_backarm
+  rotate: false
+  xy: 16, 510
+  size: 260, 462
+  orig: 260, 462
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/backleg/medhuman_mf_backleg
+  rotate: false
+  xy: 940, 1162
+  size: 291, 636
+  orig: 291, 636
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/frontarm/medhuman_mf_frontarm
+  rotate: false
+  xy: 2172, 193
+  size: 206, 455
+  orig: 206, 455
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/frontlegtop/medhuman_mf_frontlegtop
+  rotate: false
+  xy: 16, 1466
+  size: 294, 693
+  orig: 294, 693
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/hair/medhuman_mf_hair
+  rotate: false
+  xy: 2206, 741
+  size: 189, 191
+  orig: 189, 191
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/hairextra/medhuman_mf_extrahair
+  rotate: false
+  xy: 1074, 353
+  size: 298, 403
+  orig: 298, 403
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/handsb/medhuman_mf_handsb
+  rotate: false
+  xy: 2105, 2327
+  size: 198, 194
+  orig: 198, 194
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/headtop/medhuman_mf_headtop
+  rotate: false
+  xy: 1097, 818
+  size: 298, 328
+  orig: 298, 328
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/shoes/medhuman_mf_shoes
+  rotate: false
+  xy: 2189, 3614
+  size: 294, 460
+  orig: 294, 460
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/shoesb/medhuman_mf_shoesb
+  rotate: false
+  xy: 326, 1048
+  size: 291, 459
+  orig: 291, 459
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/shoulders/slot_holder_shoulders_001
+  rotate: false
+  xy: 941, 2796
+  size: 377, 434
+  orig: 377, 434
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/torsobg/medhuman_mf_torsobg_sml
+  rotate: false
+  xy: 16, 2448
+  size: 381, 750
+  orig: 381, 750
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/torsobot/medhuman_mf_torsobot
+  rotate: false
+  xy: 1757, 3518
+  size: 416, 556
+  orig: 416, 556
+  offset: 0, 0
+  index: -1
+GearSets/SlotHolder/torsotop/medhuman_mf_torsotop
+  rotate: false
+  xy: 16, 3214
+  size: 429, 860
+  orig: 429, 860
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Blade/Med1H/001_BladeMed1H_Common
+  rotate: false
+  xy: 1052, 2523
+  size: 513, 257
+  orig: 513, 257
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Blade/Sml1H/001_BladeSml1H_Common
+  rotate: false
+  xy: 1184, 80
+  size: 306, 257
+  orig: 306, 257
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Blade/XXL2H/001_BladeXXL2H_Common
+  rotate: false
+  xy: 16, 2175
+  size: 1025, 257
+  orig: 1025, 257
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Console/Med1H/001_ConsoleMed1H_Common
+  rotate: false
+  xy: 1334, 2811
+  size: 188, 146
+  orig: 188, 146
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Console/Sml1H/001_ConsoleSml1H_Common
+  rotate: false
+  xy: 1388, 545
+  size: 257, 257
+  orig: 257, 257
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Dual/Med1H/001_DualMed1H_Common
+  rotate: false
+  xy: 1334, 2973
+  size: 513, 257
+  orig: 513, 257
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Dual/Sml1H/001_DualSml1H_Common
+  rotate: false
+  xy: 1411, 935
+  size: 257, 257
+  orig: 257, 257
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Dualmelee/Med1H/001_DualmeleeMed1H_Common
+  rotate: false
+  xy: 1245, 3246
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Dualmelee/Sml1H/001_DualmeleeSml1H_Common
+  rotate: false
+  xy: 1773, 3246
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Energy/Med2H/001_EnergyMed2H_Common
+  rotate: false
+  xy: 16, 237
+  size: 513, 257
+  orig: 513, 257
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Energy/Sml1H/001_EnergySml1H_Common
+  rotate: false
+  xy: 1661, 662
+  size: 257, 257
+  orig: 257, 257
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Pistol/Med1H/002_PistolMed1H_Common
+  rotate: false
+  xy: 1684, 936
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Pistol/Sml1H/001_PistolSml1H_Common
+  rotate: false
+  xy: 1934, 664
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Returning/Lrg1H/001_ReturningLrg1H_Common
+  rotate: false
+  xy: 413, 2686
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Returning/Med1H/001_ReturningMed1H_Common
+  rotate: false
+  xy: 1674, 1992
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Rifle/Med2H/001_RifleMed2H_Common
+  rotate: false
+  xy: 545, 297
+  size: 513, 257
+  orig: 513, 257
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Rifle/Sml2H/001_RifleSml1H_Common
+  rotate: false
+  xy: 655, 24
+  size: 513, 257
+  orig: 513, 257
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Thrusting/Lrg2H/001_ThrustingLrg2H_Common
+  rotate: false
+  xy: 461, 3246
+  size: 768, 256
+  orig: 768, 256
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Thrusting/Med1H/001_ThrustingMed1H_Common
+  rotate: false
+  xy: 568, 772
+  size: 513, 257
+  orig: 513, 257
+  offset: 0, 0
+  index: -1
+GearWeapons/SlotHolder/Thrusting/Sml1H/001_ThrustingSml1H_Common
+  rotate: false
+  xy: 1891, 2537
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1

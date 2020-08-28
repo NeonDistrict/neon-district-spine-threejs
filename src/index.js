@@ -7,13 +7,18 @@
  *
  */
 
-import { ColoredHeadingOne, ColoredHeadingTwo } from './Test.jsx';
-import { CubeTest } from './combat/CubeTest.jsx';
+// Tests
+import { ColoredHeadingOne, ColoredHeadingTwo } from './test/ColoredHeadingTest.jsx';
+import { CubeTest } from './test/CubeTest.jsx';
+
+// Modules
 import { CombatTest } from './combat/CombatTest.jsx';
+import { CharacterEquipment } from './equipment/CharacterEquipment.jsx';
 
 export {
   ColoredHeadingOne,
   ColoredHeadingTwo,
   CombatTest as NDCombatTest,
+  CharacterEquipment as NDCharacterEquipment,
   CubeTest as ThreeJSCubeTest
 };
