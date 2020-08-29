@@ -18,41 +18,20 @@ export class CharacterEquipment extends SpineScene {
     requestAnimationFrame(this.loadSkeletons.bind(this));
   }
 
-  loadTextureImage(path, _skeletonMesh) {
-    const img = new Image();
-    img.onload = function() {
-      let spineTexture = new spine.threejs.ThreeJsTexture(img);
-      _skeletonMesh.skeleton.findSlot('Torso Base').attachment.region.texture = spineTexture;
-    };
-    img.src = path;
-  }
-
   loadSkeletons(atlasFile, skeletonFile) {
     if (this.assetManager.isLoadingComplete()) {
-      // Create all skeletons
-      let skeletonMesh1 = this.character.createMesh(-40, 40, 0.12, false, 'Male');
-
-      // Create all skeletons
-      let skeletonMesh2 = this.character.createMesh(60, 40, 0.12, false, 'Male');
-
-      // Copy the existing skin
-      let newSkin = new spine.Skin("char-equip");
-      newSkin.copySkin(skeletonMesh1.skeleton.skin);
-      skeletonMesh1.skeleton.setSkin(newSkin);
-      console.log(newSkin);
-
-      //https://rawgit.com/EsotericSoftware/spine-runtimes/3.8/spine-ts/webgl/demos/skins.js
-      //
-
-      this.loadTextureImage(
-        "./spine-assets/male-body-test.png",
-        skeletonMesh1
-      );
-
       this.setSkeletons([
-        skeletonMesh1,
-        skeletonMesh2
+         this.character.createMesh('Male', 'Unarmed_BasicIdle_001', 0, 40, 0.12, false)
       ]);
+
+      this.character.debug();
+      //this.character.loadTexture("https://neon-district-season-one.s3.amazonaws.com/Output/blkspecialdeathknight/male/legendary/torsotop.png", "Torsotop");
+      //this.character.loadFullOutfit("https://neon-district-season-one.s3.us-east-1.amazonaws.com/Output/blktestingsickbear/blktestingsickbear.json");
+      this.character.loadFullOutfit(
+        "https://neon-district-season-one.s3.us-east-1.amazonaws.com/Output/blkspecialdeathknight/blkspecialdeathknight.json",
+        "male",
+        "legendary"
+      );
 
       requestAnimationFrame(this.load.bind(this));
     } else requestAnimationFrame(this.loadSkeletons.bind(this));

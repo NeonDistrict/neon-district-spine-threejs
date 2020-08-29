@@ -12,7 +12,8 @@ export class CombatTest extends SpineScene {
     super.componentDidMount(arguments);
 
     // Preload all skeleton & atlas files
-    this.character = new SpineCharacter(this.assetManager, "MediumMaleHeavySkinTest.json");
+    this.characterM = new SpineCharacter(this.assetManager, "MediumMaleHeavySkinTest.json", "M");
+    this.characterF = new SpineCharacter(this.assetManager, "MediumMaleHeavySkinTest.json", "F");
     this.background = new SpineBackground(this.assetManager, "Paralax1/S0_MetrostationInterior_001_SkeletonData.json");
     this.foreground = new SpineBackground(this.assetManager, "Midground/S0_MetrostationInterior_001_SkeletonData.json");
 
@@ -26,9 +27,21 @@ export class CombatTest extends SpineScene {
       this.setSkeletons([
         this.background.createMesh(),
         this.foreground.createMesh(),
-        this.character.createMesh(-50, 40, 0.12, false, 'Female'),
-        this.character.createMesh(50, 40, 0.12, false, 'Male')
+        this.characterF.createMesh('Female', 'BladeSml_BaseIdle_001', 70, 40, 0.12, false),
+        this.characterM.createMesh('Male', 'EnergyMed_BasicIdle_001', -70, 40, 0.12, false)
       ]);
+
+      this.characterF.loadFullOutfit(
+        "https://neon-district-season-one.s3.us-east-1.amazonaws.com/Output/natoshi/natoshi.json",
+        "female",
+        "legendary"
+      );
+
+      this.characterM.loadFullOutfit(
+        "https://neon-district-season-one.s3.us-east-1.amazonaws.com/Output/powlock/powlock.json",
+        "male",
+        "uncommon"
+      );
 
       requestAnimationFrame(this.load.bind(this));
     } else requestAnimationFrame(this.loadSkeletons.bind(this));
