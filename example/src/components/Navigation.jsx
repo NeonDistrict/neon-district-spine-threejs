@@ -8,10 +8,9 @@ export default function Navigation(props) {
 	<div className="navigation">
 		<img src={NDLogo} alt="ND Logo" />
 		<Link to="/">Home</Link>
-		<Link to="/test">Default Package Test</Link>
-		<Link to="/cube-test">Cube Test</Link>
 		<Link to="/combat-test">Combat Test</Link>
 		<Link to="/character-equipment">Character Equipment</Link>
+		<Link to="/combat-scene">Combat Scene</Link>
 	</div>
 	)
 }

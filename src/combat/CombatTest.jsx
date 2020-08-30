@@ -8,6 +8,10 @@ export class CombatTest extends SpineScene {
     super(props);
   }
 
+  defaultCameraPosition() {
+    return {"x":0,"y":200,"z":400};
+  }
+
   componentDidMount() {
     super.componentDidMount(arguments);
 
@@ -27,8 +31,8 @@ export class CombatTest extends SpineScene {
       this.setSkeletons([
         this.background.createMesh(),
         this.foreground.createMesh(),
-        this.characterF.createMesh('Female', 'BladeSml_BaseIdle_001', 70, 40, 0.12, false),
-        this.characterM.createMesh('Male', 'EnergyMed_BasicIdle_001', -70, 40, 0.12, false)
+        this.characterF.createMesh('Female', 'BladeSml_BaseIdle_001', 70, 40, false, 0.12),
+        this.characterM.createMesh('Male', 'EnergyMed_BasicIdle_001', -70, 40, false, 0.12)
       ]);
 
       this.characterF.loadFullOutfit(

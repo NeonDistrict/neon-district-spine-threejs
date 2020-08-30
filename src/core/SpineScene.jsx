@@ -56,21 +56,38 @@ export class SpineScene extends Scene {
   }
 
   animate() {
+    if (!this.mounted) {
+      return;
+    }
+
     // calculate delta time for animation purposes
     let now = Date.now() / 1000;
     let delta = now - this.lastFrameTime;
     this.lastFrameTime = now;
 
-    // update the animation
+    // make sure nothing is loading
+    let isLoading = false;
     for (let skeleton of this.skeletons) {
-      skeleton.update(delta);
+      if (skeleton.assetLoadingCount > 0) {
+        isLoading = true;
+        this.setState({'isLoading' : true});
+        break;
+      }
     }
 
-    // render the scene
-    this.renderer.render(this.scene, this.camera);
+    // Render the animation
+    if (!isLoading) {
+      // update the animation
+      for (let skeleton of this.skeletons) {
+        skeleton.update(delta);
+      }
+
+      // render the scene
+      this.renderer.render(this.scene, this.camera);
+    }
 
     // if we're still loading, done
-    if (this.state.isLoading) {
+    if (this.state.isLoading && !isLoading) {
       this.setState({'isLoading' : false});
     }
 

@@ -8,6 +8,10 @@ export class CharacterEquipment extends SpineScene {
     super(props);
   }
 
+  defaultCameraPosition() {
+    return {"x":0,"y":150,"z":200};
+  }
+
   componentDidMount() {
     super.componentDidMount(arguments);
 
@@ -21,12 +25,12 @@ export class CharacterEquipment extends SpineScene {
   loadSkeletons(atlasFile, skeletonFile) {
     if (this.assetManager.isLoadingComplete()) {
       this.setSkeletons([
-         this.character.createMesh('Male', 'Unarmed_BasicIdle_001', 0, 40, 0.12, false)
+         this.character.createMesh('Male', 'Unarmed_BasicIdle_001', 0, 40, false, 0.12)
       ]);
 
       this.character.debug();
       //this.character.loadTexture("https://neon-district-season-one.s3.amazonaws.com/Output/blkspecialdeathknight/male/legendary/torsotop.png", "Torsotop");
-      //this.character.loadFullOutfit("https://neon-district-season-one.s3.us-east-1.amazonaws.com/Output/blktestingsickbear/blktestingsickbear.json");
+
       this.character.loadFullOutfit(
         "https://neon-district-season-one.s3.us-east-1.amazonaws.com/Output/blkspecialdeathknight/blkspecialdeathknight.json",
         "male",

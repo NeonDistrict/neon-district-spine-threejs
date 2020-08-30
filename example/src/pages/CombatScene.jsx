@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { NDCombatTest } from "neon-district-spine-threejs";
+import { NDCombatScene } from "neon-district-spine-threejs";
 
-export default class CombatTest extends Component {
+export default class CombatScene extends Component {
   render() {
     return (
       <div style={{"width":960,"height":540}}>
-        <NDCombatTest
+        <NDCombatScene
           baseUrl="./spine-assets/"
           width={960}
           height={540}

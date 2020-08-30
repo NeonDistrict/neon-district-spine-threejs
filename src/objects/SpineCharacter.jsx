@@ -43,7 +43,7 @@ export class SpineCharacter {
     // The above needs to load BEFORE we can assetManager.get them
   }
 
-  createMesh(skin, animation, xShift, yShift, scale, flipX) {
+  createMesh(skin, animation, xShift, yShift, flipX, scale) {
     // Load the texture atlas using name.atlas and name.png from the AssetManager.
     // The function passed to TextureAtlas is used to resolve relative paths.
     this.atlas = this.assetManager.get(this.atlasFile);
@@ -69,6 +69,11 @@ export class SpineCharacter {
     this.skeletonMesh.skeleton.scaleX = (flipX) ? -1 : 1;
     this.skeletonMesh.skeleton.x = xShift;
     this.skeletonMesh.skeleton.y = yShift;
+
+    /**
+     * Custom Parameters
+     **/
+    this.skeletonMesh.assetLoadingCount = 0;
 
     return this.skeletonMesh;
   }
@@ -106,12 +111,17 @@ export class SpineCharacter {
   }
 
   loadTexture(path, name) {
+    // Start loading
+    this.skeletonMesh.assetLoadingCount++;
+
     // Get the image and create the canvas for this character
     this.createCanvas();
 
     const img = new Image();
     img.crossOrigin = "Anonymous";
     img.onload = (function() {
+      this.skeletonMesh.assetLoadingCount--;
+
       let slot = this.skeletonMesh.skeleton.findSlot(name);
       if (!slot) {
         console.error("Slot not found:", name);
@@ -123,10 +133,64 @@ export class SpineCharacter {
         return;
       }
 
-      this.ctx.drawImage(img, slot.attachment.region.x, slot.attachment.region.y);
-      let spineTexture = new spine.threejs.ThreeJsTexture(this.ctx.getImageData(0,0,this.canvas.width,this.canvas.height));
-      slot.attachment.region.texture = spineTexture;
+      // Assume same size
+      this.ctx.drawImage(
+        img,
+        slot.attachment.region.x,
+        slot.attachment.region.y
+      );
+
+      // Auto-resize
+      /*
+      this.ctx.drawImage(
+        img,
+        slot.attachment.region.x,
+        slot.attachment.region.y,
+        slot.attachment.region.width,
+        slot.attachment.region.height
+      );
+      */
+
+      /*
+      // Auto-resize and auto-crop, causes issues
+
+      let sourceRatio = img.width / img.height;
+      let destRatio = slot.attachment.region.width / slot.attachment.region.height;
+
+      let sourceHeight = img.height, sourceWidth = img.width;
+      if (sourceRatio > destRatio) {
+        sourceWidth = img.width * destRatio;
+      } else if (sourceRatio < destRatio) {
+        sourceHeight = img.height / destRatio;
+      }
+
+      this.ctx.drawImage(
+        img,
+        0,
+        0,
+        sourceWidth,
+        sourceHeight,
+        slot.attachment.region.x,
+        slot.attachment.region.y,
+        slot.attachment.region.width,
+        slot.attachment.region.height
+      );
+      */
+
+      if (this.skeletonMesh.assetLoadingCount === 0) {
+        let spineTexture = new spine.threejs.ThreeJsTexture(
+          this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
+        );
+
+        for (let _slot of this.skeletonMesh.skeleton.slots) {
+          if (!_slot.attachment) continue;
+          _slot.attachment.region.texture = spineTexture;
+        }
+      }
     }).bind(this);
+    img.onerror = (function() {
+      this.skeletonMesh.assetLoadingCount--;
+    }).bind(this)
     img.src = path;
   }
 
@@ -139,20 +203,6 @@ export class SpineCharacter {
       this.canvas.height = img.height;
       this.ctx.drawImage(img, 0, 0);
     }
-  }
-
-  loadTextureImageTest(path) {
-    // Get the image and create the canvas for this character
-    this.createCanvas();
-
-    const img = new Image();
-    img.crossOrigin = "Anonymous";
-    img.onload = (function() {
-      this.ctx.drawImage(img, 893, 3518);
-      let spineTexture = new spine.threejs.ThreeJsTexture(this.ctx.getImageData(0,0,this.canvas.width,this.canvas.height));
-      this.skeletonMesh.skeleton.getAttachmentByName("Torso Base", "Torso Base").region.texture = spineTexture;
-    }).bind(this);
-    img.src = path;
   }
 
   debug() {

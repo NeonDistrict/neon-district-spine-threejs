@@ -5,7 +5,11 @@ export class Scene extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.init();
+    this.mounted = true;
+  }
 
+  init() {
     // Three.JS Variables
     this.width    = null;
     this.height   = null;
@@ -17,6 +21,15 @@ export class Scene extends Component {
 
   componentDidMount() {
     this.createScene();
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+    this.init();
+  }
+
+  defaultCameraPosition() {
+    return {"x":0,"y":200,"z":400};
   }
 
   createScene() {
@@ -32,12 +45,14 @@ export class Scene extends Component {
       this.props.far  || 3000
     );
 
+    let defaultPos = this.defaultCameraPosition();
+
     this.camera.position.x = this.props.position && 
-      this.props.position.hasOwnProperty('x') ? this.props.position.x : 0;
+      this.props.position.hasOwnProperty('x') ? this.props.position.x : defaultPos.x;
     this.camera.position.y = this.props.position && 
-      this.props.position.hasOwnProperty('y') ? this.props.position.y : 150;
+      this.props.position.hasOwnProperty('y') ? this.props.position.y : defaultPos.y;
     this.camera.position.z = this.props.position && 
-      this.props.position.hasOwnProperty('z') ? this.props.position.z : 200;
+      this.props.position.hasOwnProperty('z') ? this.props.position.z : defaultPos.z;
 
     this.scene = new THREE.Scene();
 
