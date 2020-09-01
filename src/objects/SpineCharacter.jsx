@@ -78,7 +78,41 @@ export class SpineCharacter {
     return this.skeletonMesh;
   }
 
-  loadFullOutfit(jsonPath, _gender = 'female', _rarity = 'common') {
+  isValidSlot(slot) {
+    return ['head','body','arms','legs','weapon'].indexOf(slot) !== -1;
+  }
+
+  partBelongsToSlot(slot, part) {
+    let parts = {
+      "head" : ["headbot","hairextra","hair","headtop"],
+      "body" : ["torsobg","torsobot","torsotop","shoulders"],
+      "arms" : ["handsbasegripb","backarm","armaccessb","frontarm","armaccess","handsbasegrip"],
+      "legs" : ["backlegbot","shoesb","backlegtop","legaccessb","frontlegbot","shoes","frontlegtop","legaccess"]
+    };
+
+    if (parts.hasOwnProperty(slot)) {
+      return parts[slot].indexOf(part) !== -1;
+    }
+
+    return false;
+  }
+
+  setAnimation(animation) {
+    this.skeletonMesh.state.setAnimation(0, animation, true);
+  }
+
+  setSkin(skin) {
+    this.skeletonMesh.skeleton.setSkinByName(skin);
+  }
+
+  loadGear(slot, jsonPath, _gender = 'female', _rarity = 'common') {
+    if (!this.isValidSlot(slot) && slot !== 'all')
+      throw `Invalid slot: ${slot}`;
+
+    if (jsonPath.indexOf('http') !== 0) {
+      jsonPath = "https://neon-district-season-one.s3.us-east-1.amazonaws.com/Output/" + jsonPath + "/" + jsonPath + ".json";
+    }
+
     this.loadJson(jsonPath, ((response) => {
       let config = JSON.parse(response);
       for (let gender in config) {
@@ -87,6 +121,7 @@ export class SpineCharacter {
           if (rarity !== _rarity) continue;
           for (let part in config[gender][rarity]) {
             if (!config[gender][rarity][part]) continue;
+            if (slot !== 'all' && !this.partBelongsToSlot(slot, part)) continue;
             let url = jsonPath.substr(0, jsonPath.lastIndexOf('/')) + "/" + gender + "/" + rarity + "/" + part + ".png";
             this.loadTexture(url, this.assetToSlotMapping[part]);
           }
@@ -95,6 +130,10 @@ export class SpineCharacter {
         break;
       }
     }).bind(this))
+  }
+
+  loadFullOutfit(jsonPath, _gender = 'female', _rarity = 'common') {
+    this.loadGear('all', jsonPath, _gender, _rarity);
   }
 
   loadJson(url, callback) {
@@ -181,6 +220,9 @@ export class SpineCharacter {
         let spineTexture = new spine.threejs.ThreeJsTexture(
           this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
         );
+
+        // NOTICE: THE DEFAULT EXPORT FROM SPINE IS LINEAR,LINEAR
+        spineTexture.setFilters(spine.TextureFilter.MipMapLinearNearest, spine.TextureFilter.Linear);
 
         for (let _slot of this.skeletonMesh.skeleton.slots) {
           if (!_slot.attachment) continue;

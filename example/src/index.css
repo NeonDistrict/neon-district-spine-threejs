@@ -46,3 +46,52 @@ div.navigation img {
 div.container {
 	padding: 0.5em 2em;
 }
+
+div.char-equip, div.char-equip-options div {
+	display: flex;
+}
+
+div.char-equip h3 {
+	margin: 10px 0px;
+}
+
+div.char-equip input[type="radio"] {
+	margin: 5px 10px 5px 5px;
+}
+
+div.char-equip-rarity-inputs {
+	margin: 6px 0px;
+}
+
+select {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-padding-end: 20px;
+    -moz-padding-end: 20px;
+    -webkit-padding-start: 2px;
+    -moz-padding-start: 2px;
+    background-color: rgba(38, 48, 51, 0.9);
+    border: 1px solid hsla(0,0%,100%,.9);
+    border-radius: 0px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    color: hsla(0,0%,100%,.9);
+    font-size: 90%;
+    margin: 0;
+    overflow: hidden;
+    padding: 5px 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 240px;
+}
+
+.arrow {
+	margin: 0px;
+	border: 1px solid hsla(0,0%,100%,.9);
+	background: rgba(38, 48, 51, 0.9);
+	padding: 5px;
+	margin: 0 0 0 10px;
+	display: inline-block;
+	cursor: pointer;
+}

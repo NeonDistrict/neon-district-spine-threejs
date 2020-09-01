@@ -2,7 +2,7 @@
 MediumMaleHeavySkinTest.png
 size: 4096,4096
 format: RGBA8888
-filter: Linear,Linear
+filter: MipMapLinearNearest,Linear
 repeat: none
 BaseBody/F Body/back arm/back arm_001
   rotate: false
