@@ -62,7 +62,6 @@ export default class BackgroundReview extends Component {
       <div className="background-review">
         <div style={{"width":1024,"height":600}}>
           <NDCombatScene
-            baseUrl="./spine-output/"
             width={1024}
             height={600}
             background={this.state.background}

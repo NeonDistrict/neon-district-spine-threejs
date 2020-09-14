@@ -55,7 +55,6 @@ export default class CombatScene extends Component {
     return (
       <div style={{"width":1024,"height":600}}>
         <NDCombatScene
-          baseUrl="./spine-output/"
           width={1024}
           height={600}
           background="training-room-001"

@@ -8,7 +8,7 @@ export class SpineScene extends Scene {
     super(props);
 
     // Create the asset manager
-    this.baseUrl = props.baseUrl;
+    this.baseUrl = "https://neon-district-season-one.s3.amazonaws.com/spine-output/";
     this.createAssetManager(this.baseUrl);
 
     this.state = {

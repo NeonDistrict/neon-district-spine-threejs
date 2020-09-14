@@ -6,7 +6,6 @@ export default class CombatTest extends Component {
     return (
       <div style={{"width":960,"height":540}}>
         <NDCombatTest
-          baseUrl="./spine-output/"
           width={960}
           height={540}
         />
