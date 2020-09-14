@@ -6,20 +6,21 @@ export default class CharacterEquipment extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      'animation'   : 'BladeMed_BaseAtk_001',
+      'animation'   : 'Unarmed_BasicIdle_001',
       'gender'      : 'male',
-      'head-suit'   : 'none',
+      'head-suit'   : '',
       'head-rarity' : 'common',
-      'body-suit'   : 'none',
+      'body-suit'   : '',
       'body-rarity' : 'common',
-      'arms-suit'   : 'none',
+      'arms-suit'   : '',
       'arms-rarity' : 'common',
-      'legs-suit'   : 'none',
+      'legs-suit'   : '',
       'legs-rarity' : 'common'
     };
   }
 
   componentDidMount() {
+    document.getElementById("char-equip-animation").value = 'Unarmed_BasicIdle_001';
     document.getElementsByName("char-equip-gender")[0].checked = true;
     document.getElementsByName("char-equip-head-rarity")[0].checked = true;
     document.getElementsByName("char-equip-body-rarity")[0].checked = true;
@@ -28,19 +29,19 @@ export default class CharacterEquipment extends Component {
     document.getElementsByName("char-equip-all-rarity")[0].checked = true;
   }
 
-  updateState(allCheck) {
-    if (allCheck === 'all') {
+  updateState(id) {
+    if (id && id.indexOf('all') !== -1) {
       document.getElementById("char-equip-head").value = document.getElementById("char-equip-all").value;
       document.getElementById("char-equip-body").value = document.getElementById("char-equip-all").value;
       document.getElementById("char-equip-arms").value = document.getElementById("char-equip-all").value;
       document.getElementById("char-equip-legs").value = document.getElementById("char-equip-all").value;
 
       let els = document.getElementsByName("char-equip-all-rarity");
-      for (let id in els) {
-        document.getElementsByName("char-equip-head-rarity")[id].checked = els[id].checked;
-        document.getElementsByName("char-equip-body-rarity")[id].checked = els[id].checked;
-        document.getElementsByName("char-equip-arms-rarity")[id].checked = els[id].checked;
-        document.getElementsByName("char-equip-legs-rarity")[id].checked = els[id].checked;
+      for (let _idx = 0; _idx < els.length; _idx++) {
+        document.getElementsByName("char-equip-head-rarity")[_idx].checked = els[_idx].checked;
+        document.getElementsByName("char-equip-body-rarity")[_idx].checked = els[_idx].checked;
+        document.getElementsByName("char-equip-arms-rarity")[_idx].checked = els[_idx].checked;
+        document.getElementsByName("char-equip-legs-rarity")[_idx].checked = els[_idx].checked;
       }
     }
 
@@ -54,8 +55,42 @@ export default class CharacterEquipment extends Component {
       "arms-suit"   : "char-equip-arms",
       "arms-rarity" : "char-equip-arms-rarity",
       "legs-suit"   : "char-equip-legs",
-      "legs-rarity" : "char-equip-legs-rarity"
+      "legs-rarity" : "char-equip-legs-rarity",
+      "all-suit"   : "char-equip-all",
+      "all-rarity" : "char-equip-all-rarity"
     };
+
+    for (let _idx in ids) {
+      let el = document.getElementById(ids[_idx]);
+      let value = el.value;
+
+      // Update available rarities
+      if (_idx.indexOf('-suit') !== -1 && this.suits.hasOwnProperty(value)) {
+        let availableRarities = this.suits[value].rarities;
+        let els = document.getElementsByName(ids[_idx.replace('-suit','-rarity')]);
+
+        let checkFirst = false;
+        for (let el of els) {
+          if (availableRarities.indexOf(el.value) === -1) {
+            el.disabled = true;
+            if (el.checked) checkFirst = true;
+            el.checked = false;
+          } else {
+            el.disabled = false;
+          }
+        }
+
+        // Check the first one if needed
+        if (checkFirst) {
+          for (let el of els) {
+            if (!el.disabled) {
+              el.checked = true;
+              break;
+            }
+          }
+        }
+      }
+    }
 
     let values = {};
     for (let id in ids) {
@@ -81,7 +116,7 @@ export default class CharacterEquipment extends Component {
     let suits = {
       "none" : {
         "name" : "None",
-        "slug" : "none",
+        "slug" : "",
         "rarity" : []
       }
     };
@@ -102,9 +137,9 @@ export default class CharacterEquipment extends Component {
 
   generateSuitSelects(field, suits) {
     let options = [];
-    for (let slug in suits) {
+    for (let key in suits) {
       options.push(
-        <option name={"char-equip-" + field} value={slug}>{suits[slug].name}</option>
+        <option name={"char-equip-" + field} value={suits[key].slug}>{suits[key].name}</option>
       );
     }
 
@@ -122,19 +157,19 @@ export default class CharacterEquipment extends Component {
     return (
       <div className={"char-equip-rarity-inputs"} id={"char-equip-" + field + "-rarity"}>
         <label>
-          C <input type="radio" name={"char-equip-" + field + "-rarity"} value="common" onChange={this.updateState.bind(this)} />
+          C <input type="radio" name={"char-equip-" + field + "-rarity"} value="Common" onChange={this.updateState.bind(this, field)} />
         </label>
         <label>
-          U <input type="radio" name={"char-equip-" + field + "-rarity"} value="uncommon" onChange={this.updateState.bind(this)} />
+          U <input type="radio" name={"char-equip-" + field + "-rarity"} value="Uncommon" onChange={this.updateState.bind(this, field)} />
         </label>
         <label>
-          R <input type="radio" name={"char-equip-" + field + "-rarity"} value="rare" onChange={this.updateState.bind(this)} />
+          R <input type="radio" name={"char-equip-" + field + "-rarity"} value="Rare" onChange={this.updateState.bind(this, field)} />
         </label>
         <label>
-          UR <input type="radio" name={"char-equip-" + field + "-rarity"} value="ultrarare" onChange={this.updateState.bind(this)} />
+          UR <input type="radio" name={"char-equip-" + field + "-rarity"} value="Ultra Rare" onChange={this.updateState.bind(this, field)} />
         </label>
         <label>
-          L <input type="radio" name={"char-equip-" + field + "-rarity"} value="legendary" onChange={this.updateState.bind(this)} />
+          L <input type="radio" name={"char-equip-" + field + "-rarity"} value="Legendary" onChange={this.updateState.bind(this, field)} />
         </label>
       </div>
     );
@@ -145,13 +180,13 @@ export default class CharacterEquipment extends Component {
     let index = (e.selectedIndex-1)%e.options.length;
     if (index < 0) index = e.options.length-1;
     e.value = e.options[index].value;
-    this.updateState()
+    this.updateState(id)
   }
 
   nextOption(id) {
     let e = document.getElementById(id);
     e.value = e.options[(e.selectedIndex+1)%e.options.length].value;
-    this.updateState()
+    this.updateState(id)
   }
 
   backForwardButtons(id) {
@@ -166,7 +201,7 @@ export default class CharacterEquipment extends Component {
   generateAnimationSelects(field) {
     return (
       <div>
-        <select name={"char-equip-animation"} id={"char-equip-animation"} onChange={this.updateState.bind(this)}>>
+        <select name={"char-equip-animation"} id={"char-equip-animation"} onChange={this.updateState.bind(this, field)}>>
           {EquipmentSets.animations.map((anim) => <option name={"char-equip-animation"} value={anim}>{anim}</option>)}
         </select>
         {this.backForwardButtons("char-equip-animation")}
@@ -178,35 +213,45 @@ export default class CharacterEquipment extends Component {
     return (
       <div className={"char-equip-gender-inputs"} id={"char-equip-gender"}>
         <label>
-          Male <input type="radio" name={"char-equip-gender"} value="male" onChange={this.updateState.bind(this)} />
+          Male <input type="radio" name={"char-equip-gender"} value="male" onChange={this.updateState.bind(this, "char-equip-gender")} />
         </label>
         <label>
-          Female <input type="radio" name={"char-equip-gender"} value="female" onChange={this.updateState.bind(this)} />
+          Female <input type="radio" name={"char-equip-gender"} value="female" onChange={this.updateState.bind(this, "char-equip-gender")} />
         </label>
       </div>
     );
   }
 
+  toRaritySlug(rarity) {
+    return {
+      "Common" : "common",
+      "Uncommon" : "uncommon",
+      "Rare" : "rare",
+      "Ultra Rare" : "ultrarare",
+      "Legendary" : "legendary"
+    }[rarity];
+  }
+
   render() {
-    let suits = this.orderSets();
+    this.suits = this.orderSets();
 
     return (
       <div className="char-equip">
-        <div style={{"width":680,"height":600}}>
+        <div style={{"width":680,"height":720}}>
           <NDCharacterEquipment
-            baseUrl="./spine-assets/"
+            baseUrl="./spine-output/"
             width={680}
-            height={600}
+            height={720}
             animation={this.state.animation}
             gender={this.state.gender}
             head={this.state["head-suit"]}
-            headRarity={this.state["head-rarity"]}
+            headRarity={this.toRaritySlug(this.state["head-rarity"])}
             body={this.state["body-suit"]}
-            bodyRarity={this.state["body-rarity"]}
+            bodyRarity={this.toRaritySlug(this.state["body-rarity"])}
             arms={this.state["arms-suit"]}
-            armsRarity={this.state["arms-rarity"]}
+            armsRarity={this.toRaritySlug(this.state["arms-rarity"])}
             legs={this.state["legs-suit"]}
-            legsRarity={this.state["legs-rarity"]}
+            legsRarity={this.toRaritySlug(this.state["legs-rarity"])}
           />
         </div>
         <div className="char-equip-options">
@@ -215,20 +260,20 @@ export default class CharacterEquipment extends Component {
           {this.generateGenderRadios()}
           <hr />
           <h3>Head</h3>
-          {this.generateSuitSelects("head", suits)}
+          {this.generateSuitSelects("head", this.suits)}
           {this.generateRarityRadios("head")}
           <h3>Body</h3>
-          {this.generateSuitSelects("body", suits)}
+          {this.generateSuitSelects("body", this.suits)}
           {this.generateRarityRadios("body")}
           <h3>Arms</h3>
-          {this.generateSuitSelects("arms", suits)}
+          {this.generateSuitSelects("arms", this.suits)}
           {this.generateRarityRadios("arms")}
           <h3>Legs</h3>
-          {this.generateSuitSelects("legs", suits)}
+          {this.generateSuitSelects("legs", this.suits)}
           {this.generateRarityRadios("legs")}
           <hr />
           <h3>Full Outfit</h3>
-          {this.generateSuitSelects("all", suits)}
+          {this.generateSuitSelects("all", this.suits)}
           {this.generateRarityRadios("all")}
         </div>
       </div>

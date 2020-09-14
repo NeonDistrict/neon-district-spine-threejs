@@ -16,7 +16,7 @@ export class CharacterEquipment extends SpineScene {
     super.componentDidMount(arguments);
 
     // Preload all skeleton & atlas files
-    this.character = new SpineCharacter(this.assetManager, "MediumMaleHeavySkinTest.json");
+    this.character = new SpineCharacter(this.assetManager, "character/MediumMaleHeavySkinTest.json");
 
     // Begin the animation
     requestAnimationFrame(this.loadSkeletons.bind(this));
@@ -54,7 +54,6 @@ export class CharacterEquipment extends SpineScene {
       ]);
 
       this.character.debug();
-      //this.character.loadTexture("https://neon-district-season-one.s3.amazonaws.com/Output/blkspecialdeathknight/male/legendary/torsotop.png", "Torsotop");
 
       /*
       this.character.loadFullOutfit(
@@ -67,7 +66,7 @@ export class CharacterEquipment extends SpineScene {
       for (let part of ["head","body","arms","legs"]) {
         this.character.loadGear(
           part,
-          "https://neon-district-season-one.s3.us-east-1.amazonaws.com/Output/" + this.props[part] + "/" + this.props[part] + ".json",
+          this.props[part],
           this.props.gender,
           this.props[part + "Rarity"]
         );

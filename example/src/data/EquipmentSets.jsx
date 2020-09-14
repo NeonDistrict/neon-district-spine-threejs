@@ -300,13 +300,6 @@ export default {
 		"[reserved] Taserstick_Jack_Hack"
 	],
 	"sets" : [
-		["blkoriginwallace","Common","Wallace"],
-		["blkorigintailor","Common","Tailor"],
-		["blkoriginsamwelljones","Common","Samwell Jones"],
-		["blkoriginroutine","Common","Routine"],
-		["blkoriginfriction","Common","Friction"],
-		["blkorigineternity","Common","Eternity"],
-		["blkoriginchance","Common","Chance"],
 		["blkorigindemon","Common","Demon"],
 		["blkoriginmedic","Common","Doc"],
 		["blkorigingenius","Common","Genius"],
@@ -317,9 +310,9 @@ export default {
 		["szaboadventurer","Ultra Rare","Ledger of Szabo: Adventurer"],
 		["szabowasp","Rare","Ledger of Szabo: Wasp"],
 		["szabodoge","Legendary","Ledger of Szabo: Doge"],
-		["plasmabearsdecoramai","Ultra Rare","Plasma Bears: Decora Mai"],
+		["plasmabearsdecoramai","Ultra Rare","Plasma Bears: Decora Mai"], // DNE
 		["plasmabearskawaii","Rare","Plasma Bears: Kawaii"],
-		["plasmabearssuit","Legendary","Plasma Bears: Suit"],
+		["plasmabearssuits","Legendary","Plasma Bears: Suit"], // plasmabearssuit
 		["lightningscifi","Common","Lightning: Sci Fi"],
 		["lightningscifi","Uncommon","Lightning: Sci Fi"],
 		["lightningscifi","Rare","Lightning: Sci Fi"],
@@ -339,8 +332,8 @@ export default {
 		["posstakes","Common","Proof of Stake: High Stakes Hearts"],
 		["posstakes","Ultra Rare","Proof of Stake: High Stakes Diamonds"],
 		["poscrypno","Ultra Rare","Proof of Stake: Crypno"],
-		["poslock","Common","Proof of Stake: Lock"],
-		["poslock","Uncommon","Proof of Stake: Lock"],
+		["powlock","Common","Proof of Stake: Lock"], // poslock
+		["powlock","Uncommon","Proof of Stake: Lock"], // poslock
 		["leatherheadzursa","Common","Leatherheadz Ursa"],
 		["leatherheadzursa","Uncommon","Leatherheadz Ursa"],
 		["leatherheadzursa","Rare","Leatherheadz Ursa"],
@@ -351,11 +344,11 @@ export default {
 		["leatherheadzcanis","Rare","Leatherheadz Canis"],
 		["leatherheadzcanis","Ultra Rare","Leatherheadz Canis"],
 		["leatherheadzcanis","Legendary","Leatherheadz Canis"],
-		["leatherheadzibis","Common","Leatherheadz Ibis"],
-		["leatherheadzibis","Uncommon","Leatherheadz Ibis"],
-		["leatherheadzibis","Rare","Leatherheadz Ibis"],
-		["leatherheadzibis","Ultra Rare","Leatherheadz Ibis"],
-		["leatherheadzibis","Legendary","Leatherheadz Ibis"],
+		["leatherheadszibis","Common","Leatherheadz Ibis"], // leatherheadzibis
+		["leatherheadszibis","Uncommon","Leatherheadz Ibis"], // leatherheadzibis
+		["leatherheadszibis","Rare","Leatherheadz Ibis"], // leatherheadzibis
+		["leatherheadszibis","Ultra Rare","Leatherheadz Ibis"], // leatherheadzibis
+		["leatherheadszibis","Legendary","Leatherheadz Ibis"], // leatherheadzibis
 		["vicesquadcandyman","Common","Vice Squad Candyman"],
 		["vicesquadcandyman","Uncommon","Vice Squad Candyman"],
 		["vicesquadcandyman","Rare","Vice Squad Candyman"],
@@ -551,6 +544,13 @@ export default {
 		["cereslifegiverr","Uncommon","Ceres Lifegiver: Renegade"],
 		["cereslifegiverr","Rare","Ceres Lifegiver: Renegade"],
 		["cereslifegiverr","Ultra Rare","Ceres Lifegiver: Renegade"],
-		["cereslifegiverr","Legendary","Ceres Lifegiver: Renegade"]
+		["cereslifegiverr","Legendary","Ceres Lifegiver: Renegade"],
+		["blkoriginwallace","Common","Wallace"],
+		["blkorigintailor","Common","Tailor"],
+		["blkoriginsamwelljones","Common","Samwell Jones"],
+		["blkoriginroutine","Common","Routine"],
+		["blkoriginfriction","Common","Friction"],
+		["blkorigineternity","Common","Eternity"],
+		["blkoriginchance","Common","Chance"]
 	]
 };

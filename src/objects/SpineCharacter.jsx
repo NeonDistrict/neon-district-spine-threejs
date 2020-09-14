@@ -15,7 +15,16 @@ export class SpineCharacter {
     this.assetManager.loadText(this.skeletonFile);
     this.assetManager.loadTextureAtlas(this.atlasFile);
 
+    // We save some images to replace them if they were overwritten
+    this.defaultImage = null;
+
     this.assetToSlotMapping = {
+      //"HandsPistolGripB",
+      "handsreleasegripb" : "HandsReleaseGripB",
+      "handscarrygrip" : "HandsCarryGrip",
+      "handspointgripb" : "HandsPointGripB",
+      "handscradlegripb" : "HandsCradleGripB",
+      "handspolegripb" : "HandsPoleGripB",
       "handsbasegripb" : "HandsBaseGripB",
       "backarm" : "Back Arm",
       "armaccessb" : "Arm AccessB",
@@ -34,9 +43,13 @@ export class SpineCharacter {
       "hairextra" : "Hair Extra",
       "hair" : "Hair",
       "headtop" : "HeadTop",
+      "handstriggergrip" : "HandsTriggerGrip",
+      "handsbackgrip" : "HandsBackGrip",
+      "handsrestinggrip" : "HandsRestingGrip",
+      "handsreleasegrip" : "HandsReleaseGrip",
+      "handsbasegrip" : "HandsBaseGrip",
       "frontarm" : "Front Arm",
       "armaccess" : "Arm Access",
-      "handsbasegrip" : "HandsBaseGrip",
       "shoulders" : "Shoulders"
     };
 
@@ -86,7 +99,7 @@ export class SpineCharacter {
     let parts = {
       "head" : ["headbot","hairextra","hair","headtop"],
       "body" : ["torsobg","torsobot","torsotop","shoulders"],
-      "arms" : ["handsbasegripb","backarm","armaccessb","frontarm","armaccess","handsbasegrip"],
+      "arms" : ["handsreleasegripb","handscarrygrip","handspointgripb","handscradlegripb","handspolegripb","handsbasegripb","handstriggergrip","handsbackgrip","handsrestinggrip","handsreleasegrip","handsbasegrip","backarm","armaccessb","frontarm","armaccess"],
       "legs" : ["backlegbot","shoesb","backlegtop","legaccessb","frontlegbot","shoes","frontlegtop","legaccess"]
     };
 
@@ -109,6 +122,11 @@ export class SpineCharacter {
     if (!this.isValidSlot(slot) && slot !== 'all')
       throw `Invalid slot: ${slot}`;
 
+    if (!jsonPath) {
+      console.log("Notice: no JSON path provided.");
+      return;
+    }
+
     if (jsonPath.indexOf('http') !== 0) {
       jsonPath = "https://neon-district-season-one.s3.us-east-1.amazonaws.com/Output/" + jsonPath + "/" + jsonPath + ".json";
     }
@@ -120,8 +138,24 @@ export class SpineCharacter {
         for (let rarity in config[gender]) {
           if (rarity !== _rarity) continue;
           for (let part in config[gender][rarity]) {
-            if (!config[gender][rarity][part]) continue;
+            // Only display parts that matter
             if (slot !== 'all' && !this.partBelongsToSlot(slot, part)) continue;
+
+            // Wipe that area clean
+            this.clearTexture(this.assetToSlotMapping[part]);
+
+            // Avoid null values
+            if (!config[gender][rarity][part]) {
+              // If hands, restore
+              if (part.indexOf('hand') !== -1) {
+                this.validateImage("HandsBaseGrip");
+                this.validateImage("HandsBaseGripB");
+              }
+
+              continue;
+            }
+
+            // Load the texture
             let url = jsonPath.substr(0, jsonPath.lastIndexOf('/')) + "/" + gender + "/" + rarity + "/" + part + ".png";
             this.loadTexture(url, this.assetToSlotMapping[part]);
           }
@@ -147,6 +181,74 @@ export class SpineCharacter {
 
     xhr.open('GET', url, true);
     xhr.send('');
+  }
+
+  clearTexture(name) {
+    if (!this.canvas) {
+      return;
+    }
+
+    let slot = this.skeletonMesh.skeleton.findSlot(name);
+    if (!slot) {
+      console.error("Slot not found:", name);
+      return;
+    }
+
+    if (!slot.attachment) {
+      console.error("Slot attachment not found:", name);
+      return;
+    }
+
+    // Assume same size
+    this.ctx.clearRect(
+      slot.attachment.region.x,
+      slot.attachment.region.y,
+      slot.attachment.region.width,
+      slot.attachment.region.height
+    );
+  }
+
+  validateImage(name) {
+    if (!this.canvas || !this.defaultImage) {
+      return;
+    }
+
+    let defaults = ["HandsBaseGripB","HandsBaseGrip"];
+    if (defaults.indexOf(name) !== -1) {
+      let slot = this.skeletonMesh.skeleton.findSlot(name);
+      if (!slot || !slot.attachment) {
+        return;
+      }
+
+      let imageData = this.ctx.getImageData(
+        slot.attachment.region.x,
+        slot.attachment.region.y,
+        slot.attachment.region.width,
+        slot.attachment.region.height
+      );
+
+      let totalNumber = 0;
+      let numberOfZeroes = 0;
+      for (let i = 0; i < imageData.data.length; i+=4) {
+        totalNumber++;
+        if (imageData.data[i+3] === 0) {
+          numberOfZeroes++;
+        }
+      }
+
+      if (numberOfZeroes / totalNumber > 0.95) {
+        this.ctx.putImageData(
+          this.defaultImage,
+          0,
+          0,
+          slot.attachment.region.x,
+          slot.attachment.region.y,
+          slot.attachment.region.width,
+          slot.attachment.region.height
+        );
+      }
+    }
+
   }
 
   loadTexture(path, name) {
@@ -216,6 +318,8 @@ export class SpineCharacter {
       );
       */
 
+      this.validateImage(name);
+
       if (this.skeletonMesh.assetLoadingCount === 0) {
         let spineTexture = new spine.threejs.ThreeJsTexture(
           this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
@@ -244,6 +348,7 @@ export class SpineCharacter {
       this.canvas.width = img.width;
       this.canvas.height = img.height;
       this.ctx.drawImage(img, 0, 0);
+      this.defaultImage = this.ctx.getImageData(0, 0, img.width, img.height);
     }
   }
 

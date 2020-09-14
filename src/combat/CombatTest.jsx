@@ -16,10 +16,11 @@ export class CombatTest extends SpineScene {
     super.componentDidMount(arguments);
 
     // Preload all skeleton & atlas files
-    this.characterM = new SpineCharacter(this.assetManager, "MediumMaleHeavySkinTest.json", "M");
-    this.characterF = new SpineCharacter(this.assetManager, "MediumMaleHeavySkinTest.json", "F");
-    this.background = new SpineBackground(this.assetManager, "Paralax1/S0_MetrostationInterior_001_SkeletonData.json");
-    this.foreground = new SpineBackground(this.assetManager, "Midground/S0_MetrostationInterior_001_SkeletonData.json");
+    this.characterM = new SpineCharacter(this.assetManager, "character/MediumMaleHeavySkinTest.json", "M");
+    this.characterF = new SpineCharacter(this.assetManager, "character/MediumMaleHeavySkinTest.json", "F");
+    this.background = new SpineBackground(this.assetManager, "backgrounds/SA_AlmondestateUncontrolledOverlookexterior_001/SA_AlmondestateUncontrolledOverlookexterior.json");
+    //this.background = new SpineBackground(this.assetManager, "backgrounds/S0_ZerodayInterior_001/Paralax1/S0_ZerodayInterior_001_SkeletonData.json");
+    //this.foreground = new SpineBackground(this.assetManager, "backgrounds/S0_ZerodayInterior_001/Midground/S0_ZerodayInterior_001_SkeletonData.json");
 
     // Begin the animation
     requestAnimationFrame(this.loadSkeletons.bind(this));
@@ -30,7 +31,7 @@ export class CombatTest extends SpineScene {
       // Create all skeletons
       this.setSkeletons([
         this.background.createMesh(),
-        this.foreground.createMesh(),
+        //this.foreground.createMesh(),
         this.characterF.createMesh('Female', 'BladeSml_BaseIdle_001', 70, 40, false, 0.12),
         this.characterM.createMesh('Male', 'EnergyMed_BasicIdle_001', -70, 40, false, 0.12)
       ]);

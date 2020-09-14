@@ -9,6 +9,7 @@ export default function Navigation(props) {
 		<img src={NDLogo} alt="ND Logo" />
 		<Link to="/">Home</Link>
 		<Link to="/combat-test">Combat Test</Link>
+		<Link to="/background-review">Background Review</Link>
 		<Link to="/character-equipment">Character Equipment</Link>
 		<Link to="/combat-scene">Combat Scene</Link>
 	</div>
