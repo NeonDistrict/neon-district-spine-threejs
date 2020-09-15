@@ -251,6 +251,36 @@ export class SpineCharacter {
 
   }
 
+  wipeOutline(slot) {
+    this.ctx.clearRect(
+      slot.attachment.region.x,
+      slot.attachment.region.y,
+      slot.attachment.region.width,
+      2
+    );
+
+    this.ctx.clearRect(
+      slot.attachment.region.x,
+      slot.attachment.region.y,
+      2,
+      slot.attachment.region.height
+    );
+
+    this.ctx.clearRect(
+      slot.attachment.region.x + slot.attachment.region.width - 2,
+      slot.attachment.region.y,
+      2,
+      slot.attachment.region.height
+    );
+
+    this.ctx.clearRect(
+      slot.attachment.region.x,
+      slot.attachment.region.y + slot.attachment.region.height - 2,
+      slot.attachment.region.width,
+      2
+    );
+  }
+
   loadTexture(path, name) {
     // Start loading
     this.skeletonMesh.assetLoadingCount++;
@@ -280,6 +310,9 @@ export class SpineCharacter {
         slot.attachment.region.x,
         slot.attachment.region.y
       );
+
+      // Wipe outline
+      this.wipeOutline(slot);
 
       // Auto-resize
       /*
@@ -319,7 +352,15 @@ export class SpineCharacter {
       */
 
       this.validateImage(name);
+      renderTexture.call(this);
+    }).bind(this);
+    img.onerror = (function() {
+      this.skeletonMesh.assetLoadingCount--;
+      renderTexture.call(this);
+    }).bind(this)
+    img.src = path;
 
+    function renderTexture() {
       if (this.skeletonMesh.assetLoadingCount === 0) {
         let spineTexture = new spine.threejs.ThreeJsTexture(
           this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
@@ -333,11 +374,7 @@ export class SpineCharacter {
           _slot.attachment.region.texture = spineTexture;
         }
       }
-    }).bind(this);
-    img.onerror = (function() {
-      this.skeletonMesh.assetLoadingCount--;
-    }).bind(this)
-    img.src = path;
+    }
   }
 
   createCanvas() {

@@ -15,10 +15,6 @@ export default class BackgroundReview extends Component {
   }
 
   updateState(id) {
-    let ids = {
-      "background" : "background-selection",
-    };
-
     let el = document.getElementById("background-selection");
     this.setState({'background' : el.value});
   }

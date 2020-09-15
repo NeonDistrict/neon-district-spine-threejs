@@ -237,10 +237,11 @@ export default class CharacterEquipment extends Component {
 
     return (
       <div className="char-equip">
-        <div style={{"width":680,"height":720}}>
+        <div style={{"width":680,"height":700}}>
           <NDCharacterEquipment
+            baseUrl="./spine-output/"
             width={680}
-            height={720}
+            height={700}
             animation={this.state.animation}
             gender={this.state.gender}
             head={this.state["head-suit"]}

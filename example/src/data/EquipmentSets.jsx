@@ -310,9 +310,9 @@ export default {
 		["szaboadventurer","Ultra Rare","Ledger of Szabo: Adventurer"],
 		["szabowasp","Rare","Ledger of Szabo: Wasp"],
 		["szabodoge","Legendary","Ledger of Szabo: Doge"],
-		["plasmabearsdecoramai","Ultra Rare","Plasma Bears: Decora Mai"], // DNE
+		["plasmabearsdecoramai","Ultra Rare","Plasma Bears: Decora Mai"],
 		["plasmabearskawaii","Rare","Plasma Bears: Kawaii"],
-		["plasmabearssuits","Legendary","Plasma Bears: Suit"], // plasmabearssuit
+		["plasmabearssuit","Legendary","Plasma Bears: Suit"],
 		["lightningscifi","Common","Lightning: Sci Fi"],
 		["lightningscifi","Uncommon","Lightning: Sci Fi"],
 		["lightningscifi","Rare","Lightning: Sci Fi"],
