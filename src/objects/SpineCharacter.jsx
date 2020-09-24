@@ -57,7 +57,8 @@ export class SpineCharacter {
       "head" : ["headbot","hairextra","hair","headtop"],
       "body" : ["torsobg","torsobot","torsotop","shoulders"],
       "arms" : ["handsreleasegripb","handscarrygrip","handspointgripb","handscradlegripb","handspolegripb","handsbasegripb","handstriggergrip","handsbackgrip","handsrestinggrip","handsreleasegrip","handsbasegrip","backarm","armaccessb","frontarm","armaccess"],
-      "legs" : ["backlegbot","shoesb","backlegtop","legaccessb","frontlegbot","shoes","frontlegtop","legaccess"]
+      "legs" : ["backlegbot","shoesb","backlegtop","legaccessb","frontlegbot","shoes","frontlegtop","legaccess"],
+      "all"  : ["backarm","torsobg","handsbasegripb","armaccessb","backlegbot","shoesb","backlegtop","legaccessb","torsobot","frontlegbot","shoes","frontlegtop","torsotop","legaccess","headbot","hairextra","hair","headtop","frontarm","handsbasegrip","armaccess","shoulders"]
     };
 
     // The above needs to load BEFORE we can assetManager.get them
@@ -152,9 +153,16 @@ export class SpineCharacter {
         if (gender !== _gender) continue;
         for (let rarity in config[gender]) {
           if (rarity !== _rarity) continue;
-          for (let part in config[gender][rarity]) {
-            // Only display parts that matter
-            if (slot !== 'all' && !this.partBelongsToSlot(slot, part)) continue;
+
+          if (!this.parts.hasOwnProperty(slot)) {
+            continue;
+          }
+
+          // Here, we should be rendering in order as defined by parts
+          for (let part of this.parts[slot]) {
+            if (!config[gender][rarity].hasOwnProperty(part)) {
+              continue;
+            }
 
             // Wipe that area clean
             this.clearTexture(this.assetToSlotMapping[part]);
@@ -319,6 +327,19 @@ export class SpineCharacter {
         return;
       }
 
+      // First, hands must always be underlying the applied image
+      if (["HandsBaseGrip", "HandsBaseGripB"].indexOf(name) !== -1) {
+        this.ctx.putImageData(
+          this.defaultImage,
+          0,
+          0,
+          slot.attachment.region.x,
+          slot.attachment.region.y,
+          slot.attachment.region.width,
+          slot.attachment.region.height
+        );
+      }
+
       // Assume same size
       this.ctx.drawImage(
         img,
@@ -407,6 +428,8 @@ export class SpineCharacter {
   }
 
   debug() {
+    console.log("Debug turned off for SpineCharacter");
+    /*
     let atlas = this.atlasLoader.atlas;
     for (let region of atlas.regions) {
       console.log("Region Name:", region.name);
@@ -429,5 +452,6 @@ export class SpineCharacter {
     for (let slot of this.skeletonMesh.skeleton.slots) {
       console.log("Slot Name:", slot.data.name);
     }
+    */
   }
 }
