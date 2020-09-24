@@ -1,5 +1,8 @@
 .loader {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   margin: auto;
   box-sizing: border-box;
   background-clip: padding-box;
@@ -12,6 +15,11 @@
   transform: perspective(200px) rotateX(66deg);
   animation: spinner-wiggle 1.2s infinite;
 }
+
+.loader canvas {
+  display: none;
+}
+
 .loader:before,
 .loader:after {
   content: "";
