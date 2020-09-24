@@ -38,6 +38,10 @@ export class SpineScene extends Scene {
   }
 
   load() {
+    if (!this.mounted) {
+      return;
+    }
+
     if (this.assetManager.isLoadingComplete()) {
 
       // Create the root mesh to apply all other objects
