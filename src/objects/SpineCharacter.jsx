@@ -53,6 +53,13 @@ export class SpineCharacter {
       "shoulders" : "Shoulders"
     };
 
+    this.parts = {
+      "head" : ["headbot","hairextra","hair","headtop"],
+      "body" : ["torsobg","torsobot","torsotop","shoulders"],
+      "arms" : ["handsreleasegripb","handscarrygrip","handspointgripb","handscradlegripb","handspolegripb","handsbasegripb","handstriggergrip","handsbackgrip","handsrestinggrip","handsreleasegrip","handsbasegrip","backarm","armaccessb","frontarm","armaccess"],
+      "legs" : ["backlegbot","shoesb","backlegtop","legaccessb","frontlegbot","shoes","frontlegtop","legaccess"]
+    };
+
     // The above needs to load BEFORE we can assetManager.get them
   }
 
@@ -96,15 +103,8 @@ export class SpineCharacter {
   }
 
   partBelongsToSlot(slot, part) {
-    let parts = {
-      "head" : ["headbot","hairextra","hair","headtop"],
-      "body" : ["torsobg","torsobot","torsotop","shoulders"],
-      "arms" : ["handsreleasegripb","handscarrygrip","handspointgripb","handscradlegripb","handspolegripb","handsbasegripb","handstriggergrip","handsbackgrip","handsrestinggrip","handsreleasegrip","handsbasegrip","backarm","armaccessb","frontarm","armaccess"],
-      "legs" : ["backlegbot","shoesb","backlegtop","legaccessb","frontlegbot","shoes","frontlegtop","legaccess"]
-    };
-
-    if (parts.hasOwnProperty(slot)) {
-      return parts[slot].indexOf(part) !== -1;
+    if (this.parts.hasOwnProperty(slot)) {
+      return this.parts[slot].indexOf(part) !== -1;
     }
 
     return false;
@@ -123,7 +123,22 @@ export class SpineCharacter {
       throw `Invalid slot: ${slot}`;
 
     if (!jsonPath) {
-      console.log("Notice: no JSON path provided.");
+      console.log("Notice: no JSON path provided -- clearing part.");
+
+      // Clear out this part
+      if (this.parts.hasOwnProperty(slot)) {
+        for (let part of this.parts[slot]) {
+          this.clearTexture(this.assetToSlotMapping[part]);
+
+          if (part.indexOf('hand') !== -1) {
+            this.validateImage("HandsBaseGrip");
+            this.validateImage("HandsBaseGripB");
+          }
+        }
+      }
+
+      this.renderTexture();
+
       return;
     }
 
@@ -352,27 +367,29 @@ export class SpineCharacter {
       */
 
       this.validateImage(name);
-      renderTexture.call(this);
+      this.renderTexture.call(this);
     }).bind(this);
     img.onerror = (function() {
       this.skeletonMesh.assetLoadingCount--;
-      renderTexture.call(this);
+      this.renderTexture.call(this);
     }).bind(this)
     img.src = path;
+  }
 
-    function renderTexture() {
-      if (this.skeletonMesh.assetLoadingCount === 0) {
-        let spineTexture = new spine.threejs.ThreeJsTexture(
-          this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
-        );
+  renderTexture() {
+    if (this.skeletonMesh.assetLoadingCount === 0) {
+      if (!this.ctx) return;
 
-        // NOTICE: THE DEFAULT EXPORT FROM SPINE IS LINEAR,LINEAR
-        spineTexture.setFilters(spine.TextureFilter.MipMapLinearNearest, spine.TextureFilter.Linear);
+      let spineTexture = new spine.threejs.ThreeJsTexture(
+        this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
+      );
 
-        for (let _slot of this.skeletonMesh.skeleton.slots) {
-          if (!_slot.attachment) continue;
-          _slot.attachment.region.texture = spineTexture;
-        }
+      // NOTICE: THE DEFAULT EXPORT FROM SPINE IS LINEAR,LINEAR
+      spineTexture.setFilters(spine.TextureFilter.MipMapLinearNearest, spine.TextureFilter.Linear);
+
+      for (let _slot of this.skeletonMesh.skeleton.slots) {
+        if (!_slot.attachment) continue;
+        _slot.attachment.region.texture = spineTexture;
       }
     }
   }

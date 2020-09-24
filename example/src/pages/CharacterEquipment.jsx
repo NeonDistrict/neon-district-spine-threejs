@@ -239,7 +239,6 @@ export default class CharacterEquipment extends Component {
       <div className="char-equip">
         <div style={{"width":680,"height":700}}>
           <NDCharacterEquipment
-            baseUrl="./spine-output/"
             width={680}
             height={700}
             animation={this.state.animation}
