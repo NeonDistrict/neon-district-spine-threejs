@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { SpineScene } from "../core/SpineScene.jsx";
+import { VideoTexture } from "../core/VideoTexture.jsx";
 import { SpineCharacter } from "../objects/SpineCharacter.jsx";
 import { SpineBackground } from "../objects/SpineBackground.jsx";
 import BACKGROUNDS from "../data/backgrounds.js";
@@ -9,6 +10,7 @@ export class Stage extends SpineScene {
     super(props);
     this.characters = [];
     this.background;
+    this.effects = {};
 
     // Internal
     this._backgrounds = [];
@@ -102,9 +104,66 @@ export class Stage extends SpineScene {
     // Construct all skeletons for characters and backgrounds
     this.constructCharacters();
     this.constructBackgrounds();
+    this.constructEffects();
 
     // Begin the animation
     requestAnimationFrame(this.loadSkeletons.bind(this));
+  }
+
+  componentWillUpdate(nextProps) {
+    if (
+        nextProps.effectTest && typeof nextProps.effectTest === 'object' &&
+        nextProps.effectTest.hasOwnProperty('src') && nextProps.effectTest.src
+    ) {
+      let size = nextProps.effectTest.size;
+      if (size && typeof size === 'object' && size.hasOwnProperty('width') && size.hasOwnProperty('height')) {
+        this.effects.vfx0.setSize(size.width, size.height);
+      }
+
+      let pos = nextProps.effectTest.pos;
+      if (pos && typeof pos === 'object' && pos.hasOwnProperty('x_pos') && pos.hasOwnProperty('y_pos')) {
+        this.effects.vfx0.setPosition(pos.x_pos, pos.y_pos);
+      }
+
+      if (nextProps.effectTest.src != this.effects.vfx0.getSrc()) {
+        console.log("Setting src:", nextProps.effectTest.src, this.effects.vfx0.getSrc(), nextProps.effectTest.src != this.effects.vfx0.getSrc());
+        this.effects.vfx0.setSrc(nextProps.effectTest.src);
+        this.effects.vfx0.setLoop(true);
+        this.effects.vfx0.play();
+      }
+    }
+  }
+
+  constructEffects() {
+    // Create the necessary effect planes
+    this.effects = {
+      'vfx0' : new VideoTexture(this.scene)
+    };
+
+    // For each effect plane, create the effect
+    // for now, this is just for a single effect test
+    this.effects.vfx0.createEffect();
+
+    /*
+    if (
+        this.effectTest && typeof this.effectTest === 'object' &&
+        this.effectTest.hasOwnProperty('src') && this.effectTest.src
+    ) {
+      this.setEffectVfx0(
+        this.effectTest.src,
+        this.effectTest.size,
+        this.effectTest.pos
+      );
+    }
+    */
+  }
+
+  setEffectVfx0(src, size, pos) {
+    this.effects.vfx0.setSrc(src);
+    this.effects.vfx0.setSize(size.width, size.height);
+    this.effects.vfx0.setPosition(pos.x_pos, pos.y_pos);
+    this.effects.vfx0.setLoop(true);
+    this.effects.vfx0.play();
   }
 
   constructCharacters() {

@@ -6,5 +6,6 @@ export class CombatScene extends Stage {
     super(props);
     this.background = props.background;
     this.characters = props.characters || [];
+    this.effectTest = props.effectTest;
   }
 }

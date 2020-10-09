@@ -44,7 +44,6 @@ export class CharacterEquipment extends SpineScene {
         }
       }
     }
-    
   }
 
   loadSkeletons(atlasFile, skeletonFile) {
@@ -54,14 +53,6 @@ export class CharacterEquipment extends SpineScene {
       ]);
 
       this.character.debug();
-
-      /*
-      this.character.loadFullOutfit(
-        "https://neon-district-season-one.s3.us-east-1.amazonaws.com/Output/blkspecialdeathknight/blkspecialdeathknight.json",
-        "male",
-        "legendary"
-      );
-      */
 
       for (let part of ["head","body","arms","legs"]) {
         this.character.loadGear(
