@@ -144,6 +144,7 @@ export class SpineCharacter {
     }
 
     if (jsonPath.indexOf('http') !== 0) {
+      //jsonPath = "assetOutput/" + jsonPath + "/" + jsonPath + ".json";
       jsonPath = "https://neon-district-season-one.s3.us-east-1.amazonaws.com/Output/" + jsonPath + "/" + jsonPath + ".json";
     }
 

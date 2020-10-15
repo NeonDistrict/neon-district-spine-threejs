@@ -7,6 +7,7 @@ import Background from "./components/Background";
 import Home from "./pages/Home";
 import CombatTest from "./pages/CombatTest";
 import CharacterEquipment from "./pages/CharacterEquipment";
+import CombatReview from "./pages/CombatReview";
 import CombatScene from "./pages/CombatScene";
 import BackgroundReview from "./pages/BackgroundReview";
 import EffectReview from "./pages/EffectReview";
@@ -27,6 +28,7 @@ export default class App extends Component {
           <Route path="/background-review" component={BackgroundReview} />
           <Route path="/effect-review" component={EffectReview} />
           <Route path="/character-equipment" component={CharacterEquipment} />
+          <Route path="/combat-review" component={CombatReview} />
           <Route path="/combat-scene" component={CombatScene} />
 
         </div>
