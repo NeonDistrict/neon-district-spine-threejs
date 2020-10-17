@@ -1,52 +1,38 @@
 import React, { Component } from "react";
 import Api from '../api/api.js';
 import { Stage } from "../core/Stage.jsx";
+import { CombatHUD } from "../objects/CombatHUD.jsx";
 
 export class CombatScene extends Stage {
   constructor(props) {
     super(props);
     this.background = props.background;
     this.characters = props.characters || [];
-    this.effectTest = props.effectTest; 
-    this.combatApi  = props.combatApi;
-    this.battleId   = props.battleId;
+    this.effectTest = props.effectTest;
+
+    // Internal objects
+    this.userInterface = null;
+    this.hud = null;
   }
 
   componentDidMount() {
     super.componentDidMount(arguments);
 
-    // Capture & handle click events
-    this.canvas.addEventListener('click', this.handleCanvasClick.bind(this));
-
-    // Pull the initial battle state
-    let api = new Api(this.combatApi);
-    api.getBattle({battleId: this.battleId}, () => {
-        console.log("result");
-        console.log(arguments);
-    }, () => {
-        console.error("error");
-        console.error(arguments);
-    });
+    // Draw Game UI elements
+    this.drawHUD();
   }
 
-  handleCanvasClick() {
-    this.runCombat();
+  drawHUD() {
+    this.userInterface = new CombatHUD(this.renderer);
+    this.hud = this.userInterface.render();
   }
 
-  runCombat() {
-    let api = new Api(this.combatApi);
-    api.runBattle({
-        battleId: this.battleId,
-        action:'atk',
-        target:0,
-        automatic:false
-    }, () => {
-        console.log("result");
-        console.log(arguments);
-    }, () => {
-        console.error("error");
-        console.error(arguments);
-    });
+  renderAdditionalScenes(delta) {
+    // Render the game HUB
+    if (this.hud && this.hud.scene && this.hud.camera) {
+        this.userInterface.update(delta);
+        this.renderer.render(this.hud.scene, this.hud.camera);
+    }
   }
 
 }

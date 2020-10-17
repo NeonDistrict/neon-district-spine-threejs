@@ -1,12 +1,18 @@
 import React, { Component } from "react";
-import { NDCombatScene } from "neon-district-spine-threejs";
+import { NDCombatPlayer } from "neon-district-spine-threejs";
 
-export default class CombatScene extends Component {
+export default class CombatReview extends Component {
   constructor(props) {
     super(props);
     this.state = {
       'battleId' : 'test',
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener("getBattleInformation", (e) => {
+      document.getElementById('battleId').value = e.detail.battleId;
+    });
   }
 
   generateBattleIdField() {
@@ -34,7 +40,7 @@ export default class CombatScene extends Component {
       'scale'    : 'character',
       'skin'     : 'Female',
       'pose'     : 'BladeSml_BaseIdle_001',
-      'outfit'   : ['female', 'natoshi', 'legendary']
+      //'outfit'   : ['female', 'natoshi', 'legendary']
     },/*
     {
       'position' : 1,
@@ -47,7 +53,7 @@ export default class CombatScene extends Component {
       'scale'    : 'character',
       'skin'     : 'Male',
       'pose'     : 'BladeMed_BaseIdle_001',
-      'outfit'   : ['male', 'cerespreserverr', 'common']
+      //'outfit'   : ['male', 'cerespreserverr', 'common']
     },/*
     {
       'position' : 5,
@@ -60,7 +66,7 @@ export default class CombatScene extends Component {
     return (
       <div>
         <div style={{"width":1024,"height":600}}>
-          <NDCombatScene
+          <NDCombatPlayer
             width={1024}
             height={600}
             background="almond-uncontrolled-lobby-001"

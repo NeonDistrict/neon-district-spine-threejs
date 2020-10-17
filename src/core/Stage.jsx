@@ -95,7 +95,7 @@ export class Stage extends SpineScene {
   }
 
   defaultCameraPosition() {
-    return {"x":0,"y":200,"z":400};
+    return {"x":0,"y":120,"z":400};
   }
 
   componentDidMount() {

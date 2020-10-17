@@ -17,6 +17,7 @@ export class Scene extends Component {
     this.scene    = null;
     this.renderer = null;
     this.canvas   = null;
+    this.context  = null;
   }
 
   componentDidMount() {
@@ -61,6 +62,7 @@ export class Scene extends Component {
 
     parentDomElement.appendChild(this.renderer.domElement);
     this.canvas = this.renderer.domElement;
+    this.context = this.renderer.getContext();
   }
 
   render() {

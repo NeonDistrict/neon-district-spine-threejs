@@ -87,7 +87,12 @@ export class SpineScene extends Scene {
       }
 
       // render the scene
+      this.renderer.autoClear = true;
       this.renderer.render(this.scene, this.camera);
+
+      // render any additional scenes
+      this.renderer.autoClear = false;
+      this.renderAdditionalScenes(delta);
     }
 
     // if we're still loading, done
@@ -96,6 +101,10 @@ export class SpineScene extends Scene {
     }
 
     requestAnimationFrame(this.animate.bind(this));
+  }
+
+  renderAdditionalScenes(delta) {
+    // Do nothing, just exist
   }
 
   render() {
