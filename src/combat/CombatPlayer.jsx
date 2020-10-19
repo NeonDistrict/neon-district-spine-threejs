@@ -71,7 +71,12 @@ export class CombatPlayer extends CombatScene {
     this.clickLock = true;
   }
 
-  unlockClickableRegions() {
+  unlockClickableRegions(e) {
+    if (e.detail && e.detail.event === 'BattleCompleteEvent') {
+      console.log("Battle completed, will not unlock clickable regions");
+      return;
+    }
+
     console.log("Clickable regions are unlocked");
 
     // Alert the HUD
@@ -237,14 +242,9 @@ export class CombatPlayer extends CombatScene {
         let _unit = this.teams[_teamIdx][_unitIdx];
         let _unitUpdate = teams[_teamIdx][_unitIdx];
 
-        if (!_unit.hasOwnProperty('previousStats')) {
-          _unit.previousStats = {};
-        }
-        _unit.statUpdateCounter = 60; // Assume 60 intervals
+        // Update all stats
         _unit.ticks = _unitUpdate.ticks;
-
         for (let _prop in _unit.stats) {
-          _unit.previousStats[_prop] = _unit.stats[_prop];
           _unit.stats[_prop] = _unitUpdate.stats[_prop];
         }
       }

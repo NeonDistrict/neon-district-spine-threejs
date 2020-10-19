@@ -46,6 +46,7 @@ export class UnitStatusDisplay extends HUDElement {
           'width'           : this.statusWidth,
           'height'          : this.statusHeight,
           'unit'            : this.units[idx],
+          'activeAnimEvt'   : this.activeAnimEvt,
           'getUnitPosition' : this.getUnitPosition
         })
       );

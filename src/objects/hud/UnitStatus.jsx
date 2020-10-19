@@ -42,16 +42,13 @@ export class UnitStatus extends HUDElement {
   getHealthPosition() {
     let health = this.unit.stats.health;
 
-    if (
-      this.unit.statUpdateCounter &&
-      this.unit.statUpdateCounter > 0 &&
-      this.unit.previousStats &&
-      this.unit.previousStats.hasOwnProperty('health')
-    ) {
+    if (this.activeAnimEvt.activeStatChange(this.unit.unitId, 'health') !== false) {
+      let healthStatChange = this.activeAnimEvt.activeStatChange(this.unit.unitId, 'health');
+      let animDelta = this.activeAnimEvt.currentTimeDelta();
+      let prevHealth = Math.max(Math.min(this.unit.stats.health - healthStatChange, this.unit.originalStats.health), 0.0);
       health = (
-        (this.unit.previousStats.health - this.unit.stats.health) * (Math.min(this.unit.statUpdateCounter / 30, 1)) + this.unit.stats.health
+        prevHealth + healthStatChange * Math.max(Math.min(1.0 - animDelta * 2.0, 1.0), 0.0)
       );
-      this.unit.statUpdateCounter--;
     }
 
     return Math.max(
@@ -93,9 +90,20 @@ export class UnitStatus extends HUDElement {
   }
 
   getTicksPosition() {
+    let ticks = this.unit.ticks;
+
+    if (this.activeAnimEvt.activeStatChange(this.unit.unitId, 'ticks') !== false) {
+      let ticksChange = this.activeAnimEvt.activeStatChange(this.unit.unitId, 'ticks');
+      let animDelta = this.activeAnimEvt.currentTimeDelta();
+      let previousTicks = Math.max(ticks - ticksChange, 0);
+      ticks = (
+        previousTicks + ticksChange * Math.min(1.0 - animDelta, 1.0)
+      );
+    }
+
     return Math.max(
       Math.min(
-        this.unit.ticks / 100,
+        ticks / 100,
         1.0
       ),
       0.0

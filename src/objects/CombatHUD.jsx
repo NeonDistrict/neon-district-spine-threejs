@@ -3,9 +3,10 @@ import { PlayerControlsDisplay } from "./hud/PlayerControlsDisplay.jsx";
 import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
 
 export class CombatHUD {
-  constructor(renderer, getUnitPosition) {
+  constructor(renderer, activeAnimEvt, getUnitPosition) {
     this.renderer = renderer;
     this.parentCanvas = this.renderer.domElement;
+    this.activeAnimEvt = activeAnimEvt;
     this.getUnitPosition = getUnitPosition;
 
     // Create the HUD canvas
@@ -26,20 +27,22 @@ export class CombatHUD {
 
     // Regions of the HUD
     this.turnOrderDisplay = new TurnOrderDisplay({
-      'context' : this.context,
-      'x'       : this.width / 2,
-      'y'       : 0,
-      'width'   : this.width,
-      'height'  : this.height
+      'context'       : this.context,
+      'x'             : this.width / 2,
+      'y'             : 0,
+      'width'         : this.width,
+      'height'        : this.height,
+      'activeAnimEvt' : this.activeAnimEvt
     });
 
     // Regions of the HUD
     this.playerControlsDisplay = new PlayerControlsDisplay({
-      'context' : this.context,
-      'x'       : this.width / 2,
-      'y'       : this.height,
-      'width'   : this.width,
-      'height'  : this.height
+      'context'       : this.context,
+      'x'             : this.width / 2,
+      'y'             : this.height,
+      'width'         : this.width,
+      'height'        : this.height,
+      'activeAnimEvt' : this.activeAnimEvt
     });
 
     this.unitStatusDisplay = new UnitStatusDisplay({
@@ -48,6 +51,7 @@ export class CombatHUD {
       'y'               : 0,
       'width'           : this.width,
       'height'          : this.height,
+      'activeAnimEvt'   : this.activeAnimEvt,
       'getUnitPosition' : this.getUnitPosition
     });
   }

@@ -1,3 +1,4 @@
+import { ActiveAnimationEvent } from './ActiveAnimationEvent.jsx';
 import { DamageAnimation } from './DamageAnimation.jsx';
 
 export class AnimationController {
@@ -6,13 +7,19 @@ export class AnimationController {
     this.characters = characters;
     this.effects = effects;
 
+    this.activeAnimationEvent = new ActiveAnimationEvent();
+
     this.eventAnimations = {
       'DamageEvent' : new DamageAnimation(this.characters, this.effects)//,
       //'KnockoutEvent' : new KnockoutAnimation(this.characters, this.effects)
     };
 
-    this.primaryEvents = ['CoinFlipEvent', 'DamageEvent'];
+    this.primaryEvents = ['BattleCompleteEvent', 'CoinFlipEvent', 'DamageEvent'];
     this.KnockoutEventName = 'KnockoutEvent';
+  }
+
+  getActiveAnimationEventObject() {
+    return this.activeAnimationEvent;
   }
 
   run(block, callback) {
@@ -23,9 +30,13 @@ export class AnimationController {
     // Run the event
     this.runEvent(primaryEvent, secondaryEvents);
 
-    // Before we're actually listening to the animation cycle,
-    // Just assume a set amount of time
-    setTimeout(callback, 2000);
+    // Emit the event for UI updates
+    // CALLBACK IS CALLED INDIRECTLY USING EVENTS IN HERE
+    this.activeAnimationEvent.enqueue(block, primaryEvent, secondaryEvents);
+  }
+
+  update(delta) {
+    this.activeAnimationEvent.update(delta);
   }
 
   runEvent(event, secondaryEvents) {

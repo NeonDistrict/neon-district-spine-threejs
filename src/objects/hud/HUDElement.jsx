@@ -7,6 +7,7 @@ export class HUDElement {
     this.height = obj.height;
     this.size = {width:obj.width, height:obj.height};
     this.teams = obj.teams;
+    this.activeAnimEvt = obj.activeAnimEvt;
     this.hudLocked = false;
 
     window.addEventListener('clickableRegionsLocked', this.handleHUDLocked.bind(this));

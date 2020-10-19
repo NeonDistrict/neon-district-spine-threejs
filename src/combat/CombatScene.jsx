@@ -20,21 +20,22 @@ export class CombatScene extends Stage {
   componentDidMount() {
     super.componentDidMount(arguments);
 
-    // Draw Game UI elements
-    this.drawHUD();
-
     // Initialize the animation controller
     this.animationController = new AnimationController(this.characters, this.effects);
-  }
 
-  drawHUD() {
-    this.userInterface = new CombatHUD(this.renderer, this.getUnitPosition.bind(this));
+    // Draw Game UI elements
+    this.userInterface = new CombatHUD(
+      this.renderer,
+      this.animationController.getActiveAnimationEventObject(),
+      this.getUnitPosition.bind(this)
+    );
     this.hud = this.userInterface.render();
   }
 
   renderAdditionalScenes(delta) {
     // Render the game HUB
     if (this.hud && this.hud.scene && this.hud.camera) {
+        this.animationController.update(delta);
         this.userInterface.update(delta);
         this.renderer.render(this.hud.scene, this.hud.camera);
     }
