@@ -228,11 +228,59 @@ export class CombatPlayer extends CombatScene {
         for (let _unitIdx in _team) {
           let _unit = _team[_unitIdx];
           if (_unit.metadata.nftId === _character.nftId) {
+            // Set matching information
             _character.unitId = _unit.unitId;
             _unit.character = _character;
+
+            // Pull in the head image
+            this.loadHeadImage(_unit);
           }
         }
       }
+    }
+  }
+
+  loadHeadImage(_unit) {
+    const urlRoot = "https://neon-district-season-one.s3.amazonaws.com/nfts/";
+    let headImageSrc;
+
+    _unit.headImg = new Image();
+    _unit.headImg.crossOrigin = "Anonymous";
+    _unit.headImg.onload = (function() {
+      _unit.headImgLoaded = true;
+    }).bind(this);
+    _unit.headImg.onerror = (function() {
+      // Load the default
+      if (headImageSrc.indexOf('male') === -1) {
+        // Get the character type
+        let charType = this.getCharClassType(_unit.classTypeId);
+        if (!charType) return;
+
+        // Load the new source
+        headImageSrc = urlRoot + charType + "-" + _unit.character.skin.toLowerCase() + ".png";
+        console.log("onerror attempt", headImageSrc);
+        _unit.headImg.src = headImageSrc;
+        return;
+      }
+
+      // No luck
+      console.log("onerror failure");
+    }).bind(this);
+
+    // Load the intended image
+    headImageSrc = urlRoot + _unit.metadata.nftId + '.png';
+    _unit.headImg.src = headImageSrc;
+  }
+
+  getCharClassType(_type) {
+    switch(_type) {
+      case 1: return 'demon';
+      case 2: return 'doc';
+      case 3: return 'genius';
+      case 4: return 'ghost';
+      case 5: return 'heavy';
+      case 6: return 'jack';
+      default: return '';
     }
   }
 
@@ -244,6 +292,7 @@ export class CombatPlayer extends CombatScene {
 
         // Update all stats
         _unit.ticks = _unitUpdate.ticks;
+        _unit.lastTurnOrder = _unitUpdate.lastTurnOrder;
         for (let _prop in _unit.stats) {
           _unit.stats[_prop] = _unitUpdate.stats[_prop];
         }

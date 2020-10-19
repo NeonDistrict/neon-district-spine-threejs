@@ -3,8 +3,12 @@ import HUDSTYLES from "../../data/hudStyles.js";
 
 export class UnitPortrait extends HUDElement {
 
-  update(delta) {
+  update(delta, obj) {
+    if (obj && obj.hasOwnProperty('x')) {
+      this.center.x = obj.x;
+    }
     this.drawRhombus();
+    this.drawHead();
     this.writeTicks();
   }
 
@@ -19,10 +23,41 @@ export class UnitPortrait extends HUDElement {
     this.context.lineTo(this.center.x - this.width/2 - this.width/12, this.center.y + this.height/2);
     this.context.lineTo(this.center.x - this.width/2 + this.width/12, this.center.y - this.height/2);
     this.context.fill();
-    this.context.stroke();
+  }
+
+  drawHead() {
+    if (this.unit && this.unit.headImgLoaded) {      
+      let x = this.center.x - this.width/2 + this.width/(12*2);
+      let y = this.center.y - this.height/2 + (this.height - this.width * 11/12);
+      let width = this.width * 11/12;//this.unit.headImg.width;
+      let height = this.width * 11/12;//this.unit.headImg.height;
+
+      if (this.unit.team === 'two') {
+        this.context.save();
+        this.context.translate(this.center.x * 2 - this.width/12, 0);
+        this.context.scale(-1, 1);
+      }
+
+      this.context.drawImage(
+        this.unit.headImg, 
+        this.center.x - this.width/2 + this.width/12, 
+        this.center.y - this.height/2 + (this.height - this.width * 11/12),
+        this.width * 11/12,
+        this.width * 11/12
+      );
+
+      // Undo
+      if (this.unit.team === 'two') {
+        this.context.restore();
+      }
+    }
   }
 
   writeTicks() {
+    if (this.unit.stats.health <= 0) {
+      return;
+    }
+
     this.context.fillStyle = HUDSTYLES.colors.neonBlue;
     this.context.strokeStyle = HUDSTYLES.colors.neonBlue;
 
@@ -31,9 +66,10 @@ export class UnitPortrait extends HUDElement {
 
     this.context.font = '8pt "kozuka-gothic-pr6n-bold"';
     this.context.textAlign = 'right';
-    this.context.fillText(40,
-      this.center.x + this.width/2 - this.width/12,
-      this.center.y - this.height/2 + this.height/4
+    this.context.fillText(
+      this.unit.ticks,
+      this.center.x + this.width/2 - this.width/(12*2),
+      this.center.y - this.height/2 + 12
     );
 
     this.context.shadowBlur = 0;

@@ -7,6 +7,7 @@ export class HUDElement {
     this.height = obj.height;
     this.size = {width:obj.width, height:obj.height};
     this.teams = obj.teams;
+    this.unit = obj.unit;
     this.activeAnimEvt = obj.activeAnimEvt;
     this.hudLocked = false;
 

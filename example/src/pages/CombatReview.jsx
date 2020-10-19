@@ -42,21 +42,20 @@ export default class CombatReview extends Component {
       'skin'     : 'Female',
       'pose'     : 'ReturningLrg_BasicIdle_001',
       //'outfit'   : ['female', 'natoshi', 'legendary']
-    },/*
-    {
+    },/*{
       'position' : 1,
       'nftId'    : "test1",
       'scale'    : 'character',
       'skin'     : 'Male',
       'pose'     : 'EnergyMed_BasicIdle_001',
-      'outfit'   : ['male', 'poscrypno', 'ultrarare']
+      //'outfit'   : ['male', 'poscrypno', 'ultrarare']
     },{
       'position' : 2,
       'nftId'    : "test2",
       'scale'    : 'character',
       'skin'     : 'Male',
       'pose'     : 'RifleMed_BasicIdle_001',
-      'outfit'   : ['male', 'zenoautomatorr', 'rare']
+      //'outfit'   : ['male', 'zenoautomatorr', 'rare']
     },
     {
       'position' : 3,
@@ -64,7 +63,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Female',
       'pose'     : 'ConsoleSml_BasicIdle_001',
-      'outfit'   : ['female', 'powlock', 'uncommon']
+      //'outfit'   : ['female', 'powlock', 'uncommon']
     },*/{
       'position' : 4,
       'nftId'    : "test4",
@@ -79,7 +78,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Female',
       'pose'     : 'Unarmed_BasicIdle_001',
-      'outfit'   : ['female', 'szabowasp', 'rare']
+      //'outfit'   : ['female', 'szabowasp', 'rare']
     },
     {
       'position' : 6,
@@ -87,7 +86,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Female',
       'pose'     : 'ThrustingSml_BaseIdle_001',
-      'outfit'   : ['female', 'szabodoge', 'legendary']
+      //'outfit'   : ['female', 'szabodoge', 'legendary']
     },
     {
       'position' : 7,
@@ -95,7 +94,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Male',
       'pose'     : 'DualRangedMed_BasicIdle_001',
-      'outfit'   : ['male', 'yumeforgerp', 'ultrarare']
+      //'outfit'   : ['male', 'yumeforgerp', 'ultrarare']
     }*/];
 
     return (
