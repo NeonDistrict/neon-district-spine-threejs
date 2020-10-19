@@ -59,11 +59,11 @@ export class PlayerControlsDisplay extends HUDElement {
 
 
     // Text
-    this.context.fillStyle = HUDSTYLES.colors.neonBlue;
+    this.context.fillStyle = (this.hudLocked) ? HUDSTYLES.colors.lightGray : HUDSTYLES.colors.neonBlue;
     this.context.strokeStyle = HUDSTYLES.colors.neonBlue;
 
     this.context.shadowColor = HUDSTYLES.colors.neonBlue;
-    this.context.shadowBlur = 2;
+    this.context.shadowBlur = (this.hudLocked) ? 0 : 2;
 
     this.context.font = '12pt "kozuka-gothic-pr6n-bold"';
     this.context.textAlign = 'center';

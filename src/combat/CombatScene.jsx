@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Api from '../api/api.js';
 import { Stage } from "../core/Stage.jsx";
 import { CombatHUD } from "../objects/CombatHUD.jsx";
+import { AnimationController } from "../animation/AnimationController.jsx";
 
 export class CombatScene extends Stage {
   constructor(props) {
@@ -13,6 +14,7 @@ export class CombatScene extends Stage {
     // Internal objects
     this.userInterface = null;
     this.hud = null;
+    this.animationController = null;
   }
 
   componentDidMount() {
@@ -20,10 +22,13 @@ export class CombatScene extends Stage {
 
     // Draw Game UI elements
     this.drawHUD();
+
+    // Initialize the animation controller
+    this.animationController = new AnimationController(this.characters, this.effects);
   }
 
   drawHUD() {
-    this.userInterface = new CombatHUD(this.renderer);
+    this.userInterface = new CombatHUD(this.renderer, this.getUnitPosition.bind(this));
     this.hud = this.userInterface.render();
   }
 
@@ -33,6 +38,10 @@ export class CombatScene extends Stage {
         this.userInterface.update(delta);
         this.renderer.render(this.hud.scene, this.hud.camera);
     }
+  }
+
+  runAnimationEventCycle(block, callback) {
+    this.animationController.run(block, callback);
   }
 
 }

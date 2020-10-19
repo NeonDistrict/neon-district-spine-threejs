@@ -45,12 +45,12 @@ export class SpineScene extends Scene {
     if (this.assetManager.isLoadingComplete()) {
 
       // Create the root mesh to apply all other objects
-      let mesh = new THREE.Mesh();
-      this.scene.add(mesh);
+      this.rootMesh = new THREE.Mesh();
+      this.scene.add(this.rootMesh);
 
       // Load all provided skeletons in order
       for (let skeleton of this.skeletons) {
-        mesh.add(skeleton);
+        this.rootMesh.add(skeleton);
       }
 
       // Request first animation frame

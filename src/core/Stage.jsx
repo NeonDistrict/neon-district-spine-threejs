@@ -35,7 +35,7 @@ export class Stage extends SpineScene {
         case 9:
           return 0.134
         default:
-          throw 'Invalid combat position';
+          throw 'Invalid combat position for scale';
       }
     } else {
       return value;
@@ -90,12 +90,12 @@ export class Stage extends SpineScene {
       case 13:
         return [385, 0, true]
       default:
-        throw 'Invalid combat position';
+        throw 'Invalid combat position for position';
     }
   }
 
   defaultCameraPosition() {
-    return {"x":0,"y":120,"z":400};
+    return {"x":0,"y":120,"z":380};
   }
 
   componentDidMount() {
@@ -234,6 +234,7 @@ export class Stage extends SpineScene {
       }).bind(this))
 
       for (let index in this.characters) {
+        // Add to the internal list
         skeletons.push(
           this.characters[index].spine.createMesh(
             this.characters[index].skin,
@@ -260,5 +261,27 @@ export class Stage extends SpineScene {
 
       requestAnimationFrame(this.load.bind(this));
     } else requestAnimationFrame(this.loadSkeletons.bind(this));
+  }
+
+  getUnitPosition(character) {
+    let screen = this.getScreenWorldPosition();
+
+    if (!screen) {
+      return null;
+    }
+
+    let position = this.getPosition(character.position);
+    let scale = this.getScale('character', character.position);
+
+    return {
+      feet : {
+        x: screen.x + position[0] * screen.fraction,
+        y: screen.y - position[1] * screen.fraction
+      },
+      above : {
+        x: screen.x + position[0] * screen.fraction,
+        y: screen.y - position[1] * screen.fraction - scale * (character.spine.skeletonData.height * 15/16)
+      }
+    }
   }
 }

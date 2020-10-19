@@ -21,13 +21,17 @@ export class CombatPlayer extends CombatScene {
     this.lastRenderedEventBlockUuid = null;
     this.eventBlocksIds = [];
     this.eventBlocks = [];
+    this.battleComplete = false;
 
-    // Keep track of clickable regions
+    // Keep track of clickable regions & ability to use them
     this.clickableRegions = {};
+    this.clickLock = false;
 
     // Monitor changes to clickable regions
     window.addEventListener('registerClickableRegion', this.handleClickableRegion.bind(this));
     window.addEventListener('unregisterClickableRegion', this.handleRemoveClickableRegion.bind(this));
+    window.addEventListener('lockClickableRegions', this.lockClickableRegions.bind(this));
+    window.addEventListener('unlockClickableRegions', this.unlockClickableRegions.bind(this));
   }
 
   componentDidMount() {
@@ -52,7 +56,37 @@ export class CombatPlayer extends CombatScene {
     }
   }
 
+  clickableRegionsLocked() {
+    return this.clickLock || this.battleComplete;
+  }
+
+  lockClickableRegions() {
+    console.log("Clickable regions are locked");
+
+    // Alert the HUD
+    window.dispatchEvent(
+      new CustomEvent("clickableRegionsLocked", {})
+    );
+
+    this.clickLock = true;
+  }
+
+  unlockClickableRegions() {
+    console.log("Clickable regions are unlocked");
+
+    // Alert the HUD
+    window.dispatchEvent(
+      new CustomEvent("clickableRegionsUnlocked", {})
+    );
+
+    this.clickLock = false;
+  }
+
   handleCanvasClick(e) {
+    if (this.clickableRegionsLocked()) {
+      return;
+    }
+
     for (let _option in this.clickableRegions) {
       let region = this.clickableRegions[_option];
       if (
@@ -60,6 +94,11 @@ export class CombatPlayer extends CombatScene {
         e.layerY >= region[1] && e.layerY <= region[3]
       ) {
         if (['attack','card0','card1','card2'].indexOf(_option) !== -1) {
+
+          // Lock the HUD
+          this.lockClickableRegions();
+
+          // Run combat
           let action = _option;
           let target = 0;
           this.runCombat(action, target);
@@ -144,6 +183,7 @@ export class CombatPlayer extends CombatScene {
     }, (error) => {
       console.error("error");
       console.error(error);
+      this.unlockClickableRegions();
     });
   }
 
@@ -151,6 +191,8 @@ export class CombatPlayer extends CombatScene {
     // Set any initial information
     if (!this.teams && data.teams) {
       this.setTeams(data.teams);
+    } else if (data.teams) {
+      this.updateTeams(data.teams);
     }
 
     // Determine if we have new events to render
@@ -172,6 +214,41 @@ export class CombatPlayer extends CombatScene {
   setTeams(teams) {
     this.teams = teams;
     this.userInterface.setTeams(this.teams);
+
+    // Update all characters to include their UUIDs
+    // Update all team members to link back to their character
+    for (let _character of this.characters) {
+      for (let _teamIdx of ["one", "two"]) {
+        let _team = this.teams[_teamIdx];
+        for (let _unitIdx in _team) {
+          let _unit = _team[_unitIdx];
+          if (_unit.metadata.nftId === _character.nftId) {
+            _character.unitId = _unit.unitId;
+            _unit.character = _character;
+          }
+        }
+      }
+    }
+  }
+
+  updateTeams(teams) {
+    for (let _teamIdx of ["one", "two"]) {
+      for (let _unitIdx in this.teams[_teamIdx]) {
+        let _unit = this.teams[_teamIdx][_unitIdx];
+        let _unitUpdate = teams[_teamIdx][_unitIdx];
+
+        if (!_unit.hasOwnProperty('previousStats')) {
+          _unit.previousStats = {};
+        }
+        _unit.statUpdateCounter = 60; // Assume 60 intervals
+        _unit.ticks = _unitUpdate.ticks;
+
+        for (let _prop in _unit.stats) {
+          _unit.previousStats[_prop] = _unit.stats[_prop];
+          _unit.stats[_prop] = _unitUpdate.stats[_prop];
+        }
+      }
+    }
   }
 
   renderEventBlocks() {
@@ -186,11 +263,31 @@ export class CombatPlayer extends CombatScene {
     // Pull the block, register the animation events
     let block = this.eventBlocks[nextIndex];
 
+    // If the battle is complete, we need to know this
+    this.checkBattleComplete(block);
+
+    // For testing
     console.log("rendering", block.uuid, "at", block.atTicks);
+
+    // Perform the animation cycle
+    this.runAnimationEventCycle(block, this.postAnimationCleanup.bind(this));
 
     // When we're done, update the last rendered event block, and render the next block
     this.lastRenderedEventBlockUuid = block.uuid;
     this.renderEventBlocks();
+  }
+
+  checkBattleComplete(block) {
+    if ((block.battleEvents.filter((_evt) => _evt.name === 'BattleCompleteEvent')).length > 0) {
+      console.log("Battle is completed");
+      this.battleComplete = true;
+    }
+  }
+
+  postAnimationCleanup() {
+    if (!this.battleComplete) {
+      this.unlockClickableRegions();
+    }
   }
 
 }

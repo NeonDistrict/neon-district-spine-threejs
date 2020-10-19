@@ -18,6 +18,7 @@ export class Scene extends Component {
     this.renderer = null;
     this.canvas   = null;
     this.context  = null;
+    this.rootMesh = null;
   }
 
   componentDidMount() {
@@ -63,6 +64,42 @@ export class Scene extends Component {
     parentDomElement.appendChild(this.renderer.domElement);
     this.canvas = this.renderer.domElement;
     this.context = this.renderer.getContext();
+  }
+
+  getScreenWorldPosition() {
+    if (!this.rootMesh) {
+      return null;
+    }
+
+    let vector = new THREE.Vector3();
+
+    let widthHalf = 0.5 * this.canvas.width;
+    let heightHalf = 0.5 * this.canvas.height;
+
+    this.rootMesh.updateMatrixWorld();
+    vector.setFromMatrixPosition(this.rootMesh.matrixWorld);
+    vector.project(this.camera);
+
+    vector.x = ( vector.x * widthHalf ) + widthHalf;
+    vector.y = - ( vector.y * heightHalf ) + heightHalf;
+
+    let vHeight = 0, vWidth = 0, fraction = 1.0;
+    let box = new THREE.Box3().setFromObject(this.rootMesh);
+    let size = box.getSize(new THREE.Vector3());
+    if (size.x > 0) {
+      let vFOV = THREE.MathUtils.degToRad(this.camera.fov);
+      fraction = size.y / (2 * Math.tan(vFOV / 2) * this.camera.position.z);
+      vHeight = fraction * size.y;
+      vWidth = fraction * size.x;
+    }
+
+    return { 
+      x: vector.x,
+      y: vector.y,
+      fraction: fraction,
+      height: vHeight,
+      width: vWidth
+    };
   }
 
   render() {

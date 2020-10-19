@@ -1,10 +1,12 @@
 import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
 import { PlayerControlsDisplay } from "./hud/PlayerControlsDisplay.jsx";
+import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
 
 export class CombatHUD {
-  constructor(renderer, teams) {
+  constructor(renderer, getUnitPosition) {
     this.renderer = renderer;
     this.parentCanvas = this.renderer.domElement;
+    this.getUnitPosition = getUnitPosition;
 
     // Create the HUD canvas
     this.canvas = document.createElement('canvas');
@@ -39,11 +41,21 @@ export class CombatHUD {
       'width'   : this.width,
       'height'  : this.height
     });
+
+    this.unitStatusDisplay = new UnitStatusDisplay({
+      'context'         : this.context,
+      'x'               : this.width / 2,
+      'y'               : 0,
+      'width'           : this.width,
+      'height'          : this.height,
+      'getUnitPosition' : this.getUnitPosition
+    });
   }
 
   setTeams(teams) {
     this.teams = teams;
     this.turnOrderDisplay.setTeams(teams);
+    this.unitStatusDisplay.setTeams(teams);
   }
 
   update(delta) {
@@ -55,6 +67,7 @@ export class CombatHUD {
 
     this.turnOrderDisplay.update();
     this.playerControlsDisplay.update();
+    this.unitStatusDisplay.update();
 
     this.texture.needsUpdate = true;
   }
