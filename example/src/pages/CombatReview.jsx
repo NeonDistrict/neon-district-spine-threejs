@@ -41,7 +41,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Female',
       'pose'     : 'ReturningLrg_BasicIdle_001',
-      //'outfit'   : ['female', 'natoshi', 'legendary']
+      'outfit'   : ['female', 'blkorigindemon', 'common']
     },/*{
       'position' : 1,
       'nftId'    : "test1",
@@ -68,9 +68,9 @@ export default class CombatReview extends Component {
       'position' : 4,
       'nftId'    : "test4",
       'scale'    : 'character',
-      'skin'     : 'Male',
+      'skin'     : 'Female',
       'pose'     : 'BladeMed_BaseIdle_001',
-      //'outfit'   : ['male', 'cerespreserverr', 'common']
+      'outfit'   : ['female', 'blkoriginheavy', 'common']
     }/*,
     {
       'position' : 5,

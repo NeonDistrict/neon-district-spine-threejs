@@ -58,6 +58,7 @@ export class CombatHUD {
 
   setTeams(teams) {
     this.teams = teams;
+    this.playerControlsDisplay.setTeams(teams);
     this.turnOrderDisplay.setTeams(teams);
     this.unitStatusDisplay.setTeams(teams);
   }

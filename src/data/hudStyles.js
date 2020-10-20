@@ -8,5 +8,8 @@ module.exports = {
 		"red" : "rgb(255,0,47)",
 		"transparentRed" : "rgba(255,0,47,0.40)",
 		"transparentNeonBlue" : "rgba(10,245,247,0.40)"
+	},
+	"sizes" : {
+		
 	}
 };

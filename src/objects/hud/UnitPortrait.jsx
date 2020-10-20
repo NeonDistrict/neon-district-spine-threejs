@@ -27,11 +27,6 @@ export class UnitPortrait extends HUDElement {
 
   drawHead() {
     if (this.unit && this.unit.headImgLoaded) {      
-      let x = this.center.x - this.width/2 + this.width/(12*2);
-      let y = this.center.y - this.height/2 + (this.height - this.width * 11/12);
-      let width = this.width * 11/12;//this.unit.headImg.width;
-      let height = this.width * 11/12;//this.unit.headImg.height;
-
       if (this.unit.team === 'two') {
         this.context.save();
         this.context.translate(this.center.x * 2 - this.width/12, 0);
