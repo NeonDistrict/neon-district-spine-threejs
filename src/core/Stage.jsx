@@ -275,12 +275,12 @@ export class Stage extends SpineScene {
 
     return {
       feet : {
-        x: screen.x + position[0] * screen.fraction,
-        y: screen.y - position[1] * screen.fraction
+        x: screen.x + position[0] * screen.fraction * this.DPI,
+        y: screen.y - position[1] * screen.fraction * this.DPI
       },
       above : {
-        x: screen.x + position[0] * screen.fraction,
-        y: screen.y - position[1] * screen.fraction - scale * (character.spine.skeletonData.height * 15/16)
+        x: screen.x + position[0] * screen.fraction * this.DPI,
+        y: screen.y - position[1] * screen.fraction * this.DPI - scale * (character.spine.skeletonData.height * 15/16) * this.DPI
       }
     }
   }

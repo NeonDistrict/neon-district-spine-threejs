@@ -7,9 +7,11 @@ export class UnitStatus extends HUDElement {
     super(obj);
     this.unit = obj.unit;
     this.getUnitPosition = obj.getUnitPosition;
-    this.healthWidth = 80;
-    this.healthHeight = 5;
-    this.ticksRadius = 6;
+    this.healthWidth = 160;
+    this.healthHeight = 10;
+    this.ticksRadius = 12;
+    this.ticksHealthGap = 4;
+    this.ticksLineWidth = 4;
   }
 
   update(delta) {
@@ -64,12 +66,12 @@ export class UnitStatus extends HUDElement {
     this.context.beginPath();
     this.context.arc(
       position.above.x,
-      position.above.y + this.ticksRadius * 2 + 2,
+      position.above.y + this.ticksRadius * 2 + this.ticksHealthGap,
       this.ticksRadius,
       0,
       2*Math.PI
     );
-    this.context.lineWidth=2;
+    this.context.lineWidth=this.ticksLineWidth;
     this.context.strokeStyle=HUDSTYLES.colors.transparentNeonBlue;
     this.context.stroke();
 
@@ -78,13 +80,13 @@ export class UnitStatus extends HUDElement {
     this.context.beginPath();
     this.context.arc(
       position.above.x,
-      position.above.y + this.ticksRadius * 2 + 2,
+      position.above.y + this.ticksRadius * 2 + this.ticksHealthGap,
       this.ticksRadius,
       1.5*Math.PI,
       Math.PI * ((1 - percTicksRemaining) * 2 + 1.5),
       true
     );
-    this.context.lineWidth=2;
+    this.context.lineWidth=this.ticksLineWidth;
     this.context.strokeStyle=HUDSTYLES.colors.neonBlue;
     this.context.stroke();
   }
@@ -108,20 +110,6 @@ export class UnitStatus extends HUDElement {
       ),
       0.0
     );
-  }
-
-  writeTicks(position) {
-    this.context.fillStyle = HUDSTYLES.colors.neonBlue;
-    this.context.strokeStyle = HUDSTYLES.colors.neonBlue;
-
-    this.context.shadowColor = HUDSTYLES.colors.neonBlue;
-    this.context.shadowBlur = 2;
-
-    this.context.font = '8pt "kozuka-gothic-pr6n-bold"';
-    this.context.textAlign = 'center';
-    this.context.fillText(40, position.above.x, position.above.y);
-
-    this.context.shadowBlur = 0;
   }
 
 }

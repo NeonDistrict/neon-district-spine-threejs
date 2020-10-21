@@ -6,10 +6,10 @@ export class TurnOrderDisplay extends HUDElement {
   constructor(obj) {
     super(obj);
 
-    this.unitWidth = 70;
-    this.unitHeight = 70;
-    this.unitSpacing = 8;
-    this.verticalGap = 10;
+    this.unitWidth = 140;
+    this.unitHeight = 140;
+    this.unitSpacing = 16;
+    this.verticalGap = 20;
 
     this.init();
   }

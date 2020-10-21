@@ -11,6 +11,7 @@ export class Scene extends Component {
 
   init() {
     // Three.JS Variables
+    this.DPI      = 2.0;
     this.width    = null;
     this.height   = null;
     this.camera   = null;
@@ -37,8 +38,8 @@ export class Scene extends Component {
   createScene() {
     // create the THREE.JS camera, scene and renderer (WebGL)
     let parentDomElement = ReactDOM.findDOMNode(this);
-    this.width  = this.props.width  || parentDomElement.innerWidth;
-    this.height = this.props.height || parentDomElement.innerHeight;
+    this.width  = (this.props.width  || parentDomElement.innerWidth) * this.DPI;
+    this.height = (this.props.height || parentDomElement.innerHeight) * this.DPI;
 
     this.camera = new THREE.PerspectiveCamera(
       this.props.fov  || 75,
@@ -64,6 +65,10 @@ export class Scene extends Component {
     parentDomElement.appendChild(this.renderer.domElement);
     this.canvas = this.renderer.domElement;
     this.context = this.renderer.getContext();
+
+    this.canvas.style.imageRendering = 'pixelated';
+    this.canvas.style.width = this.width / this.DPI + 'px';
+    this.canvas.style.height = this.height / this.DPI + 'px';
   }
 
   getScreenWorldPosition() {

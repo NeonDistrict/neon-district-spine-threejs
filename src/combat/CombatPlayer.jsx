@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import Api from '../api/api.js';
 import { CombatScene } from "./CombatScene.jsx";
+import { PlayerSelections } from "../objects/PlayerSelections.jsx";
 
 export class CombatPlayer extends CombatScene {
   constructor(props) {
     super(props);
 
     // Keep track of combat information
-    this.combatApi  = props.combatApi;
-    this.battleId   = props.battleId;
+    this.combatApi = props.combatApi;
+    this.battleId  = props.battleId;
 
     // API for combat calls
     this.api = new Api(this.combatApi);
+
+    // Player Selections
+    this.playerSelections = new PlayerSelections();
 
     // Keeping track of events that have been played,
     // current state, and events to play
@@ -36,6 +40,9 @@ export class CombatPlayer extends CombatScene {
 
   componentDidMount() {
     super.componentDidMount(arguments);
+
+    // Update the HUD to use the player selection object
+    this.userInterface.setPlayerSelectionsObject(this.playerSelections);
 
     // Capture & handle click events
     this.canvas.addEventListener('click', this.handleCanvasClick.bind(this));
@@ -100,13 +107,34 @@ export class CombatPlayer extends CombatScene {
       ) {
         if (['attack','card0','card1','card2'].indexOf(_option) !== -1) {
 
+          // Set the selected option
+          this.playerSelections.setAction(_option);
+          
+        } else if (['confirm'].indexOf(_option) !== -1) {
+
+          // Pull the action and target
+          let action = this.playerSelections.getAction();
+          let target = this.playerSelections.getTarget();
+
+          // If the action or target is invalid, disallow
+          if (
+            action === false || target === false ||
+            action === null || target === null
+          ) {
+            return;
+          }
+
           // Lock the HUD
           this.lockClickableRegions();
 
           // Run combat
-          let action = _option;
-          let target = 0;
           this.runCombat(action, target);
+
+        } else if (_option.indexOf('target') === 0) {
+
+          // Set the target
+          this.playerSelections.setTarget(_option);
+
         }
       }
     }
@@ -184,10 +212,12 @@ export class CombatPlayer extends CombatScene {
       let data = response.data.data;
 
       // Pass off to the controller
+      this.playerSelections.clear();
       this.updateBattleEvents(data);
     }, (error) => {
       console.error("error");
       console.error(error);
+      this.playerSelections.clear();
       this.unlockClickableRegions();
     });
   }
@@ -198,6 +228,11 @@ export class CombatPlayer extends CombatScene {
       this.setTeams(data.teams);
     } else if (data.teams) {
       this.updateTeams(data.teams);
+    }
+
+    // Set the latest options for the player
+    if (data.options && data.options.length) {
+      this.playerSelections.setCards(data.options);
     }
 
     // Determine if we have new events to render

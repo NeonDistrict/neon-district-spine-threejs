@@ -6,8 +6,6 @@ export class UnitStatusDisplay extends HUDElement {
   constructor(obj) {
     super(obj);
     this.getUnitPosition = obj.getUnitPosition;
-    this.statusWidth = 100;
-    this.statusHeight = 100;
   }
 
   setTeams(teams) {
@@ -43,8 +41,6 @@ export class UnitStatusDisplay extends HUDElement {
           'context'         : this.context,
           'x'               : position.x,
           'y'               : position.y,
-          'width'           : this.statusWidth,
-          'height'          : this.statusHeight,
           'unit'            : this.units[idx],
           'activeAnimEvt'   : this.activeAnimEvt,
           'getUnitPosition' : this.getUnitPosition

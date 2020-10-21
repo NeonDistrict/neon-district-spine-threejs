@@ -57,14 +57,14 @@ export class UnitPortrait extends HUDElement {
     this.context.strokeStyle = HUDSTYLES.colors.neonBlue;
 
     this.context.shadowColor = HUDSTYLES.colors.neonBlue;
-    this.context.shadowBlur = 2;
+    this.context.shadowBlur = 4;
 
-    this.context.font = '8pt "kozuka-gothic-pr6n-bold"';
+    this.context.font = '16pt "kozuka-gothic-pr6n-bold"';
     this.context.textAlign = 'right';
     this.context.fillText(
       this.unit.ticks,
       this.center.x + this.width/2 - this.width/(12*2),
-      this.center.y - this.height/2 + 12
+      this.center.y - this.height/2 + this.height/7
     );
 
     this.context.shadowBlur = 0;

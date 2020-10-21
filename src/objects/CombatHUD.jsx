@@ -63,6 +63,11 @@ export class CombatHUD {
     this.unitStatusDisplay.setTeams(teams);
   }
 
+  setPlayerSelectionsObject(playerSelections) {
+    this.playerSelections = playerSelections;
+    this.playerControlsDisplay.setPlayerSelectionsObject(playerSelections);
+  }
+
   update(delta) {
     if (!this.fontsLoaded) {
       return;
