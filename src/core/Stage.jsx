@@ -49,28 +49,28 @@ export class Stage extends SpineScene {
     switch(index) {
       // Left Front Top
       case 0:
-        return [-125, 40, false]
+        return [-100, 40, false]
       // Left Front Bottom
       case 1:
-        return [-210, -30, false]
+        return [-200, -30, false]
       // Left Back Top
       case 2:
-        return [-285, 40, false]
+        return [-300, 40, false]
       // Left Back Bottom
       case 3:
-        return [-405, -30, false]
+        return [-400, -30, false]
       // Right Front Top
       case 4:
-        return [125, 40, true]
+        return [100, 40, true]
       // Right Front Bottom
       case 5:
-        return [210, -30, true]
+        return [200, -30, true]
       // Right Back Top
       case 6:
-        return [285, 40, true]
+        return [300, 40, true]
       // Right Back Bottom
       case 7:
-        return [405, -30, true]
+        return [400, -30, true]
       // Left Center
       case 8:
         return [-250, 0, true]
@@ -95,7 +95,7 @@ export class Stage extends SpineScene {
   }
 
   defaultCameraPosition() {
-    return {"x":0,"y":120,"z":380};
+    return {"x":0,"y":120,"z":400};
   }
 
   componentDidMount() {
@@ -272,6 +272,14 @@ export class Stage extends SpineScene {
 
     let position = this.getPosition(character.position);
     let scale = this.getScale('character', character.position);
+    let skeletonData = character.spine.skeletonData;
+
+    let bbox = {
+      x1: screen.x + ( position[0] - scale * (skeletonData.width  * 1 / 2)) * screen.fraction * this.DPI,
+      y1: screen.y + (-position[1] - scale * (skeletonData.height * 7 / 8)) * screen.fraction * this.DPI,
+      x2: screen.x + ( position[0] + scale * (skeletonData.width  * 1 / 2)) * screen.fraction * this.DPI,
+      y2: screen.y + (-position[1] + scale * (skeletonData.height * 1 / 8)) * screen.fraction * this.DPI
+    };
 
     return {
       feet : {
@@ -280,8 +288,42 @@ export class Stage extends SpineScene {
       },
       above : {
         x: screen.x + position[0] * screen.fraction * this.DPI,
-        y: screen.y - position[1] * screen.fraction * this.DPI - scale * (character.spine.skeletonData.height * 15/16) * this.DPI
+        y: bbox.y1
+      },
+      bbox : bbox,
+      target : {
+        x: bbox.x1 + (bbox.x2 - bbox.x1) * 4 / 16,
+        y: bbox.y1 + (bbox.y2 - bbox.y1) * 3 / 32,
+        width: (bbox.x2 - bbox.x1) * 8 / 16,
+        height: (bbox.y2 - bbox.y1) * 3 / 4,
       }
     }
   }
+
+  //getUnitPositionExperiment() {
+    // PULL THE SCREEN CODE FROM THE ABOVE FUNCTION
+    //let _offset = (function() {
+    //  let values = [];
+    //  return {
+    //    'set' : (a, b) => values.push(a, b),
+    //    'get' : () => values
+    //  };
+    //})();
+    //let _size = (function() {
+    //  let values = [];
+    //  return {
+    //    'set' : (a, b) => values.push(a, b),
+    //    'get' : () => values
+    //  };
+    //})();
+    //skeleton.getBounds(_offset, _size)
+    //let offset = _offset.get();
+    //let size = _size.get();
+    //bbox : {
+    //  x1: ( offset[0] - size[0] * 1 / 2) * this.DPI * screen.fraction,
+    //  y1: ( offset[1] - size[1] * 1 / 2) * this.DPI * screen.fraction,
+    //  x2: ( offset[0] + size[0] * 1 / 2) * this.DPI * screen.fraction,
+    //  y2: ( offset[1] + size[1] * 1 / 2) * this.DPI * screen.fraction
+    //}
+  //}
 }

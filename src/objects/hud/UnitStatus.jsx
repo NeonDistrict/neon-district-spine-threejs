@@ -12,6 +12,26 @@ export class UnitStatus extends HUDElement {
     this.ticksRadius = 12;
     this.ticksHealthGap = 4;
     this.ticksLineWidth = 4;
+
+    this.registerUnitTarget();
+  }
+
+  registerUnitTarget() {
+    let position = this.getUnitPosition(this.unit.character);
+
+    window.dispatchEvent(
+      new CustomEvent("registerClickableRegion", {
+        'detail' : {
+          'option' : 'target-' + this.unit.unitId,
+          'region' : [
+            position.target.x / 2.0,
+            position.target.y / 2.0,
+            (position.target.x + position.target.width) / 2.0,
+            (position.target.y + position.target.height) / 2.0
+          ]
+        }
+      })
+    );
   }
 
   update(delta) {
@@ -19,6 +39,17 @@ export class UnitStatus extends HUDElement {
     let position = this.getUnitPosition(this.unit.character);
     this.drawHealth(position);
     this.drawTicks(position);
+    //this.drawUnitTarget(position);
+  }
+
+  drawUnitTarget(position) {
+    this.context.strokeStyle = HUDSTYLES.colors.red;
+    this.context.strokeRect(
+      position.target.x,
+      position.target.y,
+      position.target.width,
+      position.target.height
+    );
   }
 
   drawHealth(position) {

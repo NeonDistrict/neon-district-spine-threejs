@@ -193,17 +193,17 @@ export class PlayerControlsDisplay extends HUDElement {
 
     if (!this.units || !this.units.length) return;
 
-    this.unit = this.getActivePlayer();
+    let playerUnit = this.getActivePlayer();
 
-    if (this.unit && this.unit.headImgLoaded) {
-      if (this.unit.team === 'two') {
+    if (playerUnit && playerUnit.headImgLoaded) {
+      if (playerUnit.team === 'two') {
         this.context.save();
         this.context.translate(this.width * 6/36, 0);
         this.context.scale(-1, 1);
       }
 
       this.context.drawImage(
-        this.unit.headImg, 
+        playerUnit.headImg, 
         this.width * 1/36, 
         this.height * 2/3 + this.vertGap,
         this.width * 4/36,
@@ -211,7 +211,7 @@ export class PlayerControlsDisplay extends HUDElement {
       );
 
       // Undo
-      if (this.unit.team === 'two') {
+      if (playerUnit.team === 'two') {
         this.context.restore();
       }
     }
@@ -220,6 +220,7 @@ export class PlayerControlsDisplay extends HUDElement {
   getActivePlayer() {
     return this.units.reduce((acc, curr) => {
       if (!acc) return curr;
+      if (curr.stats.health <= 0) return acc;
       if (acc.ticks < curr.ticks) return acc;
       if (acc.ticks == curr.ticks) {
         if (acc.lastTurnOrder < curr.lastTurnOrder) return acc;
@@ -229,16 +230,12 @@ export class PlayerControlsDisplay extends HUDElement {
     });
   }
 
-  getDefaultTarget() {
-    return this.units.reduce((acc, curr) => {
-      if (!acc) return curr;
-      if (acc.ticks > curr.ticks) return acc;
-      if (acc.ticks == curr.ticks) {
-        if (acc.lastTurnOrder > curr.lastTurnOrder) return acc;
-        return curr;
+  getTarget() {
+    for (let _idx in this.units) {
+      if (this.units[_idx].unitId === this.playerSelections.getTarget()) {
+        return this.units[_idx];
       }
-      return curr;
-    });
+    }
   }
 
   drawTarget() {
@@ -251,20 +248,17 @@ export class PlayerControlsDisplay extends HUDElement {
 
     if (!this.units || !this.units.length) return;
 
-    // Special case, only one other target, so autoselect
-    if (this.units.length === 2) {
-      this.unit = this.getDefaultTarget();
-    }
+    let targetUnit = this.getTarget();
 
-    if (this.unit && this.unit.headImgLoaded) {
-      if (this.unit.team === 'two') {
+    if (targetUnit && targetUnit.headImgLoaded) {
+      if (targetUnit.team === 'two') {
         this.context.save();
         this.context.translate(this.width * (36 + 20)/36, 0);
         this.context.scale(-1, 1);
       }
 
       this.context.drawImage(
-        this.unit.headImg, 
+        targetUnit.headImg, 
         this.width * 26/36, 
         this.height * 2/3 + this.vertGap,
         this.width * 4/36,
@@ -272,7 +266,7 @@ export class PlayerControlsDisplay extends HUDElement {
       );
 
       // Undo
-      if (this.unit.team === 'two') {
+      if (targetUnit.team === 'two') {
         this.context.restore();
       }
     }

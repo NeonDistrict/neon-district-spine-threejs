@@ -36,7 +36,7 @@ export class PlayerSelections {
   }
 
   setTarget(_target) {
-    console.log("call to setTarget", _target);
+    _target = _target.replace(/target-/,'');
 
     this.target = _target;
   }

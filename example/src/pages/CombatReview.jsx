@@ -42,7 +42,7 @@ export default class CombatReview extends Component {
       'skin'     : 'Female',
       'pose'     : 'ReturningLrg_BasicIdle_001',
       'outfit'   : ['female', 'blkorigindemon', 'common']
-    },/*{
+    },{
       'position' : 1,
       'nftId'    : "test1",
       'scale'    : 'character',
@@ -64,14 +64,14 @@ export default class CombatReview extends Component {
       'skin'     : 'Female',
       'pose'     : 'ConsoleSml_BasicIdle_001',
       //'outfit'   : ['female', 'powlock', 'uncommon']
-    },*/{
+    },{
       'position' : 4,
       'nftId'    : "test4",
       'scale'    : 'character',
       'skin'     : 'Female',
       'pose'     : 'BladeMed_BaseIdle_001',
       'outfit'   : ['female', 'blkoriginheavy', 'common']
-    }/*,
+    },
     {
       'position' : 5,
       'nftId'    : "test5",
@@ -95,7 +95,7 @@ export default class CombatReview extends Component {
       'skin'     : 'Male',
       'pose'     : 'DualRangedMed_BasicIdle_001',
       //'outfit'   : ['male', 'yumeforgerp', 'ultrarare']
-    }*/];
+    }];
 
     return (
       <div>
