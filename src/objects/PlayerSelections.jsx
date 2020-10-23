@@ -25,6 +25,26 @@ export class PlayerSelections {
     return false;
   }
 
+  validateActionSelect(_option) {
+    if (['attack','card0','card1','card2'].indexOf(_option) === -1) {
+      return false;
+    }
+
+    if (_option === 'attack') {
+      return true;
+    }
+
+    let cardIdx = _option.replace(/^card/,'');
+    let card = this.getCard(cardIdx);
+
+    // Disallow selecting effects
+    if (card.type.toLowerCase() === 'effect') {
+      return false;
+    }
+
+    return true;
+  }
+
   setAction(_option) {
     if (['attack','card0','card1','card2'].indexOf(_option) !== -1) {
       this.action = _option;
@@ -33,6 +53,17 @@ export class PlayerSelections {
 
   getAction() {
     return this.action;
+  }
+
+  validateTargetSelect(_target) {
+    _target = _target.replace(/target-/,'');
+
+    // Must be updated to consider actual targets for the given action
+    if (!_target) {
+      return false;
+    }
+
+    return true;
   }
 
   setTarget(_target) {

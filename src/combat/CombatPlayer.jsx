@@ -79,7 +79,7 @@ export class CombatPlayer extends CombatScene {
   }
 
   unlockClickableRegions(e) {
-    if (e.detail && e.detail.event === 'BattleCompleteEvent') {
+    if (e && e.detail && e.detail.event === 'BattleCompleteEvent') {
       console.log("Battle completed, will not unlock clickable regions");
       return;
     }
@@ -107,8 +107,11 @@ export class CombatPlayer extends CombatScene {
       ) {
         if (['attack','card0','card1','card2'].indexOf(_option) !== -1) {
 
-          // Set the selected option
-          this.playerSelections.setAction(_option);
+          // Make sure that the card selected is a valid choice
+          if (this.playerSelections.validateActionSelect(_option)) {
+            // Set the selected option
+            this.playerSelections.setAction(_option);
+          }
           
         } else if (['confirm'].indexOf(_option) !== -1) {
 
@@ -132,8 +135,11 @@ export class CombatPlayer extends CombatScene {
 
         } else if (_option.indexOf('target') === 0) {
 
-          // Set the target
-          this.playerSelections.setTarget(_option);
+          // Make sure that the card selected is a valid choice
+          if (this.playerSelections.validateTargetSelect(_option)) {
+            // Set the target
+            this.playerSelections.setTarget(_option);
+          }
 
         }
       }
@@ -200,8 +206,7 @@ export class CombatPlayer extends CombatScene {
       if (
         !response.data ||
         !response.data.hasOwnProperty('data') ||
-        !response.data.hasOwnProperty('status') ||
-        response.data.status !== 200
+        !response.data.hasOwnProperty('status')
       ) {
         console.error("Could not retrieve battle information:");
         console.error(response.data);
@@ -248,6 +253,8 @@ export class CombatPlayer extends CombatScene {
 
     if (hasNewEvents) {
       this.renderEventBlocks();
+    } else if (!this.battleComplete) {
+      this.unlockClickableRegions();
     }
   }
 

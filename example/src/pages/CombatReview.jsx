@@ -18,7 +18,7 @@ export default class CombatReview extends Component {
   generateBattleIdField() {
     return (
       <span>
-        <label for="battleId">
+        <label htmlFor="battleId">
           Battle ID:
           <input type="text" style={{width: "20em", margin: "0 5px 0 2px"}} name="battleId" id="battleId" />
         </label>

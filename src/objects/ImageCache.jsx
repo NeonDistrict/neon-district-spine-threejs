@@ -29,7 +29,6 @@ export class ImageCache {
     const img = new Image();
     img.crossOrigin = "Anonymous";
     img.onload = (function() {
-      console.log("Loaded image", _name, "at URL:" + _url);
       window.ndCombatImageCache[_name] = img;
     }).bind(this);
     img.onerror = (function() {
