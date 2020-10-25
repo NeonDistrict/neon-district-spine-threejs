@@ -220,7 +220,7 @@ export class PlayerControlsDisplay extends HUDElement {
   getActivePlayer() {
     return this.units.reduce((acc, curr) => {
       if (!acc) return curr;
-      if (curr.stats.health <= 0) return acc;
+      if (curr.stats.HEALTH <= 0) return acc;
       if (acc.ticks < curr.ticks) return acc;
       if (acc.ticks == curr.ticks) {
         if (acc.lastTurnOrder < curr.lastTurnOrder) return acc;
@@ -306,7 +306,7 @@ export class PlayerControlsDisplay extends HUDElement {
 
     // Pull down the image
     this.context.drawImage(
-      this.imageCache.getImage('attack'),
+      this.imageCache.getImage('ATTACK'),
       this.width * 7.25/36,
       this.height * 2/3 + this.vertGap + this.width * 1/36,
       this.width * 1.5/36,

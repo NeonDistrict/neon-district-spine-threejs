@@ -74,7 +74,7 @@ export class CardFull extends HUDElement {
 
   drawNDLogo() {
     // Pull down the image
-    let ndlogo = this.imageCache.getImage('ndlogo');
+    let ndlogo = this.imageCache.getImage('NDLOGO');
     let height = ndlogo.height / ndlogo.width * this.width / 2;
     this.context.drawImage(
       ndlogo, 
@@ -250,30 +250,30 @@ export class CardFull extends HUDElement {
 
   getTypePrimaryColor(type) {
     switch (type) {
-      case 'ability': return HUDSTYLES.colors.green;
-      case 'attack': return HUDSTYLES.colors.red;
-      case 'effect': return HUDSTYLES.colors.yellow;
-      case 'interact': return HUDSTYLES.colors.neonBlue;
+      case 'ABILITY': return HUDSTYLES.colors.green;
+      case 'ATTACK': return HUDSTYLES.colors.red;
+      case 'EFFECT': return HUDSTYLES.colors.yellow;
+      case 'INTERACT': return HUDSTYLES.colors.neonBlue;
       default: return HUDSTYLES.colors.darkGray;
     }
   }
 
   getTypeDesaturatedPrimaryColor(type) {
     switch (type) {
-      case 'ability': return HUDSTYLES.colors.desaturatedGreen;
-      case 'attack': return HUDSTYLES.colors.desaturatedRed;
-      case 'effect': return HUDSTYLES.colors.desaturatedYellow;
-      case 'interact': return HUDSTYLES.colors.desaturatedNeonBlue;
+      case 'ABILITY': return HUDSTYLES.colors.desaturatedGreen;
+      case 'ATTACK': return HUDSTYLES.colors.desaturatedRed;
+      case 'EFFECT': return HUDSTYLES.colors.desaturatedYellow;
+      case 'INTERACT': return HUDSTYLES.colors.desaturatedNeonBlue;
       default: return HUDSTYLES.colors.darkGray;
     }
   }
 
   getTypeTransparentPrimaryColor(type) {
     switch (type) {
-      case 'ability': return HUDSTYLES.colors.transparentGreen;
-      case 'attack': return HUDSTYLES.colors.transparentRed;
-      case 'effect': return HUDSTYLES.colors.transparentYellow;
-      case 'interact': return HUDSTYLES.colors.transparentNeonBlue;
+      case 'ABILITY': return HUDSTYLES.colors.transparentGreen;
+      case 'ATTACK': return HUDSTYLES.colors.transparentRed;
+      case 'EFFECT': return HUDSTYLES.colors.transparentYellow;
+      case 'INTERACT': return HUDSTYLES.colors.transparentNeonBlue;
       default: return HUDSTYLES.colors.darkGray;
     }
   }

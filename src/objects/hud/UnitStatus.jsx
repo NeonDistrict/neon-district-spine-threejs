@@ -73,12 +73,12 @@ export class UnitStatus extends HUDElement {
   }
 
   getHealthPosition() {
-    let health = this.unit.stats.health;
+    let health = this.unit.stats.HEALTH;
 
-    if (this.activeAnimEvt.activeStatChange(this.unit.unitId, 'health') !== false) {
-      let healthStatChange = this.activeAnimEvt.activeStatChange(this.unit.unitId, 'health');
+    if (this.activeAnimEvt.activeStatChange(this.unit.unitId, 'HEALTH') !== false) {
+      let healthStatChange = this.activeAnimEvt.activeStatChange(this.unit.unitId, 'HEALTH');
       let animDelta = this.activeAnimEvt.currentTimeDelta();
-      let prevHealth = Math.max(Math.min(this.unit.stats.health - healthStatChange, this.unit.originalStats.health), 0.0);
+      let prevHealth = Math.max(Math.min(this.unit.stats.HEALTH - healthStatChange, this.unit.statsMax.HEALTH), 0.0);
       health = (
         prevHealth + healthStatChange * Math.max(Math.min(1.0 - animDelta * 2.0, 1.0), 0.0)
       );
@@ -86,7 +86,7 @@ export class UnitStatus extends HUDElement {
 
     return Math.max(
       Math.min(
-        health / this.unit.originalStats.health,
+        health / this.unit.statsMax.HEALTH,
         1.0
       ),
       0.0
@@ -125,8 +125,8 @@ export class UnitStatus extends HUDElement {
   getTicksPosition() {
     let ticks = this.unit.ticks;
 
-    if (this.activeAnimEvt.activeStatChange(this.unit.unitId, 'ticks') !== false) {
-      let ticksChange = this.activeAnimEvt.activeStatChange(this.unit.unitId, 'ticks');
+    if (this.activeAnimEvt.activeStatChange(this.unit.unitId, 'TICKS') !== false) {
+      let ticksChange = this.activeAnimEvt.activeStatChange(this.unit.unitId, 'TICKS');
       let animDelta = this.activeAnimEvt.currentTimeDelta();
       let previousTicks = Math.max(ticks - ticksChange, 0);
       ticks = (

@@ -2,11 +2,11 @@ export class ImageCache {
 
   constructor() {
     this.imageLinks = {
-      'ability'  : "https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Hack.png",
-      'attack'   : "https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Attack.png",
-      'effect'   : "https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Effect.png",
-      'interact' : "https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Interact.png",
-      'ndlogo'   : "https://neon-district-season-one.s3.amazonaws.com/assets/nd-logo.png"
+      'ABILITY'  : "https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Hack.png",
+      'ATTACK'   : "https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Attack.png",
+      'EFFECT'   : "https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Effect.png",
+      'INTERACT' : "https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Interact.png",
+      'NDLOGO'   : "https://neon-district-season-one.s3.amazonaws.com/assets/nd-logo.png"
     };
     if (!window.ndCombatImageCache) {
       window.ndCombatImageCache = {};

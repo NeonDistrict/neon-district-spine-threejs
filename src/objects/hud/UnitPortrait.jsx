@@ -49,7 +49,7 @@ export class UnitPortrait extends HUDElement {
   }
 
   writeTicks() {
-    if (this.unit.stats.health <= 0) {
+    if (this.unit.stats.HEALTH <= 0) {
       return;
     }
 

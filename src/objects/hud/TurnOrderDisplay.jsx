@@ -59,14 +59,14 @@ export class TurnOrderDisplay extends HUDElement {
 
   constructPortraitOrder() {
     this.portraits.sort((_a, _b) => {
-      if (_a.unit.stats.health <= 0 && _b.unit.stats.health <= 0) {
+      if (_a.unit.stats.HEALTH <= 0 && _b.unit.stats.HEALTH <= 0) {
         if (_a.unit.lastTurnOrder < _b.unit.lastTurnOrder) {
           return -1;
         }
         return 1;
-      } else if (_a.unit.stats.health <= 0) {
+      } else if (_a.unit.stats.HEALTH <= 0) {
         return 1;
-      } else if (_b.unit.stats.health <= 0) {
+      } else if (_b.unit.stats.HEALTH <= 0) {
         return -1;
       }
 
