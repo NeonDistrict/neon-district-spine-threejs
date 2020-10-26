@@ -48,22 +48,22 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Male',
       'pose'     : 'EnergyMed_BasicIdle_001',
-      //'outfit'   : ['male', 'poscrypno', 'ultrarare']
+      'outfit'   : ['male', 'blkoriginmedic', 'common']
     },{
       'position' : 2,
       'nftId'    : "test2",
       'scale'    : 'character',
-      'skin'     : 'Male',
+      'skin'     : 'Female',
       'pose'     : 'RifleMed_BasicIdle_001',
-      //'outfit'   : ['male', 'zenoautomatorr', 'rare']
+      'outfit'   : ['female', 'blkorigingenius', 'common']
     },
     {
       'position' : 3,
       'nftId'    : "test3",
       'scale'    : 'character',
-      'skin'     : 'Female',
+      'skin'     : 'Male',
       'pose'     : 'ConsoleSml_BasicIdle_001',
-      //'outfit'   : ['female', 'powlock', 'uncommon']
+      'outfit'   : ['male', 'blkoriginghost', 'common']
     },{
       'position' : 4,
       'nftId'    : "test4",
@@ -76,9 +76,9 @@ export default class CombatReview extends Component {
       'position' : 5,
       'nftId'    : "test5",
       'scale'    : 'character',
-      'skin'     : 'Female',
-      'pose'     : 'Unarmed_BasicIdle_001',
-      //'outfit'   : ['female', 'szabowasp', 'rare']
+      'skin'     : 'Male',
+      'pose'     : 'DualRangedSml_BasicIdle_001',
+      'outfit'   : ['male', 'blkoriginjack', 'common']
     },
     {
       'position' : 6,
@@ -86,7 +86,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Female',
       'pose'     : 'ThrustingSml_BaseIdle_001',
-      //'outfit'   : ['female', 'szabodoge', 'legendary']
+      'outfit'   : ['female', 'blkoriginmedic', 'common']
     },
     {
       'position' : 7,
@@ -94,7 +94,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Male',
       'pose'     : 'DualRangedMed_BasicIdle_001',
-      //'outfit'   : ['male', 'yumeforgerp', 'ultrarare']
+      'outfit'   : ['male', 'blkorigingenius', 'common']
     }];
 
     return (

@@ -10,11 +10,28 @@ export class UnitPortrait extends HUDElement {
     this.drawRhombus();
     this.drawHead();
     this.writeTicks();
+    this.drawKnockedOutOverlay();
   }
 
   drawRhombus() {
     this.context.fillStyle = HUDSTYLES.colors.darkGray;
     this.context.strokeStyle = HUDSTYLES.colors.halfGray;
+
+    this.context.beginPath();
+    this.context.moveTo(this.center.x - this.width/2 + this.width/12, this.center.y - this.height/2);
+    this.context.lineTo(this.center.x + this.width/2 + this.width/12, this.center.y - this.height/2);
+    this.context.lineTo(this.center.x + this.width/2 - this.width/12, this.center.y + this.height/2);
+    this.context.lineTo(this.center.x - this.width/2 - this.width/12, this.center.y + this.height/2);
+    this.context.lineTo(this.center.x - this.width/2 + this.width/12, this.center.y - this.height/2);
+    this.context.fill();
+  }
+
+  drawKnockedOutOverlay() {
+    if (this.unit.stats.HEALTH > 0) {
+      return;
+    }
+
+    this.context.fillStyle = HUDSTYLES.colors.transparentDarkGray;
 
     this.context.beginPath();
     this.context.moveTo(this.center.x - this.width/2 + this.width/12, this.center.y - this.height/2);

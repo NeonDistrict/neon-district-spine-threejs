@@ -338,6 +338,12 @@ export class CombatPlayer extends CombatScene {
         for (let _prop in _unit.stats) {
           _unit.stats[_prop] = _unitUpdate.stats[_prop];
         }
+        for (let _prop in _unit.maxStats) {
+          _unit.maxStats[_prop] = _unitUpdate.maxStats[_prop];
+        }
+        for (let _prop in _unit.statusEffects) {
+          _unit.statusEffects[_prop] = _unitUpdate.statusEffects[_prop];
+        }
       }
     }
   }

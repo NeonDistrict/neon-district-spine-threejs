@@ -19,6 +19,8 @@ module.exports = {
 		"transparentPurple" : "rgba(129,43,136,0.40)",
 		"transparentGreen" : "rgba(64,190,144,0.40)",
 		"transparentYellow" : "rgba(244,211,96,0.40)",
+		"transparentBlack" : "rgba(0,0,0,0.40)",
+		"transparentDarkGray" : "rgba(50,50,50,0.60)",
 	},
 	"sizes" : {
 		

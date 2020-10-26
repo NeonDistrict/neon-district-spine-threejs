@@ -40,6 +40,7 @@ export class UnitStatus extends HUDElement {
     this.drawHealth(position);
     this.drawTicks(position);
     //this.drawUnitTarget(position);
+    this.writeUnitUpdates(position);
   }
 
   drawUnitTarget(position) {
@@ -50,6 +51,92 @@ export class UnitStatus extends HUDElement {
       position.target.width,
       position.target.height
     );
+  }
+
+  writeUnitUpdates(position) {
+    if (
+      this.activeAnimEvt.hasActiveStatChange(this.unit.unitId) ||
+      this.activeAnimEvt.hasActiveStatusEffectChange(this.unit.unitId)
+    ) {
+      let idx = 0;
+
+      let statChanges = this.activeAnimEvt.getActiveStatChanges(this.unit.unitId);
+      let statusEffectChanges = this.activeAnimEvt.getActiveStatusEffectChanges(this.unit.unitId);
+      let updates = [statChanges, statusEffectChanges];
+
+      for (let _arrIdx in updates) {
+        let _arr = updates[_arrIdx];
+        for (let _stat in _arr) {
+          if (!_arr.hasOwnProperty(_stat)) continue;
+          let value = _arr[_stat];
+          let delta = this.activeAnimEvt.currentTimeDelta();
+          let relPosition = {
+            x : position.target.x + position.target.width / 2,
+            y : position.target.y + 40 * ++idx + delta * 20
+          };
+          this.writeUnitUpdate(relPosition, _stat, value, _arrIdx == 1);
+        }
+      }
+    }
+  }
+
+  writeUnitUpdate(position, stat, value, isStatusEffect) {
+    let color;
+    let delta = this.activeAnimEvt.currentTimeDelta();
+    let alpha = 0.4 + delta * 6.0 / 10.0;
+
+    let parsedValue;
+    if (stat === 'TICKS' && value > 0) {
+      color = `rgba(10,245,247,${alpha})`;
+      parsedValue = "+" + String(Math.abs(value));
+    } else if ((stat === 'TICKS' && value <= 0) || value >= 0) {
+      color = `rgba(64,190,144,${alpha})`;
+      if (stat === 'TICKS') {
+        parsedValue = "-" + String(Math.abs(value));
+      } else {
+        parsedValue = "+" + String(Math.abs(value));
+      }
+    } else {
+      color = `rgba(255,0,47,${alpha})`;
+      parsedValue = "-" + String(Math.abs(value));
+    }
+
+    let str = stat + ": " + parsedValue;
+    if (isStatusEffect) {
+      let charValue = (value > 0) ? String.fromCharCode(0x2191) : String.fromCharCode(0x2193);
+      parsedValue = "";
+      for (let idx = 1; idx <= Math.abs(value); idx++) {
+        parsedValue += charValue;
+      }
+      str = stat + " " + parsedValue;
+    }
+
+    this.context.fillStyle = color;
+    //this.context.lineWidth = 1;
+    //this.context.strokeStyle = `rgba(255,255,255,${alpha})`;
+
+    this.context.shadowColor = `rgba(255,255,255,${alpha})`;
+    this.context.shadowBlur = 4;
+
+    this.context.font = '24pt "kozuka-gothic-pr6n-bold"';
+    this.context.textAlign = 'center';
+    this.context.textBaseline = 'middle';
+
+    this.context.fillText(
+      str,
+      position.x,
+      position.y
+    );
+
+    /*
+    this.context.strokeText(
+      str,
+      position.x,
+      position.y
+    );
+    */
+
+    this.context.shadowBlur = 0;
   }
 
   drawHealth(position) {
