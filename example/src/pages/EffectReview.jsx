@@ -33,8 +33,8 @@ export default class EffectReview extends Component {
     document.getElementById("background-selection").value = 'training-room-001';
     document.getElementById('effect-blend-mode').value = 'NormalBlending';
     document.getElementById('xPosVfx0').value = 0;
-    document.getElementById('yPosVfx0').value = 125;
-    document.getElementById('widthVfx0').value = 200;
+    document.getElementById('yPosVfx0').value = 100;
+    document.getElementById('widthVfx0').value = 250;
     document.getElementById('heightVfx0').value = 400;
     document.getElementById('rotationVfx0').value = 0;
     document.getElementById('scaleVfx0').value = 1.0;
@@ -308,8 +308,8 @@ export default class EffectReview extends Component {
             background={this.state.background}
             effectTest={{
               'src'      : this.state.effectSrc,
-              'size'     : {'width' : this.state.effectWidth || 200, 'height' : this.state.effectHeight || 400},
-              'pos'      : {'x_pos' : this.state.effectXPos || 0, 'y_pos' : this.state.effectYPos || 125},
+              'size'     : {'width' : this.state.effectWidth || 250, 'height' : this.state.effectHeight || 400},
+              'pos'      : {'x_pos' : this.state.effectXPos || 0, 'y_pos' : this.state.effectYPos || 100},
               'scale'    : this.state.effectScale || 1.0,
               'rotation' : this.state.effectRotation || 0.0,
               'opacity'  : this.state.effectOpacity || 1.0,

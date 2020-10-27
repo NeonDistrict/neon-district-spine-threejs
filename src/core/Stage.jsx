@@ -32,9 +32,10 @@ export class Stage extends SpineScene {
         case 7:
           return 0.148;
         // Center
-        case -1:
         case 9:
-          return 0.134
+          return 0.134;
+        case -1:
+          return 0.15;
         default:
           throw 'Invalid combat position for scale';
       }
@@ -49,7 +50,7 @@ export class Stage extends SpineScene {
 
     switch(index) {
       case -1:
-        return [0, 0, false]
+        return [0, -50, false]
       // Left Front Top
       case 0:
         return [-100, 40, false]
