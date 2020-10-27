@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Api from '../api/api.js';
 import { CombatScene } from "./CombatScene.jsx";
+import { CombatHUD } from "../objects/CombatHUD.jsx";
 import { PlayerSelections } from "../objects/PlayerSelections.jsx";
 
 export class CombatPlayer extends CombatScene {
@@ -13,6 +14,10 @@ export class CombatPlayer extends CombatScene {
 
     // API for combat calls
     this.api = new Api(this.combatApi);
+
+    // Keep track of the UI
+    this.userInterface = null;
+    this.hud = null;
 
     // Player Selections
     this.playerSelections = new PlayerSelections();
@@ -40,6 +45,14 @@ export class CombatPlayer extends CombatScene {
 
   componentDidMount() {
     super.componentDidMount(arguments);
+
+    // Draw Game UI elements
+    this.userInterface = new CombatHUD(
+      this.renderer,
+      this.animationController.getActiveAnimationEventObject(),
+      this.getUnitPosition.bind(this)
+    );
+    this.hud = this.userInterface.render();
 
     // Update the HUD to use the player selection object
     this.userInterface.setPlayerSelectionsObject(this.playerSelections);

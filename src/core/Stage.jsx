@@ -32,6 +32,7 @@ export class Stage extends SpineScene {
         case 7:
           return 0.148;
         // Center
+        case -1:
         case 9:
           return 0.134
         default:
@@ -47,6 +48,8 @@ export class Stage extends SpineScene {
     //return [70, 40, false]
 
     switch(index) {
+      case -1:
+        return [0, 0, false]
       // Left Front Top
       case 0:
         return [-100, 40, false]
@@ -115,16 +118,50 @@ export class Stage extends SpineScene {
         nextProps.effectTest && typeof nextProps.effectTest === 'object' &&
         nextProps.effectTest.hasOwnProperty('src') && nextProps.effectTest.src
     ) {
+      // Scale and size
+      let scale = nextProps.effectTest.scale;
       let size = nextProps.effectTest.size;
       if (size && typeof size === 'object' && size.hasOwnProperty('width') && size.hasOwnProperty('height')) {
-        this.effects.vfx0.setSize(size.width, size.height);
+        this.effects.vfx0.setSize(size.width, size.height, scale);
       }
 
+      // Position
       let pos = nextProps.effectTest.pos;
       if (pos && typeof pos === 'object' && pos.hasOwnProperty('x_pos') && pos.hasOwnProperty('y_pos')) {
         this.effects.vfx0.setPosition(pos.x_pos, pos.y_pos);
       }
 
+      // Rotation
+      if (nextProps.effectTest.hasOwnProperty('rotation')) {
+        this.effects.vfx0.setRotation(nextProps.effectTest.rotation);
+      }
+
+      // Opacity
+      if (nextProps.effectTest.hasOwnProperty('opacity')) {
+        this.effects.vfx0.setOpacity(nextProps.effectTest.opacity);
+      }
+
+      // Speed
+      if (nextProps.effectTest.hasOwnProperty('speed')) {
+        this.effects.vfx0.setPlaybackRate(nextProps.effectTest.speed);
+      }
+
+      // Flip X
+      if (nextProps.effectTest.hasOwnProperty('flipX')) {
+        this.effects.vfx0.setFlipX(nextProps.effectTest.flipX);
+      }
+
+      // Flip Y
+      if (nextProps.effectTest.hasOwnProperty('flipY')) {
+        this.effects.vfx0.setFlipY(nextProps.effectTest.flipY);
+      }
+
+      // Blend Mode
+      if (nextProps.effectTest.hasOwnProperty('blend')) {
+        this.effects.vfx0.setBlendMode(nextProps.effectTest.blend);
+      }
+
+      // Source
       if (nextProps.effectTest.src != this.effects.vfx0.getSrc()) {
         console.log("Setting src:", nextProps.effectTest.src, this.effects.vfx0.getSrc(), nextProps.effectTest.src != this.effects.vfx0.getSrc());
         this.effects.vfx0.setSrc(nextProps.effectTest.src);

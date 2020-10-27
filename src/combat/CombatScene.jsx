@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Api from '../api/api.js';
 import { Stage } from "../core/Stage.jsx";
-import { CombatHUD } from "../objects/CombatHUD.jsx";
 import { AnimationController } from "../animation/AnimationController.jsx";
 
 export class CombatScene extends Stage {
@@ -12,8 +11,6 @@ export class CombatScene extends Stage {
     this.effectTest = props.effectTest;
 
     // Internal objects
-    this.userInterface = null;
-    this.hud = null;
     this.animationController = null;
   }
 
@@ -22,14 +19,6 @@ export class CombatScene extends Stage {
 
     // Initialize the animation controller
     this.animationController = new AnimationController(this.characters, this.effects);
-
-    // Draw Game UI elements
-    this.userInterface = new CombatHUD(
-      this.renderer,
-      this.animationController.getActiveAnimationEventObject(),
-      this.getUnitPosition.bind(this)
-    );
-    this.hud = this.userInterface.render();
   }
 
   renderAdditionalScenes(delta) {

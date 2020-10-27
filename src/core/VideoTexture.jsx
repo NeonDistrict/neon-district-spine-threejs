@@ -8,31 +8,24 @@ export class VideoTexture {
     this.src    = src || null;
 
     // Init & Defaults
-    this.width  = 1;
-    this.height = 1;
-    this.x_pos  = 0;
-    this.y_pos  = 100;
-    this.loop   = true;
+    this.width    = 1;
+    this.height   = 1;
+    this.x_pos    = 0;
+    this.y_pos    = 100;
+    this.loop     = true;
+    this.blend    = "NormalBlending";
+    this.rotation = 0;
+    this.opacity  = 1.0;
+    this.speed    = 1.0;
+    this.scale    = 1.0;
+    this.flipX    = 1.0;
+    this.flipY    = 1.0;
 
     if (options && typeof options === 'object') {
-      if (options.hasOwnProperty('width')) {
-        this.width = options.width;
-      }
-
-      if (options.hasOwnProperty('height')) {
-        this.height = options.height;
-      }
-
-      if (options.hasOwnProperty('x_pos')) {
-        this.x_pos = options.x_pos;
-      }
-
-      if (options.hasOwnProperty('y_pos')) {
-        this.y_pos = options.y_pos;
-      }
-
-      if (options.hasOwnProperty('loop')) {
-        this.loop = options.loop;
+      for (let option in options) {
+        if (options.hasOwnProperty(option) && this.hasOwnProperty(option)) {
+          this[option] = options[option];
+        }
       }
     }
 
@@ -47,13 +40,16 @@ export class VideoTexture {
     const geometry = new THREE.PlaneGeometry(1, 1);
     const material = new THREE.MeshBasicMaterial({
       map: this.texture,
-      transparent: true
+      transparent: true,
     });
+    material.blending = THREE[this.blend];
 
     this.mesh = new THREE.Mesh(geometry, material);
     this.scene.add(this.mesh);
     this.mesh.position.set(this.x_pos, this.y_pos, 1);
     this.mesh.scale.set(this.width, this.height, 1);
+    this.mesh.material.map.wrapS = THREE.RepeatWrapping;
+    this.mesh.material.map.wrapT = THREE.RepeatWrapping;
   }
 
   setLoop(loop) {
@@ -80,9 +76,51 @@ export class VideoTexture {
     this.mesh.position.set(x_pos, y_pos, 1);
   }
 
-  setSize(width, height) {
-    this.width = width;
-    this.height = height;
-    this.mesh.scale.set(width, height, 1);
+  setSize(width, height, scale = 1.0) {
+    this.width = width * scale;
+    this.height = height * scale;
+    this.mesh.scale.set(this.width, this.height, 1);
+  }
+
+  setRotation(rot = 0.0) {
+    this.mesh.rotation.z = rot;
+  }
+
+  setOpacity(opacity = 1.0) {
+    this.mesh.material.opacity = opacity;
+  }
+
+  setPlaybackRate(rate = 1.0) {
+    this.video.playbackRate = rate;
+  }
+
+  setBlendMode(blend = 'NormalBlending') {
+    let validBlendModes = [
+      "NoBlending",
+      "NormalBlending",
+      "AdditiveBlending",
+      "SubtractiveBlending",
+      "MultiplyBlending"
+    ];
+
+    if (THREE.hasOwnProperty(blend) && validBlendModes.indexOf(blend) !== -1) {
+      this.mesh.material.blending = THREE[blend];
+    }
+  }
+
+  setFlipX(flipX = false) {
+    if (flipX) {
+      this.mesh.material.map.repeat.x = - 1;
+    } else {
+      this.mesh.material.map.repeat.x = 1;
+    }
+  }
+
+  setFlipY(flipY = false) {
+    if (flipY) {
+      this.mesh.material.map.repeat.y = - 1;
+    } else {
+      this.mesh.material.map.repeat.y = 1;
+    }
   }
 }
