@@ -313,27 +313,31 @@ export class Stage extends SpineScene {
     let skeletonData = character.spine.skeletonData;
 
     let bbox = {
-      x1: screen.x + ( position[0] - scale * (skeletonData.width  * 1 / 2)) * screen.fraction * this.DPI,
-      y1: screen.y + (-position[1] - scale * (skeletonData.height * 7 / 8)) * screen.fraction * this.DPI,
-      x2: screen.x + ( position[0] + scale * (skeletonData.width  * 1 / 2)) * screen.fraction * this.DPI,
-      y2: screen.y + (-position[1] + scale * (skeletonData.height * 1 / 8)) * screen.fraction * this.DPI
+      x1: screen.x + ( position[0] - scale * (skeletonData.width  * 1 / 2)) * (screen.fractionCanvas.width)  * this.DPI,
+      y1: screen.y + (-position[1] - scale * (skeletonData.height))         * (screen.fractionCanvas.height) * this.DPI,
+      x2: screen.x + ( position[0] + scale * (skeletonData.width  * 1 / 2)) * (screen.fractionCanvas.width)  * this.DPI,
+      y2: screen.y + (-position[1] + scale * (skeletonData.height))         * (screen.fractionCanvas.height) * this.DPI
+    };
+
+    let feet = {
+      x: screen.x + position[0] * screen.fractionCanvas.width  * this.DPI,
+      y: screen.y - position[1] * screen.fractionCanvas.height * this.DPI
+    };
+
+    let above = {
+      x: (bbox.x1 + bbox.x2) / 2 + (bbox.x2 - bbox.x1) / 2 * (bbox.x1 > this.canvas.width / 2 ? 0.25 : -0.25),
+      y: bbox.y1 * 9 / 8
     };
 
     return {
-      feet : {
-        x: screen.x + position[0] * screen.fraction * this.DPI,
-        y: screen.y - position[1] * screen.fraction * this.DPI
-      },
-      above : {
-        x: screen.x + position[0] * screen.fraction * this.DPI,
-        y: bbox.y1
-      },
+      feet : feet,
+      above : above,
       bbox : bbox,
       target : {
-        x: bbox.x1 + (bbox.x2 - bbox.x1) * 4 / 16,
+        x: bbox.x1 + (bbox.x2 - bbox.x1) * 1 / 2 * (bbox.x1 > this.canvas.width / 2 ? 0.75 : 0.25),
         y: bbox.y1 + (bbox.y2 - bbox.y1) * 3 / 32,
-        width: (bbox.x2 - bbox.x1) * 8 / 16,
-        height: (bbox.y2 - bbox.y1) * 3 / 4,
+        width: (bbox.x2 - bbox.x1) * 1 / 2,
+        height: (bbox.y2 - bbox.y1) * 3 / 8,
       }
     }
   }

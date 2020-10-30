@@ -99,10 +99,10 @@ export default class CombatReview extends Component {
 
     return (
       <div>
-        <div style={{"width":1024,"height":600}}>
+        <div style={{"width":1280,"height":768}}>
           <NDCombatPlayer
-            width={1024}
-            height={600}
+            width={1280}
+            height={768}
             background="almond-uncontrolled-lobby-001"
             characters={characters}
             combatApi={"http://localhost:5003"}

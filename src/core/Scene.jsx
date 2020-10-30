@@ -88,14 +88,34 @@ export class Scene extends Component {
     vector.x = ( vector.x * widthHalf ) + widthHalf;
     vector.y = - ( vector.y * heightHalf ) + heightHalf;
 
-    let vHeight = 0, vWidth = 0, fraction = 1.0;
+    let vHeight = 0, vWidth = 0, fraction = {};
     let box = new THREE.Box3().setFromObject(this.rootMesh);
     let size = box.getSize(new THREE.Vector3());
+
+    // Determine the object's relative size from the camera
     if (size.x > 0) {
+      // Field of view, vertical
       let vFOV = THREE.MathUtils.degToRad(this.camera.fov);
-      fraction = size.y / (2 * Math.tan(vFOV / 2) * this.camera.position.z);
-      vHeight = fraction * size.y;
-      vWidth = fraction * size.x;
+
+      // Visible Height from the distance from the screen
+      let vHeightFromDistance = 2 * Math.tan(vFOV / 2) * this.camera.position.z;
+      let vWidthFromDistance = vHeightFromDistance * this.camera.aspect;
+
+      // Fraction of the visible height made up by the object
+      fraction = {
+        height: size.y / vHeightFromDistance,
+        width: size.x / vWidthFromDistance
+      };
+
+      // Unsure I need these?
+      vHeight = fraction.height * size.y;
+      vWidth = fraction.width * size.x;
+
+      // Switch up the fraction to focus on the canvas
+      fraction = {
+        height: this.canvas.height / (vHeightFromDistance * 2),
+        width: this.canvas.width / (vWidthFromDistance * 2)
+      };
     }
 
     return { 
