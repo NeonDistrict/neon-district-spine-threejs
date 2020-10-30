@@ -313,15 +313,15 @@ export class Stage extends SpineScene {
     let skeletonData = character.spine.skeletonData;
 
     let bbox = {
-      x1: screen.x + ( position[0] - scale * (skeletonData.width  * 1 / 2)) * (screen.fractionCanvas.width)  * this.DPI,
-      y1: screen.y + (-position[1] - scale * (skeletonData.height))         * (screen.fractionCanvas.height) * this.DPI,
-      x2: screen.x + ( position[0] + scale * (skeletonData.width  * 1 / 2)) * (screen.fractionCanvas.width)  * this.DPI,
-      y2: screen.y + (-position[1] + scale * (skeletonData.height))         * (screen.fractionCanvas.height) * this.DPI
+      x1: screen.x + ( position[0] - scale * (skeletonData.width  * 1 / 2)) * (screen.fraction.width)  * this.DPI,
+      y1: screen.y + (-position[1] - scale * (skeletonData.height))         * (screen.fraction.height) * this.DPI,
+      x2: screen.x + ( position[0] + scale * (skeletonData.width  * 1 / 2)) * (screen.fraction.width)  * this.DPI,
+      y2: screen.y + (-position[1] + scale * (skeletonData.height))         * (screen.fraction.height) * this.DPI
     };
 
     let feet = {
-      x: screen.x + position[0] * screen.fractionCanvas.width  * this.DPI,
-      y: screen.y - position[1] * screen.fractionCanvas.height * this.DPI
+      x: screen.x + position[0] * screen.fraction.width  * this.DPI,
+      y: screen.y - position[1] * screen.fraction.height * this.DPI
     };
 
     let above = {
