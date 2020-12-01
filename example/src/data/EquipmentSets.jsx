@@ -551,6 +551,7 @@ export default {
 		["blkoriginroutine","Common","Routine"],
 		["blkoriginfriction","Common","Friction"],
 		["blkorigineternity","Common","Eternity"],
-		["blkoriginchance","Common","Chance"]
+		["blkoriginchance","Common","Chance"],
+		["blktestingsickbear","Common","Stress Test Sick Bear"]
 	]
 };

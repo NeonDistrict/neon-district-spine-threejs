@@ -4,7 +4,7 @@ class Api {
   constructor(_endpoint) {
     this.endpoint = "";//_endpoint;
 
-    if (window.location.href.indexOf('nds1-preview-tool')) {
+    if (window.location.href.indexOf('nds1-preview-tool') !== -1) {
       this.endpoint = 'http://3.212.225.158:5003'
     }
   }

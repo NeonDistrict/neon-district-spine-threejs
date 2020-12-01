@@ -6,10 +6,14 @@ export class SpineCharacter {
   // http://esotericsoftware.com/forum/spine-ts-change-region-on-an-attachment-during-runtime-14299
   // https://www.html5gamedevs.com/topic/45964-esoteric-spine-changing-art-of-a-slot-with-multiple-attachment-regions/
 
-  constructor(assetManager, skeletonFile, identifier) {
+  constructor(assetManager, skeletonFile, identifier, atlasFile) {
     this.skeletonFile = skeletonFile;
-    this.atlasFile = this.skeletonFile.replace("-pro", "").replace("-ess", "").replace(".json", ".atlas");
-    this.atlasFile += "?" + identifier;
+
+    if (atlasFile) {
+      this.atlasFile = atlasFile;
+    } else {
+      this.atlasFile = this.skeletonFile.replace("-pro", "").replace("-ess", "").replace(".json", ".atlas") + "?" + identifier;
+    }
 
     this.assetManager = assetManager;
     this.assetManager.loadText(this.skeletonFile);
@@ -453,6 +457,18 @@ export class SpineCharacter {
     for (let slot of this.skeletonMesh.skeleton.slots) {
       console.log("Slot Name:", slot.data.name);
     }
+
+    let obj = {};
+    for (let slot of this.skeletonMesh.skeleton.slots) {
+      if (!slot.attachment) continue;
+      obj[slot.data.name] = {
+        x      : slot.attachment.region.x,
+        y      : slot.attachment.region.y,
+        height : slot.attachment.region.height,
+        width  : slot.attachment.region.width,
+      };
+    }
+    console.log(JSON.stringify(obj));
     */
   }
 }
