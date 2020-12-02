@@ -41,21 +41,21 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Female',
       'pose'     : 'ReturningLrg_BasicIdle_001',
-      'outfit'   : ['female', 'blkorigindemon', 'common']
+      //'outfit'   : ['female', 'blkorigindemon', 'common']
     },{
       'position' : 1,
       'nftId'    : "test1",
       'scale'    : 'character',
       'skin'     : 'Male',
       'pose'     : 'EnergyMed_BasicIdle_001',
-      'outfit'   : ['male', 'blkoriginmedic', 'common']
+      //'outfit'   : ['male', 'blkoriginmedic', 'common']
     },{
       'position' : 2,
       'nftId'    : "test2",
       'scale'    : 'character',
       'skin'     : 'Female',
       'pose'     : 'RifleMed_BasicIdle_001',
-      'outfit'   : ['female', 'blkorigingenius', 'common']
+      //'outfit'   : ['female', 'blkorigingenius', 'common']
     },
     {
       'position' : 3,
@@ -63,14 +63,14 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Male',
       'pose'     : 'ConsoleSml_BasicIdle_001',
-      'outfit'   : ['male', 'blkoriginghost', 'common']
+      //'outfit'   : ['male', 'blkoriginghost', 'common']
     },{
       'position' : 4,
       'nftId'    : "test4",
       'scale'    : 'character',
       'skin'     : 'Female',
       'pose'     : 'BladeMed_BaseIdle_001',
-      'outfit'   : ['female', 'blkoriginheavy', 'common']
+      //'outfit'   : ['female', 'blkoriginheavy', 'common']
     },
     {
       'position' : 5,
@@ -78,7 +78,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Male',
       'pose'     : 'DualRangedSml_BasicIdle_001',
-      'outfit'   : ['male', 'blkoriginjack', 'common']
+      //'outfit'   : ['male', 'blkoriginjack', 'common']
     },
     {
       'position' : 6,
@@ -86,7 +86,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Female',
       'pose'     : 'ThrustingSml_BaseIdle_001',
-      'outfit'   : ['female', 'blkoriginmedic', 'common']
+      //'outfit'   : ['female', 'blkoriginmedic', 'common']
     },
     {
       'position' : 7,
@@ -94,7 +94,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Male',
       'pose'     : 'DualRangedMed_BasicIdle_001',
-      'outfit'   : ['male', 'blkorigingenius', 'common']
+      //'outfit'   : ['male', 'blkorigingenius', 'common']
     }];
 
     return (
@@ -105,7 +105,8 @@ export default class CombatReview extends Component {
             height={768}
             background="almond-uncontrolled-lobby-001"
             characters={characters}
-            combatApi={"http://localhost:5003"}
+            //combatApi={"http://localhost:5003"}
+            combatSocket={"http://localhost:5003"}
             battleId={this.state.battleId}
             key={this.state.battleId}
           />

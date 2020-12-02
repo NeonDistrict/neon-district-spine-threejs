@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Api from '../api/api.js';
+import Socket from '../socket/socket.js';
 import { CombatScene } from "./CombatScene.jsx";
 import { CombatHUD } from "../objects/CombatHUD.jsx";
 import { PlayerSelections } from "../objects/PlayerSelections.jsx";
@@ -10,10 +11,15 @@ export class CombatPlayer extends CombatScene {
 
     // Keep track of combat information
     this.combatApi = props.combatApi;
+    this.combatSocket = props.combatSocket;
     this.battleId  = props.battleId;
 
     // API for combat calls
-    this.api = new Api(this.combatApi);
+    if (this.combatApi) {
+      this.api = new Api(this.combatApi);
+    } else if (this.combatSocket) {
+      this.socket = new Socket(this.combatSocket, this.battleId);
+    }
 
     // Keep track of the UI
     this.userInterface = null;
@@ -62,7 +68,11 @@ export class CombatPlayer extends CombatScene {
 
     // Pull the initial battle state
     if (this.battleId) {
-      this.getCombat();
+      if (this.api) {
+        this.getCombat();
+      } else if (this.socket) {
+        this.getCombatSocket();
+      }
     }
   }
 
@@ -144,7 +154,11 @@ export class CombatPlayer extends CombatScene {
           this.lockClickableRegions();
 
           // Run combat
-          this.runCombat(action, target);
+          if (this.api) {
+            this.runCombat(action, target);
+          } else if (this.socket) {
+            this.runCombatSocket(action, target);
+          }
 
         } else if (_option.indexOf('target') === 0) {
 
@@ -238,6 +252,24 @@ export class CombatPlayer extends CombatScene {
       this.playerSelections.clear();
       this.unlockClickableRegions();
     });
+  }
+
+  getCombatSocket() {
+    if (!this.battleId) {
+      console.log("No battle ID provided.")
+      return;
+    }
+
+    this.socket.get();
+  }
+
+  runCombatSocket(action, target) {
+    if (!this.battleId) {
+      console.log("No battle ID provided.")
+      return;
+    }
+
+    this.socket.run({action, target});
   }
 
   updateBattleEvents(data) {
