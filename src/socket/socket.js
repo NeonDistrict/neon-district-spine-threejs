@@ -2,49 +2,29 @@ const socketIOClient = require('socket.io-client');
 
 class Socket {
   constructor(_endpoint, _channel) {
-    this.endpoint = _endpoint;
-    this.channel = _channel;
-
-    this.connectToSocket();
-    this.connectToChannel();
+    this.socket = socketIOClient(_endpoint + "/combat");
+    this.connectToChannel(_channel);
   }
 
-  connectToSocket() {
-    this.socket = socketIOClient(this.endpoint + "/combat");
-    this.socket.on("message", this.handleResponse.bind(this));
+  connectToChannel(channel) {
+    this.socket.emit('join', channel);
   }
 
-  connectToChannel() {
-    this.socket.emit('join', this.channel);
+  setGetResponse(callback) {
+    this.socket.on("getResponse", callback);
   }
 
-  get(data) {
-    this.socket.emit("get", this.channel);
+  setRunResponse(callback) {
+    this.socket.on("runResponse", callback);
   }
 
-  run(data, callback, error = console.error) {
-    this.socket.emit("run", this.channel, data);
+  get(channel, data) {
+    this.socket.emit("get", channel);
   }
 
-  handleResponse() {
-    console.log("handleResponse");
-    console.log(arguments);
-    return arguments;
+  run(channel, data) {
+    this.socket.emit("run", channel, data);
   }
-
-  /*
-  req(url, data, callback, error = console.error) {
-    return axios.post(url, data).then(callback).catch(error);
-  }
-
-  getBattle(data, callback, error) {
-    return this.req(this.endpoint + '/combat/combat/get', data, callback, error);
-  }
-
-  runBattle(data, callback, error) {
-    return this.req(this.endpoint + '/combat/combat/run', data, callback, error);
-  }
-  */
 }
 
 export default Socket;

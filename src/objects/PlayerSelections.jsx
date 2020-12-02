@@ -19,7 +19,7 @@ export class PlayerSelections {
   }
 
   getCard(_cardIdx) {
-    if (this.cards.length >= _cardIdx && _cardIdx >= 0) {
+    if (this.cards.length > _cardIdx && _cardIdx >= 0) {
       return this.cards[_cardIdx];
     }
     return false;
@@ -38,7 +38,7 @@ export class PlayerSelections {
     let card = this.getCard(cardIdx);
 
     // Disallow selecting effects
-    if (card.type.toLowerCase() === 'effect') {
+    if (!card || !card.hasOwnProperty('type') || card.type.toLowerCase() === 'effect') {
       return false;
     }
 

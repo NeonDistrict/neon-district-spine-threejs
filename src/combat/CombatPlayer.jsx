@@ -19,6 +19,8 @@ export class CombatPlayer extends CombatScene {
       this.api = new Api(this.combatApi);
     } else if (this.combatSocket) {
       this.socket = new Socket(this.combatSocket, this.battleId);
+      this.socket.setGetResponse(this.getCombatResponse.bind(this));
+      this.socket.setRunResponse(this.runCombatResponse.bind(this));
     }
 
     // Keep track of the UI
@@ -69,7 +71,7 @@ export class CombatPlayer extends CombatScene {
     // Pull the initial battle state
     if (this.battleId) {
       if (this.api) {
-        this.getCombat();
+        this.getCombatApi();
       } else if (this.socket) {
         this.getCombatSocket();
       }
@@ -155,7 +157,7 @@ export class CombatPlayer extends CombatScene {
 
           // Run combat
           if (this.api) {
-            this.runCombat(action, target);
+            this.runCombatApi(action, target);
           } else if (this.socket) {
             this.runCombatSocket(action, target);
           }
@@ -173,85 +175,35 @@ export class CombatPlayer extends CombatScene {
     }
   }
 
-  getCombat() {
+  getCombatApi() {
     if (!this.battleId) {
       console.log("No battle ID provided.")
       return;
     }
 
     this.api.getBattle({
-      battleId: this.battleId
-    }, (response) => {
-      // Verify the response is valid
-      if (
-        !response.data ||
-        !response.data.hasOwnProperty('data') ||
-        !response.data.hasOwnProperty('status') ||
-        response.data.status !== 200
-      ) {
-        console.error("Could not retrieve battle information:");
-        console.error(response.data);
-        return;
-      }
-
-      // Pull the data out
-      let data = response.data.data;
-
-      // Update the battle ID
-      this.battleId = data.battleId;
-
-      // Emit event for any front-end to capture data
-      window.dispatchEvent(
-        new CustomEvent("getBattleInformation", {
-          'detail' : {
-            'battleId' : data.battleId
-          }
-        })
-      );
-
-      // Pass off to the controller
-      this.updateBattleEvents(data);
-    }, (error) => {
-      console.error("error");
-      console.error(error);
-    });
+        battleId: this.battleId
+      },
+      this.getCombatResponse.bind(this),
+      this.handleErrorResponse.bind(this)
+    );
   }
 
-  runCombat(action, target) {
+  runCombatApi(action, target) {
     if (!this.battleId) {
       console.log("No battle ID provided.")
       return;
     }
 
     this.api.runBattle({
-      battleId: this.battleId,
-      action:action,
-      target:target,
-      automatic:false
-    }, (response) => {
-      // Verify the response is valid
-      if (
-        !response.data ||
-        !response.data.hasOwnProperty('data') ||
-        !response.data.hasOwnProperty('status')
-      ) {
-        console.error("Could not retrieve battle information:");
-        console.error(response.data);
-        return;
-      }
-
-      // Pull the data out
-      let data = response.data.data;
-
-      // Pass off to the controller
-      this.playerSelections.clear();
-      this.updateBattleEvents(data);
-    }, (error) => {
-      console.error("error");
-      console.error(error);
-      this.playerSelections.clear();
-      this.unlockClickableRegions();
-    });
+        battleId: this.battleId,
+        action:action,
+        target:target,
+        automatic:false
+      },
+      this.runCombatResponse.bind(this),
+      this.handleErrorResponse.bind(this)
+    );
   }
 
   getCombatSocket() {
@@ -260,7 +212,7 @@ export class CombatPlayer extends CombatScene {
       return;
     }
 
-    this.socket.get();
+    this.socket.get(this.battleId);
   }
 
   runCombatSocket(action, target) {
@@ -269,7 +221,73 @@ export class CombatPlayer extends CombatScene {
       return;
     }
 
-    this.socket.run({action, target});
+    this.socket.run(this.battleId, {action, target});
+  }
+
+  getCombatResponse(response) {
+    // Verify the response is valid
+    if (
+      !response ||
+      !response.data ||
+      !response.data.hasOwnProperty('data') ||
+      !response.data.hasOwnProperty('status') ||
+      response.data.status !== 200
+    ) {
+      console.error("Could not retrieve battle information:");
+      console.error(response.data);
+      return;
+    }
+
+    // Pull the data out
+    let data = response.data.data;
+
+    // Update the battle ID
+    this.battleId = data.battleId;
+
+    // May need to listen to new channel
+    if (this.socket) {
+      this.socket.connectToChannel(this.battleId);
+    }
+
+    // Emit event for any front-end to capture data
+    window.dispatchEvent(
+      new CustomEvent("getBattleInformation", {
+        'detail' : {
+          'battleId' : data.battleId
+        }
+      })
+    );
+
+    // Pass off to the controller
+    this.updateBattleEvents(data);
+  }
+
+  runCombatResponse(response) {
+    // Verify the response is valid
+    if (
+      !response ||
+      !response.data ||
+      !response.data.hasOwnProperty('data') ||
+      !response.data.hasOwnProperty('status')
+    ) {
+      console.error("Could not retrieve battle information:");
+      console.error(response.data);
+      return;
+    }
+
+    // Pull the data out
+    let data = response.data.data;
+
+    // Pass off to the controller
+    this.playerSelections.clear();
+    this.updateBattleEvents(data);
+  }
+
+  handleErrorResponse(error) {
+    console.error("error");
+    console.error(error);
+    this.playerSelections.clear();
+    this.unlockClickableRegions();
   }
 
   updateBattleEvents(data) {

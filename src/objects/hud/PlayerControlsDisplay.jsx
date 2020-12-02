@@ -350,7 +350,9 @@ export class PlayerControlsDisplay extends HUDElement {
   }
 
   drawCard(cardNum = 0) {
-    this.cards[cardNum].update(this.playerSelections.getCard(cardNum));
+    if (this.cards && this.cards.length > cardNum) {
+      this.cards[cardNum].update(this.playerSelections.getCard(cardNum));
+    }
   }
 
   writeTicks(center, width = 30) {
