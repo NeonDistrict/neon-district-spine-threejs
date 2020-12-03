@@ -105,8 +105,8 @@ export default class CombatReview extends Component {
             height={768}
             background="almond-uncontrolled-lobby-001"
             characters={characters}
-            //combatApi={"http://localhost:5003"}
-            combatSocket={"http://localhost:5003"}
+            combatApi={"http://localhost:5003"}
+            //combatSocket={"http://localhost:5003"}
             battleId={this.state.battleId}
             key={this.state.battleId}
           />

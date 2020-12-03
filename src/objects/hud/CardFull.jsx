@@ -62,6 +62,10 @@ export class CardFull extends HUDElement {
     );
     this.context.fill();
 
+    if (!this.imageCache.getImage(this.card.type)) {
+      return;
+    }
+
     // Pull down the image
     this.context.drawImage(
       this.imageCache.getImage(this.card.type), 
@@ -75,6 +79,10 @@ export class CardFull extends HUDElement {
   drawNDLogo() {
     // Pull down the image
     let ndlogo = this.imageCache.getImage('NDLOGO');
+    if (!ndlogo) {
+      return;
+    }
+
     let height = ndlogo.height / ndlogo.width * this.width / 2;
     this.context.drawImage(
       ndlogo, 

@@ -49,6 +49,7 @@ export class CombatPlayer extends CombatScene {
     window.addEventListener('unregisterClickableRegion', this.handleRemoveClickableRegion.bind(this));
     window.addEventListener('lockClickableRegions', this.lockClickableRegions.bind(this));
     window.addEventListener('unlockClickableRegions', this.unlockClickableRegions.bind(this));
+    window.addEventListener('eventBlockComplete', this.moveToNextEventBlock.bind(this));
   }
 
   componentDidMount() {
@@ -104,7 +105,7 @@ export class CombatPlayer extends CombatScene {
   }
 
   unlockClickableRegions(e) {
-    if (e && e.detail && e.detail.event === 'BattleCompleteEvent') {
+    if (e && e.detail && e.detail.event === 'BattleCompleteEvent' || this.battleComplete) {
       console.log("Battle completed, will not unlock clickable regions");
       return;
     }
@@ -393,19 +394,36 @@ export class CombatPlayer extends CombatScene {
     for (let _teamIdx of ["one", "two"]) {
       for (let _unitIdx in this.teams[_teamIdx]) {
         let _unit = this.teams[_teamIdx][_unitIdx];
-        let _unitUpdate = teams[_teamIdx][_unitIdx];
 
-        // Update all stats
-        _unit.ticks = _unitUpdate.ticks;
-        _unit.lastTurnOrder = _unitUpdate.lastTurnOrder;
-        for (let _prop in _unit.stats) {
-          _unit.stats[_prop] = _unitUpdate.stats[_prop];
-        }
-        for (let _prop in _unit.maxStats) {
-          _unit.maxStats[_prop] = _unitUpdate.maxStats[_prop];
-        }
-        for (let _prop in _unit.statusEffects) {
-          _unit.statusEffects[_prop] = _unitUpdate.statusEffects[_prop];
+        if (teams && teams.hasOwnProperty(_teamIdx) && teams[_teamIdx].hasOwnProperty(_unitIdx)) {
+          let _unitUpdate = teams[_teamIdx][_unitIdx];
+
+          // Update all stats
+          if (_unitUpdate.hasOwnProperty('ticks')) {
+            _unit.ticks = _unitUpdate.ticks;
+          }
+
+          if (_unitUpdate.hasOwnProperty('lastTurnOrder')) {
+            _unit.lastTurnOrder = _unitUpdate.lastTurnOrder;
+          }
+
+          if (_unitUpdate.hasOwnProperty('stats')) {
+            for (let _prop in _unitUpdate.stats) {
+              _unit.stats[_prop] = _unitUpdate.stats[_prop];
+            }
+          }
+
+          if (_unitUpdate.hasOwnProperty('statsMax')) {
+            for (let _prop in _unitUpdate.statsMax) {
+              _unit.statsMax[_prop] = _unitUpdate.statsMax[_prop];
+            }
+          }
+
+          if (_unitUpdate.hasOwnProperty('statusEffects')) {
+            for (let _prop in _unitUpdate.statusEffects) {
+              _unit.statusEffects[_prop] = _unitUpdate.statusEffects[_prop];
+            }
+          }
         }
       }
     }
@@ -417,23 +435,31 @@ export class CombatPlayer extends CombatScene {
 
     // If this block is beyond the last block, then we're done
     if (nextIndex >= this.eventBlocks.length) {
+      this.postAnimationCleanup();
       return;
     }
 
     // Pull the block, register the animation events
     let block = this.eventBlocks[nextIndex];
 
+    // Update the teams
+    if (block.teams) {
+      this.updateTeams(block.teams);
+    }
+
     // If the battle is complete, we need to know this
     this.checkBattleComplete(block);
 
-    // For testing
-    console.log("rendering", block.uuid, "at", block.atTicks);
-
     // Perform the animation cycle
-    this.runAnimationEventCycle(block, this.postAnimationCleanup.bind(this));
+    this.runAnimationEventCycle(block);
+  }
 
+  moveToNextEventBlock() {
     // When we're done, update the last rendered event block, and render the next block
-    this.lastRenderedEventBlockUuid = block.uuid;
+    if ((1 + this.eventBlocksIds.indexOf(this.lastRenderedEventBlockUuid)) < this.eventBlocks.length) {
+      this.lastRenderedEventBlockUuid = this.eventBlocks[1 + this.eventBlocksIds.indexOf(this.lastRenderedEventBlockUuid)].uuid;
+    }
+
     this.renderEventBlocks();
   }
 

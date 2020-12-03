@@ -21,12 +21,18 @@ export class ActiveAnimationEvent {
     if (this.queue.length === 0) {
       // End the animation cycle
       if (this.currentEventName !== null) {
+        /*
         window.dispatchEvent(
           new CustomEvent("unlockClickableRegions", {
             'detail' : {
               'event' : this.currentEventName
             }
           })
+        );
+        */
+
+        window.dispatchEvent(
+          new CustomEvent("eventBlockComplete")
         );
       }
 
