@@ -4,6 +4,8 @@ import { VideoTexture } from "../core/VideoTexture.jsx";
 import { SpineCharacter } from "../objects/SpineCharacter.jsx";
 import { SpineBackground } from "../objects/SpineBackground.jsx";
 import BACKGROUNDS from "../data/backgrounds.js";
+import WEAPONS_TO_ANIMATIONS from "../data/weaponsToAnimations.js";
+import ANIMATIONS from "../data/animations.js";
 
 export class Stage extends SpineScene {
   constructor(props) {
@@ -204,12 +206,24 @@ export class Stage extends SpineScene {
     this.effects.vfx0.play();
   }
 
+  deriveIdlePoseFromWeaponType(weaponType) {
+    weaponType = weaponType.split('-')[0];
+    if (WEAPONS_TO_ANIMATIONS.hasOwnProperty(weaponType)) {
+      return ANIMATIONS[WEAPONS_TO_ANIMATIONS[weaponType]].baseIdle;
+    }
+  }
+
   constructCharacters() {
     // Preload all skeleton & atlas files
     for (let index in this.characters) {
 
       // Determine the skeleton
       let skeleton = "character/MediumMaleHeavySkinTest.json";
+
+      // If a weapon type is provided, derive the pose
+      if (!this.characters[index].pose && this.characters[index].weapon) {
+        this.characters[index].pose = this.deriveIdlePoseFromWeaponType(this.characters[index].weapon);
+      }
 
       // Allow for overriding the skeleton
       if (this.characters[index].hasOwnProperty('skeleton')) {

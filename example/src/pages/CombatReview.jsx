@@ -41,7 +41,7 @@ export default class CombatReview extends Component {
       'nftId'    : "test0",
       'scale'    : 'character',
       'skin'     : 'Female',
-      'pose'     : 'ReturningLrg_BasicIdle_001',
+      'weapon'   : 'blktwintanto-rare',
       //'outfit'   : ['female', 'blkorigindemon', 'common']
     },{
       'position' : 1,
