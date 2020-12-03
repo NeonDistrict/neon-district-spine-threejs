@@ -6,6 +6,7 @@ export default class CombatReview extends Component {
     super(props);
     this.state = {
       'battleId' : 'test',
+      'playback' : true
     };
   }
 
@@ -31,7 +32,7 @@ export default class CombatReview extends Component {
 
   setBattleId() {
     let el = document.getElementById('battleId');
-    this.setState({'battleId' : el.value});
+    this.setState({'battleId' : el.value, 'playback' : false});
   }
 
   render() {
@@ -105,8 +106,9 @@ export default class CombatReview extends Component {
             height={768}
             background="almond-uncontrolled-lobby-001"
             characters={characters}
-            combatApi={"http://localhost:5003"}
-            //combatSocket={"http://localhost:5003"}
+            //combatApi={"http://localhost:5003"}
+            combatSocket={"http://localhost:5003"}
+            playback={this.state.playback}
             battleId={this.state.battleId}
             key={this.state.battleId}
           />

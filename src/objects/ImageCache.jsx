@@ -1,3 +1,5 @@
+const LOADING_IDENTIFIER = "loading...";
+
 export class ImageCache {
 
   constructor() {
@@ -19,7 +21,7 @@ export class ImageCache {
         continue;
       }
 
-      window.ndCombatImageCache[_key] = "loading...";
+      window.ndCombatImageCache[_key] = LOADING_IDENTIFIER;
 
       this._pullImage(_key, this.imageLinks[_key]);
     }
@@ -30,6 +32,7 @@ export class ImageCache {
     img.crossOrigin = "Anonymous";
     img.onload = (function() {
       window.ndCombatImageCache[_name] = img;
+      this.emitImagesLoaded();
     }).bind(this);
     img.onerror = (function() {
       console.error("Could not load image for", _name, "at URL:" + _url);
@@ -44,6 +47,18 @@ export class ImageCache {
     }
 
     return null;
+  }
+
+  emitImagesLoaded() {
+    let stillLoading = false;
+    for (let _key in window.ndCombatImageCache) {
+      if (window.ndCombatImageCache[_key] === LOADING_IDENTIFIER) {
+        stillLoading = true;
+      }
+    }
+    if (!stillLoading) {
+      console.log("Done loading image cache");
+    }
   }
 
 }

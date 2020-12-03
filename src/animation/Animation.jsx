@@ -53,8 +53,9 @@ export class Animation {
   }
 
   playStatChangeAnimation(unit, statChanges) {
-    console.log(unit);
-    console.log(statChanges);
+    //console.log("Need to show stat change animation");
+    //console.log(unit);
+    //console.log(statChanges);
   }
 
 }

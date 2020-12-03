@@ -10,9 +10,10 @@ export class CombatPlayer extends CombatScene {
     super(props);
 
     // Keep track of combat information
-    this.combatApi = props.combatApi;
+    this.combatApi    = props.combatApi;
     this.combatSocket = props.combatSocket;
-    this.battleId  = props.battleId;
+    this.battleId     = props.battleId;
+    this.playback     = props.hasOwnProperty('playback') ? props.playback : true;
 
     // API for combat calls
     if (this.combatApi) {
@@ -260,7 +261,11 @@ export class CombatPlayer extends CombatScene {
     );
 
     // Pass off to the controller
-    this.updateBattleEvents(data);
+    if (this.playback) {
+      this.updateBattleEvents(data);
+    } else {
+      this.setLatestBattleEvents(data);
+    }
   }
 
   runCombatResponse(response) {
@@ -318,6 +323,37 @@ export class CombatPlayer extends CombatScene {
     if (hasNewEvents) {
       this.renderEventBlocks();
     } else if (!this.battleComplete) {
+      this.unlockClickableRegions();
+    }
+  }
+
+  setLatestBattleEvents(data) {
+    // Set any initial information
+    if (!this.teams && data.teams) {
+      this.setTeams(data.teams);
+    } else if (data.teams) {
+      this.updateTeams(data.teams);
+    }
+
+    // Set the latest options for the player
+    if (data.options && data.options.length) {
+      this.playerSelections.setCards(data.options);
+    }
+
+    // Determine if we have new events to render
+    let last_block_uuid;
+    for (let _block of data.events) {
+      if (this.eventBlocksIds.indexOf(_block.uuid) === -1) {
+        // Add event blocks to the record
+        last_block_uuid = _block.uuid;
+        this.eventBlocksIds.push(_block.uuid);
+        this.eventBlocks.push(_block);
+      }
+    }
+
+    this.lastRenderedEventBlockUuid = last_block_uuid;
+    this.renderEventBlocks();
+    if (!this.battleComplete) {
       this.unlockClickableRegions();
     }
   }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Api from '../api/api.js';
 import { Stage } from "../core/Stage.jsx";
 import { AnimationController } from "../animation/AnimationController.jsx";
+import { ImageCache } from '../objects/ImageCache.jsx';
 
 export class CombatScene extends Stage {
   constructor(props) {
@@ -9,6 +10,10 @@ export class CombatScene extends Stage {
     this.background = props.background;
     this.characters = props.characters || [];
     this.effectTest = props.effectTest;
+
+    // Load the image cache early on
+    this.imageCache = new ImageCache();
+    this.imageCache.pullImages();
 
     // Internal objects
     this.animationController = null;

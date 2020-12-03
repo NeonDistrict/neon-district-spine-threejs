@@ -7,9 +7,10 @@ export class CardFull extends HUDElement {
   constructor(obj) {
     super(obj);
     this.card = obj.card;
+    this.hudLocked = true;
 
     this.imageCache = new ImageCache();
-    this.imageCache.pullImages();
+    //this.imageCache.pullImages();
 
     this.roundRectRadius = 8;
     this.borderWidth = Math.floor(this.width * 21 / 634);
