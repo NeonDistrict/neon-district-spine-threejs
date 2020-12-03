@@ -21,7 +21,6 @@ export class CombatPlayer extends CombatScene {
     } else if (this.combatSocket) {
       this.socket = new Socket(this.combatSocket, this.battleId);
       this.socket.setGetResponse(this.getCombatResponse.bind(this));
-      this.socket.setRunResponse(this.runCombatResponse.bind(this));
     }
 
     // Keep track of the UI
@@ -203,7 +202,7 @@ export class CombatPlayer extends CombatScene {
         target:target,
         automatic:false
       },
-      this.runCombatResponse.bind(this),
+      this.getCombatResponse.bind(this),
       this.handleErrorResponse.bind(this)
     );
   }
@@ -243,50 +242,36 @@ export class CombatPlayer extends CombatScene {
     // Pull the data out
     let data = response.data.data;
 
-    // Update the battle ID
-    this.battleId = data.battleId;
+    // Handle any preparation work if needed
+    if (this.battleId != data.battleId) {
+      // Update the battle ID
+      this.battleId = data.battleId;
 
-    // May need to listen to new channel
-    if (this.socket) {
-      this.socket.connectToChannel(this.battleId);
-    }
+      // May need to listen to new channel
+      if (this.socket) {
+        this.socket.connectToChannel(this.battleId);
+      }
 
-    // Emit event for any front-end to capture data
-    window.dispatchEvent(
-      new CustomEvent("getBattleInformation", {
-        'detail' : {
-          'battleId' : data.battleId
-        }
-      })
-    );
+      // Emit event for any front-end to capture data
+      window.dispatchEvent(
+        new CustomEvent("getBattleInformation", {
+          'detail' : {
+            'battleId' : data.battleId
+          }
+        })
+      );
 
-    // Pass off to the controller
-    if (this.playback) {
-      this.updateBattleEvents(data);
+      // Pass off to the controller
+      if (this.playback) {
+        this.updateBattleEvents(data);
+      } else {
+        this.setLatestBattleEvents(data);
+      }
     } else {
-      this.setLatestBattleEvents(data);
+      // Pass off to the controller
+      this.playerSelections.clear();
+      this.updateBattleEvents(data);
     }
-  }
-
-  runCombatResponse(response) {
-    // Verify the response is valid
-    if (
-      !response ||
-      !response.data ||
-      !response.data.hasOwnProperty('data') ||
-      !response.data.hasOwnProperty('status')
-    ) {
-      console.error("Could not retrieve battle information:");
-      console.error(response.data);
-      return;
-    }
-
-    // Pull the data out
-    let data = response.data.data;
-
-    // Pass off to the controller
-    this.playerSelections.clear();
-    this.updateBattleEvents(data);
   }
 
   handleErrorResponse(error) {
