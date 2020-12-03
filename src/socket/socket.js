@@ -24,6 +24,10 @@ class Socket {
     this.socket.emit("get", channel);
   }
 
+  create(teamId, data) {
+    this.socket.emit("create", teamId, data);
+  }
+
   run(channel, data) {
     this.socket.emit("run", channel, data);
   }

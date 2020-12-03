@@ -110,6 +110,7 @@ export default class CombatReview extends Component {
             combatSocket={"http://localhost:5003"}
             playback={this.state.playback}
             battleId={this.state.battleId}
+            teamId={1}
             key={this.state.battleId}
           />
         </div>

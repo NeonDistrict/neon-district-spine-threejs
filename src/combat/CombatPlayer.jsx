@@ -14,6 +14,7 @@ export class CombatPlayer extends CombatScene {
     this.combatSocket = props.combatSocket;
     this.battleId     = props.battleId;
     this.playback     = props.hasOwnProperty('playback') ? props.playback : true;
+    this.teamId       = props.teamId;
 
     // API for combat calls
     if (this.combatApi) {
@@ -70,11 +71,17 @@ export class CombatPlayer extends CombatScene {
     this.canvas.addEventListener('click', this.handleCanvasClick.bind(this));
 
     // Pull the initial battle state
-    if (this.battleId) {
+    if (this.battleId && this.battleId !== 'practice' && this.battleId !== 'test') {
       if (this.api) {
         this.getCombatApi();
       } else if (this.socket) {
         this.getCombatSocket();
+      }
+    } else if (this.battleId && (this.battleId === 'practice' || this.battleId === 'test')) {
+      if (this.api) {
+        this.createCombatApi();
+      } else if (this.socket) {
+        this.createCombatSocket();
       }
     }
   }
@@ -190,6 +197,20 @@ export class CombatPlayer extends CombatScene {
     );
   }
 
+  createCombatApi() {
+    if (!this.teamId) {
+      console.log("No team ID provided.")
+      return;
+    }
+
+    this.api.createBattle({
+        teamId: this.teamId
+      },
+      this.getCombatResponse.bind(this),
+      this.handleErrorResponse.bind(this)
+    );
+  }
+
   runCombatApi(action, target) {
     if (!this.battleId) {
       console.log("No battle ID provided.")
@@ -214,6 +235,15 @@ export class CombatPlayer extends CombatScene {
     }
 
     this.socket.get(this.battleId);
+  }
+
+  createCombatSocket() {
+    if (!this.teamId) {
+      console.log("No team ID provided.")
+      return;
+    }
+
+    this.socket.create(this.teamId);
   }
 
   runCombatSocket(action, target) {
