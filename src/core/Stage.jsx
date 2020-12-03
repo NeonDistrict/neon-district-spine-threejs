@@ -225,6 +225,11 @@ export class Stage extends SpineScene {
         this.characters[index].pose = this.deriveIdlePoseFromWeaponType(this.characters[index].weapon);
       }
 
+      // If no pose is provided, default to unarmed
+      if (!this.characters[index].pose) {
+        this.characters[index].pose = ANIMATIONS['Unarmed'].baseIdle;
+      }
+
       // Allow for overriding the skeleton
       if (this.characters[index].hasOwnProperty('skeleton')) {
         skeleton = this.characters[index].skeleton;

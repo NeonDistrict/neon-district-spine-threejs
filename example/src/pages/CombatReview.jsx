@@ -48,7 +48,6 @@ export default class CombatReview extends Component {
       'nftId'    : "test1",
       'scale'    : 'character',
       'skin'     : 'Male',
-      'pose'     : 'EnergyMed_BasicIdle_001',
       //'outfit'   : ['male', 'blkoriginmedic', 'common']
     },{
       'position' : 2,
