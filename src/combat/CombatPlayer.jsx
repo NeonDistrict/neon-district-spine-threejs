@@ -382,8 +382,20 @@ export class CombatPlayer extends CombatScene {
     }
   }
 
+  getNftUrlRoot() {
+    let urlRoot = "https://neon-district-season-one.s3.amazonaws.com/nfts/";
+    if (
+      window.location.href.indexOf('https://portal.neondistrict.io') === 0 ||
+      window.location.href.indexOf('https://rc.portal.neondistrict.io') === 0
+    ) {
+      return urlRoot + "mainnet/";
+    } else {
+      return urlRoot + "testnet/";
+    }
+  }
+
   loadHeadImage(_unit) {
-    const urlRoot = "https://neon-district-season-one.s3.amazonaws.com/nfts/";
+    const urlRoot = this.getNftUrlRoot();
     let headImageSrc;
 
     _unit.headImg = new Image();
@@ -410,7 +422,7 @@ export class CombatPlayer extends CombatScene {
     }).bind(this);
 
     // Load the intended image
-    headImageSrc = urlRoot + _unit.metadata.nftId + '.png';
+    headImageSrc = urlRoot + _unit.metadata.nftId + '-headshot.png';
     _unit.headImg.src = headImageSrc;
   }
 
