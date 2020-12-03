@@ -2,7 +2,9 @@ const socketIOClient = require('socket.io-client');
 
 class Socket {
   constructor(_endpoint, _channel) {
-    this.socket = socketIOClient(_endpoint + "/combat");
+    this.socket = socketIOClient(_endpoint + "/combat", {
+      withCredentials: true
+    });
     this.connectToChannel(_channel);
   }
 
