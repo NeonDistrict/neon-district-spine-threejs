@@ -37,11 +37,12 @@ export default class CombatReview extends Component {
 
   render() {
     let characters = [{
-      'position' : 0,
-      'nftId'    : "test0",
-      'scale'    : 'character',
-      'skin'     : 'Female',
-      'weapon'   : 'blktwintanto-rare',
+      'position'  : 0,
+      'nftId'     : "test0",
+      'scale'     : 'character',
+      'skin'      : 'Female',
+      'weapon'    : 'blktwintanto-rare',
+      'atlasFile' : 'nfts/testnet/79228162532711644620206923266-spine.atlas',
       //'outfit'   : ['female', 'blkorigindemon', 'common']
     },{
       'position' : 1,

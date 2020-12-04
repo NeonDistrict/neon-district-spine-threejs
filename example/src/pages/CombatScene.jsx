@@ -34,21 +34,21 @@ export default class CombatScene extends Component {
       'position' : 4,
       'scale'    : 0.08,
       'skin'     : 'SMFS',
-      'skeleton' : 'enemies/junkbot-turret/Junkbot_Turret.json',
+      'skeleton' : 'spine-output/enemies/junkbot-turret/Junkbot_Turret.json',
       'pose'     : 'Idle_Shaky'
     },
     {
       'position' : 5,
       'scale'    : 0.175,
       'skin'     : 'COG_Hare_B',
-      'skeleton' : 'enemies/cog-hare/COG_Hare.json',
+      'skeleton' : 'spine-output/enemies/cog-hare/COG_Hare.json',
       'pose'     : 'Idle'
     },
     {
       'position' : 13,
       'scale'    : 0.7,
       'skin'     : 'default',
-      'skeleton' : 'enemies/baus/Cog_Boss.json',
+      'skeleton' : 'spine-output/enemies/baus/Cog_Boss.json',
       'pose'     : 'Idle'
     }];
 

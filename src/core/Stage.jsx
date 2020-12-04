@@ -218,7 +218,7 @@ export class Stage extends SpineScene {
     for (let index in this.characters) {
 
       // Determine the skeleton
-      let skeleton = "character/MediumMaleHeavySkinTest.json";
+      let skeleton = "spine-output/character/MediumMaleHeavySkinTest.json";
 
       // If a weapon type is provided, derive the pose
       if (!this.characters[index].pose && this.characters[index].weapon) {
@@ -237,7 +237,7 @@ export class Stage extends SpineScene {
 
       // Create the Spine object
       this.characters[index].spine = new SpineCharacter(
-        this.assetManager, skeleton, index
+        this.assetManager, skeleton, index, this.characters[index].atlasFile
       );
     }
   }
@@ -252,7 +252,7 @@ export class Stage extends SpineScene {
         this._backgrounds.push(
           new SpineBackground(
             this.assetManager,
-            "backgrounds/" + key + "/" + features + ".json",
+            "spine-output/backgrounds/" + key + "/" + features + ".json",
             animation
           )
         );
@@ -262,7 +262,7 @@ export class Stage extends SpineScene {
           this._backgrounds.push(
             new SpineBackground(
               this.assetManager,
-              "backgrounds/" + key + "/" + _feature + "/" + features[_feature] + ".json",
+              "spine-output/backgrounds/" + key + "/" + _feature + "/" + features[_feature] + ".json",
               animation
             )
           );
