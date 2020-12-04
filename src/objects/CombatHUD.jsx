@@ -1,6 +1,7 @@
 import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
 import { PlayerControlsDisplay } from "./hud/PlayerControlsDisplay.jsx";
 import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
+import { VersionDisplay } from "./hud/VersionDisplay.jsx";
 
 export class CombatHUD {
   constructor(renderer, activeAnimEvt, getUnitPosition) {
@@ -54,6 +55,12 @@ export class CombatHUD {
       'activeAnimEvt'   : this.activeAnimEvt,
       'getUnitPosition' : this.getUnitPosition
     });
+
+    this.versionDisplay = new VersionDisplay({
+      'context'         : this.context,
+      'x'               : 0,
+      'y'               : 0
+    });
   }
 
   setTeams(teams) {
@@ -75,6 +82,7 @@ export class CombatHUD {
 
     this.context.clearRect(0, 0, this.width, this.height);
 
+    this.versionDisplay.update();
     this.turnOrderDisplay.update();
     this.playerControlsDisplay.update();
     this.unitStatusDisplay.update();

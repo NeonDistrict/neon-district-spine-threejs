@@ -131,6 +131,8 @@ export class PlayerControlsDisplay extends HUDElement {
     gradient.addColorStop(0.2, 'rgba(0,0,0,1.0)');
     gradient.addColorStop(1.0, 'rgba(0,0,0,1.0)');
 
+    this.context.textBaseline = 'middle';
+
     this.context.fillStyle = gradient;
     this.context.fillRect(0, this.height * 2 / 3, this.width, this.height * 1 / 3);
 

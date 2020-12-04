@@ -78,6 +78,7 @@ export class UnitPortrait extends HUDElement {
 
     this.context.font = '16pt "kozuka-gothic-pr6n-bold"';
     this.context.textAlign = 'right';
+    this.context.textBaseline = 'middle';
     this.context.fillText(
       this.unit.ticks,
       this.center.x + this.width/2 - this.width/(12*2),

@@ -150,7 +150,7 @@ export class UnitStatus extends HUDElement {
 
     let percHealthRemaining = this.getHealthPosition();
 
-    this.context.fillStyle = HUDSTYLES.colors.red;
+    this.context.fillStyle = HUDSTYLES.colors.desaturatedRed;
     this.context.fillRect(
       position.above.x - this.healthWidth/2,
       position.above.y,

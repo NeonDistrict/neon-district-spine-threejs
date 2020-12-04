@@ -403,7 +403,6 @@ export class CombatPlayer extends CombatScene {
 
   getNftUrlRoot(_unit) {
     let urlRoot = "https://neon-district-season-one.s3.amazonaws.com/nfts/";
-    console.log(_unit);
     if (
       _unit && typeof _unit === 'object' && _unit.hasOwnProperty('character') &&
       _unit.character.hasOwnProperty('nftId') && _unit.character.nftId.indexOf('ai-practice') === 0
