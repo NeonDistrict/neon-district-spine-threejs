@@ -7,8 +7,6 @@ export class VersionDisplay extends HUDElement {
   }
 
   update(delta) {
-    console.log("UPDATINDGSJNAGKS");
-
     this.context.fillStyle = `rgba(255,255,255,0.5)`;
 
     this.context.shadowColor = `rgba(255,255,255,0.25)`;
@@ -25,7 +23,7 @@ export class VersionDisplay extends HUDElement {
     );
 
     this.context.fillText(
-      "Pre-Alpha - Build v.0.2.1",
+      "Pre-Alpha - Build v.0.2.21",
       this.center.x + 10,
       this.center.y + 10 + 28
     );
