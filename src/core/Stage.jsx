@@ -209,7 +209,13 @@ export class Stage extends SpineScene {
   deriveIdlePoseFromWeaponType(weaponType) {
     weaponType = weaponType.split('-')[0];
     if (WEAPONS_TO_ANIMATIONS.hasOwnProperty(weaponType)) {
-      return ANIMATIONS[WEAPONS_TO_ANIMATIONS[weaponType]].baseIdle;
+      if (ANIMATIONS.hasOwnProperty(WEAPONS_TO_ANIMATIONS[weaponType])) {
+        return ANIMATIONS[WEAPONS_TO_ANIMATIONS[weaponType]].baseIdle;
+      } else {
+        console.warn("Animation does not exist for Weapon Type (" + weaponType + ") Animation:", WEAPONS_TO_ANIMATIONS[weaponType]);
+      }
+    } else {
+      console.warn("Weapon type does not exist in WEAPONS_TO_ANIMATIONS:", weaponType);
     }
   }
 

@@ -274,6 +274,8 @@ export class CombatPlayer extends CombatScene {
 
     // Handle any preparation work if needed
     if (this.battleId != data.battleId) {
+      console.warn("Setting new Battle ID (" + data.battleId + ") from previous (" + this.battleId + ")");
+
       // Update the battle ID
       this.battleId = data.battleId;
 

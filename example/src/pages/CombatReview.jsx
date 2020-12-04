@@ -55,7 +55,7 @@ export default class CombatReview extends Component {
       'nftId'    : "test2",
       'scale'    : 'character',
       'skin'     : 'Female',
-      'pose'     : 'RifleMed_BasicIdle_001',
+      'weapon'   : 'blkplasmaspear-legendary',
       //'outfit'   : ['female', 'blkorigingenius', 'common']
     },
     {
