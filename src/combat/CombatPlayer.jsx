@@ -401,8 +401,16 @@ export class CombatPlayer extends CombatScene {
     }
   }
 
-  getNftUrlRoot() {
+  getNftUrlRoot(_unit) {
     let urlRoot = "https://neon-district-season-one.s3.amazonaws.com/nfts/";
+    console.log(_unit);
+    if (
+      _unit && typeof _unit === 'object' && _unit.hasOwnProperty('character') &&
+      _unit.character.hasOwnProperty('nftId') && _unit.character.nftId.indexOf('ai-practice') === 0
+    ) {
+      return urlRoot + "ai-practice/";
+    }
+
     if (
       window.location.href.indexOf('https://portal.neondistrict.io') === 0 ||
       window.location.href.indexOf('https://rc.portal.neondistrict.io') === 0
@@ -414,7 +422,7 @@ export class CombatPlayer extends CombatScene {
   }
 
   loadHeadImage(_unit) {
-    const urlRoot = this.getNftUrlRoot();
+    const urlRoot = this.getNftUrlRoot(_unit);
     let headImageSrc;
 
     _unit.headImg = new Image();

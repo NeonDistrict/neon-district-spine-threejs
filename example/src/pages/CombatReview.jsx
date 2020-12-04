@@ -47,8 +47,9 @@ export default class CombatReview extends Component {
     },{
       'position' : 1,
       'nftId'    : "test1",
+      //'nftId'    : "ai-practice-blkorigindemon-female-0",
       'scale'    : 'character',
-      'skin'     : 'Male',
+      'skin'     : 'Female',
       //'outfit'   : ['male', 'blkoriginmedic', 'common']
     },{
       'position' : 2,
