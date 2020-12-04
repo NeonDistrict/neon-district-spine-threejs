@@ -112,6 +112,14 @@ export default class CombatReview extends Component {
             battleId={this.state.battleId}
             teamId={1}
             key={this.state.battleId}
+            createOptions={{
+              "aiTeam" : {
+                "0" : {"test":"test"},
+                "1" : {"test":"test"},
+                "2" : {"test":"test"},
+                "3" : {"test":"test"}
+              }
+            }}
           />
         </div>
         {this.generateBattleIdField()}

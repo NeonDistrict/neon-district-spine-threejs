@@ -10,11 +10,12 @@ export class CombatPlayer extends CombatScene {
     super(props);
 
     // Keep track of combat information
-    this.combatApi    = props.combatApi;
-    this.combatSocket = props.combatSocket;
-    this.battleId     = props.battleId;
-    this.playback     = props.hasOwnProperty('playback') ? props.playback : true;
-    this.teamId       = props.teamId;
+    this.combatApi     = props.combatApi;
+    this.combatSocket  = props.combatSocket;
+    this.battleId      = props.battleId;
+    this.playback      = props.hasOwnProperty('playback') ? props.playback : true;
+    this.teamId        = props.teamId;
+    this.createOptions = props.createOptions;
 
     // API for combat calls
     if (this.combatApi) {
@@ -204,7 +205,8 @@ export class CombatPlayer extends CombatScene {
     }
 
     this.api.createBattle({
-        teamId: this.teamId
+        teamId: this.teamId,
+        createOptions: this.createOptions
       },
       this.getCombatResponse.bind(this),
       this.handleErrorResponse.bind(this)
@@ -243,7 +245,7 @@ export class CombatPlayer extends CombatScene {
       return;
     }
 
-    this.socket.create(this.teamId);
+    this.socket.create(this.teamId, this.createOptions);
   }
 
   runCombatSocket(action, target) {
