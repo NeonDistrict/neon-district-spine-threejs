@@ -425,7 +425,7 @@ export class CombatPlayer extends CombatScene {
     let headImageSrc;
 
     _unit.headImg = new Image();
-    _unit.headImg.crossOrigin = "Anonymous";
+    _unit.headImg.crossOrigin = "anonymous";
     _unit.headImg.onload = (function() {
       _unit.headImgLoaded = true;
     }).bind(this);
