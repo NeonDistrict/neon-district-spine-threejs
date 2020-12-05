@@ -426,10 +426,10 @@ export class CombatPlayer extends CombatScene {
 
     _unit.headImg = new Image();
     _unit.headImg.crossOrigin = "anonymous";
-    _unit.headImg.onload = (function() {
+    _unit.headImg.addEventListener('load', (function() {
       _unit.headImgLoaded = true;
-    }).bind(this);
-    _unit.headImg.onerror = (function() {
+    }).bind(this));
+    _unit.headImg.addEventListener('error', (function() {
       // Load the default
       if (headImageSrc.indexOf('male') === -1) {
         // Get the character type
@@ -437,7 +437,7 @@ export class CombatPlayer extends CombatScene {
         if (!charType) return;
 
         // Load the new source
-        headImageSrc = urlRoot + charType + "-" + _unit.character.skin.toLowerCase() + ".png";
+        headImageSrc = "https://neon-district-season-one.s3.amazonaws.com/nfts/" + charType + "-" + _unit.character.skin.toLowerCase() + ".png";
         console.log("onerror attempt", headImageSrc);
         _unit.headImg.src = headImageSrc;
         return;
@@ -445,7 +445,7 @@ export class CombatPlayer extends CombatScene {
 
       // No luck
       console.log("onerror failure");
-    }).bind(this);
+    }).bind(this));
 
     // Load the intended image
     headImageSrc = urlRoot + _unit.metadata.nftId + '-headshot.png';
