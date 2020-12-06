@@ -451,9 +451,9 @@ export class CombatPlayer extends CombatScene {
     const urlRoot = this.getNftUrlRoot(_unit);
     const src = urlRoot + _unit.metadata.nftId + '-headshot.png';
     const options = {
-      //cache: 'no-cache',
+      cache: 'no-cache',
       //mode: 'cors'
-      credentials: 'same-origin'
+      //credentials: 'same-origin'
     };
 
     fetch(src, options)
