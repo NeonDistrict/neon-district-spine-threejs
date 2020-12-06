@@ -421,8 +421,23 @@ export class CombatPlayer extends CombatScene {
   }
 
   loadHeadImage(_unit) {
-    const urlRoot = this.getNftUrlRoot(_unit);
+    /**
+    This is not at all how I'd like to handle this, but the following does not work with S3:
+      _unit.headImg = new Image();
+      _unit.headImg.crossOrigin = "anonymous";
 
+    Because sometimes, when caching is used, some images will not come back with the necessary origin headers,
+    and the images aren't loaded.
+
+    Furthermore, not setting crossOrigin breaks the canvas: "Tainted canvases may not be loaded."
+
+    And setting use-credentials just breaks everything.
+
+    So instead we need to force S3 to always return the origin header.
+    **/
+
+    /*
+    // Old method
     _unit.headImg = new Image();
     _unit.headImg.crossOrigin = "anonymous";
     _unit.headImg.addEventListener('load', (function() {
@@ -431,9 +446,26 @@ export class CombatPlayer extends CombatScene {
     _unit.headImg.addEventListener('error', (function() {
       console.error("Unable to load image for", _unit);
     }).bind(this));
+    */
 
-    // Load the intended image
-    _unit.headImg.src = urlRoot + _unit.metadata.nftId + '-headshot.png';
+    const urlRoot = this.getNftUrlRoot(_unit);
+    const src = urlRoot + _unit.metadata.nftId + '-headshot.png';
+    const options = {
+      //cache: 'no-cache',
+      //mode: 'cors'
+      credentials: 'same-origin'
+    };
+
+    fetch(src, options)
+      .then(res => res.blob())
+      .then(blob => {
+        _unit.headImg = new Image();
+        _unit.headImg.crossOrigin = "anonymous";
+        _unit.headImg.addEventListener('load', (function() {
+          _unit.headImgLoaded = true;
+        }).bind(this));
+        _unit.headImg.src = URL.createObjectURL(blob);
+    });
   }
 
   updateTeams(teams) {
