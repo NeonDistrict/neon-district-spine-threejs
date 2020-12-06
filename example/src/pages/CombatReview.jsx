@@ -53,10 +53,11 @@ export default class CombatReview extends Component {
       //'outfit'   : ['male', 'blkoriginmedic', 'common']
     },{
       'position' : 2,
-      'nftId'    : "test2",
+      'nftId'    : "79228162551158388693916474895",
       'scale'    : 'character',
       'skin'     : 'Female',
       'weapon'   : 'blkplasmaspear-legendary',
+      'atlasFile' : 'nfts/testnet/79228162551158388693916474895-spine.atlas',
       //'outfit'   : ['female', 'blkorigingenius', 'common']
     },
     {

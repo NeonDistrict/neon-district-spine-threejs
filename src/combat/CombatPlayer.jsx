@@ -422,7 +422,6 @@ export class CombatPlayer extends CombatScene {
 
   loadHeadImage(_unit) {
     const urlRoot = this.getNftUrlRoot(_unit);
-    let headImageSrc;
 
     _unit.headImg = new Image();
     _unit.headImg.crossOrigin = "anonymous";
@@ -430,38 +429,11 @@ export class CombatPlayer extends CombatScene {
       _unit.headImgLoaded = true;
     }).bind(this));
     _unit.headImg.addEventListener('error', (function() {
-      // Load the default
-      if (headImageSrc.indexOf('male') === -1) {
-        // Get the character type
-        let charType = this.getCharClassType(_unit.classTypeId);
-        if (!charType) return;
-
-        // Load the new source
-        headImageSrc = "https://neon-district-season-one.s3.amazonaws.com/nfts/" + charType + "-" + _unit.character.skin.toLowerCase() + ".png";
-        console.log("onerror attempt", headImageSrc);
-        _unit.headImg.src = headImageSrc;
-        return;
-      }
-
-      // No luck
-      console.log("onerror failure");
+      console.error("Unable to load image for", _unit);
     }).bind(this));
 
     // Load the intended image
-    headImageSrc = urlRoot + _unit.metadata.nftId + '-headshot.png';
-    _unit.headImg.src = headImageSrc;
-  }
-
-  getCharClassType(_type) {
-    switch(_type) {
-      case 1: return 'demon';
-      case 2: return 'doc';
-      case 3: return 'genius';
-      case 4: return 'ghost';
-      case 5: return 'heavy';
-      case 6: return 'jack';
-      default: return '';
-    }
+    _unit.headImg.src = urlRoot + _unit.metadata.nftId + '-headshot.png';
   }
 
   updateTeams(teams) {
