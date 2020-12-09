@@ -31,7 +31,7 @@ export class CardFull extends HUDElement {
   }
 
   update(card) {
-    if (this.hudLocked) {
+    if (this.hudLocked || !card || (Object.keys(card).length === 0 && card.constructor === Object)) {
       this.drawCardBack();
       this.drawBackBorder();
       this.drawNDLogo();

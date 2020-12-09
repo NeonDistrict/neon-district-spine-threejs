@@ -16,8 +16,8 @@ class Socket {
     this.socket.on("getResponse", callback);
   }
 
-  setRunResponse(callback) {
-    this.socket.on("runResponse", callback);
+  setOptionsResponse(callback) {
+    this.socket.on("optionsResponse", callback);
   }
 
   get(channel, data) {

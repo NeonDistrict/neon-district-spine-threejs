@@ -23,6 +23,7 @@ export class CombatPlayer extends CombatScene {
     } else if (this.combatSocket) {
       this.socket = new Socket(this.combatSocket, this.battleId);
       this.socket.setGetResponse(this.getCombatResponse.bind(this));
+      this.socket.setOptionsResponse(this.getOptionsResponse.bind(this));
     }
 
     // Keep track of the UI
@@ -308,6 +309,32 @@ export class CombatPlayer extends CombatScene {
     }
   }
 
+  getOptionsResponse(response) {
+    // Verify the response is valid
+    if (
+      !response ||
+      !response.data ||
+      !response.data.hasOwnProperty('data') ||
+      !response.data.hasOwnProperty('status') ||
+      response.data.status !== 200
+    ) {
+      console.error("Could not retrieve battle information:");
+      console.error(response.data);
+      return;
+    }
+
+    // Pull the data out
+    let data = response.data.data;
+
+    // Pass off to the controller
+    this.playerSelections.clear();
+
+    // Set the latest options for the player
+    if (data.options && data.options.length) {
+      this.playerSelections.setCards(data.options);
+    }
+  }
+
   handleErrorResponse(error) {
     console.error("error");
     console.error(error);
@@ -330,12 +357,14 @@ export class CombatPlayer extends CombatScene {
 
     // Determine if we have new events to render
     let hasNewEvents = false;
-    for (let _block of data.events) {
-      if (this.eventBlocksIds.indexOf(_block.uuid) === -1) {
-        // Add event blocks to the record
-        this.eventBlocksIds.push(_block.uuid);
-        this.eventBlocks.push(_block);
-        hasNewEvents = true;
+    if (data.hasOwnProperty('events')) {
+      for (let _block of data.events) {
+        if (this.eventBlocksIds.indexOf(_block.uuid) === -1) {
+          // Add event blocks to the record
+          this.eventBlocksIds.push(_block.uuid);
+          this.eventBlocks.push(_block);
+          hasNewEvents = true;
+        }
       }
     }
 
@@ -361,12 +390,14 @@ export class CombatPlayer extends CombatScene {
 
     // Determine if we have new events to render
     let last_block_uuid;
-    for (let _block of data.events) {
-      if (this.eventBlocksIds.indexOf(_block.uuid) === -1) {
-        // Add event blocks to the record
-        last_block_uuid = _block.uuid;
-        this.eventBlocksIds.push(_block.uuid);
-        this.eventBlocks.push(_block);
+    if (data.hasOwnProperty('events')) {
+      for (let _block of data.events) {
+        if (this.eventBlocksIds.indexOf(_block.uuid) === -1) {
+          // Add event blocks to the record
+          last_block_uuid = _block.uuid;
+          this.eventBlocksIds.push(_block.uuid);
+          this.eventBlocks.push(_block);
+        }
       }
     }
 
