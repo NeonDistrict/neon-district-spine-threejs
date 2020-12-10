@@ -371,7 +371,9 @@ export class CombatPlayer extends CombatScene {
     if (hasNewEvents) {
       this.renderEventBlocks();
     } else if (!this.battleComplete) {
-      this.unlockClickableRegions();
+      if (this.playerSelections.hasSelections()) {
+        this.unlockClickableRegions();
+      }
     }
   }
 
@@ -404,7 +406,9 @@ export class CombatPlayer extends CombatScene {
     this.lastRenderedEventBlockUuid = last_block_uuid;
     this.renderEventBlocks();
     if (!this.battleComplete) {
-      this.unlockClickableRegions();
+      if (this.playerSelections.hasSelections()) {
+        this.unlockClickableRegions();
+      }
     }
   }
 
@@ -581,7 +585,9 @@ export class CombatPlayer extends CombatScene {
 
   postAnimationCleanup() {
     if (!this.battleComplete) {
-      this.unlockClickableRegions();
+      if (this.playerSelections.hasSelections()) {
+        this.unlockClickableRegions();
+      }
     }
   }
 

@@ -10,6 +10,10 @@ export class PlayerSelections {
     this.cards = [{},{},{}];
   }
 
+  hasSelections() {
+    return this.cards && this.cards.length && Object.keys(this.cards[0]).length > 0 && this.cards[0].constructor === Object;
+  }
+
   setCards(_cards) {
     this.cards = JSON.parse(JSON.stringify(_cards));
   }
