@@ -45,7 +45,7 @@ export class CombatPlayer extends CombatScene {
 
     // Keep track of clickable regions & ability to use them
     this.clickableRegions = {};
-    this.clickLock = false;
+    this.clickLock = true;
 
     // Monitor changes to clickable regions
     window.addEventListener('registerClickableRegion', this.handleClickableRegion.bind(this));
@@ -578,6 +578,24 @@ export class CombatPlayer extends CombatScene {
 
   checkBattleComplete(block) {
     if ((block.battleEvents.filter((_evt) => _evt.name === 'BattleCompleteEvent')).length > 0) {
+
+      let winner;
+      for (let idx = 0; idx < block.battleEvents.length; idx++) {
+        let event = block.battleEvents[idx];
+        if (event.name === "BattleCompleteEvent") {
+          winner = event.winner;
+        }
+      }
+
+      // Alert the HUD
+      window.dispatchEvent(
+        new CustomEvent("battleComplete", {
+          'detail' : {
+            'winner' : winner
+          }
+        })
+      );
+
       console.log("Battle is completed");
       this.battleComplete = true;
     }

@@ -1,3 +1,5 @@
+import HUDSTYLES from "../../data/hudStyles.js";
+
 export class HUDElement {
 
   constructor(obj = {}) {
@@ -9,11 +11,14 @@ export class HUDElement {
     this.teams = obj.teams;
     this.unit = obj.unit;
     this.activeAnimEvt = obj.activeAnimEvt;
-    this.hudLocked = false;
+    this.hudLocked = true;
+    this.battleComplete = false;
+    this.battleCompleteWinner = null;
     this.playerSelections = null;
 
     window.addEventListener('clickableRegionsLocked', this.handleHUDLocked.bind(this));
     window.addEventListener('clickableRegionsUnlocked', this.handleHUDUnlocked.bind(this));
+    window.addEventListener('battleComplete', this.handleBattleComplete.bind(this));
   }
 
   setPlayerSelectionsObject(playerSelections) {
@@ -26,6 +31,13 @@ export class HUDElement {
 
   handleHUDUnlocked() {
     this.hudLocked = false;
+  }
+
+  handleBattleComplete(e) {
+    this.battleComplete = true;
+    if (e && e.detail && e.detail.winner) {
+      this.battleCompleteWinner = e.detail.winner;
+    }
   }
 
   update(delta) {
@@ -89,6 +101,36 @@ export class HUDElement {
     }
     lines.push(currentLine);
     return lines;
+  }
+
+  getTypePrimaryColor(type) {
+    switch (type) {
+      case 'ABILITY': return HUDSTYLES.colors.green;
+      case 'ATTACK': return HUDSTYLES.colors.red;
+      case 'EFFECT': return HUDSTYLES.colors.yellow;
+      case 'INTERACT': return HUDSTYLES.colors.neonBlue;
+      default: return HUDSTYLES.colors.darkGray;
+    }
+  }
+
+  getTypeDesaturatedPrimaryColor(type) {
+    switch (type) {
+      case 'ABILITY': return HUDSTYLES.colors.desaturatedGreen;
+      case 'ATTACK': return HUDSTYLES.colors.desaturatedRed;
+      case 'EFFECT': return HUDSTYLES.colors.desaturatedYellow;
+      case 'INTERACT': return HUDSTYLES.colors.desaturatedNeonBlue;
+      default: return HUDSTYLES.colors.darkGray;
+    }
+  }
+
+  getTypeTransparentPrimaryColor(type) {
+    switch (type) {
+      case 'ABILITY': return HUDSTYLES.colors.transparentGreen;
+      case 'ATTACK': return HUDSTYLES.colors.transparentRed;
+      case 'EFFECT': return HUDSTYLES.colors.transparentYellow;
+      case 'INTERACT': return HUDSTYLES.colors.transparentNeonBlue;
+      default: return HUDSTYLES.colors.darkGray;
+    }
   }
 
 }

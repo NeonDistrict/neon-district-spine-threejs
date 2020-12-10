@@ -111,6 +111,10 @@ export class PlayerControlsDisplay extends HUDElement {
     this.drawActions();
     this.drawSelectedAction();
     this.drawTarget();
+
+    if (!this.hudLocked) {
+      this.drawAutomaticallySelectedActions();
+    }
   }
 
   getSelectedAction() {
@@ -289,6 +293,27 @@ export class PlayerControlsDisplay extends HUDElement {
       this.width * 4/36 + this.cardInset,
       this.selectRoundRectRadius, false, true // Not filling in, just stroke
     );
+  }
+
+  drawAutomaticallySelectedActions() {
+    for (let cardIdx = 0; cardIdx < (this.playerSelections.getCards() || []).length ; cardIdx++) {
+      let card = this.playerSelections.getCard(cardIdx);
+
+      if (!card || !card.type || card.type.toLowerCase() !== 'effect') {
+        continue;
+      }
+
+      //this.context.strokeStyle = HUDSTYLES.colors.white;
+      this.context.strokeStyle = this.getTypePrimaryColor(card.type);
+      this.context.lineWidth = 2.0;
+      this.roundRect(
+        this.width * (6 + 4.5 * (cardIdx + 1))/36,
+        this.height * 2/3 + this.vertGap,
+        this.width * 4/36 + this.cardInset,
+        this.width * 4/36 + this.cardInset,
+        this.selectRoundRectRadius, false, true // Not filling in, just stroke
+      );
+    }
   }
 
   drawActions() {

@@ -48,6 +48,9 @@ export class CardFull extends HUDElement {
     this.writeExploits();
     this.drawBorder();
     this.drawGainCircle();
+
+    // If needed, display disabled overlay
+    this.drawDisabledOverlay();
   }
 
   drawTypeCircle() {
@@ -138,6 +141,20 @@ export class CardFull extends HUDElement {
       this.height,
       this.roundRectRadius, true, false
     );
+  }
+
+  drawDisabledOverlay() {
+    if (this.card && this.card.type && this.card.type.toLowerCase() === 'interact') {
+      this.context.strokeStyle = HUDSTYLES.colors.transparentDarkGray;
+      this.context.fillStyle = HUDSTYLES.colors.transparentDarkGray;
+      this.roundRect(
+        this.center.x - this.width / 2,
+        this.center.y - this.height / 2,
+        this.width,
+        this.height,
+        this.roundRectRadius, true, true
+      );
+    }
   }
 
   drawBorder() {
@@ -254,36 +271,6 @@ export class CardFull extends HUDElement {
         this.center.x,
         this.center.y + this.height * 5 / 32 + 20 * _idx
       );
-    }
-  }
-
-  getTypePrimaryColor(type) {
-    switch (type) {
-      case 'ABILITY': return HUDSTYLES.colors.green;
-      case 'ATTACK': return HUDSTYLES.colors.red;
-      case 'EFFECT': return HUDSTYLES.colors.yellow;
-      case 'INTERACT': return HUDSTYLES.colors.neonBlue;
-      default: return HUDSTYLES.colors.darkGray;
-    }
-  }
-
-  getTypeDesaturatedPrimaryColor(type) {
-    switch (type) {
-      case 'ABILITY': return HUDSTYLES.colors.desaturatedGreen;
-      case 'ATTACK': return HUDSTYLES.colors.desaturatedRed;
-      case 'EFFECT': return HUDSTYLES.colors.desaturatedYellow;
-      case 'INTERACT': return HUDSTYLES.colors.desaturatedNeonBlue;
-      default: return HUDSTYLES.colors.darkGray;
-    }
-  }
-
-  getTypeTransparentPrimaryColor(type) {
-    switch (type) {
-      case 'ABILITY': return HUDSTYLES.colors.transparentGreen;
-      case 'ATTACK': return HUDSTYLES.colors.transparentRed;
-      case 'EFFECT': return HUDSTYLES.colors.transparentYellow;
-      case 'INTERACT': return HUDSTYLES.colors.transparentNeonBlue;
-      default: return HUDSTYLES.colors.darkGray;
     }
   }
 }

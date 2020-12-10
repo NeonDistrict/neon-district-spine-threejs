@@ -1,0 +1,284 @@
+diff --git a/src/combat/CombatPlayer.jsx b/src/combat/CombatPlayer.jsx
+index e93c9bf..5f52428 100644
+--- a/src/combat/CombatPlayer.jsx
++++ b/src/combat/CombatPlayer.jsx
+@@ -4,6 +4,7 @@ import Socket from '../socket/socket.js';
+ import { CombatScene } from "./CombatScene.jsx";
+ import { CombatHUD } from "../objects/CombatHUD.jsx";
+ import { PlayerSelections } from "../objects/PlayerSelections.jsx";
++import { UpInSmokeText } from "../core/overlays/UpInSmokeText.jsx";
+ 
+ export class CombatPlayer extends CombatScene {
+   constructor(props) {
+@@ -45,7 +46,7 @@ export class CombatPlayer extends CombatScene {
+ 
+     // Keep track of clickable regions & ability to use them
+     this.clickableRegions = {};
+-    this.clickLock = false;
++    this.clickLock = true;
+ 
+     // Monitor changes to clickable regions
+     window.addEventListener('registerClickableRegion', this.handleClickableRegion.bind(this));
+@@ -66,6 +67,10 @@ export class CombatPlayer extends CombatScene {
+     );
+     this.hud = this.userInterface.render();
+ 
++    // test smoke
++    this.upInSmokeText = new UpInSmokeText(this.scene);
++    this.upInSmokeText.init();
++
+     // Update the HUD to use the player selection object
+     this.userInterface.setPlayerSelectionsObject(this.playerSelections);
+ 
+diff --git a/src/objects/CombatHUD.jsx b/src/objects/CombatHUD.jsx
+index f0b66a0..7a399d2 100644
+--- a/src/objects/CombatHUD.jsx
++++ b/src/objects/CombatHUD.jsx
+@@ -2,6 +2,8 @@ import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
+ import { PlayerControlsDisplay } from "./hud/PlayerControlsDisplay.jsx";
+ import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
+ import { VersionDisplay } from "./hud/VersionDisplay.jsx";
++import { ScreenCanvasOverlay } from "./hud/ScreenCanvasOverlay.jsx";
++import { ScreenThreeJSOverlay } from "./hud/ScreenThreeJSOverlay.jsx";
+ 
+ export class CombatHUD {
+   constructor(renderer, activeAnimEvt, getUnitPosition) {
+@@ -36,7 +38,6 @@ export class CombatHUD {
+       'activeAnimEvt' : this.activeAnimEvt
+     });
+ 
+-    // Regions of the HUD
+     this.playerControlsDisplay = new PlayerControlsDisplay({
+       'context'       : this.context,
+       'x'             : this.width / 2,
+@@ -57,10 +58,24 @@ export class CombatHUD {
+     });
+ 
+     this.versionDisplay = new VersionDisplay({
+-      'context'         : this.context,
+-      'x'               : 0,
+-      'y'               : 0
++      'context' : this.context,
++      'x'       : 0,
++      'y'       : 0
+     });
++
++    this.screenCanvasOverlay = new ScreenCanvasOverlay({
++      'context' : this.context,
++      'x'       : 0,
++      'y'       : 0,
++      'width'   : this.width,
++      'height'  : this.height
++    });
++
++    //this.screenThreeJSOverlay = new ScreenThreeJSOverlay({
++    //  'el'     : this.parentCanvas,
++    //  'width'  : this.width,
++    //  'height' : this.height
++    //});
+   }
+ 
+   setTeams(teams) {
+@@ -82,10 +97,12 @@ export class CombatHUD {
+ 
+     this.context.clearRect(0, 0, this.width, this.height);
+ 
+-    this.versionDisplay.update();
+-    this.turnOrderDisplay.update();
+-    this.playerControlsDisplay.update();
+-    this.unitStatusDisplay.update();
++    this.versionDisplay.update(delta);
++    this.turnOrderDisplay.update(delta);
++    this.playerControlsDisplay.update(delta);
++    this.unitStatusDisplay.update(delta);
++    this.screenCanvasOverlay.update(delta);
++    //this.screenThreeJSOverlay.update(delta);
+ 
+     this.texture.needsUpdate = true;
+   }
+diff --git a/src/objects/PlayerSelections.jsx b/src/objects/PlayerSelections.jsx
+index f3c0406..28a8d84 100644
+--- a/src/objects/PlayerSelections.jsx
++++ b/src/objects/PlayerSelections.jsx
+@@ -41,8 +41,8 @@ export class PlayerSelections {
+     let cardIdx = _option.replace(/^card/,'');
+     let card = this.getCard(cardIdx);
+ 
+-    // Disallow selecting effects
+-    if (!card || !card.hasOwnProperty('type') || card.type.toLowerCase() === 'effect') {
++    // Disallow selecting effects or interacts
++    if (!card || !card.hasOwnProperty('type') || card.type.toLowerCase() === 'effect' || card.type.toLowerCase() === 'interact') {
+       return false;
+     }
+ 
+diff --git a/src/objects/hud/CardFull.jsx b/src/objects/hud/CardFull.jsx
+index f5db3e1..3836ecc 100644
+--- a/src/objects/hud/CardFull.jsx
++++ b/src/objects/hud/CardFull.jsx
+@@ -48,6 +48,9 @@ export class CardFull extends HUDElement {
+     this.writeExploits();
+     this.drawBorder();
+     this.drawGainCircle();
++
++    // If needed, display disabled overlay
++    this.drawDisabledOverlay();
+   }
+ 
+   drawTypeCircle() {
+@@ -140,6 +143,20 @@ export class CardFull extends HUDElement {
+     );
+   }
+ 
++  drawDisabledOverlay() {
++    if (this.card && this.card.type && this.card.type.toLowerCase() === 'interact') {
++      this.context.strokeStyle = HUDSTYLES.colors.transparentDarkGray;
++      this.context.fillStyle = HUDSTYLES.colors.transparentDarkGray;
++      this.roundRect(
++        this.center.x - this.width / 2,
++        this.center.y - this.height / 2,
++        this.width,
++        this.height,
++        this.roundRectRadius, true, true
++      );
++    }
++  }
++
+   drawBorder() {
+     this.context.strokeStyle = (this.hudLocked) ? this.getTypeTransparentPrimaryColor(this.card.type) : this.getTypePrimaryColor(this.card.type);
+     this.context.lineWidth = this.borderWidth;
+@@ -256,34 +273,4 @@ export class CardFull extends HUDElement {
+       );
+     }
+   }
+-
+-  getTypePrimaryColor(type) {
+-    switch (type) {
+-      case 'ABILITY': return HUDSTYLES.colors.green;
+-      case 'ATTACK': return HUDSTYLES.colors.red;
+-      case 'EFFECT': return HUDSTYLES.colors.yellow;
+-      case 'INTERACT': return HUDSTYLES.colors.neonBlue;
+-      default: return HUDSTYLES.colors.darkGray;
+-    }
+-  }
+-
+-  getTypeDesaturatedPrimaryColor(type) {
+-    switch (type) {
+-      case 'ABILITY': return HUDSTYLES.colors.desaturatedGreen;
+-      case 'ATTACK': return HUDSTYLES.colors.desaturatedRed;
+-      case 'EFFECT': return HUDSTYLES.colors.desaturatedYellow;
+-      case 'INTERACT': return HUDSTYLES.colors.desaturatedNeonBlue;
+-      default: return HUDSTYLES.colors.darkGray;
+-    }
+-  }
+-
+-  getTypeTransparentPrimaryColor(type) {
+-    switch (type) {
+-      case 'ABILITY': return HUDSTYLES.colors.transparentGreen;
+-      case 'ATTACK': return HUDSTYLES.colors.transparentRed;
+-      case 'EFFECT': return HUDSTYLES.colors.transparentYellow;
+-      case 'INTERACT': return HUDSTYLES.colors.transparentNeonBlue;
+-      default: return HUDSTYLES.colors.darkGray;
+-    }
+-  }
+ }
+diff --git a/src/objects/hud/HUDElement.jsx b/src/objects/hud/HUDElement.jsx
+index 40b5940..46bb102 100644
+--- a/src/objects/hud/HUDElement.jsx
++++ b/src/objects/hud/HUDElement.jsx
+@@ -1,3 +1,5 @@
++import HUDSTYLES from "../../data/hudStyles.js";
++
+ export class HUDElement {
+ 
+   constructor(obj = {}) {
+@@ -91,4 +93,34 @@ export class HUDElement {
+     return lines;
+   }
+ 
++  getTypePrimaryColor(type) {
++    switch (type) {
++      case 'ABILITY': return HUDSTYLES.colors.green;
++      case 'ATTACK': return HUDSTYLES.colors.red;
++      case 'EFFECT': return HUDSTYLES.colors.yellow;
++      case 'INTERACT': return HUDSTYLES.colors.neonBlue;
++      default: return HUDSTYLES.colors.darkGray;
++    }
++  }
++
++  getTypeDesaturatedPrimaryColor(type) {
++    switch (type) {
++      case 'ABILITY': return HUDSTYLES.colors.desaturatedGreen;
++      case 'ATTACK': return HUDSTYLES.colors.desaturatedRed;
++      case 'EFFECT': return HUDSTYLES.colors.desaturatedYellow;
++      case 'INTERACT': return HUDSTYLES.colors.desaturatedNeonBlue;
++      default: return HUDSTYLES.colors.darkGray;
++    }
++  }
++
++  getTypeTransparentPrimaryColor(type) {
++    switch (type) {
++      case 'ABILITY': return HUDSTYLES.colors.transparentGreen;
++      case 'ATTACK': return HUDSTYLES.colors.transparentRed;
++      case 'EFFECT': return HUDSTYLES.colors.transparentYellow;
++      case 'INTERACT': return HUDSTYLES.colors.transparentNeonBlue;
++      default: return HUDSTYLES.colors.darkGray;
++    }
++  }
++
+ }
+diff --git a/src/objects/hud/PlayerControlsDisplay.jsx b/src/objects/hud/PlayerControlsDisplay.jsx
+index 25b6458..bbb6c0f 100644
+--- a/src/objects/hud/PlayerControlsDisplay.jsx
++++ b/src/objects/hud/PlayerControlsDisplay.jsx
+@@ -111,6 +111,10 @@ export class PlayerControlsDisplay extends HUDElement {
+     this.drawActions();
+     this.drawSelectedAction();
+     this.drawTarget();
++
++    if (!this.hudLocked) {
++      this.drawAutomaticallySelectedActions();
++    }
+   }
+ 
+   getSelectedAction() {
+@@ -291,6 +295,27 @@ export class PlayerControlsDisplay extends HUDElement {
+     );
+   }
+ 
++  drawAutomaticallySelectedActions() {
++    for (let cardIdx = 0; cardIdx < (this.playerSelections.getCards() || []).length ; cardIdx++) {
++      let card = this.playerSelections.getCard(cardIdx);
++
++      if (!card || !card.type || card.type.toLowerCase() !== 'effect') {
++        continue;
++      }
++
++      //this.context.strokeStyle = HUDSTYLES.colors.white;
++      this.context.strokeStyle = this.getTypePrimaryColor(card.type);
++      this.context.lineWidth = 2.0;
++      this.roundRect(
++        this.width * (6 + 4.5 * (cardIdx + 1))/36,
++        this.height * 2/3 + this.vertGap,
++        this.width * 4/36 + this.cardInset,
++        this.width * 4/36 + this.cardInset,
++        this.selectRoundRectRadius, false, true // Not filling in, just stroke
++      );
++    }
++  }
++
+   drawActions() {
+     // Base Attack Button
+     this.context.fillStyle = HUDSTYLES.colors.darkGray;
+diff --git a/src/objects/hud/VersionDisplay.jsx b/src/objects/hud/VersionDisplay.jsx
+index db65544..a4a749c 100644
+--- a/src/objects/hud/VersionDisplay.jsx
++++ b/src/objects/hud/VersionDisplay.jsx
+@@ -23,7 +23,7 @@ export class VersionDisplay extends HUDElement {
+     );
+ 
+     this.context.fillText(
+-      "Pre-Alpha - Build v.0.2.21",
++      "Pre-Alpha - Build v.0.2.22",
+       this.center.x + 10,
+       this.center.y + 10 + 28
+     );

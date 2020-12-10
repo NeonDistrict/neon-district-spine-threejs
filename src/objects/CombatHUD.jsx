@@ -2,6 +2,7 @@ import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
 import { PlayerControlsDisplay } from "./hud/PlayerControlsDisplay.jsx";
 import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
 import { VersionDisplay } from "./hud/VersionDisplay.jsx";
+import { ScreenCanvasOverlay } from "./hud/ScreenCanvasOverlay.jsx";
 
 export class CombatHUD {
   constructor(renderer, activeAnimEvt, getUnitPosition) {
@@ -36,7 +37,6 @@ export class CombatHUD {
       'activeAnimEvt' : this.activeAnimEvt
     });
 
-    // Regions of the HUD
     this.playerControlsDisplay = new PlayerControlsDisplay({
       'context'       : this.context,
       'x'             : this.width / 2,
@@ -57,9 +57,17 @@ export class CombatHUD {
     });
 
     this.versionDisplay = new VersionDisplay({
-      'context'         : this.context,
-      'x'               : 0,
-      'y'               : 0
+      'context' : this.context,
+      'x'       : 0,
+      'y'       : 0
+    });
+
+    this.screenCanvasOverlay = new ScreenCanvasOverlay({
+      'context' : this.context,
+      'x'       : 0,
+      'y'       : 0,
+      'width'   : this.width,
+      'height'  : this.height
     });
   }
 
@@ -82,10 +90,11 @@ export class CombatHUD {
 
     this.context.clearRect(0, 0, this.width, this.height);
 
-    this.versionDisplay.update();
-    this.turnOrderDisplay.update();
-    this.playerControlsDisplay.update();
-    this.unitStatusDisplay.update();
+    this.versionDisplay.update(delta);
+    this.turnOrderDisplay.update(delta);
+    this.playerControlsDisplay.update(delta);
+    this.unitStatusDisplay.update(delta);
+    this.screenCanvasOverlay.update(delta);
 
     this.texture.needsUpdate = true;
   }
