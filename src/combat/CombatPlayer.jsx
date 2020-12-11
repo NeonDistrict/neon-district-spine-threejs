@@ -234,6 +234,8 @@ export class CombatPlayer extends CombatScene {
       return;
     }
 
+    this.playerSelections.clear();
+
     this.api.runBattle({
         battleId: this.battleId,
         action:action,
@@ -268,6 +270,8 @@ export class CombatPlayer extends CombatScene {
       console.log("No battle ID provided.")
       return;
     }
+
+    this.playerSelections.clear();
 
     this.socket.run(this.battleId, {action, target});
   }
@@ -349,6 +353,11 @@ export class CombatPlayer extends CombatScene {
     // Set the latest options for the player
     if (data.options && data.options.length) {
       this.playerSelections.setCards(data.options);
+    }
+
+    // If we received an error back but still have selections, unlock
+    if (!this.battleComplete && this.playerSelections.hasSelections() && data.hasOwnProperty('error')) {
+      this.unlockClickableRegions();
     }
   }
 
