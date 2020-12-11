@@ -1,6 +1,7 @@
 export class PlayerSelections {
 
-  constructor() {
+  constructor(_characters) {
+    this.characters = _characters;
     this.clear();
   }
 
@@ -61,6 +62,12 @@ export class PlayerSelections {
 
   validateTargetSelect(_target) {
     _target = _target.replace(/target-/,'');
+
+    for (let char of this.characters) {
+      if (char.unit.unitId === _target && char.unit.state === 'UNCONSCIOUS') {
+        return false;
+      }
+    }
 
     // Must be updated to consider actual targets for the given action
     if (!_target) {

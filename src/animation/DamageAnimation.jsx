@@ -18,6 +18,10 @@ export class DamageAnimation extends Animation {
 
     // Run the hit reaction for targets
     for (let _target of targets) {
+      if (_target.unit.state === 'UNCONSCIOUS' && targetReaction !== 'death') {
+        continue;
+      }
+
       this.playAnimation(_target, targetReaction, 0.9, targetReaction !== 'death');
     }
   }

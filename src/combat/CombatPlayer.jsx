@@ -31,7 +31,7 @@ export class CombatPlayer extends CombatScene {
     this.hud = null;
 
     // Player Selections
-    this.playerSelections = new PlayerSelections();
+    this.playerSelections = new PlayerSelections(this.characters);
 
     // Keeping track of events that have been played,
     // current state, and events to play
@@ -426,6 +426,7 @@ export class CombatPlayer extends CombatScene {
           if (_unit.metadata.nftId === _character.nftId) {
             // Set matching information
             _character.unitId = _unit.unitId;
+            _character.unit = _unit;
             _unit.character = _character;
 
             // Pull in the head image
@@ -524,6 +525,10 @@ export class CombatPlayer extends CombatScene {
             for (let _prop in _unitUpdate.stats) {
               _unit.stats[_prop] = _unitUpdate.stats[_prop];
             }
+          }
+
+          if (_unitUpdate.hasOwnProperty('state')) {
+            _unit.state = _unitUpdate.state;
           }
 
           if (_unitUpdate.hasOwnProperty('statsMax')) {
