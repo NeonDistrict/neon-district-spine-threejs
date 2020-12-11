@@ -88,6 +88,20 @@ export class CombatPlayer extends CombatScene {
     }
   }
 
+  componentDidUpdate() {
+    if (super.hasOwnProperty('componentDidUpdate')) {
+      super.componentDidUpdate(arguments);
+    }
+
+    console.log("Component Did Update call");
+
+    if (!this.battleComplete) {
+      if (this.playerSelections.hasSelections()) {
+        this.unlockClickableRegions();
+      }
+    }
+  }
+
   handleClickableRegion(e) {
     this.clickableRegions[e.detail.option] = e.detail.region;
   }
@@ -305,7 +319,13 @@ export class CombatPlayer extends CombatScene {
     } else {
       // Pass off to the controller
       this.playerSelections.clear();
-      this.updateBattleEvents(data);
+
+      // First load, so skip playback if requested
+      if (!this.teams && !this.playback) {
+        this.setLatestBattleEvents(data);
+      } else {
+        this.updateBattleEvents(data);
+      }
     }
   }
 
