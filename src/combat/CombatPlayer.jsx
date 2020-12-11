@@ -303,9 +303,14 @@ export class CombatPlayer extends CombatScene {
         this.setLatestBattleEvents(data);
       }
     } else {
-      // Pass off to the controller
       this.playerSelections.clear();
-      this.updateBattleEvents(data);
+
+      // Pass off to the controller
+      if (this.playback) {
+        this.updateBattleEvents(data);
+      } else {
+        this.setLatestBattleEvents(data);
+      }
     }
   }
 
