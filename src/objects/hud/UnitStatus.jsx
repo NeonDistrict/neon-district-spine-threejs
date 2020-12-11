@@ -96,11 +96,11 @@ export class UnitStatus extends HUDElement {
       if (stat === 'TICKS') {
         parsedValue = "-" + String(Math.abs(value));
       } else {
-        parsedValue = "+" + String(Math.abs(value).toFixed(2));
+        parsedValue = "+" + String(+(Math.abs(value).toFixed(2)));
       }
     } else {
       color = `rgba(255,0,47,${alpha})`;
-      parsedValue = "-" + String(Math.abs(value).toFixed(2));
+      parsedValue = "-" + String(+(Math.abs(value).toFixed(2)));
     }
 
     let str = stat + ": " + parsedValue;

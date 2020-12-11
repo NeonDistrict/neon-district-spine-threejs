@@ -44,7 +44,7 @@ export default class CombatReview extends Component {
       'weapon'    : 'blktwintanto-rare',
       'atlasFile' : 'nfts/testnet/79228162532711644620206923266-spine.atlas',
       //'outfit'   : ['female', 'blkorigindemon', 'common']
-    },/*{
+    },{
       'position' : 1,
       'nftId'    : "test1",
       //'nftId'    : "ai-practice-blkorigindemon-female-0",
@@ -67,14 +67,14 @@ export default class CombatReview extends Component {
       'skin'     : 'Male',
       'pose'     : 'ConsoleSml_BasicIdle_001',
       //'outfit'   : ['male', 'blkoriginghost', 'common']
-    },*/{
+    },{
       'position' : 4,
       'nftId'    : "test4",
       'scale'    : 'character',
       'skin'     : 'Female',
       'pose'     : 'BladeMed_BaseIdle_001',
       //'outfit'   : ['female', 'blkoriginheavy', 'common']
-    }/*,
+    },
     {
       'position' : 5,
       'nftId'    : "test5",
@@ -98,7 +98,7 @@ export default class CombatReview extends Component {
       'skin'     : 'Male',
       'pose'     : 'DualRangedMed_BasicIdle_001',
       //'outfit'   : ['male', 'blkorigingenius', 'common']
-    }*/];
+    }];
 
     return (
       <div>

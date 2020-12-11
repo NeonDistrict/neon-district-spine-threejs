@@ -317,9 +317,6 @@ export class CombatPlayer extends CombatScene {
         this.setLatestBattleEvents(data);
       }
     } else {
-      // Pass off to the controller
-      this.playerSelections.clear();
-
       // First load, so skip playback if requested
       if (!this.teams && !this.playback) {
         this.setLatestBattleEvents(data);
