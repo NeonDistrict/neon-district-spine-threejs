@@ -22,24 +22,64 @@ export class PlayerControlsDisplay extends HUDElement {
     this.imageCache = new ImageCache();
     this.imageCache.pullImages();
 
+    this.registerRegionLocations();
     this.registerButtons();
     this.init();
   }
 
-  registerButtons() {
-    let canvasWidth = this.width / 2.0;
-    let canvasHeight = this.height / 2.0;
-    let canvasVertGap = this.vertGap / 2.0;
+  registerRegionLocations() {
+    this.BORDER = {
+      TOP : this.height * 2 / 3 + this.vertLineGap,
+      INNER_TOP : this.height * 2/3 + this.vertGap,
+      BOTTOM : this.height - this.bottomLineGap,
+      LEFT : this.width * 1/36,
+      RIGHT : this.width * 35/36
+    };
 
+    this.PLAYER_REGION = {
+      RIGHT : this.width * 24/36
+    }
+
+    this.TARGET_REGION = {
+      LEFT : this.width * 25/36
+    };
+
+    this.CONFIRM = {
+      LEFT : this.width * 31.75/36,
+      TOP : this.BORDER.INNER_TOP + this.width * 3.85/36,
+      WIDTH : this.width * 3.25/36,
+      HEIGHT : this.width * 0.85/36
+    };
+
+    this.ACTIONS = {
+      LEFT : this.width * 6/36
+    };
+
+    this.PLAYER_IMAGE = {
+      WIDTH  : this.width * 3.5/36,
+      HEIGHT : this.width * 3.5/36
+    };
+
+    this.TARGET_STATS = {
+      TOP : this.BORDER.INNER_TOP + this.width * 0.75 / 36, // text
+      LEFT : this.TARGET_REGION.LEFT + this.PLAYER_IMAGE.WIDTH + this.width * 0.5 / 36,
+      RIGHT : this.BORDER.RIGHT - this.width * 0.5 / 36,
+      TEXT_PADDING : 8
+    };
+    this.TARGET_STATS.WIDTH  = this.TARGET_STATS.RIGHT - this.TARGET_STATS.LEFT;
+    this.TARGET_STATS.HEIGHT = this.CONFIRM.TOP - this.TARGET_STATS.TOP;
+  }
+
+  registerButtons() {
     window.dispatchEvent(
       new CustomEvent("registerClickableRegion", {
         'detail' : {
           'option' : 'confirm',
           'region' : [
-            canvasWidth * 31/36,
-            canvasHeight * 2/3 + canvasVertGap + canvasWidth * 3/36,
-            canvasWidth * 31/36 + canvasWidth * 4/36,
-            canvasHeight * 2/3 + canvasVertGap + canvasWidth * 3/36 + canvasWidth * 1/36
+            this.CONFIRM.LEFT / 2.0,
+            this.CONFIRM.TOP / 2.0,
+            (this.CONFIRM.LEFT + this.CONFIRM.WIDTH) / 2.0,
+            (this.CONFIRM.TOP + this.CONFIRM.HEIGHT) / 2.0
           ]
         }
       })
@@ -97,7 +137,7 @@ export class PlayerControlsDisplay extends HUDElement {
         new CardFull({
           'context' : this.context,
           'x'       : this.width * (12.5 + 4.5*_idx)/36 + this.cardInset / 2.0,
-          'y'       : this.height * 2/3 + this.vertGap + this.width * 4/36/2 + this.cardInset / 2.0,
+          'y'       : this.BORDER.INNER_TOP + this.width * 4/36/2 + this.cardInset / 2.0,
           'width'   : this.width * 4/36 - this.cardInset * 2.0,
           'height'  : this.width * 4/36 - this.cardInset * 2.0
         })
@@ -111,6 +151,7 @@ export class PlayerControlsDisplay extends HUDElement {
     this.drawActions();
     this.drawSelectedAction();
     this.drawTarget();
+    this.drawTargetStats();
 
     if (!this.hudLocked) {
       this.drawAutomaticallySelectedActions();
@@ -130,13 +171,14 @@ export class PlayerControlsDisplay extends HUDElement {
   }
 
   drawRegion() {
+    // Common Settings
+    this.context.textBaseline = 'middle';
+
+    // Selected Character Portrait
     let gradient = this.context.createLinearGradient(0, this.height * 2/3, 0, this.height);
     gradient.addColorStop(0, 'rgba(0,0,0,0.0)');
     gradient.addColorStop(0.2, 'rgba(0,0,0,1.0)');
     gradient.addColorStop(1.0, 'rgba(0,0,0,1.0)');
-
-    this.context.textBaseline = 'middle';
-
     this.context.fillStyle = gradient;
     this.context.fillRect(0, this.height * 2 / 3, this.width, this.height * 1 / 3);
 
@@ -146,30 +188,30 @@ export class PlayerControlsDisplay extends HUDElement {
 
     // Top
     this.context.beginPath();
-    this.context.moveTo(this.width * 1/36, this.height * 2 / 3 + this.vertLineGap);
-    this.context.lineTo(this.width * 24/36, this.height * 2 / 3 + this.vertLineGap);
+    this.context.moveTo(this.BORDER.LEFT, this.BORDER.TOP);
+    this.context.lineTo(this.PLAYER_REGION.RIGHT, this.BORDER.TOP);
     this.context.stroke();
 
     // Bottom
     this.context.beginPath();
-    this.context.moveTo(this.width * 1/36, this.height - this.bottomLineGap);
-    this.context.lineTo(this.width * 24/36, this.height - this.bottomLineGap);
+    this.context.moveTo(this.BORDER.LEFT, this.BORDER.BOTTOM);
+    this.context.lineTo(this.PLAYER_REGION.RIGHT, this.BORDER.BOTTOM);
     this.context.stroke();
 
     // Draw red target lines
     this.context.strokeWidth = 0.5;
-    this.context.strokeStyle = HUDSTYLES.colors.red;
+    this.context.strokeStyle = HUDSTYLES.colors.desaturatedRed;
 
     // Top
     this.context.beginPath();
-    this.context.moveTo(this.width * 26/36, this.height * 2 / 3 + this.vertLineGap);
-    this.context.lineTo(this.width * 35/36, this.height * 2 / 3 + this.vertLineGap);
+    this.context.moveTo(this.TARGET_REGION.LEFT, this.BORDER.TOP);
+    this.context.lineTo(this.BORDER.RIGHT, this.BORDER.TOP);
     this.context.stroke();
 
     // Bottom
     this.context.beginPath();
-    this.context.moveTo(this.width * 26/36, this.height - this.bottomLineGap);
-    this.context.lineTo(this.width * 35/36, this.height - this.bottomLineGap);
+    this.context.moveTo(this.TARGET_REGION.LEFT, this.BORDER.BOTTOM);
+    this.context.lineTo(this.BORDER.RIGHT, this.BORDER.BOTTOM);
     this.context.stroke();
 
     // Write text above the lines
@@ -182,20 +224,20 @@ export class PlayerControlsDisplay extends HUDElement {
     this.context.textAlign = 'left';
 
     // Player, Actions, Target
-    this.context.fillText("PLAYER", this.width * 1/36, this.height * 2 / 3 + this.vertLabelGap);
-    this.context.fillText("ACTIONS", this.width * 6/36, this.height * 2 / 3 + this.vertLabelGap);
-    this.context.fillText("TARGET", this.width * 26/36, this.height * 2 / 3 + this.vertLabelGap);
+    this.context.fillText("PLAYER", this.BORDER.LEFT, this.height * 2 / 3 + this.vertLabelGap);
+    this.context.fillText("ACTIONS", this.ACTIONS.LEFT, this.height * 2 / 3 + this.vertLabelGap);
+    this.context.fillText("TARGET", this.TARGET_REGION.LEFT, this.height * 2 / 3 + this.vertLabelGap);
 
     this.context.shadowBlur = 0;
   }
 
   drawPlayer() {
-    let gradient = this.context.createLinearGradient(0, this.height * 2/3 + this.vertGap, 0, this.height * 2/3 + this.vertGap + this.width * 4/36);
+    // Draw Player Gradient
+    let gradient = this.context.createLinearGradient(0, this.BORDER.INNER_TOP, 0, this.BORDER.INNER_TOP + this.PLAYER_IMAGE.WIDTH);
     gradient.addColorStop(0, 'rgba(36,36,36,1.0)');
     gradient.addColorStop(1.0, 'rgba(63,88,88,1.0)');
-
     this.context.fillStyle = gradient;
-    this.context.fillRect(this.width * 1/36, this.height * 2/3 + this.vertGap, this.width * 4/36, this.width * 4/36);
+    this.context.fillRect(this.BORDER.LEFT, this.BORDER.INNER_TOP, this.PLAYER_IMAGE.WIDTH, this.PLAYER_IMAGE.HEIGHT);
 
     if (!this.units || !this.units.length) return;
 
@@ -204,16 +246,16 @@ export class PlayerControlsDisplay extends HUDElement {
     if (playerUnit && playerUnit.headImgLoaded) {
       if (playerUnit.team === 'two') {
         this.context.save();
-        this.context.translate(this.width * 6/36, 0);
+        this.context.translate(this.ACTIONS.LEFT - this.width * 0.5/36, 0);
         this.context.scale(-1, 1);
       }
 
       this.context.drawImage(
         playerUnit.headImg, 
-        this.width * 1/36, 
-        this.height * 2/3 + this.vertGap,
-        this.width * 4/36,
-        this.width * 4/36
+        this.BORDER.LEFT, 
+        this.BORDER.INNER_TOP,
+        this.PLAYER_IMAGE.WIDTH,
+        this.PLAYER_IMAGE.HEIGHT
       );
 
       // Undo
@@ -221,6 +263,24 @@ export class PlayerControlsDisplay extends HUDElement {
         this.context.restore();
       }
     }
+
+    // Active Unit Name
+    this.context.lineWidth = 4;
+    this.context.fillStyle = HUDSTYLES.colors.darkGray;
+    this.context.strokeStyle = HUDSTYLES.colors.lightGray;
+    this.context.fillRect(this.BORDER.LEFT, this.CONFIRM.TOP, this.PLAYER_IMAGE.WIDTH, this.CONFIRM.HEIGHT);
+    this.context.strokeRect(this.BORDER.LEFT, this.CONFIRM.TOP, this.PLAYER_IMAGE.WIDTH, this.CONFIRM.HEIGHT);
+
+    this.context.fillStyle = HUDSTYLES.colors.white;
+    this.context.strokeStyle = HUDSTYLES.colors.white;
+
+    this.context.font = '18pt "kozuka-gothic-pr6n-bold"';
+    this.context.textAlign = 'left';
+    this.context.textBaseline = "middle";
+    this.context.fillText((playerUnit && playerUnit.metadata && playerUnit.metadata.name) || "",
+      this.BORDER.LEFT + this.TARGET_STATS.TEXT_PADDING * 2,
+      this.CONFIRM.TOP + this.CONFIRM.HEIGHT / 2
+    );
   }
 
   getActivePlayer() {
@@ -245,30 +305,31 @@ export class PlayerControlsDisplay extends HUDElement {
   }
 
   drawTarget() {
-    let gradient = this.context.createLinearGradient(0, this.height * 2/3 + this.vertGap, 0, this.height * 2/3 + this.vertGap + this.width * 4/36);
+    // Character Portrait
+    let gradient = this.context.createLinearGradient(0, this.BORDER.INNER_TOP, 0, this.BORDER.INNER_TOP + this.PLAYER_IMAGE.WIDTH);
     gradient.addColorStop(0, 'rgba(36,36,36,1.0)');
     gradient.addColorStop(1.0, 'rgba(79,40,48,1.0)');
-
     this.context.fillStyle = gradient;
-    this.context.fillRect(this.width * 26/36, this.height * 2/3 + this.vertGap, this.width * 4/36, this.width * 4/36);
+    this.context.fillRect(this.TARGET_REGION.LEFT, this.BORDER.INNER_TOP, this.PLAYER_IMAGE.WIDTH, this.PLAYER_IMAGE.HEIGHT);
 
     if (!this.units || !this.units.length) return;
 
+    // Show the target
     let targetUnit = this.getTarget();
 
     if (targetUnit && targetUnit.headImgLoaded) {
       if (targetUnit.team === 'two') {
         this.context.save();
-        this.context.translate(this.width * (36 + 20)/36, 0);
+        this.context.translate(this.width * (36 + 17.5)/36, 0);
         this.context.scale(-1, 1);
       }
 
       this.context.drawImage(
         targetUnit.headImg, 
-        this.width * 26/36, 
-        this.height * 2/3 + this.vertGap,
-        this.width * 4/36,
-        this.width * 4/36
+        this.TARGET_REGION.LEFT, 
+        this.BORDER.INNER_TOP,
+        this.PLAYER_IMAGE.WIDTH,
+        this.PLAYER_IMAGE.HEIGHT
       );
 
       // Undo
@@ -276,6 +337,89 @@ export class PlayerControlsDisplay extends HUDElement {
         this.context.restore();
       }
     }
+
+    // Target Name
+    this.context.lineWidth = 4;
+    this.context.fillStyle = HUDSTYLES.colors.darkGray;
+    this.context.strokeStyle = HUDSTYLES.colors.lightGray;
+    this.context.fillRect(this.TARGET_REGION.LEFT, this.CONFIRM.TOP, this.PLAYER_IMAGE.WIDTH, this.CONFIRM.HEIGHT);
+    this.context.strokeRect(this.TARGET_REGION.LEFT, this.CONFIRM.TOP, this.PLAYER_IMAGE.WIDTH, this.CONFIRM.HEIGHT);
+
+    this.context.fillStyle = HUDSTYLES.colors.white;
+    this.context.strokeStyle = HUDSTYLES.colors.white;
+
+    this.context.font = '18pt "kozuka-gothic-pr6n-bold"';
+    this.context.textAlign = 'left';
+    this.context.textBaseline = "middle";
+    this.context.fillText((targetUnit && targetUnit.metadata && targetUnit.metadata.name) || "",
+      this.TARGET_REGION.LEFT + this.TARGET_STATS.TEXT_PADDING,
+      this.CONFIRM.TOP + this.CONFIRM.HEIGHT / 2
+    );
+  }
+
+  drawTargetStats() {
+    // Top Line
+    this.context.strokeWidth = 1;
+    this.context.strokeStyle = HUDSTYLES.colors.halfGray;
+
+    this.context.beginPath();
+    this.context.moveTo(this.TARGET_STATS.LEFT, this.TARGET_STATS.TOP);
+    this.context.lineTo(this.TARGET_STATS.RIGHT, this.TARGET_STATS.TOP);
+    this.context.stroke();
+
+    // Font for Header
+    this.context.fillStyle = HUDSTYLES.colors.neonBlue;
+    this.context.strokeStyle = HUDSTYLES.colors.neonBlue;
+    this.context.shadowColor = HUDSTYLES.colors.neonBlue;
+    this.context.shadowBlur = this.shadowBlur;
+    this.context.font = `italic 16pt "kozuka-gothic-pr6n-bold"`;
+    this.context.textAlign = 'left';
+    this.context.textBaseline = 'bottom';
+
+    // Header
+    this.context.textAlign = 'left';
+    this.context.textBaseline = 'bottom';
+    this.context.fillText("STATS", this.TARGET_STATS.LEFT + this.TARGET_STATS.TEXT_PADDING, this.TARGET_STATS.TOP - this.TARGET_STATS.TEXT_PADDING);
+
+    // Font for Labels
+    this.context.font = `14pt "kozuka-gothic-pr6n-bold"`;
+    this.context.shadowBlur = 0;
+    this.context.textAlign = 'center';
+    this.context.fillStyle = HUDSTYLES.colors.lightGray;
+    this.context.strokeStyle = HUDSTYLES.colors.lightGray;
+
+    // Labels
+    this.context.fillText("HEALTH", this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 0.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.25 / 3);
+    this.context.fillText("ATTACK", this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 1.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.25 / 3);
+    this.context.fillText("DEFENSE", this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 2.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.25 / 3);
+    this.context.fillText("NANO", this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 3.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.25 / 3);
+
+    this.context.fillText("STEALTH", this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 0.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 2.25 / 3);
+    this.context.fillText("MECH", this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 1.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 2.25 / 3);
+    this.context.fillText("TACTICS", this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 2.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 2.25 / 3);
+    this.context.fillText("HACKING", this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 3.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 2.25 / 3);
+
+    let targetUnit = this.getTarget();
+    if (!targetUnit) return;
+
+    // Font for Stats
+    this.context.font = `20pt "kozuka-gothic-pr6n-bold"`;
+    this.context.fillStyle = HUDSTYLES.colors.white;
+    this.context.strokeStyle = HUDSTYLES.colors.white;
+
+    function statFormat(value) {
+      return Math.ceil(value);
+    }
+
+    this.context.fillText(statFormat(targetUnit.stats.HEALTH), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 0.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 0.8 / 3);
+    this.context.fillText(statFormat(targetUnit.stats.ATTACK), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 1.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 0.8 / 3);
+    this.context.fillText(statFormat(targetUnit.stats.DEFENSE), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 2.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 0.8 / 3);
+    this.context.fillText(statFormat(targetUnit.stats.NANO), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 3.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 0.8 / 3);
+
+    this.context.fillText(statFormat(targetUnit.stats.STEALTH), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 0.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
+    this.context.fillText(statFormat(targetUnit.stats.MECH), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 1.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
+    this.context.fillText(statFormat(targetUnit.stats.TACTICS), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 2.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
+    this.context.fillText(statFormat(targetUnit.stats.HACKING), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 3.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
   }
 
   drawSelectedAction() {
@@ -284,15 +428,21 @@ export class PlayerControlsDisplay extends HUDElement {
 
     let actionPlace = ["attack","card0","card1","card2"].indexOf(action);
 
+    // NOTE: For some reason, this doesn't actually do anything.
+    this.context.shadowBlur  = 10;
+    this.context.shadowColor = "white";
+
     this.context.strokeStyle = HUDSTYLES.colors.white;
     this.context.lineWidth = 2.0;
     this.roundRect(
       this.width * (6 + 4.5 * actionPlace)/36,
-      this.height * 2/3 + this.vertGap,
+      this.BORDER.INNER_TOP,
       this.width * 4/36 + this.cardInset,
       this.width * 4/36 + this.cardInset,
       this.selectRoundRectRadius, false, true // Not filling in, just stroke
     );
+
+    this.context.shadowBlur = 0;
   }
 
   drawAutomaticallySelectedActions() {
@@ -308,7 +458,7 @@ export class PlayerControlsDisplay extends HUDElement {
       this.context.lineWidth = 2.0;
       this.roundRect(
         this.width * (6 + 4.5 * (cardIdx + 1))/36,
-        this.height * 2/3 + this.vertGap,
+        this.BORDER.INNER_TOP,
         this.width * 4/36 + this.cardInset,
         this.width * 4/36 + this.cardInset,
         this.selectRoundRectRadius, false, true // Not filling in, just stroke
@@ -322,8 +472,8 @@ export class PlayerControlsDisplay extends HUDElement {
     this.context.strokeStyle = (this.hudLocked) ? HUDSTYLES.colors.transparentRed : HUDSTYLES.colors.red;
     this.context.lineWidth = 4;
     this.roundRect(
-      this.width * 6/36 + this.cardInset * 1.25,
-      this.height * 2/3 + this.vertGap + this.cardInset * 1.25,
+      this.ACTIONS.LEFT + this.cardInset * 1.25,
+      this.BORDER.INNER_TOP + this.cardInset * 1.25,
       this.width * 4/36 - this.cardInset * 1.5,
       this.width * 4/36 - this.cardInset * 1.5,
       this.roundRectRadius, true, true
@@ -335,7 +485,7 @@ export class PlayerControlsDisplay extends HUDElement {
     this.context.drawImage(
       this.imageCache.getImage('ATTACK'),
       this.width * 7.25/36,
-      this.height * 2/3 + this.vertGap + this.width * 1/36,
+      this.BORDER.INNER_TOP + this.BORDER.LEFT,
       this.width * 1.5/36,
       this.width * 1.5/36
     );
@@ -345,12 +495,12 @@ export class PlayerControlsDisplay extends HUDElement {
     this.context.textBaseline = "middle";
     this.context.fillText("BASE ATTACK",
       this.width * 8/36 + this.cardInset/2,
-      this.height * 2/3 + this.vertGap + this.width * 3/36 + this.width * 1/36/2 - this.cardInset/2
+      this.BORDER.INNER_TOP + this.width * 3/36 + this.BORDER.LEFT/2 - this.cardInset/2
     );
 
     this.writeTicks({
       x : this.width * 10/36 - 30,
-      y : this.height * 2/3 + this.vertGap + 30
+      y : this.BORDER.INNER_TOP + 30
     });
 
     // Cards
@@ -359,10 +509,11 @@ export class PlayerControlsDisplay extends HUDElement {
     this.drawCard(2);
 
     // Confirm Button
+    this.context.lineWidth = 4;
     this.context.fillStyle = HUDSTYLES.colors.darkGray;
     this.context.strokeStyle = (this.hudLocked) ? HUDSTYLES.colors.lightGray : HUDSTYLES.colors.white;
-    this.context.fillRect(this.width * 31/36, this.height * 2/3 + this.vertGap + this.width * 3/36, this.width * 4/36, this.width * 1/36);
-    this.context.strokeRect(this.width * 31/36, this.height * 2/3 + this.vertGap + this.width * 3/36, this.width * 4/36, this.width * 1/36);
+    this.context.fillRect(this.CONFIRM.LEFT, this.CONFIRM.TOP, this.CONFIRM.WIDTH, this.CONFIRM.HEIGHT);
+    this.context.strokeRect(this.CONFIRM.LEFT, this.CONFIRM.TOP, this.CONFIRM.WIDTH, this.CONFIRM.HEIGHT);
 
     this.context.fillStyle = (this.hudLocked) ? HUDSTYLES.colors.lightGray : HUDSTYLES.colors.white;
     this.context.strokeStyle = (this.hudLocked) ? HUDSTYLES.colors.lightGray : HUDSTYLES.colors.white;
@@ -371,8 +522,8 @@ export class PlayerControlsDisplay extends HUDElement {
     this.context.textAlign = 'center';
     this.context.textBaseline = "middle";
     this.context.fillText("CONFIRM",
-      this.width * 33/36,
-      this.height * 2/3 + this.vertGap + this.width * 3/36 + this.width * 1/36/2
+      this.CONFIRM.LEFT + this.CONFIRM.WIDTH / 2,
+      this.CONFIRM.TOP + this.CONFIRM.HEIGHT / 2
     );
   }
 
