@@ -47,7 +47,7 @@ export class CardFull extends HUDElement {
     this.writeEffects();
     this.writeExploits();
     this.drawBorder();
-    this.drawGainCircle();
+    //this.drawGainCircle();
 
     // If needed, display disabled overlay
     this.drawDisabledOverlay();
@@ -133,14 +133,24 @@ export class CardFull extends HUDElement {
   }
 
   drawCardBack() {
+    this.context.lineWidth = this.borderWidth;
+    if (this.hudLocked || !this.card || (Object.keys(this.card).length === 0 && this.card.constructor === Object)) {
+      this.context.strokeStyle = HUDSTYLES.colors.transparentPurple;
+    } else {
+      this.context.strokeStyle = (this.hudLocked) ? this.getTypeTransparentPrimaryColor(this.card.type) : this.getTypePrimaryColor(this.card.type);
+    }
+
+    this.context.shadowColor = HUDSTYLES.colors.black;
+    this.context.shadowBlur = 12;
     this.context.fillStyle = HUDSTYLES.colors.darkGray;
     this.roundRect(
       this.center.x - this.width / 2,
       this.center.y - this.height / 2,
       this.width,
       this.height,
-      this.roundRectRadius, true, false
+      this.roundRectRadius, true, true
     );
+    this.context.shadowBlur = 0;
   }
 
   drawDisabledOverlay() {
@@ -148,11 +158,11 @@ export class CardFull extends HUDElement {
       this.context.strokeStyle = HUDSTYLES.colors.transparentDarkGray;
       this.context.fillStyle = HUDSTYLES.colors.transparentDarkGray;
       this.roundRect(
-        this.center.x - this.width / 2,
-        this.center.y - this.height / 2,
-        this.width,
-        this.height,
-        this.roundRectRadius, true, true
+        this.center.x - this.width / 2 - this.roundRectRadius / 2 - 1,
+        this.center.y - this.height / 2 - this.roundRectRadius / 2 - 1,
+        this.width + this.roundRectRadius + 2,
+        this.height + this.roundRectRadius + 2,
+        this.roundRectRadius, true, false
       );
     }
   }
@@ -160,7 +170,6 @@ export class CardFull extends HUDElement {
   drawBorder() {
     this.context.strokeStyle = (this.hudLocked) ? this.getTypeTransparentPrimaryColor(this.card.type) : this.getTypePrimaryColor(this.card.type);
     this.context.lineWidth = this.borderWidth;
-
     this.roundRect(
       this.center.x - this.width / 2,
       this.center.y - this.height / 2,
@@ -187,7 +196,7 @@ export class CardFull extends HUDElement {
     this.context.fillStyle = HUDSTYLES.colors.white;
     this.context.strokeStyle = HUDSTYLES.colors.white;
 
-    this.context.font = '14pt "kozuka-gothic-pr6n-bold"';
+    this.context.font = '16pt "kozuka-gothic-pr6n-bold"';
     this.context.textAlign = 'center';
     this.context.textBaseline = 'alphabetic';
     this.context.fillText(
@@ -202,21 +211,21 @@ export class CardFull extends HUDElement {
     this.context.beginPath();
     this.context.moveTo(
       this.tickCostCenter.x - this.topCircleRadius * (4/5),
-      this.tickCostCenter.y + 6
+      this.tickCostCenter.y + 12
     );
     this.context.lineTo(
       this.tickCostCenter.x + this.topCircleRadius * (4/5),
-      this.tickCostCenter.y + 6
+      this.tickCostCenter.y + 12
     );
     this.context.stroke();
 
-    this.context.font = '6pt "kozuka-gothic-pr6n-bold"';
+    this.context.font = '10pt "kozuka-gothic-pr6n-bold"';
     this.context.textAlign = 'center';
     this.context.textBaseline = 'top';
     this.context.fillText(
       "TICKS",
       this.tickCostCenter.x,
-      this.tickCostCenter.y + 9
+      this.tickCostCenter.y + 16
     );
   }
 
@@ -224,16 +233,16 @@ export class CardFull extends HUDElement {
     this.context.fillStyle = HUDSTYLES.colors.white;
     this.context.strokeStyle = HUDSTYLES.colors.white;
 
-    this.context.font = '12pt "kozuka-gothic-pr6n-bold"';
+    this.context.font = '16pt "kozuka-gothic-pr6n-bold"';
     this.context.textAlign = 'center';
     this.context.textBaseline = 'top';
 
-    let name = this.getLines(this.card.name, this.width * 2/3);
+    let name = this.getLines(this.card.name, this.width * 1/2);
     for (let _idx = 0; _idx < name.length; _idx++) {
       this.context.fillText(
         name[_idx],
         this.center.x,
-        this.center.y - this.height / 2 + this.borderWidth + 3 + 20 * _idx
+        this.center.y - this.height / 2 + this.borderWidth + 5 + 24 * _idx
       );
     }
   }
@@ -242,16 +251,16 @@ export class CardFull extends HUDElement {
     this.context.fillStyle = HUDSTYLES.colors.white;
     this.context.strokeStyle = HUDSTYLES.colors.white;
 
-    this.context.font = '12pt "kozuka-gothic-pr6n-bold"';
+    this.context.font = '14pt "kozuka-gothic-pr6n"';
     this.context.textAlign = 'center';
     this.context.textBaseline = 'top';
 
-    let effects = this.getLines(this.card.effects, this.width * 3/4);
+    let effects = this.getLines(this.card.effects, this.width * 7/8);
     for (let _idx = 0; _idx < effects.length; _idx++) {
       this.context.fillText(
         effects[_idx],
         this.center.x,
-        this.center.y - this.height * 3 / 16 + 20 * _idx
+        this.center.y - this.height * 3 / 16 + 23 * _idx
       );
     }
   }
@@ -260,16 +269,16 @@ export class CardFull extends HUDElement {
     this.context.fillStyle = HUDSTYLES.colors.white;
     this.context.strokeStyle = HUDSTYLES.colors.white;
 
-    this.context.font = '12pt "kozuka-gothic-pr6n-bold"';
+    this.context.font = '14pt "kozuka-gothic-pr6n"';
     this.context.textAlign = 'center';
     this.context.textBaseline = 'top';
 
-    let exploits = this.getLines(this.card.exploits, this.width * 3/4);
+    let exploits = this.getLines(this.card.exploits, this.width * 7/8);
     for (let _idx = 0; _idx < exploits.length; _idx++) {
       this.context.fillText(
         exploits[_idx],
         this.center.x,
-        this.center.y + this.height * 5 / 32 + 20 * _idx
+        this.center.y + this.height * 5 / 32 + 23 * _idx
       );
     }
   }

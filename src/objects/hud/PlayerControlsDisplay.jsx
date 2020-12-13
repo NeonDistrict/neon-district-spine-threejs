@@ -14,10 +14,14 @@ export class PlayerControlsDisplay extends HUDElement {
     this.bottomLineGap = 24;
     this.vertLineGap = 100;
     this.vertLabelGap = 84;
-    this.cardInset = 6;
-    this.shadowBlur = 4;
+    this.cardInset = 12;
+    this.shadowBlur = 8;
     this.selectRoundRectRadius = 16;
     this.roundRectRadius = 8;
+
+    // These are the base units that are multiples of the width
+    this.cardWidth = 5;
+    this.cardWidthDistance = 4.75;
 
     this.imageCache = new ImageCache();
     this.imageCache.pullImages();
@@ -52,7 +56,12 @@ export class PlayerControlsDisplay extends HUDElement {
     };
 
     this.ACTIONS = {
-      LEFT : this.width * 6/36
+      LEFT : this.width * 5/36
+    };
+
+    this.ACTION_BUTTON = {
+      OUTER_WIDTH : this.width * 4.75/36,
+      WIDTH : this.width * 4.5/36 - this.cardInset
     };
 
     this.PLAYER_IMAGE = {
@@ -64,7 +73,7 @@ export class PlayerControlsDisplay extends HUDElement {
       TOP : this.BORDER.INNER_TOP + this.width * 0.75 / 36, // text
       LEFT : this.TARGET_REGION.LEFT + this.PLAYER_IMAGE.WIDTH + this.width * 0.5 / 36,
       RIGHT : this.BORDER.RIGHT - this.width * 0.5 / 36,
-      TEXT_PADDING : 8
+      TEXT_PADDING : 16
     };
     this.TARGET_STATS.WIDTH  = this.TARGET_STATS.RIGHT - this.TARGET_STATS.LEFT;
     this.TARGET_STATS.HEIGHT = this.CONFIRM.TOP - this.TARGET_STATS.TOP;
@@ -99,10 +108,10 @@ export class PlayerControlsDisplay extends HUDElement {
           'detail' : {
             'option' : this.actions[_idx],
             'region' : [
-              canvasWidth * (6 + 4.5 * _idx)/36 + 10,
-              canvasHeight * 2/3 + canvasVertGap + 10,
-              canvasWidth * (6 + 4.5 * _idx)/36 + canvasWidth * 4/36,
-              canvasHeight * 2/3 + canvasVertGap + canvasWidth * 4/36,
+              canvasWidth * (this.cardWidth + this.cardWidthDistance * _idx)/36 + this.cardWidth + this.cardInset * 0.5,
+              canvasHeight * 2/3 + canvasVertGap + 5 + this.cardInset * 0.5,
+              canvasWidth * (this.cardWidth + this.cardWidthDistance * _idx)/36 + canvasWidth * this.cardWidth/36 - this.cardInset * 0.5,
+              canvasHeight * 2/3 + canvasVertGap + canvasWidth * 4.5/36 - this.cardInset * 0.5,
             ]
           }
         })
@@ -136,10 +145,10 @@ export class PlayerControlsDisplay extends HUDElement {
       this.cards.push(
         new CardFull({
           'context' : this.context,
-          'x'       : this.width * (12.5 + 4.5*_idx)/36 + this.cardInset / 2.0,
-          'y'       : this.BORDER.INNER_TOP + this.width * 4/36/2 + this.cardInset / 2.0,
-          'width'   : this.width * 4/36 - this.cardInset * 2.0,
-          'height'  : this.width * 4/36 - this.cardInset * 2.0
+          'x'       : this.width * (12 + this.cardWidthDistance * _idx) / 36 + this.cardInset * 2.5 - this.cardInset * _idx,
+          'y'       : this.BORDER.INNER_TOP + this.ACTION_BUTTON.OUTER_WIDTH/2,
+          'width'   : this.ACTION_BUTTON.WIDTH - this.cardInset * 2.0,
+          'height'  : this.ACTION_BUTTON.WIDTH - this.cardInset * 2.0
         })
       );
     }
@@ -220,7 +229,7 @@ export class PlayerControlsDisplay extends HUDElement {
     this.context.shadowColor = HUDSTYLES.colors.white;
     this.context.shadowBlur = this.shadowBlur;
 
-    this.context.font = '13pt "kozuka-gothic-pr6n-bold"';
+    this.context.font = '15pt "kozuka-gothic-pr6n-bold"';
     this.context.textAlign = 'left';
 
     // Player, Actions, Target
@@ -246,7 +255,7 @@ export class PlayerControlsDisplay extends HUDElement {
     if (playerUnit && playerUnit.headImgLoaded) {
       if (playerUnit.team === 'two') {
         this.context.save();
-        this.context.translate(this.ACTIONS.LEFT - this.width * 0.5/36, 0);
+        this.context.translate(this.width * 5.5/36, 0);
         this.context.scale(-1, 1);
       }
 
@@ -274,13 +283,18 @@ export class PlayerControlsDisplay extends HUDElement {
     this.context.fillStyle = HUDSTYLES.colors.white;
     this.context.strokeStyle = HUDSTYLES.colors.white;
 
-    this.context.font = '18pt "kozuka-gothic-pr6n-bold"';
+    let name = (playerUnit && playerUnit.metadata && playerUnit.metadata.name.toUpperCase()) || "";
+
+    this.context.shadowColor = HUDSTYLES.colors.white;
+    this.context.shadowBlur = this.shadowBlur;
+    this.context.font = `${name.length > 22 ? '13' : name.length > 16 ? '14' : '16'}pt "kozuka-gothic-pr6n-bold"`;
     this.context.textAlign = 'left';
     this.context.textBaseline = "middle";
-    this.context.fillText((playerUnit && playerUnit.metadata && playerUnit.metadata.name) || "",
-      this.BORDER.LEFT + this.TARGET_STATS.TEXT_PADDING * 2,
+    this.context.fillText(name,
+      this.BORDER.LEFT + this.TARGET_STATS.TEXT_PADDING,
       this.CONFIRM.TOP + this.CONFIRM.HEIGHT / 2
     );
+    this.context.shadowBlur = 0;
   }
 
   getActivePlayer() {
@@ -348,13 +362,18 @@ export class PlayerControlsDisplay extends HUDElement {
     this.context.fillStyle = HUDSTYLES.colors.white;
     this.context.strokeStyle = HUDSTYLES.colors.white;
 
-    this.context.font = '18pt "kozuka-gothic-pr6n-bold"';
+    let name = (targetUnit && targetUnit.metadata && targetUnit.metadata.name.toUpperCase()) || "Select Your Target".toUpperCase();
+
+    this.context.shadowColor = HUDSTYLES.colors.white;
+    this.context.shadowBlur = this.shadowBlur;
+    this.context.font = `${name.length > 22 ? '13' : name.length > 16 ? '14' : '16'}pt "kozuka-gothic-pr6n-bold"`;
     this.context.textAlign = 'left';
     this.context.textBaseline = "middle";
-    this.context.fillText((targetUnit && targetUnit.metadata && targetUnit.metadata.name) || "",
+    this.context.fillText(name ,
       this.TARGET_REGION.LEFT + this.TARGET_STATS.TEXT_PADDING,
       this.CONFIRM.TOP + this.CONFIRM.HEIGHT / 2
     );
+    this.context.shadowBlur = 0;
   }
 
   drawTargetStats() {
@@ -399,9 +418,6 @@ export class PlayerControlsDisplay extends HUDElement {
     this.context.fillText("TACTICS", this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 2.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 2.25 / 3);
     this.context.fillText("HACKING", this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 3.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 2.25 / 3);
 
-    let targetUnit = this.getTarget();
-    if (!targetUnit) return;
-
     // Font for Stats
     this.context.font = `20pt "kozuka-gothic-pr6n-bold"`;
     this.context.fillStyle = HUDSTYLES.colors.white;
@@ -411,15 +427,17 @@ export class PlayerControlsDisplay extends HUDElement {
       return Math.ceil(value);
     }
 
-    this.context.fillText(statFormat(targetUnit.stats.HEALTH), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 0.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 0.8 / 3);
-    this.context.fillText(statFormat(targetUnit.stats.ATTACK), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 1.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 0.8 / 3);
-    this.context.fillText(statFormat(targetUnit.stats.DEFENSE), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 2.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 0.8 / 3);
-    this.context.fillText(statFormat(targetUnit.stats.NANO), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 3.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 0.8 / 3);
+    let targetUnit = this.getTarget();
 
-    this.context.fillText(statFormat(targetUnit.stats.STEALTH), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 0.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
-    this.context.fillText(statFormat(targetUnit.stats.MECH), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 1.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
-    this.context.fillText(statFormat(targetUnit.stats.TACTICS), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 2.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
-    this.context.fillText(statFormat(targetUnit.stats.HACKING), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 3.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
+    this.context.fillText(statFormat(targetUnit && targetUnit.stats && targetUnit.stats.HEALTH || 0), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 0.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 0.8 / 3);
+    this.context.fillText(statFormat(targetUnit && targetUnit.stats && targetUnit.stats.ATTACK || 0), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 1.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 0.8 / 3);
+    this.context.fillText(statFormat(targetUnit && targetUnit.stats && targetUnit.stats.DEFENSE || 0), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 2.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 0.8 / 3);
+    this.context.fillText(statFormat(targetUnit && targetUnit.stats && targetUnit.stats.NANO || 0), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 3.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 0.8 / 3);
+
+    this.context.fillText(statFormat(targetUnit && targetUnit.stats && targetUnit.stats.STEALTH || 0), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 0.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
+    this.context.fillText(statFormat(targetUnit && targetUnit.stats && targetUnit.stats.MECH || 0), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 1.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
+    this.context.fillText(statFormat(targetUnit && targetUnit.stats && targetUnit.stats.TACTICS || 0), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 2.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
+    this.context.fillText(statFormat(targetUnit && targetUnit.stats && targetUnit.stats.HACKING || 0), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 3.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
   }
 
   drawSelectedAction() {
@@ -434,13 +452,24 @@ export class PlayerControlsDisplay extends HUDElement {
 
     this.context.strokeStyle = HUDSTYLES.colors.white;
     this.context.lineWidth = 2.0;
-    this.roundRect(
-      this.width * (6 + 4.5 * actionPlace)/36,
-      this.BORDER.INNER_TOP,
-      this.width * 4/36 + this.cardInset,
-      this.width * 4/36 + this.cardInset,
-      this.selectRoundRectRadius, false, true // Not filling in, just stroke
-    );
+
+    if (actionPlace === 0) {
+      this.roundRect(
+        this.ACTIONS.LEFT + this.cardInset * 1.25,
+        this.BORDER.INNER_TOP + this.cardInset * 1.25,
+        this.ACTION_BUTTON.WIDTH,
+        this.ACTION_BUTTON.WIDTH,
+        this.selectRoundRectRadius, false, true // Not filling in, just stroke
+      );
+    } else  {
+      this.roundRect(
+        this.width * (10 + this.cardWidthDistance * (actionPlace-1)) / 36 + this.cardInset * (2.5 - actionPlace),
+        this.BORDER.INNER_TOP + this.cardInset * 1.25,
+        this.ACTION_BUTTON.WIDTH,
+        this.ACTION_BUTTON.WIDTH,
+        this.selectRoundRectRadius, false, true // Not filling in, just stroke
+      );
+    }
 
     this.context.shadowBlur = 0;
   }
@@ -457,51 +486,73 @@ export class PlayerControlsDisplay extends HUDElement {
       this.context.strokeStyle = this.getTypePrimaryColor(card.type);
       this.context.lineWidth = 2.0;
       this.roundRect(
-        this.width * (6 + 4.5 * (cardIdx + 1))/36,
-        this.BORDER.INNER_TOP,
-        this.width * 4/36 + this.cardInset,
-        this.width * 4/36 + this.cardInset,
+        this.width * (10 + this.cardWidthDistance * cardIdx) / 36 + this.cardInset * (1.5 - cardIdx),
+        this.BORDER.INNER_TOP + this.cardInset * 1.25,
+        this.ACTION_BUTTON.WIDTH,
+        this.ACTION_BUTTON.WIDTH,
         this.selectRoundRectRadius, false, true // Not filling in, just stroke
       );
     }
   }
 
   drawActions() {
-    // Base Attack Button
+    // Grey Background - Attack Button
+    this.context.fillStyle = HUDSTYLES.colors.darkGray;
+    this.context.fillRect(this.ACTIONS.LEFT, this.BORDER.INNER_TOP, this.ACTION_BUTTON.OUTER_WIDTH, this.ACTION_BUTTON.OUTER_WIDTH);
+
+    // Base Attack Button, border + back -- need the border to also draw the shadow blur
+    this.context.shadowColor = HUDSTYLES.colors.black;
+    this.context.shadowBlur = 12;
     this.context.fillStyle = HUDSTYLES.colors.darkGray;
     this.context.strokeStyle = (this.hudLocked) ? HUDSTYLES.colors.transparentRed : HUDSTYLES.colors.red;
     this.context.lineWidth = 4;
     this.roundRect(
-      this.ACTIONS.LEFT + this.cardInset * 1.25,
-      this.BORDER.INNER_TOP + this.cardInset * 1.25,
-      this.width * 4/36 - this.cardInset * 1.5,
-      this.width * 4/36 - this.cardInset * 1.5,
+      this.ACTIONS.LEFT + this.cardInset * 2,
+      this.BORDER.INNER_TOP + this.cardInset * 2,
+      this.ACTION_BUTTON.OUTER_WIDTH - this.cardInset * 4,
+      this.ACTION_BUTTON.OUTER_WIDTH - this.cardInset * 4,
       this.roundRectRadius, true, true
     );
     this.context.fillStyle = HUDSTYLES.colors.red;
     this.context.strokeStyle = HUDSTYLES.colors.red;
+    this.context.shadowBlur = 0;
+
+    // Redraw outer border
+    this.context.lineWidth = 4;
+    this.roundRect(
+      this.ACTIONS.LEFT + this.cardInset * 2,
+      this.BORDER.INNER_TOP + this.cardInset * 2,
+      this.ACTION_BUTTON.OUTER_WIDTH - this.cardInset * 4,
+      this.ACTION_BUTTON.OUTER_WIDTH - this.cardInset * 4,
+      this.roundRectRadius, false, true
+    );
 
     // Pull down the image
+    let ATTACK_BUTTON_WIDTH = this.width * 1.5/36;
     this.context.drawImage(
       this.imageCache.getImage('ATTACK'),
-      this.width * 7.25/36,
+      this.ACTIONS.LEFT + (this.ACTION_BUTTON.OUTER_WIDTH - ATTACK_BUTTON_WIDTH) / 2,
       this.BORDER.INNER_TOP + this.BORDER.LEFT,
-      this.width * 1.5/36,
-      this.width * 1.5/36
+      ATTACK_BUTTON_WIDTH,
+      ATTACK_BUTTON_WIDTH
     );
 
     this.context.font = '20pt "kozuka-gothic-pr6n-bold"';
     this.context.textAlign = 'center';
     this.context.textBaseline = "middle";
     this.context.fillText("BASE ATTACK",
-      this.width * 8/36 + this.cardInset/2,
+      this.ACTIONS.LEFT + this.ACTION_BUTTON.OUTER_WIDTH / 2,
       this.BORDER.INNER_TOP + this.width * 3/36 + this.BORDER.LEFT/2 - this.cardInset/2
     );
 
     this.writeTicks({
-      x : this.width * 10/36 - 30,
-      y : this.BORDER.INNER_TOP + 30
+      x : this.ACTIONS.LEFT + this.ACTION_BUTTON.OUTER_WIDTH - this.cardInset - 45,
+      y : this.BORDER.INNER_TOP + 50
     });
+
+    // Grey Background - Cards
+    this.context.fillStyle = HUDSTYLES.colors.darkGray;
+    this.context.fillRect(this.ACTIONS.LEFT + this.ACTION_BUTTON.OUTER_WIDTH + 0.25 * this.width / 36, this.BORDER.INNER_TOP, this.PLAYER_REGION.RIGHT - this.ACTIONS.LEFT - this.ACTION_BUTTON.OUTER_WIDTH - 0.25 * this.width / 36, this.ACTION_BUTTON.OUTER_WIDTH);
 
     // Cards
     this.drawCard(0);
@@ -533,11 +584,11 @@ export class PlayerControlsDisplay extends HUDElement {
     }
   }
 
-  writeTicks(center, width = 30) {
+  writeTicks(center, width = 45) {
     this.context.fillStyle = HUDSTYLES.colors.white;
     this.context.strokeStyle = HUDSTYLES.colors.white;
 
-    this.context.font = '14pt "kozuka-gothic-pr6n-bold"';
+    this.context.font = '16pt "kozuka-gothic-pr6n-bold"';
     this.context.textAlign = 'center';
     this.context.textBaseline = 'alphabetic';
     this.context.fillText(
@@ -552,21 +603,21 @@ export class PlayerControlsDisplay extends HUDElement {
     this.context.beginPath();
     this.context.moveTo(
       center.x - width / 2,
-      center.y + 6
+      center.y + 12
     );
     this.context.lineTo(
       center.x + width / 2,
-      center.y + 6
+      center.y + 12
     );
     this.context.stroke();
 
-    this.context.font = '6pt "kozuka-gothic-pr6n-bold"';
+    this.context.font = '10pt "kozuka-gothic-pr6n-bold"';
     this.context.textAlign = 'center';
     this.context.textBaseline = 'top';
     this.context.fillText(
       "TICKS",
       center.x,
-      center.y + 9
+      center.y + 16
     );
   }
 

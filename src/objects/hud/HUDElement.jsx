@@ -72,11 +72,12 @@ export class HUDElement {
       this.context.quadraticCurveTo(x, y, x + radius.tl, y);
       this.context.closePath();
 
-      if (fill) {
-          this.context.fill();
-      }
       if (stroke) {
           this.context.stroke();
+      }
+
+      if (fill) {
+          this.context.fill();
       }
   }
 
