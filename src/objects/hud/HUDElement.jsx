@@ -82,7 +82,7 @@ export class HUDElement {
   }
 
   getLines(text, maxWidth) {
-    if (!text) {
+    if (!text || typeof text !== 'string') {
       return [];
     }
 
