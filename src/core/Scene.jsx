@@ -66,7 +66,7 @@ export class Scene extends Component {
     this.canvas = this.renderer.domElement;
     this.context = this.renderer.getContext();
 
-    this.canvas.style.imageRendering = 'pixelated';
+    //this.canvas.style.imageRendering = 'pixelated';
     this.canvas.style.width = this.width / this.DPI + 'px';
     this.canvas.style.height = this.height / this.DPI + 'px';
   }
