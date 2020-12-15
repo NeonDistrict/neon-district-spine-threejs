@@ -51,7 +51,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Female',
       //'outfit'   : ['male', 'blkoriginmedic', 'common']
-    },{
+    },/*{
       'position' : 2,
       'nftId'    : "79228162551158388693916474895",
       'scale'    : 'character',
@@ -67,7 +67,7 @@ export default class CombatReview extends Component {
       'skin'     : 'Male',
       'pose'     : 'ConsoleSml_BasicIdle_001',
       //'outfit'   : ['male', 'blkoriginghost', 'common']
-    },{
+    },*/{
       'position' : 4,
       'nftId'    : "test4",
       'scale'    : 'character',
@@ -82,7 +82,7 @@ export default class CombatReview extends Component {
       'skin'     : 'Male',
       'pose'     : 'DualRangedSml_BasicIdle_001',
       //'outfit'   : ['male', 'blkoriginjack', 'common']
-    },
+    }/*,
     {
       'position' : 6,
       'nftId'    : "test6",
@@ -98,7 +98,7 @@ export default class CombatReview extends Component {
       'skin'     : 'Male',
       'pose'     : 'DualRangedMed_BasicIdle_001',
       //'outfit'   : ['male', 'blkorigingenius', 'common']
-    }];
+    }*/];
 
     return (
       <div>

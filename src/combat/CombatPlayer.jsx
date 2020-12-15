@@ -293,6 +293,11 @@ export class CombatPlayer extends CombatScene {
     // Pull the data out
     let data = response.data.data;
 
+    if (data.error) {
+      console.log("Error:", data.error);
+      this.userInterface.setError(data.error);
+    }
+
     // Handle any preparation work if needed
     if (this.battleId != data.battleId) {
       console.warn("Setting new Battle ID (" + data.battleId + ") from previous (" + this.battleId + ")");

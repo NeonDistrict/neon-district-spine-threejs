@@ -2,6 +2,7 @@ import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
 import { PlayerControlsDisplay } from "./hud/PlayerControlsDisplay.jsx";
 import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
 import { VersionDisplay } from "./hud/VersionDisplay.jsx";
+import { ErrorDisplay } from "./hud/ErrorDisplay.jsx";
 import { ScreenCanvasOverlay } from "./hud/ScreenCanvasOverlay.jsx";
 
 export class CombatHUD {
@@ -69,6 +70,14 @@ export class CombatHUD {
       'width'   : this.width,
       'height'  : this.height
     });
+
+    this.errorDisplay = new ErrorDisplay({
+      'context' : this.context,
+      'x'       : this.width - 400,
+      'y'       : this.height / 2 + 200,
+      'width'   : 400,
+      'height'  : 150,
+    });
   }
 
   setTeams(teams) {
@@ -83,6 +92,10 @@ export class CombatHUD {
     this.playerControlsDisplay.setPlayerSelectionsObject(playerSelections);
   }
 
+  setError(err) {
+    this.errorDisplay.setError(err);
+  }
+
   update(delta) {
     if (!this.fontsLoaded) {
       return;
@@ -91,6 +104,7 @@ export class CombatHUD {
     this.context.clearRect(0, 0, this.width, this.height);
 
     this.versionDisplay.update(delta);
+    this.errorDisplay.update(delta);
     this.turnOrderDisplay.update(delta);
     this.playerControlsDisplay.update(delta);
     this.unitStatusDisplay.update(delta);
