@@ -438,6 +438,61 @@ export class PlayerControlsDisplay extends HUDElement {
     this.context.fillText(statFormat(targetUnit && targetUnit.stats && targetUnit.stats.MECH || 0), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 1.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
     this.context.fillText(statFormat(targetUnit && targetUnit.stats && targetUnit.stats.TACTICS || 0), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 2.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
     this.context.fillText(statFormat(targetUnit && targetUnit.stats && targetUnit.stats.HACKING || 0), this.TARGET_STATS.LEFT + this.TARGET_STATS.WIDTH * 3.5 / 4, this.TARGET_STATS.TOP + this.TARGET_STATS.HEIGHT * 1.8 / 3);
+  
+    if (targetUnit) {
+      this.drawTargetUnitStatusEffects(targetUnit);
+    }
+  }
+
+  drawTargetUnitStatusEffects(unit) {
+    let iconCount = 0;
+    let x = this.TARGET_STATS.RIGHT - this.TARGET_STATS.TEXT_PADDING - 25;
+    let y = this.TARGET_STATS.TOP - this.TARGET_STATS.TEXT_PADDING - 25;
+
+    if (unit && unit.statusEffects && unit.statusEffects.COUNTERATTACK > 0) {
+      this.drawIconEffect({
+        x : x - 40 * (iconCount++), y
+      }, 'COUNTERATTACK');
+    }
+
+    if (unit && unit.statusEffects && unit.statusEffects.REGENERATE > 0) {
+      this.drawIconEffect({
+        x : x - 40 * (iconCount++), y
+      }, 'REGENERATE');
+    }
+
+    if (unit && unit.statusEffects && unit.statusEffects.POISON > 0) {
+      this.drawIconEffect({
+        x : x - 40 * (iconCount++), y
+      }, 'POISON');
+    }
+
+    if (unit && unit.statusEffects && unit.statusEffects.SHIELD > 0) {
+      this.drawIconEffect({
+        x : x - 40 * (iconCount++), y
+      }, 'SHIELD');
+    }
+
+    if (unit && unit.statusEffects && unit.statusEffects.TAUNT > 0) {
+      this.drawIconEffect({
+        x : x - 40 * (iconCount++), y
+      }, 'TAUNT');
+    }
+  }
+
+  drawIconEffect(position, icon) {
+    if (!this.imageCache.getImage(icon)) {
+      return;
+    }
+
+    // Pull down the image
+    this.context.drawImage(
+      this.imageCache.getImage(icon), 
+      position.x,
+      position.y,
+      30,
+      30
+    );
   }
 
   drawSelectedAction() {
@@ -580,7 +635,7 @@ export class PlayerControlsDisplay extends HUDElement {
 
   drawCard(cardNum = 0) {
     if (this.cards && this.cards.length > cardNum) {
-      this.cards[cardNum].update(this.playerSelections.getCard(cardNum));
+      this.cards[cardNum].update(this.playerSelections.getCard(cardNum), {isTaunted:this.playerSelections.isTaunted()});
     }
   }
 

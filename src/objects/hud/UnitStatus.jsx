@@ -1,4 +1,5 @@
 import { HUDElement } from './HUDElement.jsx';
+import { ImageCache } from '../ImageCache.jsx';
 import HUDSTYLES from "../../data/hudStyles.js";
 
 export class UnitStatus extends HUDElement {
@@ -12,6 +13,8 @@ export class UnitStatus extends HUDElement {
     this.ticksRadius = 12;
     this.ticksHealthGap = 4;
     this.ticksLineWidth = 4;
+
+    this.imageCache = new ImageCache();
 
     this.registerUnitTarget();
   }
@@ -39,6 +42,7 @@ export class UnitStatus extends HUDElement {
     let position = this.getUnitPosition(this.unit.character);
     this.drawHealth(position);
     this.drawTicks(position);
+    this.drawStatusEffects(position);
     //this.drawUnitTarget(position);
     this.writeUnitUpdates(position);
   }
@@ -229,6 +233,61 @@ export class UnitStatus extends HUDElement {
         1.0
       ),
       0.0
+    );
+  }
+
+  drawStatusEffects(position) {
+
+    let iconCount = 0;
+
+    if (this.unit && this.unit.statusEffects && this.unit.statusEffects.TAUNT > 0) {
+      this.drawIconEffect({
+        x : position.above.x - this.healthWidth/2 + 30 * (iconCount++) + 5,
+        y : position.above.y - 35,
+      }, 'TAUNT');
+    }
+
+    if (this.unit && this.unit.statusEffects && this.unit.statusEffects.SHIELD > 0) {
+      this.drawIconEffect({
+        x : position.above.x - this.healthWidth/2 + 30 * (iconCount++) + 5,
+        y : position.above.y - 35,
+      }, 'SHIELD');
+    }
+
+    if (this.unit && this.unit.statusEffects && this.unit.statusEffects.POISON > 0) {
+      this.drawIconEffect({
+        x : position.above.x - this.healthWidth/2 + 30 * (iconCount++) + 5,
+        y : position.above.y - 35,
+      }, 'POISON');
+    }
+
+    if (this.unit && this.unit.statusEffects && this.unit.statusEffects.REGENERATE > 0) {
+      this.drawIconEffect({
+        x : position.above.x - this.healthWidth/2 + 30 * (iconCount++) + 5,
+        y : position.above.y - 35,
+      }, 'REGENERATE');
+    }
+
+    if (this.unit && this.unit.statusEffects && this.unit.statusEffects.COUNTERATTACK > 0) {
+      this.drawIconEffect({
+        x : position.above.x - this.healthWidth/2 + 30 * (iconCount++) + 5,
+        y : position.above.y - 35,
+      }, 'COUNTERATTACK');
+    }
+  }
+
+  drawIconEffect(position, icon) {
+    if (!this.imageCache.getImage(icon)) {
+      return;
+    }
+
+    // Pull down the image
+    this.context.drawImage(
+      this.imageCache.getImage(icon), 
+      position.x,
+      position.y,
+      25,
+      25
     );
   }
 

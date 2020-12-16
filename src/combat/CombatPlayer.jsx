@@ -4,6 +4,7 @@ import Socket from '../socket/socket.js';
 import { CombatScene } from "./CombatScene.jsx";
 import { CombatHUD } from "../objects/CombatHUD.jsx";
 import { PlayerSelections } from "../objects/PlayerSelections.jsx";
+import { CombatAnalysis } from "./CombatAnalysis.jsx";
 
 export class CombatPlayer extends CombatScene {
   constructor(props) {
@@ -16,6 +17,9 @@ export class CombatPlayer extends CombatScene {
     this.playback      = props.hasOwnProperty('playback') ? props.playback : true;
     this.teamId        = props.teamId;
     this.createOptions = props.createOptions;
+
+    this.nextTeam;
+    this.nextUnit;
 
     // API for combat calls
     if (this.combatApi) {
@@ -386,6 +390,9 @@ export class CombatPlayer extends CombatScene {
       this.playerSelections.setCards(data.options);
     }
 
+    this.nextTeam = data.nextTeam;
+    this.nextUnit = data.nextUnit;
+
     // Determine if we have new events to render
     let hasNewEvents = false;
     if (data.hasOwnProperty('events')) {
@@ -639,6 +646,17 @@ export class CombatPlayer extends CombatScene {
 
   postAnimationCleanup() {
     if (!this.battleComplete) {
+        if (this.playerSelections.hasSelections() && CombatAnalysis.hasTaunt(this.nextUnit)) {
+        let taunter = CombatAnalysis.getTaunter(this.nextUnit);
+
+        // Make sure that the card selected is a valid choice
+        if (this.playerSelections.validateTargetSelect(taunter)) {
+          // Set the taunter as the default target
+          this.playerSelections.setTarget(taunter);
+          this.playerSelections.setTaunter(taunter);
+        }
+      }
+
       if (this.playerSelections.hasSelections()) {
         this.unlockClickableRegions();
       }

@@ -23,7 +23,7 @@ export class VersionDisplay extends HUDElement {
     );
 
     this.context.fillText(
-      "Pre-Alpha - Build v.0.2.25",
+      "Pre-Alpha - Build v.0.2.27",
       this.center.x + 10,
       this.center.y + 10 + 28
     );

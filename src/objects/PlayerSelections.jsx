@@ -9,6 +9,8 @@ export class PlayerSelections {
     this.action = null;
     this.target = 0;//null;
     this.cards = [{},{},{}];
+    this.taunted = false;
+    this.taunter = null;
   }
 
   hasSelections() {
@@ -47,6 +49,11 @@ export class PlayerSelections {
       return false;
     }
 
+    // If taunted, disallow selecting anything except attacks
+    if (this.isTaunted() && card.type.toLowerCase() !== 'attack') {
+      return false;
+    }
+
     return true;
   }
 
@@ -67,6 +74,10 @@ export class PlayerSelections {
       if (char.unit.unitId === _target && char.unit.state === 'UNCONSCIOUS') {
         return false;
       }
+
+      if (this.isTaunted() && this.getTaunter() !== _target) {
+        return false;
+      }
     }
 
     // Must be updated to consider actual targets for the given action
@@ -85,6 +96,19 @@ export class PlayerSelections {
 
   getTarget() {
     return this.target;
+  }
+
+  isTaunted() {
+    return this.taunted;
+  }
+
+  setTaunter(taunter) {
+    this.taunter = taunter;
+    this.taunted = !!taunter;
+  }
+
+  getTaunter() {
+    return this.taunter;
   }
 
 }

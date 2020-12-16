@@ -30,7 +30,7 @@ export class CardFull extends HUDElement {
     };
   }
 
-  update(card) {
+  update(card, options = {}) {
     if (this.hudLocked || !card || (Object.keys(card).length === 0 && card.constructor === Object)) {
       this.drawCardBack();
       this.drawBackBorder();
@@ -50,7 +50,7 @@ export class CardFull extends HUDElement {
     //this.drawGainCircle();
 
     // If needed, display disabled overlay
-    this.drawDisabledOverlay();
+    this.drawDisabledOverlay(options);
   }
 
   drawTypeCircle() {
@@ -153,8 +153,11 @@ export class CardFull extends HUDElement {
     this.context.shadowBlur = 0;
   }
 
-  drawDisabledOverlay() {
-    if (this.card && this.card.type && this.card.type.toLowerCase() === 'interact') {
+  drawDisabledOverlay(options) {
+    if (this.card && this.card.type && (
+        this.card.type.toLowerCase() === 'interact' || (options && options.isTaunted === true && this.card.type.toLowerCase() !== 'attack')
+      )
+    ) {
       this.context.strokeStyle = HUDSTYLES.colors.transparentDarkGray;
       this.context.fillStyle = HUDSTYLES.colors.transparentDarkGray;
       this.roundRect(
