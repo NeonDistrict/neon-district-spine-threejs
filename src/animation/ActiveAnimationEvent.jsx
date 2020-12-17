@@ -1,8 +1,11 @@
 import ANIMATIONS from '../data/animations.js';
+import { AttackAnimation } from './AttackAnimation.jsx';
+import { DamageAnimation } from './DamageAnimation.jsx';
+import { KnockoutAnimation } from './KnockoutAnimation.jsx';
 
 export class ActiveAnimationEvent {
 
-  constructor(characters, effects) {
+  constructor(characters, effects, primaryEvents) {
     this.animationEndTime = 0;
     this.addtlSeconds = 3000;
 
@@ -11,26 +14,26 @@ export class ActiveAnimationEvent {
     this.currentEventName = null;
     this.currentStatChanges = {};
     this.currentStatusEffectChanges = {};
+
+    // Animation Events
+    this.primaryEvents = primaryEvents;
+
+    this.eventAnimations = {
+      'AttackEvent'   : new AttackAnimation(characters, effects),
+      'DamageEvent'   : new DamageAnimation(characters, effects),
+      'KnockoutEvent' : new KnockoutAnimation(characters, effects)
+    };
+    this.KnockoutEventName = 'KnockoutEvent';
   }
 
-  enqueue(block, primaryEvent, secondEvent) {
-    this.queue.push({block, primaryEvent, secondEvent});
+  enqueue(block, primaryEvent, secondaryEvents) {
+    this.queue.push({block, primaryEvent, secondaryEvents});
   }
 
   dequeue() {
     if (this.queue.length === 0) {
       // End the animation cycle
       if (this.currentEventName !== null) {
-        /*
-        window.dispatchEvent(
-          new CustomEvent("unlockClickableRegions", {
-            'detail' : {
-              'event' : this.currentEventName
-            }
-          })
-        );
-        */
-
         window.dispatchEvent(
           new CustomEvent("eventBlockComplete")
         );
@@ -45,8 +48,58 @@ export class ActiveAnimationEvent {
     let obj = this.queue.shift();
     this.currentEventName = obj.primaryEvent.name;
     this.animationEndTime = Date.now() + this.addtlSeconds;
-    this.getLatestStatChanges(obj.block);
-    this.getLatestStatusEffectChanges(obj.block);
+    this.runEvent(obj.primaryEvent, obj.secondaryEvents);
+    this.getLatestStatChanges({'battleEvents':[obj.primaryEvent,...obj.secondaryEvents]});
+    this.getLatestStatusEffectChanges({'battleEvents':[obj.primaryEvent,...obj.secondaryEvents]});
+  }
+
+  runEvent(primaryEvent, secondaryEvents) {
+    // For each secondary event, handle cases where we want to do one animation over the other
+    let characterToAnimation = {};
+    for (let secondaryEvent of secondaryEvents) {
+      for (let _unitId of secondaryEvent.targetIds) {
+        // Knockout event takes precedence always
+        if (characterToAnimation.hasOwnProperty(_unitId) && characterToAnimation[_unitId].name === this.KnockoutEventName) {
+          continue;
+        }
+
+        characterToAnimation[_unitId] = secondaryEvent;
+      }
+
+      // Default to the invoker performing the attack animation if the primary event
+      // doesn't fall into pre-defined animations & damage is done to a target
+      if (secondaryEvent.name === 'DamageEvent' || secondaryEvent.name === 'KnockoutEvent') {
+        for (let _unitId of secondaryEvent.invokerIds) {
+          // Knockout event takes precedence always
+          if (characterToAnimation.hasOwnProperty(_unitId) && characterToAnimation[_unitId].name === this.KnockoutEventName) {
+            continue;
+          }
+
+          characterToAnimation[_unitId] = {...secondaryEvent, 'name':'AttackEvent'};
+        }
+      }
+    }
+
+    // Get the primary event for the invoker
+    for (let _unitId of primaryEvent.invokerIds) {
+      // Knockout event takes precedence always
+      if (characterToAnimation.hasOwnProperty(_unitId) && characterToAnimation[_unitId].name === this.KnockoutEventName) {
+        continue;
+      }
+
+      if (this.eventAnimations.hasOwnProperty(primaryEvent.name)) {
+        characterToAnimation[_unitId] = primaryEvent;
+      }
+    }
+
+    // For each event, kick off
+    for (let _unitId in characterToAnimation) {
+      console.log(_unitId, characterToAnimation[_unitId].name);
+      let _event = characterToAnimation[_unitId];
+      if (this.eventAnimations.hasOwnProperty(_event.name)) {
+        this.eventAnimations[_event.name].run(_event);
+      }
+    }
   }
 
   getLatestStatChanges(block) {

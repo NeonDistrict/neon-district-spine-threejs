@@ -20,7 +20,7 @@ export class Animation {
   }
 
   getStatChanges(unitId, statChanges) {
-    if (statChanges.hasOwnProperty(unitId)) {
+    if (statChanges && statChanges.hasOwnProperty(unitId)) {
       return statChanges[unitId];
     }
 

@@ -62,7 +62,7 @@ export class UnitStatus extends HUDElement {
       (
         this.activeAnimEvt.hasActiveStatChange(this.unit.unitId) ||
         this.activeAnimEvt.hasActiveStatusEffectChange(this.unit.unitId)
-      ) && this.unit.state !== 'UNCONSCIOUS'
+      ) && this.unit.knockoutAnimationPlayed !== true
     ) {
       let idx = 0;
 

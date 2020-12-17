@@ -1,21 +1,12 @@
 import { ActiveAnimationEvent } from './ActiveAnimationEvent.jsx';
-import { DamageAnimation } from './DamageAnimation.jsx';
 
 export class AnimationController {
 
   constructor(characters, effects) {
-    this.characters = characters;
-    this.effects = effects;
+    //this.primaryEvents = ['BattleCompleteEvent', 'CoinFlipEvent', 'DamageEvent'];
+    this.primaryEvents = ['BattleCompleteEvent', 'CoinFlipEvent', 'AttackEvent', 'CardPlayEvent'];
 
-    this.activeAnimationEvent = new ActiveAnimationEvent();
-
-    this.eventAnimations = {
-      'DamageEvent' : new DamageAnimation(this.characters, this.effects)//,
-      //'KnockoutEvent' : new KnockoutAnimation(this.characters, this.effects)
-    };
-
-    this.primaryEvents = ['BattleCompleteEvent', 'CoinFlipEvent', 'DamageEvent'];
-    this.KnockoutEventName = 'KnockoutEvent';
+    this.activeAnimationEvent = new ActiveAnimationEvent(characters, effects, this.primaryEvents);
   }
 
   getActiveAnimationEventObject() {
@@ -23,26 +14,56 @@ export class AnimationController {
   }
 
   run(block, callback) {
-    // Parse the events for the major event
-    let primaryEvent = this.getPrimaryEvent(block.battleEvents);
-    let secondaryEvents = this.getSecondaryEvents(block.battleEvents);
+    // Break up the events into sections
+    let battleEventSegments = this.segmentEvents(block.battleEvents);
 
-    // Run the event
-    this.runEvent(primaryEvent, secondaryEvents);
+    // For each segment of events, enqueue
+    for (let eventSegment of battleEventSegments) {
+      // Parse the events for the major event
+      let primaryEvent = this.getPrimaryEvent(eventSegment);
+      let secondaryEvents = this.getSecondaryEvents(eventSegment);
 
-    // Emit the event for UI updates
-    // CALLBACK IS CALLED INDIRECTLY USING EVENTS IN HERE
-    this.activeAnimationEvent.enqueue(block, primaryEvent, secondaryEvents);
+      // Emit the event for UI updates
+      // CALLBACK IS CALLED INDIRECTLY USING EVENTS IN HERE
+      this.activeAnimationEvent.enqueue(block, primaryEvent, secondaryEvents);
+    }
   }
 
   update(delta) {
     this.activeAnimationEvent.update(delta);
   }
 
-  runEvent(event, secondaryEvents) {
-    if (this.eventAnimations.hasOwnProperty(event.name)) {
-      this.eventAnimations[event.name].run(event, this.determineKnockoutEvent(secondaryEvents));
+  segmentEvents(_battleEventsOriginal) {
+    // Operate on a copy
+    let battleEvents = JSON.parse(JSON.stringify(_battleEventsOriginal));
+
+    // Break up into segments
+    let segments = [], activeSegment = [];
+    for (let idx in battleEvents) {
+      if (this.primaryEvents.indexOf(battleEvents[idx].name) !== -1) {
+        // If the active segment has events, push onto segments
+        if (this.hasPrimaryEvent(activeSegment)) {
+          segments.push(activeSegment);
+        }
+
+        // Create new active segment
+        activeSegment = [battleEvents[idx]];
+      } else {
+        activeSegment.push(battleEvents[idx]);
+      }
     }
+
+    // Append last active segment
+    if (activeSegment.length > 0) {
+      segments.push(activeSegment);
+    }
+
+    return segments;
+  }
+
+  hasPrimaryEvent(events) {
+    let primaryEvents = events.filter((_event) => this.primaryEvents.indexOf(_event.name) !== -1);
+    return primaryEvents.length > 0;
   }
 
   getPrimaryEvent(events) {
@@ -52,10 +73,6 @@ export class AnimationController {
 
   getSecondaryEvents(events) {
     return events.filter((_event) => this.primaryEvents.indexOf(_event.name) === -1);
-  }
-
-  determineKnockoutEvent(events) {
-    return (events.filter((_event) => _event.name === this.KnockoutEventName)).length > 0;
   }
 
 }
