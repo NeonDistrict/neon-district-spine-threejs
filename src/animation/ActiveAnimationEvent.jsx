@@ -19,9 +19,10 @@ export class ActiveAnimationEvent {
     this.primaryEvents = primaryEvents;
 
     this.eventAnimations = {
-      'AttackEvent'   : new AttackAnimation(characters, effects),
-      'DamageEvent'   : new DamageAnimation(characters, effects),
-      'KnockoutEvent' : new KnockoutAnimation(characters, effects)
+      'AttackEvent'        : new AttackAnimation(characters, effects),
+      'CounterAttackEvent' : new AttackAnimation(characters, effects),
+      'DamageEvent'        : new DamageAnimation(characters, effects),
+      'KnockoutEvent'      : new KnockoutAnimation(characters, effects)
     };
     this.KnockoutEventName = 'KnockoutEvent';
   }
@@ -57,6 +58,10 @@ export class ActiveAnimationEvent {
     // For each secondary event, handle cases where we want to do one animation over the other
     let characterToAnimation = {};
     for (let secondaryEvent of secondaryEvents) {
+      if (!this.eventAnimations.hasOwnProperty(secondaryEvent.name)) {
+        continue;
+      }
+
       for (let _unitId of secondaryEvent.targetIds) {
         // Knockout event takes precedence always
         if (characterToAnimation.hasOwnProperty(_unitId) && characterToAnimation[_unitId].name === this.KnockoutEventName) {

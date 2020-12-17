@@ -3,8 +3,7 @@ import { ActiveAnimationEvent } from './ActiveAnimationEvent.jsx';
 export class AnimationController {
 
   constructor(characters, effects) {
-    //this.primaryEvents = ['BattleCompleteEvent', 'CoinFlipEvent', 'DamageEvent'];
-    this.primaryEvents = ['BattleCompleteEvent', 'CoinFlipEvent', 'AttackEvent', 'CardPlayEvent'];
+    this.primaryEvents = ['BattleCompleteEvent', 'CoinFlipEvent', 'AttackEvent', 'CardPlayEvent', 'CounterAttackEvent'];
 
     this.activeAnimationEvent = new ActiveAnimationEvent(characters, effects, this.primaryEvents);
   }
