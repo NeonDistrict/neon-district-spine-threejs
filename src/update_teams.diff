@@ -1,0 +1,131 @@
+diff --git a/src/animation/ActiveAnimationEvent.jsx b/src/animation/ActiveAnimationEvent.jsx
+index f2abf14..48ec6da 100644
+--- a/src/animation/ActiveAnimationEvent.jsx
++++ b/src/animation/ActiveAnimationEvent.jsx
+@@ -46,6 +46,10 @@ export class ActiveAnimationEvent {
+       return;
+     }
+ 
++    window.dispatchEvent(
++      new CustomEvent("updateTeams")
++    );
++
+     let obj = this.queue.shift();
+     this.currentEventName = obj.primaryEvent.name;
+     this.animationEndTime = Date.now() + this.addtlSeconds;
+@@ -99,7 +103,6 @@ export class ActiveAnimationEvent {
+ 
+     // For each event, kick off
+     for (let _unitId in characterToAnimation) {
+-      console.log(_unitId, characterToAnimation[_unitId].name);
+       let _event = characterToAnimation[_unitId];
+       if (this.eventAnimations.hasOwnProperty(_event.name)) {
+         this.eventAnimations[_event.name].run(_event);
+diff --git a/src/combat/CombatPlayer.jsx b/src/combat/CombatPlayer.jsx
+index 56ef35d..d7beefb 100644
+--- a/src/combat/CombatPlayer.jsx
++++ b/src/combat/CombatPlayer.jsx
+@@ -20,6 +20,7 @@ export class CombatPlayer extends CombatScene {
+ 
+     this.nextTeam;
+     this.nextUnit;
++    this.enqueuedTeamUpdates = [];
+ 
+     // API for combat calls
+     if (this.combatApi) {
+@@ -56,6 +57,7 @@ export class CombatPlayer extends CombatScene {
+     window.addEventListener('unregisterClickableRegion', this.handleRemoveClickableRegion.bind(this));
+     window.addEventListener('lockClickableRegions', this.lockClickableRegions.bind(this));
+     window.addEventListener('unlockClickableRegions', this.unlockClickableRegions.bind(this));
++    window.addEventListener('updateTeams', this.updateTeams.bind(this));
+     window.addEventListener('eventBlockComplete', this.moveToNextEventBlock.bind(this));
+   }
+ 
+@@ -382,7 +384,7 @@ export class CombatPlayer extends CombatScene {
+     if (!this.teams && data.teams) {
+       this.setTeams(data.teams);
+     } else if (data.teams) {
+-      this.updateTeams(data.teams);
++      //this.enqueueTeamUpdate(data.teams);
+     }
+ 
+     // Set the latest options for the player
+@@ -420,7 +422,7 @@ export class CombatPlayer extends CombatScene {
+     if (!this.teams && data.teams) {
+       this.setTeams(data.teams);
+     } else if (data.teams) {
+-      this.updateTeams(data.teams);
++      //this.enqueueTeamUpdate(data.teams);
+     }
+ 
+     // Set the latest options for the player
+@@ -542,7 +544,26 @@ export class CombatPlayer extends CombatScene {
+     });
+   }
+ 
+-  updateTeams(teams) {
++  enqueueTeamUpdate(teams) {
++    if (!this.enqueuedTeamUpdates.length) {
++      this.enqueuedTeamUpdates.push(null);
++    }
++
++    this.enqueuedTeamUpdates.push(teams);
++  }
++
++  updateTeams() {
++    console.log("Updating", this.enqueuedTeamUpdates.length);
++    if (!this.enqueuedTeamUpdates.length) {
++      return;
++    }
++
++    let teams = this.enqueuedTeamUpdates.shift();
++    if (!teams) {
++      console.log("Null?")
++      return;
++    }
++
+     for (let _teamIdx of ["one", "two"]) {
+       for (let _unitIdx in this.teams[_teamIdx]) {
+         let _unit = this.teams[_teamIdx][_unitIdx];
+@@ -600,7 +621,7 @@ export class CombatPlayer extends CombatScene {
+ 
+     // Update the teams
+     if (block.teams) {
+-      this.updateTeams(block.teams);
++      this.enqueueTeamUpdate(block.teams);
+     }
+ 
+     // If the battle is complete, we need to know this
+@@ -646,7 +667,7 @@ export class CombatPlayer extends CombatScene {
+ 
+   postAnimationCleanup() {
+     if (!this.battleComplete) {
+-        if (this.playerSelections.hasSelections() && CombatAnalysis.hasTaunt(this.nextUnit)) {
++      if (this.playerSelections.hasSelections() && CombatAnalysis.hasTaunt(this.nextUnit)) {
+         let taunter = CombatAnalysis.getTaunter(this.nextUnit);
+ 
+         // Make sure that the card selected is a valid choice
+@@ -657,6 +678,8 @@ export class CombatPlayer extends CombatScene {
+         }
+       }
+ 
++      this.updateTeams();
++
+       if (this.playerSelections.hasSelections()) {
+         this.unlockClickableRegions();
+       }
+diff --git a/src/objects/hud/UnitStatus.jsx b/src/objects/hud/UnitStatus.jsx
+index cbf56f4..c581188 100644
+--- a/src/objects/hud/UnitStatus.jsx
++++ b/src/objects/hud/UnitStatus.jsx
+@@ -171,9 +171,8 @@ export class UnitStatus extends HUDElement {
+     if (this.activeAnimEvt.activeStatChange(this.unit.unitId, 'HEALTH') !== false) {
+       let healthStatChange = this.activeAnimEvt.activeStatChange(this.unit.unitId, 'HEALTH');
+       let animDelta = this.activeAnimEvt.currentTimeDelta();
+-      let prevHealth = Math.max(Math.min(this.unit.stats.HEALTH - healthStatChange, this.unit.statsMax.HEALTH), 0.0);
+       health = (
+-        prevHealth + healthStatChange * Math.max(Math.min(1.0 - animDelta * 2.0, 1.0), 0.0)
++        this.unit.stats.HEALTH + healthStatChange * Math.max(Math.min(1.0 - animDelta * 2.0, 1.0), 0.0)
+       );
+     }
+ 

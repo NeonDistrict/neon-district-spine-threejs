@@ -417,6 +417,8 @@ export class SpineCharacter {
         if (!_slot.attachment) continue;
         _slot.attachment.region.texture = spineTexture;
       }
+
+      this.debug();
     }
   }
 
@@ -433,7 +435,7 @@ export class SpineCharacter {
   }
 
   debug() {
-    console.log("Debug turned off for SpineCharacter");
+    //console.log("Debug turned off for SpineCharacter");
     /*
     let atlas = this.atlasLoader.atlas;
     for (let region of atlas.regions) {
@@ -448,27 +450,110 @@ export class SpineCharacter {
     for (let skin of skins) {
       console.log("Skin Name:", skin.name);
     }
-
+    let obj = {};
     let attachments = this.skeletonMesh.skeleton.skin.getAttachments();
     for (let attachment of attachments) {
-      console.log("Attachment Name:", attachment.name);
+      if (!attachment.attachment || !attachment.attachment.region) continue;
+      obj[attachment.name] = {
+        x      : attachment.attachment.region.x,
+        y      : attachment.attachment.region.y,
+        height : attachment.attachment.region.height,
+        width  : attachment.attachment.region.width,
+      };
     }
+    console.log(JSON.stringify(obj));
 
     for (let slot of this.skeletonMesh.skeleton.slots) {
       console.log("Slot Name:", slot.data.name);
     }
+    */
 
+    // Updating the Spine associated files
+    //this.listAttachments();
+    //this.listAnimations();
+
+  }
+
+  listAttachments() {
     let obj = {};
-    for (let slot of this.skeletonMesh.skeleton.slots) {
-      if (!slot.attachment) continue;
-      obj[slot.data.name] = {
-        x      : slot.attachment.region.x,
-        y      : slot.attachment.region.y,
-        height : slot.attachment.region.height,
-        width  : slot.attachment.region.width,
-      };
+    let skins = this.skeletonMesh.skeleton.data.skins;
+    for (let skin of skins) {
+      if (!skin.attachments || skin.name === 'default' || typeof skin.name !== 'string') continue;
+      obj[skin.name.toLowerCase()] = {};
+      for (let attachment_objects of skin.attachments) {
+        for (let key in attachment_objects) {
+          let attachment = attachment_objects[key];
+          obj[skin.name.toLowerCase()][key] = {
+            x      : attachment.region.x,
+            y      : attachment.region.y,
+            height : attachment.region.height,
+            width  : attachment.region.width,
+          }
+        }
+      }
     }
     console.log(JSON.stringify(obj));
-    */
+  }
+
+  listAnimations() {
+    let animations = {}, animationList = [];
+    for (let animation of this.skeletonData.animations) {
+      animationList.push(animation.name);
+
+      if (animation.name.indexOf('[') === 0) {
+        continue;
+      }
+
+      let re = new RegExp(`^([^\_]*)_(.*)$`);
+      let matches = re.exec(animation.name);
+      if (!matches || matches.length < 3) {
+        console.error("Could not parse animation:", animation.name);
+        continue;
+      }
+
+      let animationName = matches[1];
+      let animationType = matches[2];
+      //let animationNumber = matches[3];
+
+      if (!animations.hasOwnProperty(animationName)) {
+        animations[animationName] = {};
+      }
+
+      let parsedType = this.parseAnimationType(animationType);
+      if (!parsedType) {
+        console.error("Could not parse animation type:", animationType);
+        continue;
+      }
+
+      if (!animations[animationName].hasOwnProperty(parsedType)) {
+        animations[animationName][parsedType] = animation.name;
+      }
+    }
+    console.log(JSON.stringify(animationList));
+    console.log(JSON.stringify(animations));
+  }
+
+  parseAnimationType(type) {
+    if (type.indexOf('PoweredAtk') !== -1) {
+      return 'pwdAtk';
+    } else if (type.indexOf('Atk') !== -1) {
+      return 'baseAtk';
+    } else if (type.indexOf('Hit') !== -1) {
+      return 'baseHit';
+    } else if (type.indexOf('Idle') !== -1) {
+      return 'baseIdle';
+    } else if (type.indexOf('Buff') !== -1) {
+      return 'buff';
+    } else if (type.indexOf('Death') !== -1) {
+      return 'death';
+    } else if (type.indexOf('Heal') !== -1) {
+      return 'heal';
+    } else if (type.indexOf('Rez') !== -1) {
+      return 'rez';
+    } else if (type.indexOf('Taunt') !== -1) {
+      return 'taunt';
+    } else {
+      return null;
+    }
   }
 }
