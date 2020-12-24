@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { SpineScene } from "../core/SpineScene.jsx";
 import { VideoTexture } from "../core/VideoTexture.jsx";
 import { SpineCharacter } from "../objects/SpineCharacter.jsx";
+import { SpineDrone } from "../objects/SpineDrone.jsx";
 import { SpineBackground } from "../objects/SpineBackground.jsx";
 import BACKGROUNDS from "../data/backgrounds.js";
 import WEAPONS_TO_ANIMATIONS from "../data/weaponsToAnimations.js";
 import ANIMATIONS from "../data/animations.js";
+import DRONES from "../data/drones.js";
 
 export class Stage extends SpineScene {
   constructor(props) {
@@ -33,6 +35,28 @@ export class Stage extends SpineScene {
         case 5:
         case 7:
           return 0.148;
+        // Center
+        case 9:
+          return 0.134;
+        case -1:
+          return 0.15;
+        default:
+          throw 'Invalid combat position for scale';
+      }
+    } else if (typeof value === 'string' && value === 'drone') {
+      switch(position) {
+        // Back
+        case 0:
+        case 2:
+        case 4:
+        case 6:
+          return 0.132;
+        // Front
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+          return 0.145;
         // Center
         case 9:
           return 0.134;
@@ -245,7 +269,20 @@ export class Stage extends SpineScene {
       this.characters[index].spine = new SpineCharacter(
         this.assetManager, skeleton, index, this.characters[index].atlasFile
       );
+
+      // Create the Drone object if needed
+      if (this.characters[index].hasOwnProperty('weapon') && this.isDroneWeapon(this.characters[index].weapon)) {
+        let weapon = this.characters[index].weapon.split('-');
+
+        this.characters[index].drone = new SpineDrone(
+          this.assetManager, weapon[0], weapon[1], index
+        );
+      }
     }
+  }
+
+  isDroneWeapon(weapon = "") {
+    return DRONES.hasOwnProperty(weapon.split('-')[0]);
   }
 
   constructBackgrounds() {
@@ -296,8 +333,24 @@ export class Stage extends SpineScene {
         return this.getPosition(a.position)[1] < this.getPosition(b.position)[1] ? 1 : -1;
       }).bind(this))
 
+      // Add to the internal list
       for (let index in this.characters) {
-        // Add to the internal list
+
+        // Drone spine
+        if (this.characters[index].drone) {
+          let dronePosition = this.getPosition(this.characters[index].position);
+          dronePosition[1] -= 300; // Lower the drone
+
+          skeletons.push(
+            this.characters[index].drone.createMesh(
+              ...dronePosition, this.getScale('drone', this.characters[index].position)
+            )
+          );
+
+          this.characters[index].drone.loadDroneImage();
+        }
+
+        // Character spine
         skeletons.push(
           this.characters[index].spine.createMesh(
             this.characters[index].skin,

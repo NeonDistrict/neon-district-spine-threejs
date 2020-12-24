@@ -56,7 +56,7 @@ export default class CombatReview extends Component {
       'nftId'    : "79228162551158388693916474895",
       'scale'    : 'character',
       'skin'     : 'Female',
-      'weapon'   : 'blkplasmaspear-legendary',
+      'weapon'   : 'blktwintanto-rare',
       'atlasFile' : 'nfts/testnet/79228162551158388693916474895-spine.atlas',
       //'outfit'   : ['female', 'blkorigingenius', 'common']
     },

@@ -417,8 +417,6 @@ export class SpineCharacter {
         if (!_slot.attachment) continue;
         _slot.attachment.region.texture = spineTexture;
       }
-
-      this.debug();
     }
   }
 
@@ -468,17 +466,33 @@ export class SpineCharacter {
     }
     */
 
+    //console.log(this.skeletonMesh)
+    //debugger;
+
     // Updating the Spine associated files
     //this.listAttachments();
     //this.listAnimations();
 
+    let obj = {};
+    let attachments = this.skeletonMesh.skeleton.skin.getAttachments();
+    for (let attachment of attachments) {
+      if (!attachment.attachment || !attachment.attachment.region) continue;
+      obj[attachment.name] = {
+        x      : attachment.attachment.region.x,
+        y      : attachment.attachment.region.y,
+        height : attachment.attachment.region.height,
+        width  : attachment.attachment.region.width,
+      };
+    }
+    console.log(JSON.stringify(obj));
+
   }
 
   listAttachments() {
-    let obj = {};
+    let obj = {}, all_obj = {};
     let skins = this.skeletonMesh.skeleton.data.skins;
     for (let skin of skins) {
-      if (!skin.attachments || skin.name === 'default' || typeof skin.name !== 'string') continue;
+      if (!skin.attachments || typeof skin.name !== 'string') continue;
       obj[skin.name.toLowerCase()] = {};
       for (let attachment_objects of skin.attachments) {
         for (let key in attachment_objects) {
@@ -489,10 +503,17 @@ export class SpineCharacter {
             height : attachment.region.height,
             width  : attachment.region.width,
           }
+          all_obj[key] = {
+            x      : attachment.region.x,
+            y      : attachment.region.y,
+            height : attachment.region.height,
+            width  : attachment.region.width,
+          };
         }
       }
     }
     console.log(JSON.stringify(obj));
+    console.log(JSON.stringify(all_obj));
   }
 
   listAnimations() {

@@ -7,27 +7,27 @@ export default class CombatScene extends Component {
       'position' : 0,
       'scale'    : 'character',
       'skin'     : 'Female',
-      'pose'     : 'BladeSml_BaseIdle_001',
+      'weapon'   : 'blkprotectionorb-rare',
       'outfit'   : ['female', 'natoshi', 'legendary']
     },
     {
       'position' : 1,
       'scale'    : 'character',
       'skin'     : 'Male',
-      'pose'     : 'EnergyMed_BasicIdle_001',
+      'weapon'   : 'blkpartnerrevelatorz17-ultrarare',
       'outfit'   : ['male', 'powlock', 'uncommon']
     },{
       'position' : 2,
       'scale'    : 'character',
       'skin'     : 'Male',
-      'pose'     : 'BladeMed_BaseIdle_001',
+      'weapon'   : 'blkoriginwonderball-uncommon',
       'outfit'   : ['male', 'blkorigingenius', 'common']
     },
     {
       'position' : 3,
       'scale'    : 'character',
       'skin'     : 'Female',
-      'pose'     : 'Unarmed_BasicIdle_001',
+      'weapon'   : 'blkprotectionorb-legendary',
       'outfit'   : ['female', 'cerespreserverr', 'rare']
     },
     {
