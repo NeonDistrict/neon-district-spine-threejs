@@ -1,4 +1,3 @@
-import ANIMATIONS from '../data/animations.js';
 import { AttackAnimation } from './AttackAnimation.jsx';
 import { DamageAnimation } from './DamageAnimation.jsx';
 import { KnockoutAnimation } from './KnockoutAnimation.jsx';

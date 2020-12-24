@@ -41,13 +41,14 @@ export default class CombatReview extends Component {
       'nftId'     : "test0",
       'scale'     : 'character',
       'skin'      : 'Female',
-      'weapon'    : 'blktwintanto-rare',
+      'weapon'    : 'blkprotectionorb-rare',
       'atlasFile' : 'nfts/testnet/79228162532711644620206923266-spine.atlas',
       //'outfit'   : ['female', 'blkorigindemon', 'common']
     },{
       'position' : 1,
       'nftId'    : "test1",
       //'nftId'    : "ai-practice-blkorigindemon-female-0",
+      'weapon'   : 'blkoriginwonderball-uncommon',
       'scale'    : 'character',
       'skin'     : 'Female',
       //'outfit'   : ['male', 'blkoriginmedic', 'common']
@@ -80,7 +81,7 @@ export default class CombatReview extends Component {
       'nftId'    : "test5",
       'scale'    : 'character',
       'skin'     : 'Male',
-      'pose'     : 'DualRangedSml_BasicIdle_001',
+      'weapon'   : 'blkpartnerrevelatorz17-ultrarare',
       //'outfit'   : ['male', 'blkoriginjack', 'common']
     },
     {
