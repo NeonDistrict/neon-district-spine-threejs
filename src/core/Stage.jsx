@@ -173,14 +173,9 @@ export class Stage extends SpineScene {
         this.effects.vfx0.setPlaybackRate(nextProps.effectTest.speed);
       }
 
-      // Flip X
-      if (nextProps.effectTest.hasOwnProperty('flipX')) {
-        this.effects.vfx0.setFlipX(nextProps.effectTest.flipX);
-      }
-
-      // Flip Y
-      if (nextProps.effectTest.hasOwnProperty('flipY')) {
-        this.effects.vfx0.setFlipY(nextProps.effectTest.flipY);
+      // Flip XY
+      if (nextProps.effectTest.hasOwnProperty('flipX') || nextProps.effectTest.hasOwnProperty('flipY')) {
+        this.effects.vfx0.setOrientation(nextProps.effectTest.flipX || false, nextProps.effectTest.flipY || false);
       }
 
       // Blend Mode

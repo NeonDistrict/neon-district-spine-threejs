@@ -140,7 +140,7 @@ export default class EffectReview extends Component {
             background={this.state.background}
             effectTest={{
               'effectKey' : this.state.visualEffect,
-              'effectIndex' : "4"
+              'effectIndex' : "0"
             }}
             key={key}
           />

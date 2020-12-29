@@ -85,13 +85,13 @@ export class VideoTexture {
     this.key = key;
 
     // Set all parameters
+    // Note, set orientation prior to rotation
     this.setSize(params.Width, params.Height, params.Scale);
     this.setPosition(params["X Position"], params["Y Position"]);
+    this.setOrientation(params["Flip X"], params["Flip Y"]);
     this.setRotation(params.Rotation);
     this.setOpacity(params.Opacity);
     this.setPlaybackRate(params.Speed);
-    this.setFlipX(params["Flip X"]);
-    this.setFlipY(params["Flip Y"]);
     this.setBlendMode(params.Blending);
 
     // Set the source
@@ -126,8 +126,14 @@ export class VideoTexture {
   }
 
   setPosition(x_pos, y_pos) {
-    this.x_pos = x_pos + this.getUnitMod('x_pos');
-    this.y_pos = (y_pos + this.getUnitMod('y_pos') + 50) * this.getUnitMod('scale') - 50;
+    this.x_pos = this.getUnitMod('x_pos') + x_pos * this.getUnitMod('scale');
+    this.y_pos = this.getUnitMod('y_pos') + y_pos * this.getUnitMod('scale');
+
+    // X position needs to be offset to the right if we're flipping X
+    if (this.unit.hasOwnProperty('flipX') && this.unit.flipX) {
+      this.x_pos = this.getUnitMod('x_pos') - x_pos * this.getUnitMod('scale');
+    }
+
     this.mesh.position.set(this.x_pos, this.y_pos, 1);
   }
 
@@ -138,7 +144,7 @@ export class VideoTexture {
   }
 
   setRotation(rot = 0.0) {
-    this.mesh.rotation.z = rot;
+    this.mesh.rotation.z -= rot;
   }
 
   setOpacity(opacity = 1.0) {
@@ -167,7 +173,7 @@ export class VideoTexture {
     if (!this.hasOwnProperty('unit') || !this.unit.hasOwnProperty(key)) {
       if (key === 'scale') {
         return 1;
-      } else if (key === 'flipX') {
+      } else if (key === 'flipX' || key === 'flipY') {
         return false;
       } else {
         return 0;
@@ -177,25 +183,38 @@ export class VideoTexture {
     return this.unit[key];
   }
 
-  setFlipX(flipX = false) {
+  setOrientation(flipX = false, flipY = false) {
     flipX = Boolean(flipX ^ this.getUnitMod('flipX'));
+    flipY = Boolean(flipY ^ this.getUnitMod('flipY'));
 
+    /*
     if (flipX) {
-      this.mesh.rotation.z = Math.PI * 3 / 2;
-      //this.mesh.material.map.repeat.x = -1;
+      this.mesh.material.map.repeat.x = -1;
     } else {
-      this.mesh.rotation.z = 0;
-      //this.mesh.material.map.repeat.x = 1;
+      this.mesh.material.map.repeat.x = 1;
     }
-  }
 
-  setFlipY(flipY = false) {
     if (flipY) {
-      this.mesh.rotation.z = Math.PI / 2;
-      //this.mesh.material.map.repeat.y = - 1;
+      this.mesh.material.map.repeat.y = - 1;
     } else {
-      this.mesh.rotation.z = Math.PI * 3 / 2;
-      //this.mesh.material.map.repeat.y = 1;
+      this.mesh.material.map.repeat.y = 1;
+    }
+    */
+
+    if (flipX && flipY) {
+      this.mesh.rotation.z = Math.PI; // Rotate X by 180 degrees
+      this.mesh.rotation.x = 0; // Don't flip Y, already accounted for
+    } else if (flipX && !flipY) {
+      // Done
+      this.mesh.rotation.z = Math.PI; // Rotate X by 180 degrees
+      this.mesh.rotation.x = Math.PI; // Flip Y so that top stays top
+    } else if (!flipX && flipY) {
+      this.mesh.rotation.z = 0;
+      this.mesh.rotation.x = Math.PI; // Flip Y
+    } else {
+      // Done
+      this.mesh.rotation.z = 0; // Do not rotate X at all
+      this.mesh.rotation.x = 0; // No need to flip to account for anything
     }
   }
 }
