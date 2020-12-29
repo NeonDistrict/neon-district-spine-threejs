@@ -10,6 +10,7 @@ export default function Navigation(props) {
 		<Link to="/">Home</Link>
 		<Link to="/character-equipment">Character Equipment</Link>
 		<Link to="/background-review">Background Review</Link>
+		<Link to="/effect-creator">VFX Creator</Link>
 		<Link to="/effect-review">VFX Review</Link>
 		<Link to="/combat-review">Combat Review</Link>
 		<Link to="/combat-scene">Combat Scene</Link>

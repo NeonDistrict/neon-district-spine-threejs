@@ -1,11 +1,17 @@
+import VISUALEFFECTS from "../data/visualEffects.js";
+
 export class VideoTexture {
-  constructor(scene, src = null, options = {}) {
+  constructor(scene, options = {}) {
     if (!scene) {
       throw `Scene required for VideoTexture`;
     }
 
     this.scene  = scene;
-    this.src    = src || null;
+    this.src    = null;
+    this.key    = null;
+
+    // Constants
+    this.VISUAL_EFFECTS_ROOT_SRC = "https://neon-district-season-one.s3.amazonaws.com/visual-effects/V1/";
 
     // Init & Defaults
     this.width    = 1;
@@ -20,17 +26,23 @@ export class VideoTexture {
     this.scale    = 1.0;
     this.flipX    = 1.0;
     this.flipY    = 1.0;
+    this.unit     = {};
 
     if (options && typeof options === 'object') {
       for (let option in options) {
         if (options.hasOwnProperty(option) && this.hasOwnProperty(option)) {
           this[option] = options[option];
+          console.log(option, this[option]);
         }
       }
     }
 
     // Create the element
     this.video = document.createElement('video');
+    this.video.crossOrigin = "anonymous";
+
+    // Now create itself
+    this.createEffect();
   }
 
   createEffect() {
@@ -50,10 +62,47 @@ export class VideoTexture {
     this.mesh.scale.set(this.width, this.height, 1);
     this.mesh.material.map.wrapS = THREE.RepeatWrapping;
     this.mesh.material.map.wrapT = THREE.RepeatWrapping;
+    this.mesh.material.side = THREE.DoubleSide;
   }
 
   setLoop(loop) {
     this.video.loop = !!loop;
+  }
+
+  getKey() {
+    return this.key;
+  }
+
+  setKey(key) {
+    // Get parameters from key
+    let params = this.getParametersFromKey(key);
+    if (!params) {
+      console.error("Could not determine parameters for effects key:", key);
+      return;
+    }
+
+    // Save the key
+    this.key = key;
+
+    // Set all parameters
+    this.setSize(params.Width, params.Height, params.Scale);
+    this.setPosition(params["X Position"], params["Y Position"]);
+    this.setRotation(params.Rotation);
+    this.setOpacity(params.Opacity);
+    this.setPlaybackRate(params.Speed);
+    this.setFlipX(params["Flip X"]);
+    this.setFlipY(params["Flip Y"]);
+    this.setBlendMode(params.Blending);
+
+    // Set the source
+    let src = this.VISUAL_EFFECTS_ROOT_SRC + params.Filename;
+    this.setSrc(src);
+  }
+
+  getParametersFromKey(key) {
+    if (VISUALEFFECTS.V1.hasOwnProperty(key)) {
+      return VISUALEFFECTS.V1[key];
+    }
   }
 
   getSrc() {
@@ -61,6 +110,12 @@ export class VideoTexture {
   }
 
   setSrc(src) {
+    // Clear the current source
+    this.video.pause();
+    this.video.removeAttribute('src'); // empty source
+    this.video.load();
+
+    // Set the new source
     this.src = src;
     this.video.src = src;
     this.video.load();
@@ -71,14 +126,14 @@ export class VideoTexture {
   }
 
   setPosition(x_pos, y_pos) {
-    this.x_pos = x_pos;
-    this.y_pos = y_pos;
-    this.mesh.position.set(x_pos, y_pos, 1);
+    this.x_pos = x_pos + this.getUnitMod('x_pos');
+    this.y_pos = (y_pos + this.getUnitMod('y_pos') + 50) * this.getUnitMod('scale') - 50;
+    this.mesh.position.set(this.x_pos, this.y_pos, 1);
   }
 
   setSize(width, height, scale = 1.0) {
-    this.width = width * scale;
-    this.height = height * scale;
+    this.width = width * scale * this.getUnitMod('scale');
+    this.height = height * scale * this.getUnitMod('scale');
     this.mesh.scale.set(this.width, this.height, 1);
   }
 
@@ -108,19 +163,39 @@ export class VideoTexture {
     }
   }
 
+  getUnitMod(key) {
+    if (!this.hasOwnProperty('unit') || !this.unit.hasOwnProperty(key)) {
+      if (key === 'scale') {
+        return 1;
+      } else if (key === 'flipX') {
+        return false;
+      } else {
+        return 0;
+      }
+    }
+
+    return this.unit[key];
+  }
+
   setFlipX(flipX = false) {
+    flipX = Boolean(flipX ^ this.getUnitMod('flipX'));
+
     if (flipX) {
-      this.mesh.material.map.repeat.x = - 1;
+      this.mesh.rotation.z = Math.PI * 3 / 2;
+      //this.mesh.material.map.repeat.x = -1;
     } else {
-      this.mesh.material.map.repeat.x = 1;
+      this.mesh.rotation.z = 0;
+      //this.mesh.material.map.repeat.x = 1;
     }
   }
 
   setFlipY(flipY = false) {
     if (flipY) {
-      this.mesh.material.map.repeat.y = - 1;
+      this.mesh.rotation.z = Math.PI / 2;
+      //this.mesh.material.map.repeat.y = - 1;
     } else {
-      this.mesh.material.map.repeat.y = 1;
+      this.mesh.rotation.z = Math.PI * 3 / 2;
+      //this.mesh.material.map.repeat.y = 1;
     }
   }
 }

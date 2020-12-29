@@ -9,6 +9,8 @@ export class CombatScene extends Stage {
     super(props);
     this.background = props.background;
     this.characters = props.characters || [];
+
+    // Specifically for effects tests
     this.effectTest = props.effectTest;
 
     // Load the image cache early on

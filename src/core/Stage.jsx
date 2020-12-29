@@ -196,6 +196,22 @@ export class Stage extends SpineScene {
         this.effects.vfx0.play();
       }
     }
+
+    if (
+        nextProps.effectTest && typeof nextProps.effectTest === 'object' &&
+        nextProps.effectTest.hasOwnProperty('effectKey') && nextProps.effectTest.effectKey
+    ) {
+      let index = "vfx0";
+      if (nextProps.effectTest.hasOwnProperty('effectIndex')) {
+        index = String(nextProps.effectTest.effectIndex);
+        console.log("using index", index);
+      }
+
+      console.log("Setting effect key:", nextProps.effectTest.effectKey, this.effects[index].getKey(), nextProps.effectTest.effectKey != this.effects[index].getKey());
+      this.effects[index].setKey(nextProps.effectTest.effectKey);
+      this.effects[index].setLoop(true);
+      this.effects[index].play();
+    }
   }
 
   constructEffects() {
@@ -204,30 +220,35 @@ export class Stage extends SpineScene {
       'vfx0' : new VideoTexture(this.scene)
     };
 
-    // For each effect plane, create the effect
-    // for now, this is just for a single effect test
-    this.effects.vfx0.createEffect();
+    // Pull the base scaling, position, and flip data
+    let positionBase = this.getPosition(-1);
+    let scaleBase = this.getScale('character', -1);
 
-    /*
-    if (
-        this.effectTest && typeof this.effectTest === 'object' &&
-        this.effectTest.hasOwnProperty('src') && this.effectTest.src
-    ) {
-      this.setEffectVfx0(
-        this.effectTest.src,
-        this.effectTest.size,
-        this.effectTest.pos
-      );
+    for (let index in this.characters) {
+      // Choose the key
+      let key = this.characters[index].hasOwnProperty('nftId') ? this.characters[index].nftId : String(index);
+
+      // Pull the scaling, position, and flip data
+      let position = this.getPosition(this.characters[index].position);
+      let scale = this.getScale(this.characters[index].scale, this.characters[index].position);
+
+      // Get the ratios
+      let scaleRatio = scale / scaleBase;
+      let xPos  = position[0] - positionBase[0];
+      let yPos  = position[1] - positionBase[1];
+      let flipX = position[2];
+
+      this.effects[key] = new VideoTexture(this.scene, {
+        'unit' : {
+          'scale' : scaleRatio,
+          'x_pos' : xPos,
+          'y_pos' : yPos,
+          'flipX' : flipX
+        }
+      });
+
+      console.log("Added video texture for character with key:", key, scaleRatio, xPos, yPos, flipX);
     }
-    */
-  }
-
-  setEffectVfx0(src, size, pos) {
-    this.effects.vfx0.setSrc(src);
-    this.effects.vfx0.setSize(size.width, size.height);
-    this.effects.vfx0.setPosition(pos.x_pos, pos.y_pos);
-    this.effects.vfx0.setLoop(true);
-    this.effects.vfx0.play();
   }
 
   deriveIdlePoseFromWeaponType(weaponType) {
