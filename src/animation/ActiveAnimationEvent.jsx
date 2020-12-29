@@ -6,13 +6,15 @@ export class ActiveAnimationEvent {
 
   constructor(characters, effects, primaryEvents) {
     this.animationEndTime = 0;
-    this.addtlSeconds = 3000;
+    this.addtlMilliseconds = 3000;
 
     this.queue = [];
 
     this.currentEventName = null;
     this.currentStatChanges = {};
     this.currentStatusEffectChanges = {};
+
+    this.characters = characters;
 
     // Animation Events
     this.primaryEvents = primaryEvents;
@@ -45,12 +47,34 @@ export class ActiveAnimationEvent {
       return;
     }
 
+    // Get next event in the queue
     let obj = this.queue.shift();
-    this.currentEventName = obj.primaryEvent.name;
-    this.animationEndTime = Date.now() + this.addtlSeconds;
-    this.runEvent(obj.primaryEvent, obj.secondaryEvents);
+
+    // Run the events
+    let characterToAnimation = this.runEvent(obj.primaryEvent, obj.secondaryEvents);
     this.getLatestStatChanges({'battleEvents':[obj.primaryEvent,...obj.secondaryEvents]});
     this.getLatestStatusEffectChanges({'battleEvents':[obj.primaryEvent,...obj.secondaryEvents]});
+
+    // Determine how long to run the animation for
+    this.currentEventName = obj.primaryEvent.name;
+    this.animationEndTime = Date.now() + this.calculateAdditionalMS(characterToAnimation);
+  }
+
+  calculateAdditionalMS(characterToAnimation) {
+    // Default amount
+    let addtlMilliseconds = this.addtlMilliseconds;
+
+    for (let characterUuid in characterToAnimation) {
+      if (characterToAnimation[characterUuid].name === 'AttackEvent') {
+        for (let character of this.characters) {
+          if (character.unitId === characterUuid && character.drone) {
+            addtlMilliseconds += 2000;
+          }
+        }
+      }
+    }
+
+    return addtlMilliseconds;
   }
 
   runEvent(primaryEvent, secondaryEvents) {
@@ -104,6 +128,8 @@ export class ActiveAnimationEvent {
         this.eventAnimations[_event.name].run(_event);
       }
     }
+
+    return characterToAnimation;
   }
 
   getLatestStatChanges(block) {
@@ -189,7 +215,7 @@ export class ActiveAnimationEvent {
   }
 
   currentTimeDelta() {
-    return Math.max((this.animationEndTime - Date.now()) / this.addtlSeconds, 0.0);
+    return Math.max((this.animationEndTime - Date.now()) / this.addtlMilliseconds, 0.0);
   }
 
 }

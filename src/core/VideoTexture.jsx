@@ -32,7 +32,6 @@ export class VideoTexture {
       for (let option in options) {
         if (options.hasOwnProperty(option) && this.hasOwnProperty(option)) {
           this[option] = options[option];
-          console.log(option, this[option]);
         }
       }
     }
@@ -40,6 +39,11 @@ export class VideoTexture {
     // Create the element
     this.video = document.createElement('video');
     this.video.crossOrigin = "anonymous";
+    this.video.onended = (() => {
+      // Restart current video, pause
+      this.video.currentTime = 0;
+      this.video.pause();
+    }).bind(this);
 
     // Now create itself
     this.createEffect();
@@ -84,6 +88,10 @@ export class VideoTexture {
     // Save the key
     this.key = key;
 
+    // Handle any prior videos
+    this.video.currentTime = 0;
+    this.video.pause();
+
     // Set all parameters
     // Note, set orientation prior to rotation
     this.setSize(params.Width, params.Height, params.Scale);
@@ -91,12 +99,12 @@ export class VideoTexture {
     this.setOrientation(params["Flip X"], params["Flip Y"]);
     this.setRotation(params.Rotation);
     this.setOpacity(params.Opacity);
-    this.setPlaybackRate(params.Speed);
     this.setBlendMode(params.Blending);
 
     // Set the source
     let src = this.VISUAL_EFFECTS_ROOT_SRC + params.Filename;
     this.setSrc(src);
+    this.setPlaybackRate(params.Speed);
   }
 
   getParametersFromKey(key) {
@@ -110,11 +118,6 @@ export class VideoTexture {
   }
 
   setSrc(src) {
-    // Clear the current source
-    this.video.pause();
-    this.video.removeAttribute('src'); // empty source
-    this.video.load();
-
     // Set the new source
     this.src = src;
     this.video.src = src;

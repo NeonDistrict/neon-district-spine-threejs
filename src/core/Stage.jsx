@@ -241,8 +241,6 @@ export class Stage extends SpineScene {
           'flipX' : flipX
         }
       });
-
-      console.log("Added video texture for character with key:", key, scaleRatio, xPos, yPos, flipX);
     }
   }
 
@@ -275,6 +273,9 @@ export class Stage extends SpineScene {
       if (!this.characters[index].pose) {
         this.characters[index].pose = ANIMATIONS['Unarmed'].baseIdle;
       }
+
+      // Store the weapon type to the character from the pose
+      this.characters[index].weaponAnimationType = (this.characters[index].pose.split('_'))[0];
 
       // Allow for overriding the skeleton
       if (this.characters[index].hasOwnProperty('skeleton')) {

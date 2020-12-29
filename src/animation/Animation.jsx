@@ -12,6 +12,29 @@ export class Animation {
     // Fill in for each animation
   }
 
+  // Play on Delay or Play Immediately
+  playEffect(index, effectKey, delay = 0.001) {
+    if (this.effects.hasOwnProperty(index)) {
+      if (delay > 0.001) {
+        setTimeout(this.playEffectCall.bind(this, index, effectKey), delay * 1000);
+      } else {
+        this.playEffectCall(index, effectKey);
+      }
+    } else {
+      console.error("Effect index not found in playEffect:", index);
+    }
+  }
+
+  playEffectCall(index, effectKey) {
+    if (this.effects.hasOwnProperty(index)) {
+      this.effects[index].setKey(effectKey);
+      this.effects[index].setLoop(false);
+      this.effects[index].play();
+    } else {
+      console.error("Effect index not found in playEffectCall:", index);
+    }
+  }
+
   getInvokers(event) {
     return this.characters.filter(_char => event.invokerIds.indexOf(_char.unitId) !== -1);
   }

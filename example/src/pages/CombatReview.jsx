@@ -41,14 +41,14 @@ export default class CombatReview extends Component {
       'nftId'     : "test0",
       'scale'     : 'character',
       'skin'      : 'Female',
-      'weapon'    : 'blkprotectionorb-rare',
+      'weapon'    : 'blkoriginpulsarv16-rare',
       'atlasFile' : 'nfts/testnet/79228162532711644620206923266-spine.atlas',
       //'outfit'   : ['female', 'blkorigindemon', 'common']
     },{
       'position' : 1,
       'nftId'    : "test1",
       //'nftId'    : "ai-practice-blkorigindemon-female-0",
-      'weapon'   : 'blkoriginwonderball-uncommon',
+      'weapon'   : 'blkorigingladiusmm-uncommon',
       'scale'    : 'character',
       'skin'     : 'Female',
       //'outfit'   : ['male', 'blkoriginmedic', 'common']
@@ -66,14 +66,15 @@ export default class CombatReview extends Component {
       'nftId'    : "test3",
       'scale'    : 'character',
       'skin'     : 'Male',
-      'pose'     : 'ConsoleSml_BasicIdle_001',
+      'weapon'   : 'blkhellbringer-legendary'
+      //'pose'     : 'ConsoleSml_BasicIdle_001',
       //'outfit'   : ['male', 'blkoriginghost', 'common']
     },{
       'position' : 4,
       'nftId'    : "test4",
       'scale'    : 'character',
       'skin'     : 'Female',
-      'pose'     : 'BladeMed_BaseIdle_001',
+      'weapon'   : 'blkoriginwristbox-legendary'
       //'outfit'   : ['female', 'blkoriginheavy', 'common']
     },
     {
@@ -81,7 +82,7 @@ export default class CombatReview extends Component {
       'nftId'    : "test5",
       'scale'    : 'character',
       'skin'     : 'Male',
-      'weapon'   : 'blkpartnerrevelatorz17-ultrarare',
+      'weapon'   : 'blkoriginsaltas-ultrarare',
       //'outfit'   : ['male', 'blkoriginjack', 'common']
     },
     {
@@ -89,7 +90,7 @@ export default class CombatReview extends Component {
       'nftId'    : "test6",
       'scale'    : 'character',
       'skin'     : 'Female',
-      'pose'     : 'ThrustingSml_BaseIdle_001',
+      'weapon'   : 'blksonicbayonet-ultrarare',
       //'outfit'   : ['female', 'blkoriginmedic', 'common']
     },
     {
@@ -97,7 +98,7 @@ export default class CombatReview extends Component {
       'nftId'    : "test7",
       'scale'    : 'character',
       'skin'     : 'Male',
-      'pose'     : 'DualRangedMed_BasicIdle_001',
+      'weapon'   : 'blkspecialdeathknightblade-ultrarare',
       //'outfit'   : ['male', 'blkorigingenius', 'common']
     }];
 

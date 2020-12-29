@@ -13,6 +13,7 @@ export class DamageAnimation extends Animation {
       }
 
       this.playAnimation(_target, 'baseHit', 0.9, true);
+      this.playEffect(_target.nftId, 'hit-target-1', 0.9);
     }
   }
 

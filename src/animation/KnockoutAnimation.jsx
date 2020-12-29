@@ -10,6 +10,7 @@ export class KnockoutAnimation extends Animation {
     for (let _target of targets) {
       _target.knockoutAnimationPlayed = true;
       this.playAnimation(_target, 'death', 0.9, false);
+      this.playEffect(_target.nftId, 'knockout-target', 0.75);
     }
   }
 
