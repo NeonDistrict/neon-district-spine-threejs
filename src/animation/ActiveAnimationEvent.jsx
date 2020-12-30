@@ -1,10 +1,6 @@
-import { AttackAnimation } from './AttackAnimation.jsx';
-import { DamageAnimation } from './DamageAnimation.jsx';
-import { KnockoutAnimation } from './KnockoutAnimation.jsx';
-
 export class ActiveAnimationEvent {
 
-  constructor(characters, effects, primaryEvents) {
+  constructor(characters, effects, primaryEvents, eventAnimations) {
     this.animationEndTime = 0;
     this.addtlMilliseconds = 3000;
 
@@ -18,13 +14,7 @@ export class ActiveAnimationEvent {
 
     // Animation Events
     this.primaryEvents = primaryEvents;
-
-    this.eventAnimations = {
-      'AttackEvent'        : new AttackAnimation(characters, effects),
-      'CounterAttackEvent' : new AttackAnimation(characters, effects),
-      'DamageEvent'        : new DamageAnimation(characters, effects),
-      'KnockoutEvent'      : new KnockoutAnimation(characters, effects)
-    };
+    this.eventAnimations = eventAnimations;
     this.KnockoutEventName = 'KnockoutEvent';
   }
 
@@ -96,7 +86,11 @@ export class ActiveAnimationEvent {
 
       // Default to the invoker performing the attack animation if the primary event
       // doesn't fall into pre-defined animations & damage is done to a target
-      if (secondaryEvent.name === 'DamageEvent' || secondaryEvent.name === 'KnockoutEvent') {
+      if (
+        secondaryEvent.name === 'DamageEvent' ||
+        secondaryEvent.name === 'ShieldBlockEvent' ||
+        secondaryEvent.name === 'KnockoutEvent'
+      ) {
         for (let _unitId of secondaryEvent.invokerIds) {
           // Knockout event takes precedence always
           if (characterToAnimation.hasOwnProperty(_unitId) && characterToAnimation[_unitId].name === this.KnockoutEventName) {

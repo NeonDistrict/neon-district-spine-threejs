@@ -473,6 +473,7 @@ export class SpineCharacter {
     //this.listAttachments();
     //this.listAnimations();
 
+    /*
     let obj = {};
     let attachments = this.skeletonMesh.skeleton.skin.getAttachments();
     for (let attachment of attachments) {
@@ -485,6 +486,7 @@ export class SpineCharacter {
       };
     }
     console.log(JSON.stringify(obj));
+    */
 
   }
 
