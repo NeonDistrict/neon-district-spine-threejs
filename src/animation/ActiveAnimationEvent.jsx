@@ -123,6 +123,10 @@ export class ActiveAnimationEvent {
       }
     }
 
+    if (primaryEvent.name === 'BattleCompleteEvent') {
+      this.eventAnimations[primaryEvent.name].run(primaryEvent);
+    }
+
     return characterToAnimation;
   }
 

@@ -1,5 +1,6 @@
 import { ActiveAnimationEvent } from './ActiveAnimationEvent.jsx';
 import { AttackAnimation } from './AttackAnimation.jsx';
+import { BattleCompleteAnimation } from './BattleCompleteAnimation.jsx';
 import { BoostAnimation } from './BoostAnimation.jsx';
 import { BreakAnimation } from './BreakAnimation.jsx';
 import { CleanseAnimation } from './CleanseAnimation.jsx';
@@ -14,6 +15,7 @@ import { RegenerateEffectAnimation } from './RegenerateEffectAnimation.jsx';
 import { StripAnimation } from './StripAnimation.jsx';
 import { ShieldAnimation } from './ShieldAnimation.jsx';
 import { ShieldBlockAnimation } from './ShieldBlockAnimation.jsx';
+import { StatChangeAnimation } from './StatChangeAnimation.jsx';
 import { TauntAnimation } from './TauntAnimation.jsx';
 
 export class AnimationController {
@@ -35,12 +37,14 @@ export class AnimationController {
       'RegenerateEvent',
       'RegenerateEffectEvent',
       'ShieldEvent',
+      //'StatChangeAnimation',
       'StripEvent',
       'TauntEvent'
     ];
 
     const eventAnimations = {
       'AttackEvent'           : new AttackAnimation(characters, effects),
+      'BattleCompleteEvent'   : new BattleCompleteAnimation(characters, effects),
       'BoostEvent'            : new BoostAnimation(characters, effects),
       'BreakEvent'            : new BreakAnimation(characters, effects),
       'CleanseEvent'          : new CleanseAnimation(characters, effects),
@@ -56,6 +60,7 @@ export class AnimationController {
       'StripEvent'            : new StripAnimation(characters, effects),
       'ShieldEvent'           : new ShieldAnimation(characters, effects),
       'ShieldBlockEvent'      : new ShieldBlockAnimation(characters, effects),
+      //'StatChangeEvent'       : new StatChangeAnimation(characters, effects),
       'TauntEvent'            : new TauntAnimation(characters, effects)
     };
 
