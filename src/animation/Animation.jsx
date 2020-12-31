@@ -3,13 +3,34 @@ import ANIMATIONS_DRONES from '../data/animationsDrones.js';
 
 export class Animation {
 
-  constructor(characters, effects) {
+  constructor(characters, effects, soundManager) {
     this.characters = characters;
     this.effects = effects;
+    this.soundManager = soundManager;
   }
 
   run(event) {
     // Fill in for each animation
+  }
+
+  playSound(tag, delay = 0.0) {
+    if (this.soundManager.hasSound(tag)) {
+      if (delay > 0.001) {
+        setTimeout(this.playSoundCall.bind(this, tag), delay * 1000);
+      } else {
+        this.playSoundCall(tag);
+      }
+    } else {
+      console.error("Sound not found in playSound:", tag);
+    }
+  }
+
+  playSoundCall(tag) {
+    if (this.soundManager.hasSound(tag)) {
+      this.soundManager.play(tag);
+    } else {
+      console.error("Sound not found in playSoundCall:", tag);
+    }
   }
 
   // Play on Delay or Play Immediately

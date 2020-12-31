@@ -3,6 +3,7 @@ import Api from '../api/api.js';
 import { Stage } from "../core/Stage.jsx";
 import { AnimationController } from "../animation/AnimationController.jsx";
 import { ImageCache } from '../objects/ImageCache.jsx';
+import { SoundManager } from '../sound/SoundManager.jsx';
 
 export class CombatScene extends Stage {
   constructor(props) {
@@ -17,6 +18,9 @@ export class CombatScene extends Stage {
     this.imageCache = new ImageCache();
     this.imageCache.pullImages();
 
+    // Sounds
+    this.soundManager = new SoundManager();
+
     // Internal objects
     this.animationController = null;
   }
@@ -25,7 +29,7 @@ export class CombatScene extends Stage {
     super.componentDidMount(arguments);
 
     // Initialize the animation controller
-    this.animationController = new AnimationController(this.characters, this.effects);
+    this.animationController = new AnimationController(this.characters, this.effects, this.soundManager);
   }
 
   renderAdditionalScenes(delta) {

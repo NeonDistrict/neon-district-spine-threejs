@@ -20,7 +20,7 @@ import { TauntAnimation } from './TauntAnimation.jsx';
 
 export class AnimationController {
 
-  constructor(characters, effects) {
+  constructor(characters, effects, soundManager) {
     this.primaryEvents = [
       'AttackEvent',
       'BattleCompleteEvent',
@@ -43,25 +43,25 @@ export class AnimationController {
     ];
 
     const eventAnimations = {
-      'AttackEvent'           : new AttackAnimation(characters, effects),
-      'BattleCompleteEvent'   : new BattleCompleteAnimation(characters, effects),
-      'BoostEvent'            : new BoostAnimation(characters, effects),
-      'BreakEvent'            : new BreakAnimation(characters, effects),
-      'CleanseEvent'          : new CleanseAnimation(characters, effects),
-      'CounterAttackEvent'    : new AttackAnimation(characters, effects),
-      'CounterBoostEvent'     : new CounterBoostAnimation(characters, effects),
-      'DamageEvent'           : new DamageAnimation(characters, effects),
-      'HealEvent'             : new HealAnimation(characters, effects),
-      'KnockoutEvent'         : new KnockoutAnimation(characters, effects),
-      'PoisonEvent'           : new PoisonAnimation(characters, effects),
-      'PoisonEffectEvent'     : new PoisonEffectAnimation(characters, effects),
-      'RegenerateEvent'       : new RegenerateAnimation(characters, effects),
-      'RegenerateEffectEvent' : new RegenerateEffectAnimation(characters, effects),
-      'StripEvent'            : new StripAnimation(characters, effects),
-      'ShieldEvent'           : new ShieldAnimation(characters, effects),
-      'ShieldBlockEvent'      : new ShieldBlockAnimation(characters, effects),
-      //'StatChangeEvent'       : new StatChangeAnimation(characters, effects),
-      'TauntEvent'            : new TauntAnimation(characters, effects)
+      'AttackEvent'           : new AttackAnimation(characters, effects, soundManager),
+      'BattleCompleteEvent'   : new BattleCompleteAnimation(characters, effects, soundManager),
+      'BoostEvent'            : new BoostAnimation(characters, effects, soundManager),
+      'BreakEvent'            : new BreakAnimation(characters, effects, soundManager),
+      'CleanseEvent'          : new CleanseAnimation(characters, effects, soundManager),
+      'CounterAttackEvent'    : new AttackAnimation(characters, effects, soundManager),
+      'CounterBoostEvent'     : new CounterBoostAnimation(characters, effects, soundManager),
+      'DamageEvent'           : new DamageAnimation(characters, effects, soundManager),
+      'HealEvent'             : new HealAnimation(characters, effects, soundManager),
+      'KnockoutEvent'         : new KnockoutAnimation(characters, effects, soundManager),
+      'PoisonEvent'           : new PoisonAnimation(characters, effects, soundManager),
+      'PoisonEffectEvent'     : new PoisonEffectAnimation(characters, effects, soundManager),
+      'RegenerateEvent'       : new RegenerateAnimation(characters, effects, soundManager),
+      'RegenerateEffectEvent' : new RegenerateEffectAnimation(characters, effects, soundManager),
+      'StripEvent'            : new StripAnimation(characters, effects, soundManager),
+      'ShieldEvent'           : new ShieldAnimation(characters, effects, soundManager),
+      'ShieldBlockEvent'      : new ShieldBlockAnimation(characters, effects, soundManager),
+      //'StatChangeEvent'       : new StatChangeAnimation(characters, effects, soundManager),
+      'TauntEvent'            : new TauntAnimation(characters, effects, soundManager)
     };
 
     this.activeAnimationEvent = new ActiveAnimationEvent(characters, effects, this.primaryEvents, eventAnimations);

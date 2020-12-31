@@ -11,14 +11,14 @@ export class VideoTexture {
     this.key    = null;
 
     // Constants
-    this.VISUAL_EFFECTS_ROOT_SRC = "https://neon-district-season-one.s3.amazonaws.com/visual-effects/V1/";
+    this.VISUAL_EFFECTS_ROOT_SRC = "https://neon-district-season-one.s3.amazonaws.com/visual-effects/V1_reformat/";
 
     // Init & Defaults
     this.width    = 1;
     this.height   = 1;
     this.x_pos    = 0;
     this.y_pos    = 100;
-    this.loop     = true;
+    this.loop     = false;
     this.blend    = "NormalBlending";
     this.rotation = 0;
     this.opacity  = 1.0;
@@ -38,11 +38,12 @@ export class VideoTexture {
 
     // Create the element
     this.video = document.createElement('video');
+    this.video.autoplay = false;
     this.video.crossOrigin = "anonymous";
     this.video.onended = (() => {
       // Restart current video, pause
-      this.video.currentTime = 0;
       this.video.pause();
+      this.video.currentTime = 0;
     }).bind(this);
 
     // Now create itself
@@ -89,7 +90,6 @@ export class VideoTexture {
     this.key = key;
 
     // Handle any prior videos
-    this.video.currentTime = 0;
     this.video.pause();
 
     // Set all parameters
