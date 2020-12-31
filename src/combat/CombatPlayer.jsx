@@ -34,6 +34,9 @@ export class CombatPlayer extends CombatScene {
     this.userInterface = null;
     this.hud = null;
 
+    // Music
+    this.combatMusic = null;
+
     // Player Selections
     this.playerSelections = new PlayerSelections(this.characters);
 
@@ -61,6 +64,11 @@ export class CombatPlayer extends CombatScene {
 
   componentDidMount() {
     super.componentDidMount(arguments);
+
+    // Initialize with the background music
+    if (this.soundManager.hasSound('music', 'aspire-combat-loop')) {
+      this.combatMusic = this.soundManager.play('music', 'aspire-combat-loop', 0.15, true);
+    }
 
     // Draw Game UI elements
     this.userInterface = new CombatHUD(
@@ -641,6 +649,12 @@ export class CombatPlayer extends CombatScene {
 
       console.log("Battle is completed");
       this.battleComplete = true;
+
+      // Play victory music
+      this.combatMusic.stop();
+      if (this.soundManager.hasSound('music', 'aspire-combat-loop')) {
+        this.combatMusic = this.soundManager.play('music', 'aspire-combat-victory', 0.15, false);
+      }
     }
   }
 

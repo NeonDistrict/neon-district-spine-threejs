@@ -1,5 +1,6 @@
 import { Animation } from './Animation.jsx';
 import WEAPON_ANIMATIONS_TO_EFFECTS from "../data/weaponAnimationsToEffects.js";
+import WEAPON_ANIMATIONS_TO_SOUND from "../data/weaponAnimationsToSound.js";
 
 export class AttackAnimation extends Animation {
 
@@ -22,12 +23,15 @@ export class AttackAnimation extends Animation {
 
       // Get the effect
       if (WEAPON_ANIMATIONS_TO_EFFECTS.hasOwnProperty(weaponAnimationType)) {
-        let delay = 0.2;
+        let delay = 0.25;
         if (weaponAnimationType === "EnergySml") {
           delay = 0.85;
+        } else if (weaponAnimationType.indexOf("Blade") !== -1 || weaponAnimationType.indexOf("DualMelee") !== -1) {
+          delay = 0.5;
         }
 
         this.playEffect(_invoker.nftId, WEAPON_ANIMATIONS_TO_EFFECTS[weaponAnimationType], delay);
+        this.playSound('weapons', WEAPON_ANIMATIONS_TO_SOUND[weaponAnimationType].baseAtk, delay);
       }
     }
   }

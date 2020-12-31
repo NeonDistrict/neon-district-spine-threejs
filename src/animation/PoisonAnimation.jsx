@@ -16,6 +16,7 @@ export class PoisonAnimation extends Animation {
       this.playAnimation(_invoker, 'buff');
       this.playStatChangeAnimation(_invoker, this.getStatChanges(_invoker.unitId, event.statChanges));
       this.playEffect(_invoker.nftId, 'stat-break-invoker', 0.2);
+      this.playSound('abilities', 'poison-1', 0.0);
     }
 
     // Targets

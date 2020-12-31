@@ -16,6 +16,7 @@ export class CleanseAnimation extends Animation {
       this.playAnimation(_invoker, 'buff');
       this.playStatChangeAnimation(_invoker, this.getStatChanges(_invoker.unitId, event.statChanges));
       this.playEffect(_invoker.nftId, 'stat-boost-invoker', 0.0);
+      this.playSound('abilities', 'cleanse-1', 0.0);
     }
 
     // Targets

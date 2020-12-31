@@ -66,7 +66,7 @@ export default class CombatReview extends Component {
       'nftId'    : "test3",
       'scale'    : 'character',
       'skin'     : 'Male',
-      'weapon'   : 'blkhellbringer-legendary'
+      'weapon'   : 'blkpartnerrevelatorz17-ultrarare'
       //'pose'     : 'ConsoleSml_BasicIdle_001',
       //'outfit'   : ['male', 'blkoriginghost', 'common']
     },{

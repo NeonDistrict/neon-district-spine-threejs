@@ -13,23 +13,23 @@ export class Animation {
     // Fill in for each animation
   }
 
-  playSound(tag, delay = 0.0) {
-    if (this.soundManager.hasSound(tag)) {
+  playSound(category, tag, delay = 0.0) {
+    if (this.soundManager.hasSound(category, tag)) {
       if (delay > 0.001) {
-        setTimeout(this.playSoundCall.bind(this, tag), delay * 1000);
+        setTimeout(this.playSoundCall.bind(this, category, tag), delay * 1000);
       } else {
-        this.playSoundCall(tag);
+        this.playSoundCall(category, tag);
       }
     } else {
-      console.error("Sound not found in playSound:", tag);
+      console.error("Sound not found in playSound:", category, tag);
     }
   }
 
-  playSoundCall(tag) {
-    if (this.soundManager.hasSound(tag)) {
-      this.soundManager.play(tag);
+  playSoundCall(category, tag) {
+    if (this.soundManager.hasSound(category, tag)) {
+      this.soundManager.play(category, tag);
     } else {
-      console.error("Sound not found in playSoundCall:", tag);
+      console.error("Sound not found in playSoundCall:", category, tag);
     }
   }
 

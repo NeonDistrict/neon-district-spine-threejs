@@ -1,5 +1,5 @@
 export class SoundClip {
-  constructor(path, preload = 'none', volume = 0.5, loop = false) {
+  constructor(path, volume = 0.25, loop = false, preload = 'auto') {
     // Constants
     this.SOUND_EFFECTS_ROOT_SRC = "https://neon-district-season-one.s3.amazonaws.com/sound-effects/";
 
@@ -7,6 +7,17 @@ export class SoundClip {
     this.audio = new Audio(this.SOUND_EFFECTS_ROOT_SRC + path);
     this.audio.crossOrigin = "anonymous";
     this.audio.preload = this.parsePreload(preload);
+    this.audio.onended = (() => {
+      if (this.audio) {
+        // Clear the source
+        this.audio.pause();
+        this.audio.removeAttribute('src'); // empty source
+        this.audio.load();
+
+        // Remove from the DOM
+        this.audio.remove();
+      }
+    }).bind(this);
 
     // Set defaults
     this.setLoop(loop);

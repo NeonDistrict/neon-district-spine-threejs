@@ -1435,6 +1435,2453 @@ module.exports = {
       "type": "zoom-out-dramatic",
       "version": 1,
       "path": "sfx/ui/combat/sfx_ui_combat_zoom_out_dramatic_01.mp3"
+    },
+    "human-cloth-death-lrg-wepspin-1": {
+      "tag": "human-cloth-death-lrg-wepspin-1",
+      "type": "human-cloth-death-lrg-wepspin",
+      "version": 1,
+      "path": "sfx/combat/foley/sfx_combat_foley_human_cloth_death_lrg_wepspin_01.mp3"
+    },
+    "human-cloth-death-med-basic-1": {
+      "tag": "human-cloth-death-med-basic-1",
+      "type": "human-cloth-death-med-basic",
+      "version": 1,
+      "path": "sfx/combat/foley/sfx_combat_foley_human_cloth_death_med_basic_01.mp3"
+    },
+    "human-cloth-palm-up-1": {
+      "tag": "human-cloth-palm-up-1",
+      "type": "human-cloth-palm-up",
+      "version": 1,
+      "path": "sfx/combat/foley/sfx_combat_foley_human_cloth_palm_up_01.mp3"
+    },
+    "human-cloth-palm-up-2": {
+      "tag": "human-cloth-palm-up-2",
+      "type": "human-cloth-palm-up",
+      "version": 2,
+      "path": "sfx/combat/foley/sfx_combat_foley_human_cloth_palm_up_02.mp3"
+    },
+    "human-cloth-palm-up-3": {
+      "tag": "human-cloth-palm-up-3",
+      "type": "human-cloth-palm-up",
+      "version": 3,
+      "path": "sfx/combat/foley/sfx_combat_foley_human_cloth_palm_up_03.mp3"
+    },
+    "human-cloth-point-1": {
+      "tag": "human-cloth-point-1",
+      "type": "human-cloth-point",
+      "version": 1,
+      "path": "sfx/combat/foley/sfx_combat_foley_human_cloth_point_01.mp3"
+    },
+    "human-cloth-point-2": {
+      "tag": "human-cloth-point-2",
+      "type": "human-cloth-point",
+      "version": 2,
+      "path": "sfx/combat/foley/sfx_combat_foley_human_cloth_point_02.mp3"
+    },
+    "human-cloth-point-3": {
+      "tag": "human-cloth-point-3",
+      "type": "human-cloth-point",
+      "version": 3,
+      "path": "sfx/combat/foley/sfx_combat_foley_human_cloth_point_03.mp3"
+    },
+    "human-cloth-return-1": {
+      "tag": "human-cloth-return-1",
+      "type": "human-cloth-return",
+      "version": 1,
+      "path": "sfx/combat/foley/sfx_combat_foley_human_cloth_return_01.mp3"
+    },
+    "human-cloth-return-2": {
+      "tag": "human-cloth-return-2",
+      "type": "human-cloth-return",
+      "version": 2,
+      "path": "sfx/combat/foley/sfx_combat_foley_human_cloth_return_02.mp3"
+    },
+    "human-cloth-return-3": {
+      "tag": "human-cloth-return-3",
+      "type": "human-cloth-return",
+      "version": 3,
+      "path": "sfx/combat/foley/sfx_combat_foley_human_cloth_return_03.mp3"
+    },
+    "damage-explosion-lrg-1": {
+      "tag": "damage-explosion-lrg-1",
+      "type": "damage-explosion-lrg",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_explosion_lrg_01.mp3"
+    },
+    "damage-flesh-blunt-lrg-1": {
+      "tag": "damage-flesh-blunt-lrg-1",
+      "type": "damage-flesh-blunt-lrg",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_blunt_lrg_01.mp3"
+    },
+    "damage-flesh-blunt-lrg-2": {
+      "tag": "damage-flesh-blunt-lrg-2",
+      "type": "damage-flesh-blunt-lrg",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_blunt_lrg_02.mp3"
+    },
+    "damage-flesh-blunt-lrg-3": {
+      "tag": "damage-flesh-blunt-lrg-3",
+      "type": "damage-flesh-blunt-lrg",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_blunt_lrg_03.mp3"
+    },
+    "damage-flesh-blunt-med-1": {
+      "tag": "damage-flesh-blunt-med-1",
+      "type": "damage-flesh-blunt-med",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_blunt_med_01.mp3"
+    },
+    "damage-flesh-blunt-med-2": {
+      "tag": "damage-flesh-blunt-med-2",
+      "type": "damage-flesh-blunt-med",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_blunt_med_02.mp3"
+    },
+    "damage-flesh-blunt-med-3": {
+      "tag": "damage-flesh-blunt-med-3",
+      "type": "damage-flesh-blunt-med",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_blunt_med_03.mp3"
+    },
+    "damage-flesh-blunt-sml-1": {
+      "tag": "damage-flesh-blunt-sml-1",
+      "type": "damage-flesh-blunt-sml",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_blunt_sml_01.mp3"
+    },
+    "damage-flesh-blunt-sml-2": {
+      "tag": "damage-flesh-blunt-sml-2",
+      "type": "damage-flesh-blunt-sml",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_blunt_sml_02.mp3"
+    },
+    "damage-flesh-blunt-sml-3": {
+      "tag": "damage-flesh-blunt-sml-3",
+      "type": "damage-flesh-blunt-sml",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_blunt_sml_03.mp3"
+    },
+    "damage-flesh-ranged-sml-1": {
+      "tag": "damage-flesh-ranged-sml-1",
+      "type": "damage-flesh-ranged-sml",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_ranged_sml_01.mp3"
+    },
+    "damage-flesh-ranged-sml-2": {
+      "tag": "damage-flesh-ranged-sml-2",
+      "type": "damage-flesh-ranged-sml",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_ranged_sml_02.mp3"
+    },
+    "damage-flesh-ranged-sml-3": {
+      "tag": "damage-flesh-ranged-sml-3",
+      "type": "damage-flesh-ranged-sml",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_ranged_sml_03.mp3"
+    },
+    "damage-flesh-ranged-sml-4": {
+      "tag": "damage-flesh-ranged-sml-4",
+      "type": "damage-flesh-ranged-sml",
+      "version": 4,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_ranged_sml_04.mp3"
+    },
+    "damage-flesh-sharp-long-1": {
+      "tag": "damage-flesh-sharp-long-1",
+      "type": "damage-flesh-sharp-long",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_sharp_long_01.mp3"
+    },
+    "damage-flesh-sharp-long-2": {
+      "tag": "damage-flesh-sharp-long-2",
+      "type": "damage-flesh-sharp-long",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_sharp_long_02.mp3"
+    },
+    "damage-flesh-sharp-long-3": {
+      "tag": "damage-flesh-sharp-long-3",
+      "type": "damage-flesh-sharp-long",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_sharp_long_03.mp3"
+    },
+    "damage-flesh-sharp-lrg-1": {
+      "tag": "damage-flesh-sharp-lrg-1",
+      "type": "damage-flesh-sharp-lrg",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_sharp_lrg_01.mp3"
+    },
+    "damage-flesh-sharp-lrg-2": {
+      "tag": "damage-flesh-sharp-lrg-2",
+      "type": "damage-flesh-sharp-lrg",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_sharp_lrg_02.mp3"
+    },
+    "damage-flesh-sharp-lrg-3": {
+      "tag": "damage-flesh-sharp-lrg-3",
+      "type": "damage-flesh-sharp-lrg",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_sharp_lrg_03.mp3"
+    },
+    "damage-flesh-sharp-med-1": {
+      "tag": "damage-flesh-sharp-med-1",
+      "type": "damage-flesh-sharp-med",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_sharp_med_01.mp3"
+    },
+    "damage-flesh-sharp-med-2": {
+      "tag": "damage-flesh-sharp-med-2",
+      "type": "damage-flesh-sharp-med",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_sharp_med_02.mp3"
+    },
+    "damage-flesh-sharp-med-3": {
+      "tag": "damage-flesh-sharp-med-3",
+      "type": "damage-flesh-sharp-med",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_sharp_med_03.mp3"
+    },
+    "damage-flesh-sharp-sml-1": {
+      "tag": "damage-flesh-sharp-sml-1",
+      "type": "damage-flesh-sharp-sml",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_sharp_sml_01.mp3"
+    },
+    "damage-flesh-sharp-sml-2": {
+      "tag": "damage-flesh-sharp-sml-2",
+      "type": "damage-flesh-sharp-sml",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_sharp_sml_02.mp3"
+    },
+    "damage-flesh-sharp-sml-3": {
+      "tag": "damage-flesh-sharp-sml-3",
+      "type": "damage-flesh-sharp-sml",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_flesh_sharp_sml_03.mp3"
+    },
+    "damage-forcefield-explos-lrg-1": {
+      "tag": "damage-forcefield-explos-lrg-1",
+      "type": "damage-forcefield-explos-lrg",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_forcefield_explos_lrg_01.mp3"
+    },
+    "damage-forcefield-lrg-1": {
+      "tag": "damage-forcefield-lrg-1",
+      "type": "damage-forcefield-lrg",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_forcefield_lrg_01.mp3"
+    },
+    "damage-forcefield-lrg-2": {
+      "tag": "damage-forcefield-lrg-2",
+      "type": "damage-forcefield-lrg",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_forcefield_lrg_02.mp3"
+    },
+    "damage-forcefield-lrg-3": {
+      "tag": "damage-forcefield-lrg-3",
+      "type": "damage-forcefield-lrg",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_forcefield_lrg_03.mp3"
+    },
+    "damage-forcefield-med-1": {
+      "tag": "damage-forcefield-med-1",
+      "type": "damage-forcefield-med",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_forcefield_med_01.mp3"
+    },
+    "damage-forcefield-med-2": {
+      "tag": "damage-forcefield-med-2",
+      "type": "damage-forcefield-med",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_forcefield_med_02.mp3"
+    },
+    "damage-forcefield-med-3": {
+      "tag": "damage-forcefield-med-3",
+      "type": "damage-forcefield-med",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_forcefield_med_03.mp3"
+    },
+    "damage-forcefield-med-4": {
+      "tag": "damage-forcefield-med-4",
+      "type": "damage-forcefield-med",
+      "version": 4,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_forcefield_med_04.mp3"
+    },
+    "damage-forcefield-sml-1": {
+      "tag": "damage-forcefield-sml-1",
+      "type": "damage-forcefield-sml",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_forcefield_sml_01.mp3"
+    },
+    "damage-forcefield-sml-2": {
+      "tag": "damage-forcefield-sml-2",
+      "type": "damage-forcefield-sml",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_forcefield_sml_02.mp3"
+    },
+    "damage-forcefield-sml-3": {
+      "tag": "damage-forcefield-sml-3",
+      "type": "damage-forcefield-sml",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_forcefield_sml_03.mp3"
+    },
+    "damage-forcefield-sml-4": {
+      "tag": "damage-forcefield-sml-4",
+      "type": "damage-forcefield-sml",
+      "version": 4,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_forcefield_snl_04.mp3"
+    },
+    "damage-interact-1": {
+      "tag": "damage-interact-1",
+      "type": "damage-interact",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_interact_01.mp3"
+    },
+    "damage-interact-2": {
+      "tag": "damage-interact-2",
+      "type": "damage-interact",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_interact_02.mp3"
+    },
+    "damage-interact-3": {
+      "tag": "damage-interact-3",
+      "type": "damage-interact",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_interact_03.mp3"
+    },
+    "damage-metal-lrg-1": {
+      "tag": "damage-metal-lrg-1",
+      "type": "damage-metal-lrg",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_lrg_01.mp3"
+    },
+    "damage-metal-lrg-2": {
+      "tag": "damage-metal-lrg-2",
+      "type": "damage-metal-lrg",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_lrg_02.mp3"
+    },
+    "damage-metal-lrg-3": {
+      "tag": "damage-metal-lrg-3",
+      "type": "damage-metal-lrg",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_lrg_03.mp3"
+    },
+    "damage-metal-med-1": {
+      "tag": "damage-metal-med-1",
+      "type": "damage-metal-med",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_med_01.mp3"
+    },
+    "damage-metal-med-2": {
+      "tag": "damage-metal-med-2",
+      "type": "damage-metal-med",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_med_02.mp3"
+    },
+    "damage-metal-med-3": {
+      "tag": "damage-metal-med-3",
+      "type": "damage-metal-med",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_med_03.mp3"
+    },
+    "damage-metal-med-4": {
+      "tag": "damage-metal-med-4",
+      "type": "damage-metal-med",
+      "version": 4,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_med_04.mp3"
+    },
+    "damage-metal-sml-1": {
+      "tag": "damage-metal-sml-1",
+      "type": "damage-metal-sml",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_sml_01.mp3"
+    },
+    "damage-metal-sml-2": {
+      "tag": "damage-metal-sml-2",
+      "type": "damage-metal-sml",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_sml_02.mp3"
+    },
+    "damage-metal-sml-3": {
+      "tag": "damage-metal-sml-3",
+      "type": "damage-metal-sml",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_sml_03.mp3"
+    },
+    "damage-metal-sml-4": {
+      "tag": "damage-metal-sml-4",
+      "type": "damage-metal-sml",
+      "version": 4,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_sml_04.mp3"
+    },
+    "damage-metal-sml-5": {
+      "tag": "damage-metal-sml-5",
+      "type": "damage-metal-sml",
+      "version": 5,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_sml_05.mp3"
+    },
+    "damage-metal-sml-6": {
+      "tag": "damage-metal-sml-6",
+      "type": "damage-metal-sml",
+      "version": 6,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_sml_06.mp3"
+    },
+    "damage-metal-sml-7": {
+      "tag": "damage-metal-sml-7",
+      "type": "damage-metal-sml",
+      "version": 7,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_metal_sml_07.mp3"
+    },
+    "damage-shield-any-1": {
+      "tag": "damage-shield-any-1",
+      "type": "damage-shield-any",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_shield_any_01.mp3"
+    },
+    "damage-shield-any-2": {
+      "tag": "damage-shield-any-2",
+      "type": "damage-shield-any",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_shield_any_02.mp3"
+    },
+    "damage-shield-any-3": {
+      "tag": "damage-shield-any-3",
+      "type": "damage-shield-any",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_damage_shield_any_03.mp3"
+    },
+    "disarm-forcefield-1": {
+      "tag": "disarm-forcefield-1",
+      "type": "disarm-forcefield",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_disarm_forcefield_01.mp3"
+    },
+    "disarm-forcefield-2": {
+      "tag": "disarm-forcefield-2",
+      "type": "disarm-forcefield",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_disarm_forcefield_02.mp3"
+    },
+    "disarm-forcefield-3": {
+      "tag": "disarm-forcefield-3",
+      "type": "disarm-forcefield",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_disarm_forcefield_03.mp3"
+    },
+    "knockout-player-1": {
+      "tag": "knockout-player-1",
+      "type": "knockout-player",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_gen_knockout_player_01.mp3"
+    },
+    "knockout-player-2": {
+      "tag": "knockout-player-2",
+      "type": "knockout-player",
+      "version": 2,
+      "path": "sfx/combat/impacts/sfx_combat_gen_knockout_player_02.mp3"
+    },
+    "knockout-player-3": {
+      "tag": "knockout-player-3",
+      "type": "knockout-player",
+      "version": 3,
+      "path": "sfx/combat/impacts/sfx_combat_gen_knockout_player_03.mp3"
+    },
+    "hero-death-impact-1": {
+      "tag": "hero-death-impact-1",
+      "type": "hero-death-impact",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_general_hero_death_impact_01.mp3"
+    },
+    "hero-death-impact-v2-1": {
+      "tag": "hero-death-impact-v2-1",
+      "type": "hero-death-impact-v2",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_general_hero_death_impact_v2_01.mp3"
+    },
+    "hero-death-tumble-1": {
+      "tag": "hero-death-tumble-1",
+      "type": "hero-death-tumble",
+      "version": 1,
+      "path": "sfx/combat/impacts/sfx_combat_general_hero_death_tumble_01.mp3"
+    }
+  },
+  "unused": {
+    "music/season_0/music_and_sfx_season_0_ending_cinematic_v2.mp3": {
+      "path": "music/season_0/music_and_sfx_season_0_ending_cinematic_v2.mp3"
+    },
+    "music/season_0/music_and_sfx_season_0_opening_cinematic_v8.mp3": {
+      "path": "music/season_0/music_and_sfx_season_0_opening_cinematic_v8.mp3"
+    },
+    "music/season_0/music_and_sfx_season_0_opening_interstitial_01.mp3": {
+      "path": "music/season_0/music_and_sfx_season_0_opening_interstitial_01.mp3"
+    },
+    "music/season_0/music_combat_B_v2.mp3": {
+      "path": "music/season_0/music_combat_B_v2.mp3"
+    },
+    "music/season_0/music_combat_boss_A_loop.mp3": {
+      "path": "music/season_0/music_combat_boss_A_loop.mp3"
+    },
+    "music/season_0/music_combat_boss_A_victory.mp3": {
+      "path": "music/season_0/music_combat_boss_A_victory.mp3"
+    },
+    "music/season_0/music_combat_C_loss_01.mp3": {
+      "path": "music/season_0/music_combat_C_loss_01.mp3"
+    },
+    "music/season_0/music_combat_C_main.mp3": {
+      "path": "music/season_0/music_combat_C_main.mp3"
+    },
+    "music/season_0/music_combat_C_victory.mp3": {
+      "path": "music/season_0/music_combat_C_victory.mp3"
+    },
+    "music/season_0/music_combat_opening_v3.mp3": {
+      "path": "music/season_0/music_combat_opening_v3.mp3"
+    },
+    "music/season_0/music_combat_opening_v3_intro.mp3": {
+      "path": "music/season_0/music_combat_opening_v3_intro.mp3"
+    },
+    "music/shared/music_apartment_all.mp3": {
+      "path": "music/shared/music_apartment_all.mp3"
+    },
+    "music/shared/music_apartment_main_loop_01.mp3": {
+      "path": "music/shared/music_apartment_main_loop_01.mp3"
+    },
+    "music/shared/music_combat_transition_generic.mp3": {
+      "path": "music/shared/music_combat_transition_generic.mp3"
+    },
+    "music/shared/music_demo_day_video_interstitial_v2_single_hit_only.mp3": {
+      "path": "music/shared/music_demo_day_video_interstitial_v2_single_hit_only.mp3"
+    },
+    "music/shared/music_dialogue_B_v3_intro.mp3": {
+      "path": "music/shared/music_dialogue_B_v3_intro.mp3"
+    },
+    "music/shared/music_dialogue_B_v3_loop.mp3": {
+      "path": "music/shared/music_dialogue_B_v3_loop.mp3"
+    },
+    "music/shared/music_dialogue_opening_A_v3.mp3": {
+      "path": "music/shared/music_dialogue_opening_A_v3.mp3"
+    },
+    "music/shared/music_logo_opening.mp3": {
+      "path": "music/shared/music_logo_opening.mp3"
+    },
+    "sfx/amb/sfx_amb_alley_loop_01.mp3": {
+      "path": "sfx/amb/sfx_amb_alley_loop_01.mp3"
+    },
+    "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_01.mp3": {
+      "path": "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_01.mp3"
+    },
+    "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_02.mp3": {
+      "path": "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_02.mp3"
+    },
+    "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_03.mp3": {
+      "path": "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_03.mp3"
+    },
+    "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_04.mp3": {
+      "path": "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_04.mp3"
+    },
+    "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_05.mp3": {
+      "path": "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_05.mp3"
+    },
+    "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_06.mp3": {
+      "path": "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_06.mp3"
+    },
+    "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_07.mp3": {
+      "path": "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_07.mp3"
+    },
+    "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_08.mp3": {
+      "path": "sfx/amb/sfx_amb_apartmentstairs_lightbuzz_os_08.mp3"
+    },
+    "sfx/amb/sfx_amb_apartmentstairs_loop_01.mp3": {
+      "path": "sfx/amb/sfx_amb_apartmentstairs_loop_01.mp3"
+    },
+    "sfx/amb/sfx_amb_club_lightflicker_os_01.mp3": {
+      "path": "sfx/amb/sfx_amb_club_lightflicker_os_01.mp3"
+    },
+    "sfx/amb/sfx_amb_club_lightflicker_os_02.mp3": {
+      "path": "sfx/amb/sfx_amb_club_lightflicker_os_02.mp3"
+    },
+    "sfx/amb/sfx_amb_club_lightflicker_os_03.mp3": {
+      "path": "sfx/amb/sfx_amb_club_lightflicker_os_03.mp3"
+    },
+    "sfx/amb/sfx_amb_club_lightflicker_os_04.mp3": {
+      "path": "sfx/amb/sfx_amb_club_lightflicker_os_04.mp3"
+    },
+    "sfx/amb/sfx_amb_club_lightflicker_os_05.mp3": {
+      "path": "sfx/amb/sfx_amb_club_lightflicker_os_05.mp3"
+    },
+    "sfx/amb/sfx_amb_club_lightflicker_os_06.mp3": {
+      "path": "sfx/amb/sfx_amb_club_lightflicker_os_06.mp3"
+    },
+    "sfx/amb/sfx_amb_club_lightflicker_os_07.mp3": {
+      "path": "sfx/amb/sfx_amb_club_lightflicker_os_07.mp3"
+    },
+    "sfx/amb/sfx_amb_club_loop_01.mp3": {
+      "path": "sfx/amb/sfx_amb_club_loop_01.mp3"
+    },
+    "sfx/amb/sfx_amb_club_outside_loop_01.mp3": {
+      "path": "sfx/amb/sfx_amb_club_outside_loop_01.mp3"
+    },
+    "sfx/amb/sfx_amb_corporatelobby_loop_01.mp3": {
+      "path": "sfx/amb/sfx_amb_corporatelobby_loop_01.mp3"
+    },
+    "sfx/amb/sfx_amb_executivesuite_loop_01.mp3": {
+      "path": "sfx/amb/sfx_amb_executivesuite_loop_01.mp3"
+    },
+    "sfx/amb/sfx_amb_executivesuite_ship_os_01.mp3": {
+      "path": "sfx/amb/sfx_amb_executivesuite_ship_os_01.mp3"
+    },
+    "sfx/amb/sfx_amb_hideout_exterior_afternoon_birds_01.mp3": {
+      "path": "sfx/amb/sfx_amb_hideout_exterior_afternoon_birds_01.mp3"
+    },
+    "sfx/amb/sfx_amb_hideout_exterior_dusk_01.mp3": {
+      "path": "sfx/amb/sfx_amb_hideout_exterior_dusk_01.mp3"
+    },
+    "sfx/amb/sfx_amb_hideout_exterior_fog_01.mp3": {
+      "path": "sfx/amb/sfx_amb_hideout_exterior_fog_01.mp3"
+    },
+    "sfx/amb/sfx_amb_hideout_exterior_night_01.mp3": {
+      "path": "sfx/amb/sfx_amb_hideout_exterior_night_01.mp3"
+    },
+    "sfx/amb/sfx_amb_hideout_exterior_rain_01.mp3": {
+      "path": "sfx/amb/sfx_amb_hideout_exterior_rain_01.mp3"
+    },
+    "sfx/amb/sfx_amb_hideout_loop_01.mp3": {
+      "path": "sfx/amb/sfx_amb_hideout_loop_01.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_loop_01.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_loop_01.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_crane_long_01.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_crane_long_01.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_crane_long_02.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_crane_long_02.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_crane_short_01.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_crane_short_01.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_general_ship_01.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_general_ship_01.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_general_ship_02.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_general_ship_02.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_general_ship_03.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_general_ship_03.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_general_ship_04.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_general_ship_04.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_general_ship_05.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_general_ship_05.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_general_ship_06.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_general_ship_06.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_police_ship_01.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_police_ship_01.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_siren_01.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_siren_01.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_siren_02.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_siren_02.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_siren_03.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_siren_03.mp3"
+    },
+    "sfx/amb/sfx_amb_rooftop_os_siren_04.mp3": {
+      "path": "sfx/amb/sfx_amb_rooftop_os_siren_04.mp3"
+    },
+    "sfx/amb/sfx_amb_street_loop_01.mp3": {
+      "path": "sfx/amb/sfx_amb_street_loop_01.mp3"
+    },
+    "sfx/amb/sfx_amb_street_ship_diagonal_os_01.mp3": {
+      "path": "sfx/amb/sfx_amb_street_ship_diagonal_os_01.mp3"
+    },
+    "sfx/amb/sfx_amb_street_ship_standard_os_01.mp3": {
+      "path": "sfx/amb/sfx_amb_street_ship_standard_os_01.mp3"
+    },
+    "sfx/amb/sfx_amb_street_ship_standard_os_02.mp3": {
+      "path": "sfx/amb/sfx_amb_street_ship_standard_os_02.mp3"
+    },
+    "sfx/amb/sfx_amb_street_ship_standard_os_03.mp3": {
+      "path": "sfx/amb/sfx_amb_street_ship_standard_os_03.mp3"
+    },
+    "sfx/amb/sfx_amb_street_ship_standard_os_04.mp3": {
+      "path": "sfx/amb/sfx_amb_street_ship_standard_os_04.mp3"
+    },
+    "sfx/amb/sfx_amb_street_ship_standard_os_05.mp3": {
+      "path": "sfx/amb/sfx_amb_street_ship_standard_os_05.mp3"
+    },
+    "sfx/amb/sfx_amb_street_ship_standard_os_06.mp3": {
+      "path": "sfx/amb/sfx_amb_street_ship_standard_os_06.mp3"
+    },
+    "sfx/amb/sfx_amb_street_ship_standard_os_07.mp3": {
+      "path": "sfx/amb/sfx_amb_street_ship_standard_os_07.mp3"
+    },
+    "sfx/amb/sfx_amb_street_ship_standard_os_08.mp3": {
+      "path": "sfx/amb/sfx_amb_street_ship_standard_os_08.mp3"
+    },
+    "sfx/amb/sfx_amb_street_ship_standard_os_09.mp3": {
+      "path": "sfx/amb/sfx_amb_street_ship_standard_os_09.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_01.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_01.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_02.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_02.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_03.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_03.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_04.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_04.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_05.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_05.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_06.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_06.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_07.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_07.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_08.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystairs_lightflicker_os_08.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystairs_loop_01.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystairs_loop_01.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystation_loop_01.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystation_loop_01.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystation_securitycam_left_os_01.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystation_securitycam_left_os_01.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystation_securitycam_right_os_01.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystation_securitycam_right_os_01.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystation_train_os_01.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystation_train_os_01.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystationred_loop_alert_01.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystationred_loop_alert_01.mp3"
+    },
+    "sfx/amb/sfx_amb_subwaystationred_loop_rain_01.mp3": {
+      "path": "sfx/amb/sfx_amb_subwaystationred_loop_rain_01.mp3"
+    },
+    "sfx/amb/sfx_amb_trainingroom_loop_01.mp3": {
+      "path": "sfx/amb/sfx_amb_trainingroom_loop_01.mp3"
+    },
+    "sfx/amb/sfx_amb_trainingroom_os_metalcreak_01.mp3": {
+      "path": "sfx/amb/sfx_amb_trainingroom_os_metalcreak_01.mp3"
+    },
+    "sfx/amb/sfx_amb_trainingroom_os_metalcreak_02.mp3": {
+      "path": "sfx/amb/sfx_amb_trainingroom_os_metalcreak_02.mp3"
+    },
+    "sfx/amb/sfx_amb_trainingroom_os_metalcreak_03.mp3": {
+      "path": "sfx/amb/sfx_amb_trainingroom_os_metalcreak_03.mp3"
+    },
+    "sfx/amb/sfx_amb_trainingroom_os_metalcreak_04.mp3": {
+      "path": "sfx/amb/sfx_amb_trainingroom_os_metalcreak_04.mp3"
+    },
+    "sfx/amb/sfx_amb_trainingroom_os_metalcreak_05.mp3": {
+      "path": "sfx/amb/sfx_amb_trainingroom_os_metalcreak_05.mp3"
+    },
+    "sfx/amb/sfx_amb_trainingroom_os_metalcreak_06.mp3": {
+      "path": "sfx/amb/sfx_amb_trainingroom_os_metalcreak_06.mp3"
+    },
+    "sfx/amb/sfx_amb_trainingroom_os_metalcreak_07.mp3": {
+      "path": "sfx/amb/sfx_amb_trainingroom_os_metalcreak_07.mp3"
+    },
+    "sfx/amb/sfx_amb_trainingroom_os_metalcreak_08.mp3": {
+      "path": "sfx/amb/sfx_amb_trainingroom_os_metalcreak_08.mp3"
+    },
+    "sfx/amb/sfx_amb_trainingroom_os_metalcreak_09.mp3": {
+      "path": "sfx/amb/sfx_amb_trainingroom_os_metalcreak_09.mp3"
+    },
+    "sfx/amb/sfx_amb_trainingroom_os_metalcreak_10.mp3": {
+      "path": "sfx/amb/sfx_amb_trainingroom_os_metalcreak_10.mp3"
+    },
+    "sfx/amb/sfx_amb_trainingroom_os_metalcreak_11.mp3": {
+      "path": "sfx/amb/sfx_amb_trainingroom_os_metalcreak_11.mp3"
+    },
+    "sfx/combat/abilities/currently_unused/sfx_combat_abilities_attackbuff_01.mp3": {
+      "path": "sfx/combat/abilities/currently_unused/sfx_combat_abilities_attackbuff_01.mp3"
+    },
+    "sfx/combat/abilities/currently_unused/sfx_combat_abilities_demon_power_up_01.mp3": {
+      "path": "sfx/combat/abilities/currently_unused/sfx_combat_abilities_demon_power_up_01.mp3"
+    },
+    "sfx/combat/abilities/currently_unused/sfx_combat_abilities_heal_01.mp3": {
+      "path": "sfx/combat/abilities/currently_unused/sfx_combat_abilities_heal_01.mp3"
+    },
+    "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interact_return_01.mp3": {
+      "path": "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interact_return_01.mp3"
+    },
+    "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interact_return_02.mp3": {
+      "path": "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interact_return_02.mp3"
+    },
+    "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interact_return_03.mp3": {
+      "path": "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interact_return_03.mp3"
+    },
+    "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interact_start_01.mp3": {
+      "path": "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interact_start_01.mp3"
+    },
+    "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interact_start_02.mp3": {
+      "path": "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interact_start_02.mp3"
+    },
+    "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interact_start_03.mp3": {
+      "path": "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interact_start_03.mp3"
+    },
+    "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interaction_generic_01.mp3": {
+      "path": "sfx/combat/abilities/currently_unused/sfx_combat_abilities_interaction_generic_01.mp3"
+    },
+    "sfx/combat/abilities/currently_unused/sfx_combat_abilities_jack_destroy_turret_01.mp3": {
+      "path": "sfx/combat/abilities/currently_unused/sfx_combat_abilities_jack_destroy_turret_01.mp3"
+    },
+    "sfx/combat/abilities/currently_unused/sfx_combat_abilities_jack_disarm_shield_01.mp3": {
+      "path": "sfx/combat/abilities/currently_unused/sfx_combat_abilities_jack_disarm_shield_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_adjudicator_atk_basic_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_adjudicator_atk_basic_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_adjudicator_atk_basic_02.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_adjudicator_atk_basic_02.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_adjudicator_atk_basic_03.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_adjudicator_atk_basic_03.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_adjudicator_death_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_adjudicator_death_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_adjudicator_hurt_lrg_foley_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_adjudicator_hurt_lrg_foley_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_adjudicator_hurt_sml_foley_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_adjudicator_hurt_sml_foley_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_chainsaw_atk_basic_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_chainsaw_atk_basic_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_chainsaw_atk_basic_02.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_chainsaw_atk_basic_02.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_chainsaw_atk_basic_03.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_chainsaw_atk_basic_03.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_chainsaw_death_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_chainsaw_death_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_chainsaw_hurt_lrg_foley_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_chainsaw_hurt_lrg_foley_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_chainsaw_hurt_sml_foley_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_chainsaw_hurt_sml_foley_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_cog_potato_shield_atk_basic_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_cog_potato_shield_atk_basic_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_cog_potato_shield_atk_basic_02.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_cog_potato_shield_atk_basic_02.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_cog_potato_shield_atk_basic_03.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_cog_potato_shield_atk_basic_03.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_cog_potato_shield_death_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_cog_potato_shield_death_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_cog_potato_weapon_atk_basic_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_cog_potato_weapon_atk_basic_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_cog_potato_weapon_atk_basic_02.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_cog_potato_weapon_atk_basic_02.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_cog_potato_weapon_atk_basic_03.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_cog_potato_weapon_atk_basic_03.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_cog_potato_weapon_atk_topsmack_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_cog_potato_weapon_atk_topsmack_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_cog_potato_weapon_death_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_cog_potato_weapon_death_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_genius_atk_crush_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_genius_atk_crush_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_genius_death_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_genius_death_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_tentacle_baus_ab_summonturret_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_tentacle_baus_ab_summonturret_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_tentacle_baus_ab_summonturret_spawn_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_tentacle_baus_ab_summonturret_spawn_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_tentacle_baus_appear_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_tentacle_baus_appear_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_tentacle_baus_atk_gundown_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_tentacle_baus_atk_gundown_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_tentacle_baus_atk_gundown_impact_flesh_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_tentacle_baus_atk_gundown_impact_flesh_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_tentacle_baus_atk_multiattack_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_tentacle_baus_atk_multiattack_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_tentacle_baus_death_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_tentacle_baus_death_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_tentacle_baus_hurt_foley_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_tentacle_baus_hurt_foley_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_tentacle_baus_hurt_vo_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_tentacle_baus_hurt_vo_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_tentacle_baus_idle_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_tentacle_baus_idle_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_tentacle_baus_shield_active_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_tentacle_baus_shield_active_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_turret_corp_atk_mowdown_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_turret_corp_atk_mowdown_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_turret_junkbot_atk_basic_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_turret_junkbot_atk_basic_01.mp3"
+    },
+    "sfx/combat/enemies/sfx_enemies_turret_junkbot_death_01.mp3": {
+      "path": "sfx/combat/enemies/sfx_enemies_turret_junkbot_death_01.mp3"
+    },
+    "sfx/combat/environmental/sfx_environ_ceresvitastation_deploy_01.mp3": {
+      "path": "sfx/combat/environmental/sfx_environ_ceresvitastation_deploy_01.mp3"
+    },
+    "sfx/combat/environmental/sfx_environ_ceresvitastation_turn_off_01.mp3": {
+      "path": "sfx/combat/environmental/sfx_environ_ceresvitastation_turn_off_01.mp3"
+    },
+    "sfx/combat/environmental/sfx_environ_ceresvitastation_turn_on_01.mp3": {
+      "path": "sfx/combat/environmental/sfx_environ_ceresvitastation_turn_on_01.mp3"
+    },
+    "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_armed_alarm_01.mp3": {
+      "path": "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_armed_alarm_01.mp3"
+    },
+    "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_armed_alarm_02.mp3": {
+      "path": "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_armed_alarm_02.mp3"
+    },
+    "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_armed_alarm_03.mp3": {
+      "path": "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_armed_alarm_03.mp3"
+    },
+    "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_armed_alarm_04.mp3": {
+      "path": "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_armed_alarm_04.mp3"
+    },
+    "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_armed_alarm_05.mp3": {
+      "path": "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_armed_alarm_05.mp3"
+    },
+    "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_arming_01.mp3": {
+      "path": "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_arming_01.mp3"
+    },
+    "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_explosion_01.mp3": {
+      "path": "sfx/combat/environmental/sfx_environ_yumeexplosivedevice_explosion_01.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_axe_atk_basic_01.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_axe_atk_basic_01.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_crowbar_atk_basic_01.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_crowbar_atk_basic_01.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_knife_atk_basic_01.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_knife_atk_basic_01.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_punch_raw_base_atk_basic_01.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_punch_raw_base_atk_basic_01.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_punch_raw_base_atk_basic_02.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_punch_raw_base_atk_basic_02.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_punch_raw_base_atk_basic_03.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_punch_raw_base_atk_basic_03.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_riot_shield_ab_skill_01.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_riot_shield_ab_skill_01.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_riot_shield_atk_basic_01.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_riot_shield_atk_basic_01.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_riot_shield_atk_basic_02.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_riot_shield_atk_basic_02.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_riot_shield_atk_basic_03.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_riot_shield_atk_basic_03.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_taser_atk_basic_01.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_taser_atk_basic_01.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_taser_atk_basic_02.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_taser_atk_basic_02.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_taser_atk_basic_03.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_taser_atk_basic_03.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_cross_slash_hit_01.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_cross_slash_hit_01.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_cross_slash_hit_02.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_cross_slash_hit_02.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_cross_slash_hit_03.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_cross_slash_hit_03.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_cross_slash_start_01.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_cross_slash_start_01.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_cross_slash_start_02.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_cross_slash_start_02.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_cross_slash_start_03.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_cross_slash_start_03.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_double_tap_start_01.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_double_tap_start_01.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_double_tap_start_02.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_double_tap_start_02.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_double_tap_start_03.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_double_tap_start_03.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_stab_01.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_stab_01.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_stab_02.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_stab_02.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_stab_03.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_stab_03.mp3"
+    },
+    "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_takedown_01.mp3": {
+      "path": "sfx/combat/weapons/melee/sfx_combat_melee_twinblades_atk_takedown_01.mp3"
+    },
+    "sfx/combat/weapons/ranged/sfx_combat_ranged_crossbow_atk_basic_01.mp3": {
+      "path": "sfx/combat/weapons/ranged/sfx_combat_ranged_crossbow_atk_basic_01.mp3"
+    },
+    "sfx/combat/weapons/ranged/sfx_combat_ranged_pistol_cowboy_atk_basic_01.mp3": {
+      "path": "sfx/combat/weapons/ranged/sfx_combat_ranged_pistol_cowboy_atk_basic_01.mp3"
+    },
+    "sfx/combat/weapons/ranged/sfx_combat_ranged_pistol_standard_atk_basic_01.mp3": {
+      "path": "sfx/combat/weapons/ranged/sfx_combat_ranged_pistol_standard_atk_basic_01.mp3"
+    },
+    "sfx/combat/weapons/ranged/sfx_combat_ranged_pistol_standard_atk_basic_02.mp3": {
+      "path": "sfx/combat/weapons/ranged/sfx_combat_ranged_pistol_standard_atk_basic_02.mp3"
+    },
+    "sfx/combat/weapons/ranged/sfx_combat_ranged_pistol_standard_atk_basic_03.mp3": {
+      "path": "sfx/combat/weapons/ranged/sfx_combat_ranged_pistol_standard_atk_basic_03.mp3"
+    },
+    "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_square_atk_basic_01.mp3": {
+      "path": "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_square_atk_basic_01.mp3"
+    },
+    "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_square_atk_basic_blocked_01.mp3": {
+      "path": "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_square_atk_basic_blocked_01.mp3"
+    },
+    "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_square_atk_basic_hit_metal_01.mp3": {
+      "path": "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_square_atk_basic_hit_metal_01.mp3"
+    },
+    "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_square_atk_mortar_01.mp3": {
+      "path": "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_square_atk_mortar_01.mp3"
+    },
+    "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_standard_atk_doubleshot_01.mp3": {
+      "path": "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_standard_atk_doubleshot_01.mp3"
+    },
+    "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_standard_atk_quickburst_01.mp3": {
+      "path": "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_standard_atk_quickburst_01.mp3"
+    },
+    "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_standard_atk_quickburst_02.mp3": {
+      "path": "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_standard_atk_quickburst_02.mp3"
+    },
+    "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_standard_atk_quickburst_03.mp3": {
+      "path": "sfx/combat/weapons/ranged/sfx_combat_ranged_rifle_standard_atk_quickburst_03.mp3"
+    },
+    "sfx/misc/sfx_trailer_logo_hit_01.mp3": {
+      "path": "sfx/misc/sfx_trailer_logo_hit_01.mp3"
+    },
+    "sfx/ui/apartment_prototype/sfx_ui_apartment_map_battle_start_01.mp3": {
+      "path": "sfx/ui/apartment_prototype/sfx_ui_apartment_map_battle_start_01.mp3"
+    },
+    "sfx/ui/apartment_prototype/sfx_ui_apartment_map_location_open_01.mp3": {
+      "path": "sfx/ui/apartment_prototype/sfx_ui_apartment_map_location_open_01.mp3"
+    },
+    "sfx/ui/apartment_prototype/sfx_ui_apartment_map_open_01.mp3": {
+      "path": "sfx/ui/apartment_prototype/sfx_ui_apartment_map_open_01.mp3"
+    },
+    "sfx/ui/apartment_prototype/sfx_ui_apartment_terminal_close_01.mp3": {
+      "path": "sfx/ui/apartment_prototype/sfx_ui_apartment_terminal_close_01.mp3"
+    },
+    "sfx/ui/apartment_prototype/sfx_ui_apartment_terminal_equipment_inv_open_01.mp3": {
+      "path": "sfx/ui/apartment_prototype/sfx_ui_apartment_terminal_equipment_inv_open_01.mp3"
+    },
+    "sfx/ui/apartment_prototype/sfx_ui_apartment_terminal_open_01.mp3": {
+      "path": "sfx/ui/apartment_prototype/sfx_ui_apartment_terminal_open_01.mp3"
+    },
+    "sfx/ui/apartment_prototype/sfx_ui_apartment_terminal_party_character_01.mp3": {
+      "path": "sfx/ui/apartment_prototype/sfx_ui_apartment_terminal_party_character_01.mp3"
+    },
+    "sfx/ui/apartment_prototype/sfx_ui_apartment_terminal_party_navigate_01.mp3": {
+      "path": "sfx/ui/apartment_prototype/sfx_ui_apartment_terminal_party_navigate_01.mp3"
+    },
+    "sfx/ui/combat/sfx_ui_inv_auto_equip_01.mp3": {
+      "path": "sfx/ui/combat/sfx_ui_inv_auto_equip_01.mp3"
+    },
+    "sfx/ui/combat/sfx_ui_inv_char_select_01.mp3": {
+      "path": "sfx/ui/combat/sfx_ui_inv_char_select_01.mp3"
+    },
+    "sfx/ui/combat/sfx_ui_inv_remove_all_01.mp3": {
+      "path": "sfx/ui/combat/sfx_ui_inv_remove_all_01.mp3"
+    },
+    "sfx/ui/combat/sfx_ui_inv_return_to_hideout_01.mp3": {
+      "path": "sfx/ui/combat/sfx_ui_inv_return_to_hideout_01.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_nylon_01.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_nylon_01.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_nylon_02.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_nylon_02.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_soldier_01.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_soldier_01.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_soldier_02.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_soldier_02.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_soldier_03.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_soldier_03.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_soldier_04.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_soldier_04.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_zipper_01.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_zipper_01.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_zipper_02.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_zipper_02.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_zipper_03.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_armor_zipper_03.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_weapon_01.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_weapon_01.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_weapon_02.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_weapon_02.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_weapon_03.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_weapon_03.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_weapon_04.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_weapon_04.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_weapon_05.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_weapon_05.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_weapon_06.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_equip_weapon_06.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_unequip_armor_01.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_unequip_armor_01.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_unequip_armor_02.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_unequip_armor_02.mp3"
+    },
+    "sfx/ui/inventory/sfx_ui_apartment_terminal_unequip_armor_03.mp3": {
+      "path": "sfx/ui/inventory/sfx_ui_apartment_terminal_unequip_armor_03.mp3"
+    },
+    "sfx/ui/shared/sfx_ui_gen_settings_close_01.mp3": {
+      "path": "sfx/ui/shared/sfx_ui_gen_settings_close_01.mp3"
+    },
+    "sfx/ui/shared/sfx_ui_gen_settings_loop_01.mp3": {
+      "path": "sfx/ui/shared/sfx_ui_gen_settings_loop_01.mp3"
+    },
+    "sfx/ui/shared/sfx_ui_gen_settings_open_01.mp3": {
+      "path": "sfx/ui/shared/sfx_ui_gen_settings_open_01.mp3"
+    },
+    "sfx/ui/shared/sfx_ui_gen_settings_os_01.mp3": {
+      "path": "sfx/ui/shared/sfx_ui_gen_settings_os_01.mp3"
+    },
+    "sfx/ui/shared/sfx_ui_gen_settings_os_02.mp3": {
+      "path": "sfx/ui/shared/sfx_ui_gen_settings_os_02.mp3"
+    },
+    "sfx/ui/shared/sfx_ui_gen_settings_os_03.mp3": {
+      "path": "sfx/ui/shared/sfx_ui_gen_settings_os_03.mp3"
+    },
+    "weapons/sfx_combat_foley_human_cloth_death_001_01.mp3": {
+      "path": "weapons/sfx_combat_foley_human_cloth_death_001_01.mp3"
+    },
+    "weapons/sfx_combat_foley_human_cloth_death_001_02.mp3": {
+      "path": "weapons/sfx_combat_foley_human_cloth_death_001_02.mp3"
+    },
+    "weapons/sfx_combat_foley_human_cloth_death_001_03.mp3": {
+      "path": "weapons/sfx_combat_foley_human_cloth_death_001_03.mp3"
+    },
+    "weapons/sfx_combat_foley_human_cloth_death_101_01.mp3": {
+      "path": "weapons/sfx_combat_foley_human_cloth_death_101_01.mp3"
+    },
+    "weapons/sfx_combat_foley_human_cloth_death_101_02.mp3": {
+      "path": "weapons/sfx_combat_foley_human_cloth_death_101_02.mp3"
+    },
+    "weapons/sfx_combat_foley_human_cloth_death_101_03.mp3": {
+      "path": "weapons/sfx_combat_foley_human_cloth_death_101_03.mp3"
+    },
+    "weapons/sfx_combat_foley_human_cloth_death_201_01.mp3": {
+      "path": "weapons/sfx_combat_foley_human_cloth_death_201_01.mp3"
+    },
+    "weapons/sfx_combat_foley_human_cloth_death_201_02.mp3": {
+      "path": "weapons/sfx_combat_foley_human_cloth_death_201_02.mp3"
+    },
+    "weapons/sfx_combat_foley_human_cloth_death_201_03.mp3": {
+      "path": "weapons/sfx_combat_foley_human_cloth_death_201_03.mp3"
+    },
+    "weapons/sfx_combat_foley_human_cloth_death_301_01.mp3": {
+      "path": "weapons/sfx_combat_foley_human_cloth_death_301_01.mp3"
+    },
+    "weapons/sfx_combat_foley_human_cloth_death_301_02.mp3": {
+      "path": "weapons/sfx_combat_foley_human_cloth_death_301_02.mp3"
+    },
+    "weapons/sfx_combat_foley_human_cloth_death_301_03.mp3": {
+      "path": "weapons/sfx_combat_foley_human_cloth_death_301_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_large_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_large_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_large_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_large_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_large_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_large_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_large_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_large_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_large_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_large_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_large_06.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_large_06.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_large_07.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_large_07.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_large_08.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_large_08.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_large_09.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_large_09.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_large_10.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_large_10.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_medium_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_medium_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_medium_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_medium_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_medium_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_medium_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_medium_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_medium_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_medium_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_medium_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_medium_06.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_medium_06.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_medium_07.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_medium_07.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_medium_08.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_medium_08.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_medium_09.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_medium_09.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_medium_10.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_medium_10.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_medium_11.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_medium_11.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_medium_12.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_medium_12.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_06.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_06.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_07.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_ranged_07.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_shield_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_shield_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_shield_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_shield_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_shield_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_shield_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_shield_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_shield_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_shield_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_shield_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_shield_06.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_shield_06.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_shield_07.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_shield_07.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_attack_shield_08.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_attack_shield_08.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_buff_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_buff_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_buff_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_buff_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_buff_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_buff_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_buff_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_buff_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_buff_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_buff_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_buff_06.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_buff_06.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_buff_07.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_buff_07.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_buff_08.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_buff_08.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_buff_09.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_buff_09.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_buff_10.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_buff_10.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_buff_11.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_buff_11.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_large_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_large_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_large_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_large_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_large_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_large_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_large_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_large_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_large_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_large_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_large_06.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_large_06.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_large_07.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_large_07.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_medium_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_medium_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_medium_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_medium_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_medium_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_medium_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_medium_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_medium_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_medium_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_medium_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_soft_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_soft_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_soft_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_soft_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_soft_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_soft_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_soft_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_soft_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_soft_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_soft_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_death_soft_06.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_death_soft_06.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_environmental_object_interact_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_environmental_object_interact_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_environmental_object_interact_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_environmental_object_interact_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_environmental_object_interact_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_environmental_object_interact_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_environmental_object_interact_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_environmental_object_interact_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_environmental_object_interact_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_environmental_object_interact_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_environmental_object_interact_06.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_environmental_object_interact_06.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_environmental_object_success_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_environmental_object_success_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_environmental_object_success_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_environmental_object_success_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_environmental_object_success_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_environmental_object_success_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_environmental_object_success_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_environmental_object_success_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_environmental_object_success_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_environmental_object_success_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_large_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_large_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_large_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_large_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_large_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_large_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_large_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_large_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_large_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_large_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_large_06.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_large_06.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_large_07.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_large_07.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_large_08.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_large_08.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_large_09.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_large_09.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_large_10.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_large_10.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_large_11.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_large_11.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_large_12.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_large_12.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_06.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_06.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_07.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_07.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_08.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_08.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_09.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_medium_09.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_small_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_small_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_small_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_small_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_small_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_small_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_small_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_small_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_small_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_small_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_small_06.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_small_06.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_small_07.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_small_07.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_small_08.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_small_08.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_small_09.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_small_09.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_hurt_small_10.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_hurt_small_10.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_06.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_06.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_07.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_07.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_08.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_08.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_09.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_kill_enemy_09.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_recover_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_recover_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_recover_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_recover_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_recover_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_recover_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_recover_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_recover_04.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_recover_05.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_recover_05.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_taunt_01.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_taunt_01.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_taunt_02.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_taunt_02.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_taunt_03.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_taunt_03.mp3"
+    },
+    "vo/combat_emotes/chance/vo_combat_chance_taunt_04.mp3": {
+      "path": "vo/combat_emotes/chance/vo_combat_chance_taunt_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_large_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_large_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_large_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_large_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_large_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_large_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_large_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_large_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_large_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_large_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_large_06.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_large_06.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_large_07.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_large_07.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_large_08.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_large_08.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_large_09.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_large_09.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_large_10.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_large_10.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_large_11.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_large_11.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_medium_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_medium_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_medium_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_medium_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_medium_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_medium_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_medium_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_medium_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_medium_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_medium_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_medium_06.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_medium_06.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_medium_07.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_medium_07.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_medium_08.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_medium_08.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_medium_09.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_medium_09.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_medium_10.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_medium_10.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_06.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_06.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_07.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_07.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_08.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_08.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_09.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_09.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_10.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_10.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_11.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_11.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_12.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_12.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_13.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_ranged_13.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_shield_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_shield_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_shield_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_shield_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_shield_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_shield_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_shield_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_shield_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_shield_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_shield_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_attack_shield_06.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_attack_shield_06.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_buff_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_buff_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_buff_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_buff_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_buff_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_buff_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_buff_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_buff_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_buff_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_buff_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_buff_06.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_buff_06.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_buff_07.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_buff_07.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_buff_08.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_buff_08.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_buff_09.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_buff_09.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_buff_10.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_buff_10.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_buff_11.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_buff_11.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_death_large_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_death_large_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_death_large_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_death_large_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_death_large_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_death_large_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_death_large_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_death_large_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_death_large_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_death_large_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_death_medium_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_death_medium_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_death_medium_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_death_medium_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_death_medium_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_death_medium_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_death_medium_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_death_medium_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_death_soft_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_death_soft_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_death_soft_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_death_soft_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_death_soft_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_death_soft_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_death_soft_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_death_soft_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_environmental_object_interact_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_environmental_object_interact_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_environmental_object_interact_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_environmental_object_interact_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_environmental_object_interact_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_environmental_object_interact_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_environmental_object_interact_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_environmental_object_interact_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_environmental_object_interact_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_environmental_object_interact_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_environmental_object_interact_06.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_environmental_object_interact_06.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_environmental_object_success_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_environmental_object_success_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_environmental_object_success_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_environmental_object_success_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_environmental_object_success_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_environmental_object_success_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_environmental_object_success_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_environmental_object_success_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_environmental_object_success_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_environmental_object_success_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_environmental_object_success_06.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_environmental_object_success_06.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_large_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_large_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_large_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_large_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_large_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_large_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_large_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_large_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_large_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_large_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_large_06.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_large_06.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_large_07.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_large_07.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_large_08.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_large_08.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_large_09.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_large_09.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_large_10.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_large_10.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_large_11.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_large_11.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_large_12.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_large_12.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_06.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_06.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_07.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_medium_07.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_small_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_small_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_small_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_small_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_small_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_small_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_small_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_small_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_small_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_small_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_small_06.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_small_06.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_small_07.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_small_07.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_small_08.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_small_08.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_small_09.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_small_09.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_small_10.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_small_10.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_hurt_small_11.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_hurt_small_11.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_06.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_06.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_07.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_07.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_08.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_08.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_09.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_kill_enemy_09.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_recover_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_recover_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_recover_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_recover_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_recover_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_recover_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_recover_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_recover_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_recover_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_recover_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_recover_06.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_recover_06.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_recover_07.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_recover_07.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_taunt_01.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_taunt_01.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_taunt_02.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_taunt_02.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_taunt_03.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_taunt_03.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_taunt_04.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_taunt_04.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_taunt_05.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_taunt_05.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_taunt_06.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_taunt_06.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_taunt_07.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_taunt_07.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_taunt_08.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_taunt_08.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_taunt_09.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_taunt_09.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_taunt_10.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_taunt_10.mp3"
+    },
+    "vo/combat_emotes/friction/vo_combat_friction_taunt_11.mp3": {
+      "path": "vo/combat_emotes/friction/vo_combat_friction_taunt_11.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_large_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_large_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_large_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_large_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_large_03.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_large_03.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_large_04.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_large_04.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_large_05.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_large_05.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_large_06.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_large_06.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_large_07.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_large_07.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_large_08.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_large_08.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_large_09.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_large_09.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_large_10.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_large_10.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_large_11.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_large_11.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_large_12.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_large_12.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_medium_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_medium_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_medium_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_medium_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_medium_03.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_medium_03.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_medium_04.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_medium_04.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_medium_05.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_medium_05.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_medium_06.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_medium_06.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_medium_07.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_medium_07.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_03.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_03.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_04.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_04.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_05.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_05.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_06.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_06.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_07.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_07.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_08.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_08.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_09.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_09.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_rare_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_rare_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_rare_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_ranged_rare_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_shield_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_shield_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_shield_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_shield_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_shield_03.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_shield_03.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_attack_shield_04.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_attack_shield_04.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_buff_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_buff_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_buff_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_buff_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_buff_03.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_buff_03.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_buff_04.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_buff_04.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_buff_05.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_buff_05.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_death_large_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_death_large_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_death_large_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_death_large_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_death_large_03.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_death_large_03.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_death_large_04.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_death_large_04.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_death_medium_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_death_medium_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_death_medium_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_death_medium_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_death_medium_03.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_death_medium_03.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_death_medium_04.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_death_medium_04.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_death_soft_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_death_soft_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_death_soft_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_death_soft_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_death_soft_03.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_death_soft_03.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_large_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_large_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_large_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_large_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_large_03.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_large_03.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_large_04.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_large_04.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_large_05.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_large_05.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_large_06.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_large_06.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_large_07.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_large_07.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_large_08.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_large_08.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_large_09.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_large_09.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_small_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_small_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_small_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_small_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_small_03.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_small_03.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_small_04.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_small_04.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_small_05.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_small_05.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_small_06.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_small_06.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_small_07.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_small_07.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_hurt_small_08.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_hurt_small_08.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_kill_enemy_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_kill_enemy_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_kill_enemy_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_kill_enemy_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_kill_enemy_03.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_kill_enemy_03.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_kill_enemy_04.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_kill_enemy_04.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_kill_enemy_05.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_kill_enemy_05.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_kill_enemy_06.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_kill_enemy_06.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_recover_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_recover_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_recover_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_recover_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_recover_03.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_recover_03.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_recover_04.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_recover_04.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_recover_05.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_recover_05.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_taunt_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_taunt_01.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_taunt_02.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_taunt_02.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_taunt_03.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_taunt_03.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_taunt_04.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_taunt_04.mp3"
+    },
+    "vo/combat_emotes/routine/vo_combat_routine_taunt_rare_01.mp3": {
+      "path": "vo/combat_emotes/routine/vo_combat_routine_taunt_rare_01.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0011_0010_hacker.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0011_0010_hacker.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0011_0020_hacker.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0011_0020_hacker.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0041_0010_SZAS.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0041_0010_SZAS.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0041_0020_SZAS.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0041_0020_SZAS.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0041_0030_SZAS.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0041_0030_SZAS.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0042_0010_SZAS.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0042_0010_SZAS.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0042_0020_SZAS.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0042_0020_SZAS.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0042_0030_SZAS.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0042_0030_SZAS.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0042_0040_SZAS.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0042_0040_SZAS.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0043_0010_SZAS.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0043_0010_SZAS.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0043_0020_SZAS.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0043_0020_SZAS.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0043_0030_SZAS.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0043_0030_SZAS.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0043_0031_SZAS.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0043_0031_SZAS.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0043_0032_SZAS.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0043_0032_SZAS.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0043_0040_SZAS.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0043_0040_SZAS.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0061_0010_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0061_0010_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0061_0020_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0061_0020_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0061_0030_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0061_0030_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0061_0040_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0061_0040_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0062_0010_hacker.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0062_0010_hacker.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0062_0020_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0062_0020_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0062_0030_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0062_0030_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0062_0040_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0062_0040_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0071_0010_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0071_0010_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0071_0011_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0071_0011_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0071_0030_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0071_0030_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0071_0040_routine.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0071_0040_routine.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0071_0050_routine.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0071_0050_routine.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0071_0060_routine.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0071_0060_routine.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0072_0010_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0072_0010_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0072_0020_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0072_0020_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0072_0030_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0072_0030_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0072_0040_chance.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0072_0040_chance.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0072_0050_routine.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0072_0050_routine.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0072_0060_routine.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0072_0060_routine.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0073_0010_bighitter1.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0073_0010_bighitter1.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0073_0020_bighitter2.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0073_0020_bighitter2.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0073_0030_chance.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0073_0030_chance.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0073_0040_chance.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0073_0040_chance.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0073_0050_routine.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0073_0050_routine.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0073_0060_routine.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0073_0060_routine.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0073_0070_routine.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0073_0070_routine.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0073_0080_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0073_0080_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0073_0090_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0073_0090_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0082_0010_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0082_0010_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0082_0020_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0082_0020_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0082_0030_friction.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0082_0030_friction.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0082_0040_routine.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0082_0040_routine.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0082_0050_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0082_0050_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0082_0060_friction.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0082_0060_friction.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0082_0070_chance.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0082_0070_chance.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0083_0010_corpgenius.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0083_0010_corpgenius.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0083_0020_corpgenius.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0083_0020_corpgenius.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0083_0030_corpgenius.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0083_0030_corpgenius.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0083_0040_eternity.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0083_0040_eternity.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0083_0050_routine.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0083_0050_routine.mp3"
+    },
+    "vo/season_0/combat_dialogue/vo_0084_0010_routine.mp3": {
+      "path": "vo/season_0/combat_dialogue/vo_0084_0010_routine.mp3"
+    },
+    "vo/season_0/interstitials/vo_season_0_0030_hideout_intro.mp3": {
+      "path": "vo/season_0/interstitials/vo_season_0_0030_hideout_intro.mp3"
+    },
+    "vo/season_0/interstitials/vo_season_0_0040_tat_training.mp3": {
+      "path": "vo/season_0/interstitials/vo_season_0_0040_tat_training.mp3"
+    },
+    "vo/season_0/interstitials/vo_season_0_0050_player_registration.mp3": {
+      "path": "vo/season_0/interstitials/vo_season_0_0050_player_registration.mp3"
+    },
+    "vo/season_0/interstitials/vo_season_0_0060_mission_start.mp3": {
+      "path": "vo/season_0/interstitials/vo_season_0_0060_mission_start.mp3"
+    },
+    "vo/season_0/interstitials/vo_season_0_0070_adding_routine.mp3": {
+      "path": "vo/season_0/interstitials/vo_season_0_0070_adding_routine.mp3"
+    },
+    "vo/season_0/interstitials/vo_season_0_0080_gearing_up_adding_friction.mp3": {
+      "path": "vo/season_0/interstitials/vo_season_0_0080_gearing_up_adding_friction.mp3"
+    },
+    "vo/season_0/interstitials/vo_season_0_0080_gearing_up_adding_friction_page_1.mp3": {
+      "path": "vo/season_0/interstitials/vo_season_0_0080_gearing_up_adding_friction_page_1.mp3"
+    },
+    "vo/season_0/interstitials/vo_season_0_0080_gearing_up_adding_friction_page_2.mp3": {
+      "path": "vo/season_0/interstitials/vo_season_0_0080_gearing_up_adding_friction_page_2.mp3"
+    },
+    "vo/season_0/interstitials/vo_season_0_0081_gearing_up_adding_friction_post_inventory.mp3": {
+      "path": "vo/season_0/interstitials/vo_season_0_0081_gearing_up_adding_friction_post_inventory.mp3"
+    },
+    "vo/season_0/interstitials/vo_season_0_0100_note_from_eternity_no_PS.mp3": {
+      "path": "vo/season_0/interstitials/vo_season_0_0100_note_from_eternity_no_PS.mp3"
+    },
+    "vo/season_0/interstitials/vo_season_0_0100_note_from_eternity_PS_01.mp3": {
+      "path": "vo/season_0/interstitials/vo_season_0_0100_note_from_eternity_PS_01.mp3"
+    },
+    "vo/season_0/interstitials/vo_season_0_0100_note_from_eternity_PS_02.mp3": {
+      "path": "vo/season_0/interstitials/vo_season_0_0100_note_from_eternity_PS_02.mp3"
+    },
+    "vo/season_0/interstitials/vo_season_0_0100_note_from_eternity_PS_03.mp3": {
+      "path": "vo/season_0/interstitials/vo_season_0_0100_note_from_eternity_PS_03.mp3"
     }
   }
-};
+}

@@ -14,6 +14,7 @@ export class RegenerateEffectAnimation extends Animation {
 
       this.playEffect(_target.nftId, 'regeneration-target', 0.0);
       this.playStatChangeAnimation(_target, this.getStatChanges(_target.unitId, event.statChanges));
+      this.playSound('abilities', 'regeneration-1', 0.0);
     }
   }
 

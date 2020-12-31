@@ -23,6 +23,7 @@ export class StatChangeAnimation extends Animation {
       this.playAnimation(_invoker, 'buff');
       this.playStatChangeAnimation(_invoker, this.getStatChanges(_invoker.unitId, event.statChanges));
       this.playEffect(_invoker.nftId, 'buff-invoker', 0.0);
+      this.playSound('abilities', 'buff-1', 0.0);
     }
 
     // Targets

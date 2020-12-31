@@ -16,6 +16,7 @@ export class HealAnimation extends Animation {
       this.playAnimation(_invoker, 'heal');
       this.playStatChangeAnimation(_invoker, this.getStatChanges(_invoker.unitId, event.statChanges));
       this.playEffect(_invoker.nftId, 'healing-invoker-2', 0.0);
+      this.playSound('abilities', 'nanomed_injection-1', 0.0);
     }
 
     // Determine which animation to use

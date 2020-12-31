@@ -15,6 +15,7 @@ export class PoisonEffectAnimation extends Animation {
       this.playAnimation(_target, 'baseHit', 0.9, true);
       this.playEffect(_target.nftId, 'poison-target-1', 0.0);
       this.playStatChangeAnimation(_target, this.getStatChanges(_target.unitId, event.statChanges));
+      this.playSound('combat', 'damage-flesh-blunt-sml-1', 0.0);
     }
   }
 

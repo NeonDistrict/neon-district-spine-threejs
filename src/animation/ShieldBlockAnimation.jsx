@@ -13,6 +13,7 @@ export class ShieldBlockAnimation extends Animation {
       }
 
       this.playEffect(_target.nftId, 'shield-target', 0.9);
+      this.playSound('combat', 'disarm-forcefield-1', 0.0);
     }
   }
 

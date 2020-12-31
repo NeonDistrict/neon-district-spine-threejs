@@ -26,6 +26,7 @@ export class ShieldAnimation extends Animation {
 
       this.playStatChangeAnimation(_target, this.getStatChanges(_target.unitId, event.statChanges));
       this.playEffect(_target.nftId, 'shield-invoker', 0.0);
+      this.playSound('abilities', 'forcefield_on-1', 0.0);
     }
   }
 
