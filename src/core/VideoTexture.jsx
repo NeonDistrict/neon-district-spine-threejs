@@ -35,19 +35,6 @@ export class VideoTexture {
         }
       }
     }
-
-    // Create the element
-    this.video = document.createElement('video');
-    this.video.autoplay = false;
-    this.video.crossOrigin = "anonymous";
-    this.video.onended = (() => {
-      // Restart current video, pause
-      this.video.pause();
-      this.video.currentTime = 0;
-    }).bind(this);
-
-    // Now create itself
-    this.createEffect();
   }
 
   createEffect() {
@@ -78,6 +65,21 @@ export class VideoTexture {
     return this.key;
   }
 
+  cleanUpAfterVideo() {
+    // Clear the source
+    this.video.pause();
+    this.video.removeAttribute('src'); // empty source
+    this.video.load();
+
+    // Remove from three.js
+    this.mesh.geometry.dispose();
+    this.mesh.material.dispose();
+    this.scene.remove(this.mesh);
+
+    // Remove from the DOM
+    this.video.remove();
+  }
+
   setKey(key) {
     // Get parameters from key
     let params = this.getParametersFromKey(key);
@@ -86,11 +88,26 @@ export class VideoTexture {
       return;
     }
 
+    // Handle any prior videos
+    if (this.video) {
+      this.cleanUpAfterVideo();
+    }
+
+    // Create the element
+    this.video = document.createElement('video');
+    this.video.autoplay = false;
+    this.video.crossOrigin = "anonymous";
+    this.video.onended = (() => {
+      if (this.video) {
+        this.cleanUpAfterVideo();
+      }
+    }).bind(this);
+
+    // Now create itself
+    this.createEffect();
+
     // Save the key
     this.key = key;
-
-    // Handle any prior videos
-    this.video.pause();
 
     // Set all parameters
     // Note, set orientation prior to rotation
