@@ -15,6 +15,9 @@ export class SpineCharacter {
       this.atlasFile = this.skeletonFile.replace("-pro", "").replace("-ess", "").replace(".json", ".atlas") + "?" + identifier;
     }
 
+    console.log("Loading skeletonFile", skeletonFile, "for", identifier);
+    console.log("Loading atlasFile", this.atlasFile, "for", identifier);
+
     this.assetManager = assetManager;
     this.assetManager.loadText(this.skeletonFile);
     this.assetManager.loadTextureAtlas(this.atlasFile);

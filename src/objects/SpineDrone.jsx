@@ -1,7 +1,7 @@
 export class SpineDrone {
 
-  constructor(assetManager, drone, rarity, identifier) {
-    this.skeletonFile = "spine-output/weapons/Blkpartnerdrone.json";
+  constructor(assetManager, skeletonFile, drone, rarity, identifier) {
+    this.skeletonFile = skeletonFile;
     this.atlasFile = this.skeletonFile.replace("-pro", "").replace("-ess", "").replace(".json", ".atlas") + "?" + identifier;
 
     this.assetManager = assetManager;

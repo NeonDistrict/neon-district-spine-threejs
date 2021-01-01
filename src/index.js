@@ -9,13 +9,11 @@
 
 
 // Modules
-import { CombatTest } from './combat/CombatTest.jsx';
 import { CombatScene } from './combat/CombatScene.jsx';
 import { CombatPlayer } from './combat/CombatPlayer.jsx';
 import { CharacterEquipment } from './equipment/CharacterEquipment.jsx';
 
 export {
-  CombatTest as NDCombatTest,
   CombatScene as NDCombatScene,
   CombatPlayer as NDCombatPlayer,
   CharacterEquipment as NDCharacterEquipment

@@ -18,6 +18,19 @@ export class Stage extends SpineScene {
 
     // Internal
     this._backgrounds = [];
+    this.spineOutputDirectory = this.determineSpineOutputDirectory();
+    console.log('Pulling spine output from', this.spineOutputDirectory);
+  }
+
+  determineSpineOutputDirectory() {
+    if (
+      window.location.href.indexOf('https://portal.neondistrict.io') === 0 ||
+      window.location.href.indexOf('https://rc.portal.neondistrict.io') === 0
+    ) {
+      return 'spine-output';
+    }
+
+    return 'spine-output-staging';
   }
 
   getScale(value, position) {
@@ -262,7 +275,7 @@ export class Stage extends SpineScene {
     for (let index in this.characters) {
 
       // Determine the skeleton
-      let skeleton = "spine-output/character/MediumMaleHeavySkinTest.json";
+      let skeleton = this.spineOutputDirectory + "/character/MediumMaleHeavySkinTest.json";
 
       // If a weapon type is provided, derive the pose
       if (!this.characters[index].pose && this.characters[index].weapon) {
@@ -292,7 +305,7 @@ export class Stage extends SpineScene {
         let weapon = this.characters[index].weapon.split('-');
 
         this.characters[index].drone = new SpineDrone(
-          this.assetManager, weapon[0], weapon[1], index
+          this.assetManager, this.spineOutputDirectory + "/weapons/Blkpartnerdrone.json", weapon[0], weapon[1], index
         );
       }
     }
@@ -312,7 +325,7 @@ export class Stage extends SpineScene {
         this._backgrounds.push(
           new SpineBackground(
             this.assetManager,
-            "spine-output/backgrounds/" + key + "/" + features + ".json",
+            this.spineOutputDirectory + "/backgrounds/" + key + "/" + features + ".json",
             animation
           )
         );
@@ -322,7 +335,7 @@ export class Stage extends SpineScene {
           this._backgrounds.push(
             new SpineBackground(
               this.assetManager,
-              "spine-output/backgrounds/" + key + "/" + _feature + "/" + features[_feature] + ".json",
+              this.spineOutputDirectory + "/backgrounds/" + key + "/" + _feature + "/" + features[_feature] + ".json",
               animation
             )
           );
