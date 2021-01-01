@@ -276,6 +276,9 @@ export class Stage extends SpineScene {
 
       // Determine the skeleton
       let skeleton = this.spineOutputDirectory + "/character/MediumMaleHeavySkinTest.json";
+      if (this.characters[index].hasOwnProperty('jsonFile') && this.characters[index].jsonFile.indexOf('.json') !== -1) {
+        skeleton = this.characters[index].jsonFile;
+      }
 
       // If a weapon type is provided, derive the pose
       if (!this.characters[index].pose && this.characters[index].weapon) {

@@ -42,7 +42,8 @@ export default class CombatReview extends Component {
       'scale'     : 'character',
       'skin'      : 'Female',
       'weapon'    : 'blkoriginpulsarv16-rare',
-      'atlasFile' : 'nfts/testnet/79228162532711644620206923266-spine.atlas',
+      //'jsonFile'  : 'nfts/ai-practice/ai-practice-blkorigindemon-female-4-0-spine.json',
+      'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigindemon-female-4-0-spine.atlas',
       //'outfit'   : ['female', 'blkorigindemon', 'common']
     },{
       'position' : 1,
@@ -51,6 +52,7 @@ export default class CombatReview extends Component {
       'weapon'   : 'blkorigingladiusmm-uncommon',
       'scale'    : 'character',
       'skin'     : 'Female',
+      'atlasFile' : 'nfts/ai-practice/ai-practice-blkoriginghost-female-5-0-spine.atlas',
       //'outfit'   : ['male', 'blkoriginmedic', 'common']
     },{
       'position' : 2,
@@ -58,7 +60,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Female',
       'weapon'   : 'blktwintanto-rare',
-      'atlasFile' : 'nfts/testnet/79228162551158388693916474895-spine.atlas',
+      'atlasFile' : 'nfts/ai-practice/ai-practice-blkoriginmedic-female-6-0-spine.atlas',
       //'outfit'   : ['female', 'blkorigingenius', 'common']
     },
     {
@@ -66,7 +68,8 @@ export default class CombatReview extends Component {
       'nftId'    : "test3",
       'scale'    : 'character',
       'skin'     : 'Male',
-      'weapon'   : 'blkpartnerrevelatorz17-ultrarare'
+      'weapon'   : 'blkpartnerrevelatorz17-ultrarare',
+      'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigingenius-male-5-0-spine.atlas',
       //'pose'     : 'ConsoleSml_BasicIdle_001',
       //'outfit'   : ['male', 'blkoriginghost', 'common']
     },{
@@ -74,7 +77,8 @@ export default class CombatReview extends Component {
       'nftId'    : "test4",
       'scale'    : 'character',
       'skin'     : 'Female',
-      'weapon'   : 'blkoriginwristbox-legendary'
+      'weapon'   : 'blkoriginwristbox-legendary',
+      'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigingenius-female-4-0-spine.atlas',
       //'outfit'   : ['female', 'blkoriginheavy', 'common']
     },
     {
@@ -83,6 +87,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Male',
       'weapon'   : 'blkoriginsaltas-ultrarare',
+      'atlasFile' : 'nfts/ai-practice/ai-practice-blkoriginjack-male-1-0-spine.atlas',
       //'outfit'   : ['male', 'blkoriginjack', 'common']
     },
     {
@@ -91,6 +96,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Female',
       'weapon'   : 'blksonicbayonet-ultrarare',
+      'atlasFile' : 'nfts/ai-practice/ai-practice-blkoriginjack-female-4-0-spine.atlas',
       //'outfit'   : ['female', 'blkoriginmedic', 'common']
     },
     {
@@ -99,6 +105,7 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Male',
       'weapon'   : 'blkspecialdeathknightblade-ultrarare',
+      'atlasFile' : 'nfts/ai-practice/ai-practice-blkoriginheavy-male-5-0-spine.atlas',
       //'outfit'   : ['male', 'blkorigingenius', 'common']
     }];
 
