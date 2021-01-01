@@ -15,6 +15,14 @@ export class ShieldAnimation extends Animation {
 
       this.playAnimation(_invoker, 'buff');
       this.playStatChangeAnimation(_invoker, this.getStatChanges(_invoker.unitId, event.statChanges));
+
+      // Skip if also a target
+      for (let _target of targets) {
+        if (_target.nftId === _invoker.nftId) {
+          continue;
+        }
+      }
+
       this.playEffect(_invoker.nftId, 'stat-boost-invoker', 0.0);
     }
 
