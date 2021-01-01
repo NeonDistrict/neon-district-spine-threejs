@@ -41,6 +41,8 @@ export class CharacterEquipment extends SpineScene {
           this.character.loadGear("arms", nextProps["arms"], nextProps["gender"], nextProps["armsRarity"]);
         } else if (_prop.indexOf("legs") !== -1) {
           this.character.loadGear("legs", nextProps["legs"], nextProps["gender"], nextProps["legsRarity"]);
+        } else if (_prop.indexOf("weapon") !== -1) {
+          this.character.loadGear("weapon", nextProps["weapon"], nextProps["gender"], nextProps["weaponRarity"]);
         }
       }
     }
@@ -52,9 +54,7 @@ export class CharacterEquipment extends SpineScene {
          this.character.createMesh(this.props.gender === 'male' ? 'Male' : 'Female', this.props.animation, 0, 40, false, 0.12)
       ]);
 
-      this.character.debug();
-
-      for (let part of ["head","body","arms","legs"]) {
+      for (let part of ["head","body","arms","legs","weapon"]) {
         this.character.loadGear(
           part,
           this.props[part],
