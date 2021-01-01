@@ -49,7 +49,7 @@ export default class CombatReview extends Component {
       'position' : 1,
       'nftId'    : "test1",
       //'nftId'    : "ai-practice-blkorigindemon-female-0",
-      'weapon'   : 'blkorigingladiusmm-uncommon',
+      'weapon'   : 'blkoriginwristbox-legendary',
       'scale'    : 'character',
       'skin'     : 'Female',
       'atlasFile' : 'nfts/ai-practice/ai-practice-blkoriginghost-female-5-0-spine.atlas',
@@ -77,7 +77,7 @@ export default class CombatReview extends Component {
       'nftId'    : "test4",
       'scale'    : 'character',
       'skin'     : 'Female',
-      'weapon'   : 'blkoriginwristbox-legendary',
+      'weapon'   : 'blkplasmaspear-legendary',
       'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigingenius-female-4-0-spine.atlas',
       //'outfit'   : ['female', 'blkoriginheavy', 'common']
     },

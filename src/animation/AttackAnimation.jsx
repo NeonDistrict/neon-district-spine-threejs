@@ -31,7 +31,13 @@ export class AttackAnimation extends Animation {
         }
 
         this.playEffect(_invoker.nftId, WEAPON_ANIMATIONS_TO_EFFECTS[weaponAnimationType], delay);
-        this.playSound('weapons', WEAPON_ANIMATIONS_TO_SOUND[weaponAnimationType].baseAtk, delay);
+
+        if (
+          WEAPON_ANIMATIONS_TO_SOUND.hasOwnProperty(weaponAnimationType) &&
+          WEAPON_ANIMATIONS_TO_SOUND[weaponAnimationType].hasOwnProperty('baseAtk')
+        ) {
+          this.playSound('weapons', WEAPON_ANIMATIONS_TO_SOUND[weaponAnimationType].baseAtk, delay);
+        }
       }
     }
   }

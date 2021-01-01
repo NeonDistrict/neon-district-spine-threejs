@@ -63,4 +63,8 @@ module.exports = {
 		"baseAtk" : "ThrustingSml-baseAtk-3",
 		"impact" : "damage-flesh-sharp-sml-1"
 	},
+	"Unarmed" : {
+		"baseAtk" : "Unarmed-baseAtk-1",
+		"impact" : "damage-flesh-blunt-sml-1"
+	}
 }

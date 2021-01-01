@@ -27,7 +27,13 @@ export class DamageAnimation extends Animation {
 
       this.playAnimation(_target, 'baseHit', 0.9, true);
       this.playEffect(_target.nftId, 'hit-target-1', 0.9);
-      this.playSound('combat', WEAPON_ANIMATIONS_TO_SOUND[weaponAnimationType].impact, 0.9);
+
+      if (
+        WEAPON_ANIMATIONS_TO_SOUND.hasOwnProperty(weaponAnimationType) &&
+        WEAPON_ANIMATIONS_TO_SOUND[weaponAnimationType].hasOwnProperty('impact')
+      ) {
+        this.playSound('combat', WEAPON_ANIMATIONS_TO_SOUND[weaponAnimationType].impact, 0.9);
+      }
     }
   }
 
