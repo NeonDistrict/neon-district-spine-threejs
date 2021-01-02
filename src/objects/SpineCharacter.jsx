@@ -71,19 +71,19 @@ export class SpineCharacter {
       "BladeMed" : "Blade Med 1H",
       "BladeSml" : "BladeSml 1H",
       "BladeXXL" : "Blade XXL 2H",
-      "ConsoleSml" : "Console Sml 1H",
+      "ConsoleSml" : "",// "Console Sml 1H", showing up as "Console Med 1H",
       "DroneSml" : "",
       "DualMeleeMed" : ["DualmeleeMed1B", "Dualmelee Med 1H"],
       "DualMeleeSml" : ["DualmeleeSml1B", "Dualmelee Sml 1H"],
       "EnergyMed" : "Energy Med 2H",
       "EnergySml" : "Energy Sml 1H",
-      "PistolSml" : "Pistol Sml 1H",
+      "PistolSml" : "DualrangedSml1B",//, "Pistol Sml 1H",
       "ReturningLrg" : "Returning Lrg 1H",
       "ReturningMed" : "Returning Med 1H",
       "RifleMed" : "Rifle Med 2H",
       "RifleSml" : "Rifle Sml 2H",
       "ThrustingLrg" : "Thrusting Lrg 2H",
-      "ThrustingSml" : "Thrusting Med 1H"
+      "ThrustingSml" : "Thrusting Sml 1H"
     };
 
     this.parts = {
@@ -642,10 +642,15 @@ export class SpineCharacter {
     }
     console.log(JSON.stringify(obj));
 
+
     for (let slot of this.skeletonMesh.skeleton.slots) {
-      console.log("Slot Name:", slot.data.name);
+      if (!slot.attachment) {
+        //console.log("Absent Slot Name:", slot.data.name);
+      } else {
+        console.log(slot.data.name);
+      }
     }
-    */
+
 
     //console.log(this.skeletonMesh)
     //debugger;
