@@ -56,6 +56,10 @@ export class CharacterEquipment extends SpineScene {
          this.character.createMesh(this.props.gender === 'male' ? 'Male' : 'Female', this.props.animation, 0, 40, false, 0.12)
       ]);
 
+      // Create the character's canvas before loading gear
+      this.character.createCanvas();
+
+      // Set all available parts
       for (let part of ["head","body","arms","legs","weapon"]) {
         this.character.loadGear(
           part,
@@ -64,6 +68,9 @@ export class CharacterEquipment extends SpineScene {
           this.props[part + "Rarity"]
         );
       }
+
+      // Set the skin tone
+      this.character.setSkinTone(this.props.skinTone);
 
       requestAnimationFrame(this.load.bind(this));
     } else requestAnimationFrame(this.loadSkeletons.bind(this));
