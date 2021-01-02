@@ -27,6 +27,8 @@ export class CharacterEquipment extends SpineScene {
       if (this.props[_prop] !== nextProps[_prop]) {
         if (_prop === 'animation') {
           this.character.setAnimation(nextProps[_prop]);
+        } else if (_prop === 'skinTone') {
+          this.character.setSkinTone(nextProps["skinTone"]);
         } else if (_prop === 'gender') {
           this.character.setSkin(nextProps["gender"] === 'male' ? 'Male' : 'Female');
           this.character.loadGear("head", nextProps["head"], nextProps["gender"], nextProps["headRarity"]);

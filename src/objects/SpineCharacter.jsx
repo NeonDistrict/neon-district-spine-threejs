@@ -1,5 +1,6 @@
 import WEAPONS_TO_ANIMATIONS from "../data/weaponsToAnimations.js";
 import ANIMATIONS from "../data/animations.js";
+import { CanvasColorApplication } from './CanvasColorApplication.jsx';
 
 export class SpineCharacter {
 
@@ -27,6 +28,9 @@ export class SpineCharacter {
 
     // We save some images to replace them if they were overwritten
     this.defaultImage = null;
+    this.skinImageData = null;
+    this.skinTone = 1;
+    this.gender = 'male';
 
     this.assetToSlotMapping = {
       //"HandsPistolGripB",
@@ -90,6 +94,29 @@ export class SpineCharacter {
       "all"  : ["backarm","torsobg","handsbasegripb","armaccessb","backlegbot","shoesb","backlegtop","legaccessb","torsobot","frontlegbot","shoes","frontlegtop","torsotop","legaccess","headbot","hairextra","hair","headtop","frontarm","handsbasegrip","armaccess","shoulders"]
     };
 
+    this.skinParts = [
+      "HandsBackGrip",
+      "HandsBaseGrip",
+      "HandsBaseGripB",
+      "HandsCarryGrip",
+      "HandsCradleGripB",
+      "HandsPistolGripB",
+      "HandsPointGripB",
+      "HandsPoleGripB",
+      "HandsReleaseGrip",
+      "HandsReleaseGripB",
+      "HandsRestingGrip",
+      "HandsTriggerGrip",
+      "Back Arm Base",
+      "Front Arm Base",
+      "Head Base",
+      "Front Leg Base",
+      "Back Leg Base",
+      "Torso Base"
+    ];
+
+    this.skinTones = [1, 4, 5, 6];
+
     // The above needs to load BEFORE we can assetManager.get them
   }
 
@@ -113,6 +140,9 @@ export class SpineCharacter {
     this.skeletonMesh = new spine.threejs.SkeletonMesh(this.skeletonData, function(parameters) {
       parameters.depthTest = false;
     });
+
+    if (skin === 'Male') this.gender = 'male';
+    else if (skin === 'Female') this.gender = 'female';
 
     this.skeletonMesh.state.setAnimation(0, animation, true);
     this.skeletonMesh.skeleton.setSkinByName(skin);
@@ -145,7 +175,79 @@ export class SpineCharacter {
   }
 
   setSkin(skin) {
+    if (skin === 'Male') this.gender = 'male';
+    else if (skin === 'Female') this.gender = 'female';
+
     this.skeletonMesh.skeleton.setSkinByName(skin);
+  }
+
+  setSkinTone(skinTone) {
+    skinTone = parseInt(skinTone, 10);
+    let parsedSkinTone = this.parseSkinTone(skinTone);
+    if (parsedSkinTone !== this.skinTone) {
+      this.skinTone = parsedSkinTone;
+      this.createSkinTone();
+      this.renderSkinTone();
+    }
+  }
+
+  parseSkinTone(skinTone) {
+    // Find next value
+    if (this.skinTones.indexOf(skinTone) !== -1) {
+      return skinTone;
+    }
+
+    // Otherwise return previous value
+    return this.skinTone;
+  }
+
+  createSkinTone() {
+    // Get the default canvas and color it
+    let res = this.colorCanvas();
+    if (!res) {
+      return;
+    }
+
+    let colorCanvas = res.canvas;
+    let colorCtx = res.ctx;
+
+    let imageData = colorCtx.getImageData(0, 0, colorCanvas.width, colorCanvas.height);
+    this.skinImageData = imageData;
+  }
+
+  renderSkinTone() {
+    if (!this.skinImageData) {
+      return;
+    }
+
+    for (let name of this.skinParts) {
+      let slot = this.skeletonMesh.skeleton.findSlot(name);
+      if (!slot || !slot.attachment) {
+        continue;
+      }
+
+      // From one to the other
+      this.ctx.putImageData(
+        this.skinImageData,
+        0,0,
+        slot.attachment.region.x,
+        slot.attachment.region.y,
+        slot.attachment.region.width,
+        slot.attachment.region.height
+      );
+    }
+
+    // Now re-render
+    this.resetTexture();
+  }
+
+  colorCanvas() {
+    if (!this.canvas || !this.defaultImage) {
+      return;
+    }
+
+    let cca = new CanvasColorApplication();
+    return cca.colorCanvas(this.canvas, this.defaultImage, this.skinTone || 1, this.gender || 'male');
   }
 
   loadGear(slot, jsonPath, _gender = 'female', _rarity = 'common') {
@@ -180,29 +282,7 @@ export class SpineCharacter {
 
     // Weapon case
     if (slot === 'weapon' && WEAPONS_TO_ANIMATIONS.hasOwnProperty(jsonPathOriginal)) {
-      let part = WEAPONS_TO_ANIMATIONS[jsonPathOriginal];
-      if (this.weaponsMapping.hasOwnProperty(part)) {
-        // First, change the animation to that idle area
-        if (ANIMATIONS.hasOwnProperty(part)) {
-          this.skeletonMesh.state.setAnimation(0, ANIMATIONS[part].baseIdle, true);
-        }
-
-        let weapons = this.weaponsMapping[part];
-        if (!Array.isArray(weapons)) {
-          weapons = [weapons];
-        }
-
-        for (let weaponPart of weapons) {
-          // Wipe that area clean
-          this.clearTexture(weaponPart);
-
-          // Load the texture
-          let url = jsonPath.substr(0, jsonPath.lastIndexOf('/')) + "/" + _rarity + ".png";
-          this.loadTexture(url, weaponPart);
-        }
-
-        return;
-      }
+      return this.loadWeapon(jsonPathOriginal, jsonPath, _rarity);
     }
 
     this.loadJson(jsonPath, ((response) => {
@@ -247,6 +327,45 @@ export class SpineCharacter {
     }).bind(this))
   }
 
+  loadWeapon(key, jsonPath, rarity) {
+    let part = WEAPONS_TO_ANIMATIONS[key];
+    if (this.weaponsMapping.hasOwnProperty(part)) {
+      // First, change the animation to that idle area
+      if (ANIMATIONS.hasOwnProperty(part)) {
+        this.skeletonMesh.state.setAnimation(0, ANIMATIONS[part].baseIdle, true);
+      }
+
+      let weapons = this.weaponsMapping[part];
+      if (!Array.isArray(weapons)) {
+        weapons = [weapons];
+      }
+
+      for (let weaponPart of weapons) {
+        if (this.isSlotAvailable(weaponPart)) {
+          console.log("Weapon Part Found")
+          this.loadWeaponImage(weaponPart, jsonPath, rarity);
+        } else {
+          console.log("Weapon Part Not Found")
+          setTimeout(this.loadWeaponImage.bind(this, weaponPart, jsonPath, rarity), 1);
+        }
+      }
+    }
+  }
+
+  loadWeaponImage(weaponPart, jsonPath, rarity) {
+    // Wipe that area clean
+    this.clearTexture(weaponPart);
+
+    // Load the texture
+    let url = jsonPath.substr(0, jsonPath.lastIndexOf('/')) + "/" + rarity + ".png";
+    this.loadTexture(url, weaponPart);
+  }
+
+  isSlotAvailable(name) {
+    let slot = this.skeletonMesh.skeleton.findSlot(name);
+    return slot && slot.attachment;
+  }
+
   loadFullOutfit(jsonPath, _gender = 'female', _rarity = 'common') {
     this.loadGear('all', jsonPath, _gender, _rarity);
   }
@@ -276,7 +395,7 @@ export class SpineCharacter {
     }
 
     if (!slot.attachment) {
-      console.error("Slot attachment not found:", name);
+      console.error("Clear Texture: Slot attachment not found:", name);
       return;
     }
 
@@ -381,7 +500,11 @@ export class SpineCharacter {
       }
 
       if (!slot.attachment) {
-        console.error("Slot attachment not found:", name);
+        console.error("Load Texture: Slot attachment not found:", name);
+        if (this.skeletonMesh.assetLoadingCount <= 0) {
+          this.renderSkinTone();
+        }
+
         return;
       }
 
@@ -457,19 +580,24 @@ export class SpineCharacter {
 
   renderTexture() {
     if (this.skeletonMesh.assetLoadingCount === 0) {
-      if (!this.ctx) return;
+      this.resetTexture();
+      this.renderSkinTone();
+    }
+  }
 
-      let spineTexture = new spine.threejs.ThreeJsTexture(
-        this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
-      );
+  resetTexture() {
+    if (!this.ctx) return;
 
-      // NOTICE: THE DEFAULT EXPORT FROM SPINE IS LINEAR,LINEAR
-      spineTexture.setFilters(spine.TextureFilter.MipMapLinearNearest, spine.TextureFilter.Linear);
+    let spineTexture = new spine.threejs.ThreeJsTexture(
+      this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
+    );
 
-      for (let _slot of this.skeletonMesh.skeleton.slots) {
-        if (!_slot.attachment) continue;
-        _slot.attachment.region.texture = spineTexture;
-      }
+    // NOTICE: THE DEFAULT EXPORT FROM SPINE IS LINEAR,LINEAR
+    spineTexture.setFilters(spine.TextureFilter.MipMapLinearNearest, spine.TextureFilter.Linear);
+
+    for (let _slot of this.skeletonMesh.skeleton.slots) {
+      if (!_slot.attachment) continue;
+      _slot.attachment.region.texture = spineTexture;
     }
   }
 

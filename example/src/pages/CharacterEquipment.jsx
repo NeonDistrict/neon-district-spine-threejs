@@ -8,7 +8,7 @@ export default class CharacterEquipment extends Component {
     this.state = {
       'animation'     : 'Unarmed_BasicIdle_001',
       'gender'        : 'male',
-      'skin-tone'     : "1",
+      'skin-tone'     : 1,
       'head-suit'     : '',
       'head-rarity'   : 'common',
       'body-suit'     : '',
@@ -131,7 +131,7 @@ export default class CharacterEquipment extends Component {
     for (let id in ids) {
       let el = document.getElementById(ids[id]);
       let value = el.value;
-      if (id === 'gender' || id.indexOf('rarity') !== -1) {
+      if (id === 'gender' || id.indexOf('rarity') !== -1 || id === 'skin-tone') {
         let els = document.getElementsByName(ids[id]);
         for (let el of els) {
           if (el.checked) {
@@ -298,16 +298,16 @@ export default class CharacterEquipment extends Component {
         </span>
         <span className={"char-equip-gender-inputs"} id={"char-equip-skin-tone"}>
           <label>
-            1 <input type="radio" name={"char-equip-skin-tone"} value="1" onChange={this.updateState.bind(this, "char-equip-skin-tone")} />
+            1 <input type="radio" name={"char-equip-skin-tone"} value={1} onChange={this.updateState.bind(this, "char-equip-skin-tone")} />
           </label>
           <label>
-            4 <input type="radio" name={"char-equip-skin-tone"} value="4" onChange={this.updateState.bind(this, "char-equip-skin-tone")} />
+            4 <input type="radio" name={"char-equip-skin-tone"} value={4} onChange={this.updateState.bind(this, "char-equip-skin-tone")} />
           </label>
           <label>
-            5 <input type="radio" name={"char-equip-skin-tone"} value="5" onChange={this.updateState.bind(this, "char-equip-skin-tone")} />
+            5 <input type="radio" name={"char-equip-skin-tone"} value={5} onChange={this.updateState.bind(this, "char-equip-skin-tone")} />
           </label>
           <label>
-            6 <input type="radio" name={"char-equip-skin-tone"} value="6" onChange={this.updateState.bind(this, "char-equip-skin-tone")} />
+            6 <input type="radio" name={"char-equip-skin-tone"} value={6} onChange={this.updateState.bind(this, "char-equip-skin-tone")} />
           </label>
         </span>
       </div>
