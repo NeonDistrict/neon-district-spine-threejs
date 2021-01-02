@@ -1,3 +1,6 @@
+import WEAPONS_TO_ANIMATIONS from "../data/weaponsToAnimations.js";
+import ANIMATIONS from "../data/animations.js";
+
 export class SpineCharacter {
 
   // Resources
@@ -58,6 +61,25 @@ export class SpineCharacter {
       "frontarm" : "Front Arm",
       "armaccess" : "Arm Access",
       "shoulders" : "Shoulders"
+    };
+
+    this.weaponsMapping = {
+      "BladeMed" : "Blade Med 1H",
+      "BladeSml" : "BladeSml 1H",
+      "BladeXXL" : "Blade XXL 2H",
+      "ConsoleSml" : "Console Sml 1H",
+      "DroneSml" : "",
+      "DualMeleeMed" : ["DualmeleeMed1B", "Dualmelee Med 1H"],
+      "DualMeleeSml" : ["DualmeleeSml1B", "Dualmelee Sml 1H"],
+      "EnergyMed" : "Energy Med 2H",
+      "EnergySml" : "Energy Sml 1H",
+      "PistolSml" : "Pistol Sml 1H",
+      "ReturningLrg" : "Returning Lrg 1H",
+      "ReturningMed" : "Returning Med 1H",
+      "RifleMed" : "Rifle Med 2H",
+      "RifleSml" : "Rifle Sml 2H",
+      "ThrustingLrg" : "Thrusting Lrg 2H",
+      "ThrustingSml" : "Thrusting Med 1H"
     };
 
     this.parts = {
@@ -150,9 +172,37 @@ export class SpineCharacter {
       return;
     }
 
+    let jsonPathOriginal = jsonPath;
     if (jsonPath.indexOf('http') !== 0) {
       //jsonPath = "assetOutput/" + jsonPath + "/" + jsonPath + ".json";
       jsonPath = "https://neon-district-season-one.s3.us-east-1.amazonaws.com/Output/" + jsonPath + "/" + jsonPath + ".json";
+    }
+
+    // Weapon case
+    if (slot === 'weapon' && WEAPONS_TO_ANIMATIONS.hasOwnProperty(jsonPathOriginal)) {
+      let part = WEAPONS_TO_ANIMATIONS[jsonPathOriginal];
+      if (this.weaponsMapping.hasOwnProperty(part)) {
+        // First, change the animation to that idle area
+        if (ANIMATIONS.hasOwnProperty(part)) {
+          this.skeletonMesh.state.setAnimation(0, ANIMATIONS[part].baseIdle, true);
+        }
+
+        let weapons = this.weaponsMapping[part];
+        if (!Array.isArray(weapons)) {
+          weapons = [weapons];
+        }
+
+        for (let weaponPart of weapons) {
+          // Wipe that area clean
+          this.clearTexture(weaponPart);
+
+          // Load the texture
+          let url = jsonPath.substr(0, jsonPath.lastIndexOf('/')) + "/" + _rarity + ".png";
+          this.loadTexture(url, weaponPart);
+        }
+
+        return;
+      }
     }
 
     this.loadJson(jsonPath, ((response) => {
