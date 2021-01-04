@@ -17,9 +17,15 @@ export class CharacterEquipment extends SpineScene {
   componentDidMount() {
     super.componentDidMount(arguments);
 
+    // Drones
+    let drone = ["",""];
+    if (this.isDroneWeapon(this.props["weapon"])) {
+      drone = [this.props["weapon"], this.props["weaponRarity"]];
+    }
+
     // Preload all skeleton & atlas files
     this.character = new SpineCharacter(this.assetManager, "character/MediumMaleHeavySkinTest.json");
-    this.drone = new SpineDrone(this.assetManager, "weapons/Blkpartnerdrone.json", this.props["weapon"], this.props["weaponRarity"], -1);
+    this.drone = new SpineDrone(this.assetManager, "weapons/Blkpartnerdrone.json", drone[0], drone[1], -1);
 
     // Begin the animation
     requestAnimationFrame(this.loadSkeletons.bind(this));
@@ -64,7 +70,7 @@ export class CharacterEquipment extends SpineScene {
   }
 
   isDroneWeapon(weapon = "") {
-    return DRONES.hasOwnProperty(weapon.split('-')[0]);
+    return DRONES.hasOwnProperty(weapon);
   }
 
   loadSkeletons(atlasFile, skeletonFile) {
