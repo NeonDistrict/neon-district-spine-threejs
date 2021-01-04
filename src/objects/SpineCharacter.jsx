@@ -82,7 +82,7 @@ export class SpineCharacter {
       "ReturningMed" : "Returning Med 1H",
       "RifleMed" : "Rifle Med 2H",
       "RifleSml" : "Rifle Sml 2H",
-      "ThrustingLrg" : "Thrusting Lrg 2H",
+      "ThrustingLrg" : "",//"Thrusting Lrg 2H",
       "ThrustingSml" : "Thrusting Sml 1H"
     };
 
@@ -271,6 +271,10 @@ export class SpineCharacter {
 
       this.renderTexture();
 
+      if (slot === 'weapon') {
+        this.skeletonMesh.state.setAnimation(0, ANIMATIONS['Unarmed'].baseIdle, true);
+      }
+
       return;
     }
 
@@ -333,6 +337,8 @@ export class SpineCharacter {
       // First, change the animation to that idle area
       if (ANIMATIONS.hasOwnProperty(part)) {
         this.skeletonMesh.state.setAnimation(0, ANIMATIONS[part].baseIdle, true);
+      } else {
+        this.skeletonMesh.state.setAnimation(0, ANIMATIONS['Unarmed'].baseIdle, true);
       }
 
       let weapons = this.weaponsMapping[part];
@@ -341,14 +347,20 @@ export class SpineCharacter {
       }
 
       for (let weaponPart of weapons) {
-        if (this.isSlotAvailable(weaponPart)) {
-          console.log("Weapon Part Found")
-          this.loadWeaponImage(weaponPart, jsonPath, rarity);
+        if (weaponPart.length === 0) {
+          continue;
         } else {
-          console.log("Weapon Part Not Found")
-          setTimeout(this.loadWeaponImage.bind(this, weaponPart, jsonPath, rarity), 1);
+          if (this.isSlotAvailable(weaponPart)) {
+            console.log("Weapon Part Found")
+            this.loadWeaponImage(weaponPart, jsonPath, rarity);
+          } else {
+            console.log("Weapon Part Not Found")
+            setTimeout(this.loadWeaponImage.bind(this, weaponPart, jsonPath, rarity), 1);
+          }
         }
       }
+    } else {
+      this.skeletonMesh.state.setAnimation(0, ANIMATIONS['Unarmed'].baseIdle, true);
     }
   }
 

@@ -66,18 +66,20 @@ export class VideoTexture {
   }
 
   cleanUpAfterVideo() {
-    // Clear the source
-    this.video.pause();
-    this.video.removeAttribute('src'); // empty source
-    this.video.load();
+    if (this.video && this.video.pause) {
+      // Clear the source
+      this.video.pause();
+      this.video.removeAttribute('src'); // empty source
+      this.video.load();
 
-    // Remove from three.js
-    this.mesh.geometry.dispose();
-    this.mesh.material.dispose();
-    this.scene.remove(this.mesh);
+      // Remove from three.js
+      this.mesh.geometry.dispose();
+      this.mesh.material.dispose();
+      this.scene.remove(this.mesh);
 
-    // Remove from the DOM
-    this.video.remove();
+      // Remove from the DOM
+      this.video.remove();
+    }
   }
 
   setKey(key) {

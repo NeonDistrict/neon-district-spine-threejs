@@ -7,21 +7,23 @@ export class SoundClip {
     this.audio = new Audio(this.SOUND_EFFECTS_ROOT_SRC + path);
     this.audio.crossOrigin = "anonymous";
     this.audio.preload = this.parsePreload(preload);
-    this.audio.onended = (() => {
-      if (this.audio) {
-        // Clear the source
-        this.audio.pause();
-        this.audio.removeAttribute('src'); // empty source
-        this.audio.load();
-
-        // Remove from the DOM
-        this.audio.remove();
-      }
-    }).bind(this);
+    this.audio.onended = this.cleanUpAudio.bind(this);
 
     // Set defaults
     this.setLoop(loop);
     this.setVolume(volume);
+  }
+
+  cleanUpAudio() {
+    if (this.audio) {
+      // Clear the source
+      this.audio.pause();
+      this.audio.removeAttribute('src'); // empty source
+      this.audio.load();
+
+      // Remove from the DOM
+      this.audio.remove();
+    }
   }
 
   parsePreload(preload) {

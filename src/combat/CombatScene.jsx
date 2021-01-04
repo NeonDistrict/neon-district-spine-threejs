@@ -32,6 +32,18 @@ export class CombatScene extends Stage {
     this.animationController = new AnimationController(this.characters, this.effects, this.soundManager);
   }
 
+  componentWillUnmount() {
+    super.componentWillUnmount(arguments);
+
+    console.log("Clean up videos.");
+    for (let key in this.effects) {
+      this.effects[key].cleanUpAfterVideo();
+    }
+
+    console.log("Clean up audio.");
+    this.soundManager.cleanUpAudio();
+  }
+
   renderAdditionalScenes(delta) {
     // Render the game HUB
     if (this.hud && this.hud.scene && this.hud.camera) {

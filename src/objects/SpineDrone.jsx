@@ -17,6 +17,11 @@ export class SpineDrone {
     // The above needs to load BEFORE we can assetManager.get them
   }
 
+  setDrone(drone, rarity) {
+    this.drone = drone;
+    this.rarity = rarity;
+  }
+
   createMesh(xShift, yShift, flipX, scale) {
     // Load the texture atlas using name.atlas and name.png from the AssetManager.
     // The function passed to TextureAtlas is used to resolve relative paths.

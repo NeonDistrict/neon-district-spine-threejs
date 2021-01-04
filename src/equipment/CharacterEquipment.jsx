@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { SpineScene } from "../core/SpineScene.jsx";
 import { SpineCharacter } from "../objects/SpineCharacter.jsx";
+import { SpineDrone } from "../objects/SpineDrone.jsx";
 import { SpineBackground } from "../objects/SpineBackground.jsx";
+import DRONES from "../data/drones.js";
 
 export class CharacterEquipment extends SpineScene {
   constructor(props) {
@@ -17,6 +19,7 @@ export class CharacterEquipment extends SpineScene {
 
     // Preload all skeleton & atlas files
     this.character = new SpineCharacter(this.assetManager, "character/MediumMaleHeavySkinTest.json");
+    this.drone = new SpineDrone(this.assetManager, "weapons/Blkpartnerdrone.json", this.props["weapon"], this.props["weaponRarity"], -1);
 
     // Begin the animation
     requestAnimationFrame(this.loadSkeletons.bind(this));
@@ -45,15 +48,31 @@ export class CharacterEquipment extends SpineScene {
           this.character.loadGear("legs", nextProps["legs"], nextProps["gender"], nextProps["legsRarity"]);
         } else if (_prop.indexOf("weapon") !== -1) {
           this.character.loadGear("weapon", nextProps["weapon"], nextProps["gender"], nextProps["weaponRarity"]);
+
+          // Create the Drone object if needed
+          if (nextProps["weapon"] && this.isDroneWeapon(nextProps["weapon"])) {
+            this.drone.setDrone(nextProps["weapon"], nextProps["weaponRarity"]);
+            this.drone.clearTexture();
+            this.drone.loadDroneImage();
+          } else {
+            this.drone.clearTexture();
+            this.drone.renderTexture();
+          }
         }
       }
     }
   }
 
+  isDroneWeapon(weapon = "") {
+    return DRONES.hasOwnProperty(weapon.split('-')[0]);
+  }
+
   loadSkeletons(atlasFile, skeletonFile) {
     if (this.assetManager.isLoadingComplete()) {
+
       this.setSkeletons([
-         this.character.createMesh(this.props.gender === 'male' ? 'Male' : 'Female', this.props.animation, 0, 40, false, 0.12)
+        this.drone.createMesh(-20, -300, false, 0.132),
+        this.character.createMesh(this.props.gender === 'male' ? 'Male' : 'Female', this.props.animation, 0, 40, false, 0.12)
       ]);
 
       // Create the character's canvas before loading gear
@@ -71,6 +90,16 @@ export class CharacterEquipment extends SpineScene {
 
       // Set the skin tone
       this.character.setSkinTone(this.props.skinTone);
+
+      // Hide drone
+      this.drone.createCanvas();
+      this.drone.clearTexture();
+      this.drone.renderTexture();
+
+      // Load drone image if possible
+      if (this.drone.drone && this.drone.rarity) {
+        this.drone.loadDroneImage();
+      }
 
       requestAnimationFrame(this.load.bind(this));
     } else requestAnimationFrame(this.loadSkeletons.bind(this));

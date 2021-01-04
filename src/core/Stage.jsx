@@ -18,19 +18,6 @@ export class Stage extends SpineScene {
 
     // Internal
     this._backgrounds = [];
-    this.spineOutputDirectory = this.determineSpineOutputDirectory();
-    console.log('Pulling spine output from', this.spineOutputDirectory);
-  }
-
-  determineSpineOutputDirectory() {
-    if (
-      window.location.href.indexOf('https://portal.neondistrict.io') === 0 ||
-      window.location.href.indexOf('https://rc.portal.neondistrict.io') === 0
-    ) {
-      return 'spine-output';
-    }
-
-    return 'spine-output-staging';
   }
 
   getScale(value, position) {

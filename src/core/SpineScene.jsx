@@ -11,6 +11,10 @@ export class SpineScene extends Scene {
     this.baseUrl = props.baseUrl || "https://neon-district-season-one.s3.amazonaws.com/";
     this.createAssetManager(this.baseUrl);
 
+    // Define the spine output directory
+    this.spineOutputDirectory = this.determineSpineOutputDirectory();
+    console.log('Pulling spine output from', this.spineOutputDirectory);
+
     this.state = {
       isLoading: true
     };
@@ -18,6 +22,17 @@ export class SpineScene extends Scene {
 
   componentDidMount() {
     super.componentDidMount(arguments);
+  }
+
+  determineSpineOutputDirectory() {
+    if (
+      window.location.href.indexOf('https://portal.neondistrict.io') === 0 ||
+      window.location.href.indexOf('https://rc.portal.neondistrict.io') === 0
+    ) {
+      return 'spine-output';
+    }
+
+    return 'spine-output-staging';
   }
 
   createAssetManager(baseUrl) {
