@@ -7,7 +7,7 @@ export default class CombatScene extends Component {
       'position' : 0,
       'scale'    : 'character',
       'skin'     : 'Female',
-      'weapon'   : 'blkprotectionorb-rare',
+      'weapon'   : 'blkoriginheater-rare',
       'outfit'   : ['female', 'natoshi', 'legendary']
     },
     {
@@ -20,14 +20,14 @@ export default class CombatScene extends Component {
       'position' : 2,
       'scale'    : 'character',
       'skin'     : 'Male',
-      'weapon'   : 'blkoriginwonderball-uncommon',
+      'weapon'   : 'blkoriginnightsticks-uncommon',
       'outfit'   : ['male', 'blkorigingenius', 'common']
     },
     {
       'position' : 3,
       'scale'    : 'character',
       'skin'     : 'Female',
-      'weapon'   : 'blkprotectionorb-legendary',
+      'weapon'   : 'blkchakram-legendary',
       'outfit'   : ['female', 'cerespreserverr', 'rare']
     },
     {
@@ -53,11 +53,11 @@ export default class CombatScene extends Component {
     }];
 
     return (
-      <div style={{"width":1024,"height":600}}>
+      <div style={{"width":1280,"height":768}}>
         <NDCombatScene
-          width={1024}
-          height={600}
-          background="training-room-001"
+          width={1280}
+          height={768}
+          background="corp-office-int-night-001"
           characters={characters}
         />
       </div>

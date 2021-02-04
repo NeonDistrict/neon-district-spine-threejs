@@ -29,5 +29,5 @@ module.exports = {
 	"blkhellbringer"             : "ReturningLrg",
 	"blkplasmaspear"             : "Unarmed", //"ThrustingLrg",
 	"blkpartnerrevelatorz17"     : "Unarmed", // "DroneSml",
-	"blkspecialdeathknightblade" : "BladeXXL"
+	"blkspecialdeathknightsword" : "BladeXXL"
 }
