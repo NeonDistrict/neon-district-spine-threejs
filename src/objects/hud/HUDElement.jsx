@@ -120,7 +120,7 @@ export class HUDElement {
       case 'ATTACK': return HUDSTYLES.colors.desaturatedRed;
       case 'EFFECT': return HUDSTYLES.colors.desaturatedYellow;
       case 'INTERACT': return HUDSTYLES.colors.desaturatedNeonBlue;
-      default: return HUDSTYLES.colors.darkGray;
+      default: return HUDSTYLES.colors.halfGray;
     }
   }
 

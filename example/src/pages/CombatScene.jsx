@@ -27,7 +27,7 @@ export default class CombatScene extends Component {
       'position' : 3,
       'scale'    : 'character',
       'skin'     : 'Female',
-      'weapon'   : 'blkchakram-legendary',
+      'weapon'   : 'blkspecialdeathknightsword-legendary',
       'outfit'   : ['female', 'cerespreserverr', 'rare']
     },
     {

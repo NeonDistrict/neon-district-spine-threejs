@@ -44,8 +44,12 @@ export class PlayerSelections {
     let cardIdx = _option.replace(/^card/,'');
     let card = this.getCard(cardIdx);
 
-    // Disallow selecting effects or interacts
-    if (!card || !card.hasOwnProperty('type') || card.type.toLowerCase() === 'effect' || card.type.toLowerCase() === 'interact') {
+    // Disallow selecting effects, fillers, or interacts
+    if (!card || !card.hasOwnProperty('type') ||
+      card.type.toLowerCase() === 'effect' ||
+      card.type.toLowerCase() === 'filler' ||
+      card.type.toLowerCase() === 'interact'
+    ) {
       return false;
     }
 

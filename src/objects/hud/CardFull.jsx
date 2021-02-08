@@ -54,6 +54,11 @@ export class CardFull extends HUDElement {
   }
 
   drawTypeCircle() {
+    // Skip fillers
+    if (this.card.type.toLowerCase() === 'filler') {
+      return;
+    }
+
     //this.context.fillStyle = (this.hudLocked) ? this.getTypeTransparentPrimaryColor(this.card.type) : this.getTypePrimaryColor(this.card.type);
     this.context.fillStyle = HUDSTYLES.colors.darkGray;
 
@@ -155,7 +160,9 @@ export class CardFull extends HUDElement {
 
   drawDisabledOverlay(options) {
     if (this.card && this.card.type && (
-        this.card.type.toLowerCase() === 'interact' || (options && options.isTaunted === true && this.card.type.toLowerCase() !== 'attack')
+        this.card.type.toLowerCase() === 'filler' ||
+        this.card.type.toLowerCase() === 'interact' ||
+        (options && options.isTaunted === true && this.card.type.toLowerCase() !== 'attack')
       )
     ) {
       this.context.strokeStyle = HUDSTYLES.colors.transparentDarkGray;
@@ -196,6 +203,11 @@ export class CardFull extends HUDElement {
   }
 
   writeTicks() {
+    // Skip filler cards
+    if (this.card.type.toLowerCase() === 'filler') {
+      return;
+    }
+
     this.context.fillStyle = HUDSTYLES.colors.white;
     this.context.strokeStyle = HUDSTYLES.colors.white;
 
@@ -240,7 +252,13 @@ export class CardFull extends HUDElement {
     this.context.textAlign = 'center';
     this.context.textBaseline = 'top';
 
-    let name = this.getLines(this.card.name, this.width * 1/2);
+    // Name width
+    let nameWidth = this.width * 1/2;
+    if (this.card.type.toLowerCase() === 'filler') {
+      nameWidth = this.width;
+    }
+
+    let name = this.getLines(this.card.name, nameWidth);
     for (let _idx = 0; _idx < name.length; _idx++) {
       this.context.fillText(
         name[_idx],
