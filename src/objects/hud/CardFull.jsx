@@ -30,7 +30,18 @@ export class CardFull extends HUDElement {
     };
   }
 
+  handleHUDLocked() {
+    super.handleHUDLocked();
+    this.needsUpdate = true;
+  }
+
+  handleHUDUnlocked() {
+    super.handleHUDUnlocked();
+    this.needsUpdate = true;
+  }
+
   update(card, options = {}) {
+    this.needsUpdate = false;
     if (this.hudLocked || !card || (Object.keys(card).length === 0 && card.constructor === Object)) {
       this.drawCardBack();
       this.drawBackBorder();

@@ -23,6 +23,9 @@ export class PlayerControlsDisplay extends HUDElement {
     this.cardWidth = 5;
     this.cardWidthDistance = 4.75;
 
+    this.selectedAction = null;
+    this.selectedTarget = null;
+
     this.imageCache = new ImageCache();
     this.imageCache.pullImages();
 
@@ -152,6 +155,30 @@ export class PlayerControlsDisplay extends HUDElement {
         })
       );
     }
+    this.needsUpdate = true;
+  }
+
+  preUpdate(delta) {
+    let action = this.getSelectedAction();
+    if (action != this.selectedAction) {
+      this.selectedAction = action;
+      this.needsUpdate = true;
+    }
+
+    let target = this.getSelectedTarget();
+    if (target != this.selectedTarget) {
+      this.selectedTarget = target;
+      this.needsUpdate = true;
+    }
+
+    let cardsLength = this.cards ? this.cards.length : 0;
+    for (var i=0; i<cardsLength; i++) {
+      if (this.cards[i].preUpdate(delta)) {
+        this.needsUpdate = true;
+      }
+    }
+
+    return this.needsUpdate;
   }
 
   update(delta) {
@@ -165,6 +192,8 @@ export class PlayerControlsDisplay extends HUDElement {
     if (!this.hudLocked) {
       this.drawAutomaticallySelectedActions();
     }
+
+    this.needsUpdate = false;
   }
 
   getSelectedAction() {
@@ -496,7 +525,7 @@ export class PlayerControlsDisplay extends HUDElement {
   }
 
   drawSelectedAction() {
-    let action = this.getSelectedAction();
+    let action = this.selectedAction;
     if (!action) return;
 
     let actionPlace = ["attack","card0","card1","card2"].indexOf(action);

@@ -55,6 +55,7 @@ export class TurnOrderDisplay extends HUDElement {
     }
 
     this.constructPortraitOrder();
+    this.needsUpdate = true;
   }
 
   constructPortraitOrder() {
@@ -96,6 +97,7 @@ export class TurnOrderDisplay extends HUDElement {
         'x' : xPos
       });
     }
+    this.needsUpdate = false;
   }
 
 }

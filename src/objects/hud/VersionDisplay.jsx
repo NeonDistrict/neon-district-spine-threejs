@@ -29,6 +29,8 @@ export class VersionDisplay extends HUDElement {
     );
 
     this.context.shadowBlur = 0;
+
+    this.needsUpdate = false;
   }
 
 }

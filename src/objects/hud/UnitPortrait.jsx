@@ -11,6 +11,8 @@ export class UnitPortrait extends HUDElement {
     this.drawHead();
     this.writeTicks();
     this.drawKnockedOutOverlay();
+
+    this.needsUpdate = false;
   }
 
   drawRhombus() {

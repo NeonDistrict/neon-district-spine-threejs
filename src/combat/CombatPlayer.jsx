@@ -109,6 +109,8 @@ export class CombatPlayer extends CombatScene {
       if (this.playerSelections.hasSelections()) {
         this.unlockClickableRegions();
       }
+
+      this.userInterface.invalidate();
     }
   }
 
@@ -374,6 +376,8 @@ export class CombatPlayer extends CombatScene {
     if (!this.battleComplete && this.playerSelections.hasSelections() && data.hasOwnProperty('error')) {
       this.unlockClickableRegions();
     }
+
+    this.userInterface.invalidate();
   }
 
   handleErrorResponse(error) {
@@ -589,6 +593,8 @@ export class CombatPlayer extends CombatScene {
         }
       }
     }
+
+    this.userInterface.invalidate();
   }
 
   renderEventBlocks() {

@@ -33,6 +33,9 @@ export class CombatHUD {
     this.height = this.canvas.height;
     this.texture = null;
 
+    // Debug
+    this.updateTracker = 0;
+
     // Load in required fonts
     this.fontsLoaded = false;
     this.loadFonts();
@@ -96,6 +99,12 @@ export class CombatHUD {
     this.unitStatusDisplay.setTeams(teams);
   }
 
+  invalidate() {
+    this.playerControlsDisplay.needsUpdate = true;
+    this.turnOrderDisplay.needsUpdate = true;
+    this.unitStatusDisplay.needsUpdate = true;
+  }
+
   setPlayerSelectionsObject(playerSelections) {
     this.playerSelections = playerSelections;
     this.playerControlsDisplay.setPlayerSelectionsObject(playerSelections);
@@ -110,14 +119,27 @@ export class CombatHUD {
       return;
     }
 
-    this.context.clearRect(0, 0, this.width, this.height);
+    let needsUpdate = false;
+    if (this.versionDisplay.preUpdate(delta)) {needsUpdate=true;}
+    if (this.errorDisplay.preUpdate(delta)) {needsUpdate=true;}
+    if (this.turnOrderDisplay.preUpdate(delta)) {needsUpdate=true;}
+    if (this.playerControlsDisplay.preUpdate(delta)) {needsUpdate=true;}
+    if (this.unitStatusDisplay.preUpdate(delta)) {needsUpdate=true;}
+    if (this.screenCanvasOverlay.preUpdate(delta)) {needsUpdate=true;}
 
-    this.versionDisplay.update(delta);
-    this.errorDisplay.update(delta);
-    this.turnOrderDisplay.update(delta);
-    this.playerControlsDisplay.update(delta);
-    this.unitStatusDisplay.update(delta);
-    this.screenCanvasOverlay.update(delta);
+    if (needsUpdate) {
+      console.log("Needs update:", this.updateTracker++);
+
+      // TODO the canvas retains its contents, so instead of redrawing the entire 'screen' only clear and update the area(s) that changed
+      this.context.clearRect(0, 0, this.width, this.height);
+
+      this.versionDisplay.update(delta);
+      this.errorDisplay.update(delta);
+      this.turnOrderDisplay.update(delta);
+      this.playerControlsDisplay.update(delta);
+      this.unitStatusDisplay.update(delta);
+      this.screenCanvasOverlay.update(delta);
+    }
   }
 
   loadFonts() {

@@ -16,6 +16,11 @@ export class UnitStatus extends HUDElement {
 
     this.imageCache = new ImageCache();
 
+    this.unitPosition = null;
+    this.healthPosition = 0;
+    this.ticksPosition = 0;
+    this.statusEffectsMask = 0;
+
     this.registerUnitTarget();
   }
 
@@ -37,6 +42,37 @@ export class UnitStatus extends HUDElement {
     );
   }
 
+  preUpdate(delta) {
+    let hp = this.getHealthPosition();
+    if (this.healthPosition != hp) {
+      this.healthPosition = hp;
+      this.needsUpdate = true;
+    }
+
+    let tp = this.getTicksPosition();
+    if (this.ticksPosition != tp) {
+      this.ticksPosition = tp;
+      this.needsUpdate = true;
+    }
+
+    if (
+      (
+        this.activeAnimEvt.hasActiveStatChange(this.unit.unitId) ||
+        this.activeAnimEvt.hasActiveStatusEffectChange(this.unit.unitId)
+      ) && this.unit.knockoutAnimationPlayed !== true
+    ) {
+      this.needsUpdate = true;
+    }
+
+    let sem = this.getStatusEffectsMask();
+    if (this.statusEffectsMask != sem) {
+      this.statusEffectsMask = sem;
+      this.needsUpdate = true;
+    }
+
+    return this.needsUpdate;
+  }
+
   update(delta) {
     // Get the position
     let position = this.getUnitPosition(this.unit.character);
@@ -45,6 +81,8 @@ export class UnitStatus extends HUDElement {
     this.drawStatusEffects(position);
     //this.drawUnitTarget(position);
     this.writeUnitUpdates(position);
+
+    this.needsUpdate = false;
   }
 
   drawUnitTarget(position) {
@@ -83,6 +121,8 @@ export class UnitStatus extends HUDElement {
           this.writeUnitUpdate(relPosition, _stat, value, _arrIdx == 1);
         }
       }
+
+      this.needsUpdate = true;
     }
   }
 
@@ -154,7 +194,7 @@ export class UnitStatus extends HUDElement {
       this.healthHeight
     );
 
-    let percHealthRemaining = this.getHealthPosition();
+    let percHealthRemaining = this.healthPosition;
 
     this.context.fillStyle = HUDSTYLES.colors.desaturatedRed;
     this.context.fillRect(
@@ -199,7 +239,7 @@ export class UnitStatus extends HUDElement {
     this.context.strokeStyle=HUDSTYLES.colors.transparentNeonBlue;
     this.context.stroke();
 
-    let percTicksRemaining = this.getTicksPosition();
+    let percTicksRemaining = this.ticksPosition;
 
     this.context.beginPath();
     this.context.arc(
@@ -234,6 +274,31 @@ export class UnitStatus extends HUDElement {
       ),
       0.0
     );
+  }
+
+  getStatusEffectsMask() {
+    let mask = 0;
+
+    if (this.unit && this.unit.statusEffects && this.unit.statusEffects.TAUNT > 0) {
+      mask += 1 << 0;
+    }
+
+    if (this.unit && this.unit.statusEffects && this.unit.statusEffects.SHIELD > 0) {
+      mask += 1 << 1;
+    }
+
+    if (this.unit && this.unit.statusEffects && this.unit.statusEffects.POISON > 0) {
+      mask += 1 << 2;
+    }
+
+    if (this.unit && this.unit.statusEffects && this.unit.statusEffects.REGENERATE > 0) {
+      mask += 1 << 3;
+    }
+
+    if (this.unit && this.unit.statusEffects && this.unit.statusEffects.COUNTERATTACK > 0) {
+      mask += 1 << 4;
+    }
+    return mask;
   }
 
   drawStatusEffects(position) {

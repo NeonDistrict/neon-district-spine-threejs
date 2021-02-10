@@ -8,15 +8,18 @@ export class ErrorDisplay extends HUDElement {
     this.error = "";
     this.errorTime = 3;
     this.errorTimeout = 3;
+    this.needsUpdate = false;
   }
 
   setError(err) {
     this.error = err;
     this.errorTimeout = 0;
+    this.needsUpdate = true;
   }
 
   update(delta) {
     if (this.errorTimeout >= this.errorTime) {
+      this.needsUpdate = false;
       return;
     }
     this.errorTimeout += delta;

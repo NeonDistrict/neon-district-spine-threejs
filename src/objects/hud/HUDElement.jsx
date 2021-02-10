@@ -15,6 +15,7 @@ export class HUDElement {
     this.battleComplete = false;
     this.battleCompleteWinner = null;
     this.playerSelections = null;
+    this.needsUpdate = true;
 
     window.addEventListener('clickableRegionsLocked', this.handleHUDLocked.bind(this));
     window.addEventListener('clickableRegionsUnlocked', this.handleHUDUnlocked.bind(this));
@@ -38,6 +39,10 @@ export class HUDElement {
     if (e && e.detail && e.detail.winner) {
       this.battleCompleteWinner = e.detail.winner;
     }
+  }
+
+  preUpdate(delta) {
+    return this.needsUpdate;
   }
 
   update(delta) {

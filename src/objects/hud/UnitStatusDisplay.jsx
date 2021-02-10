@@ -47,16 +47,30 @@ export class UnitStatusDisplay extends HUDElement {
         })
       );
     }
+
+    this.needsUpdate = true;
   }
 
-  update(delta) {
+  preUpdate(delta) {
     if (!this.unitStatuses || !this.unitStatuses.length) {
       this.init();
     }
 
     for (let idx = 0; idx < this.unitStatuses.length; idx++) {
-      this.unitStatuses[idx].update();
+      if (this.unitStatuses[idx].preUpdate(delta)) {
+        this.needsUpdate = true;
+      }
     }
+
+    return this.needsUpdate;
+  }
+
+  update(delta) {
+    for (let idx = 0; idx < this.unitStatuses.length; idx++) {
+      this.unitStatuses[idx].update(delta);
+    }
+
+    this.needsUpdate = false;
   }
 
 }

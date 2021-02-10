@@ -8,10 +8,18 @@ export class ScreenCanvasOverlay extends HUDElement {
     this.opacityDelta = 0.0;
   }
 
+  handleBattleComplete(e) {
+    super.handleBattleComplete(e)
+    this.needsUpdate = true;
+  }
+
   update(delta) {
     if (this.battleComplete) {
       if (this.opacityDelta < 0.65) {
         this.opacityDelta += delta / 5;
+      }
+      else {
+        this.needsUpdate = false;
       }
 
       this.context.fillStyle = `rgba(0,0,0,${this.opacityDelta})`;
@@ -34,6 +42,9 @@ export class ScreenCanvasOverlay extends HUDElement {
         this.height/2
       );
       this.context.shadowBlur = 0;
+    }
+    else {
+      this.needsUpdate = false;
     }
   }
 
