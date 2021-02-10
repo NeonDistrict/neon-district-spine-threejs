@@ -16,8 +16,17 @@ export class CombatHUD {
     this.canvas = document.createElement('canvas');
     this.canvas.width = this.parentCanvas.width;
     this.canvas.height = this.parentCanvas.height;
-    this.canvas.style.imageRendering = 'crisp-edges'; // Not sure this works
     this.context = this.canvas.getContext('2d');
+
+    // add a canvas element over the WebGl canvas element
+    this.parentCanvas.parentNode.appendChild(this.canvas);
+    this.canvas.style.width = this.parentCanvas.style.width;
+    this.canvas.style.height = this.parentCanvas.style.height;
+    this.parentCanvas.parentNode.position = "relative";
+    this.parentCanvas.style.position = "absolute";
+    this.canvas.style.position = "absolute";
+    // prevent the new canvas on top from capturing all mouse events
+    this.canvas.style.pointerEvents = "none";
 
     // Keep track of any other important values
     this.width = this.canvas.width;
@@ -109,35 +118,6 @@ export class CombatHUD {
     this.playerControlsDisplay.update(delta);
     this.unitStatusDisplay.update(delta);
     this.screenCanvasOverlay.update(delta);
-
-    this.texture.needsUpdate = true;
-  }
-
-  render() {
-    // Create the camera and set the viewport to match the screen dimensions.
-    let camera = new THREE.OrthographicCamera(-this.width/2, this.width/2, this.height/2, -this.height/2, 0, 30);
-
-    // Create also a custom scene for HUD.
-    let scene = new THREE.Scene();
-
-    // Create texture from rendered graphics.
-    this.texture = new THREE.Texture(this.canvas);
-    this.texture.needsUpdate = true;
-
-    // Create HUD material.
-    let material = new THREE.MeshBasicMaterial({map: this.texture});
-    material.transparent = true;
-    material.needsUpdate = true;
-
-    // Create plane to render the HUD. This plane fill the whole screen.
-    let plane = new THREE.PlaneGeometry(this.width, this.height);
-    let mesh = new THREE.Mesh(plane, material);
-    scene.add(mesh);
-
-    return {
-      camera,
-      scene
-    };
   }
 
   loadFonts() {

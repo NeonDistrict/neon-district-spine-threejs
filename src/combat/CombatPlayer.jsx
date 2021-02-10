@@ -32,7 +32,6 @@ export class CombatPlayer extends CombatScene {
 
     // Keep track of the UI
     this.userInterface = null;
-    this.hud = null;
 
     // Music
     this.combatMusic = null;
@@ -76,7 +75,6 @@ export class CombatPlayer extends CombatScene {
       this.animationController.getActiveAnimationEventObject(),
       this.getUnitPosition.bind(this)
     );
-    this.hud = this.userInterface.render();
 
     // Update the HUD to use the player selection object
     this.userInterface.setPlayerSelectionsObject(this.playerSelections);

@@ -45,11 +45,10 @@ export class CombatScene extends Stage {
   }
 
   renderAdditionalScenes(delta) {
-    // Render the game HUB
-    if (this.hud && this.hud.scene && this.hud.camera) {
+    // Render the game HUD
+    if (this.userInterface) {
         this.animationController.update(delta);
         this.userInterface.update(delta);
-        this.renderer.render(this.hud.scene, this.hud.camera);
     }
   }
 
