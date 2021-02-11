@@ -35,6 +35,13 @@ export class PlayerControlsDisplay extends HUDElement {
   }
 
   registerRegionLocations() {
+    this.REGION = {
+      TOP : this.height * 2/3,
+      BOTTOM : this.height,
+      LEFT : 0,
+      RIGHT : this.width
+    };
+
     this.BORDER = {
       TOP : this.height * 2 / 3 + this.vertLineGap,
       INNER_TOP : this.height * 2/3 + this.vertGap,
@@ -182,6 +189,17 @@ export class PlayerControlsDisplay extends HUDElement {
   }
 
   update(delta) {
+    if (!this.needsUpdate) {
+      return;
+    }
+
+    this.context.clearRect(
+      this.REGION.LEFT,
+      this.REGION.TOP,
+      this.REGION.RIGHT,
+      this.REGION.BOTTOM
+    );
+
     this.drawRegion();
     this.drawPlayer();
     this.drawActions();
@@ -213,12 +231,12 @@ export class PlayerControlsDisplay extends HUDElement {
     this.context.textBaseline = 'middle';
 
     // Selected Character Portrait
-    let gradient = this.context.createLinearGradient(0, this.height * 2/3, 0, this.height);
+    let gradient = this.context.createLinearGradient(0, this.REGION.TOP, 0, this.REGION.BOTTOM);
     gradient.addColorStop(0, 'rgba(0,0,0,0.0)');
     gradient.addColorStop(0.2, 'rgba(0,0,0,1.0)');
     gradient.addColorStop(1.0, 'rgba(0,0,0,1.0)');
     this.context.fillStyle = gradient;
-    this.context.fillRect(0, this.height * 2 / 3, this.width, this.height * 1 / 3);
+    this.context.fillRect(this.REGION.LEFT, this.REGION.TOP, this.REGION.RIGHT, this.REGION.BOTTOM - this.REGION.TOP);
 
     // Draw gray player lines
     this.context.strokeWidth = 0.5;

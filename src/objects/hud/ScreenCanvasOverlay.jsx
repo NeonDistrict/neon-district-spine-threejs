@@ -15,6 +15,21 @@ export class ScreenCanvasOverlay extends HUDElement {
 
   update(delta) {
     if (this.battleComplete) {
+      this.context.clearRect(
+        0,
+        0,
+        this.width,
+        this.height
+      );
+
+      // Empty Bottom Gradiant
+      let gradient = this.context.createLinearGradient(0, this.height * 2/3, 0, this.height);
+      gradient.addColorStop(0, 'rgba(0,0,0,0.0)');
+      gradient.addColorStop(0.2, 'rgba(0,0,0,1.0)');
+      gradient.addColorStop(1.0, 'rgba(0,0,0,1.0)');
+      this.context.fillStyle = gradient;
+      this.context.fillRect(0, this.height * 2/3, this.width, this.height * 1/3);
+
       if (this.opacityDelta < 0.65) {
         this.opacityDelta += delta / 5;
       }

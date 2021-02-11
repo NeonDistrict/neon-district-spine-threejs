@@ -18,6 +18,13 @@ export class ErrorDisplay extends HUDElement {
   }
 
   update(delta) {
+    this.context.clearRect(
+      this.center.x - this.width / 2 - 2,
+      this.center.y - this.height / 2 - 2,
+      this.width + 4,
+      this.height + 4
+    );
+
     if (this.errorTimeout >= this.errorTime) {
       this.needsUpdate = false;
       return;

@@ -7,6 +7,17 @@ export class VersionDisplay extends HUDElement {
   }
 
   update(delta) {
+    if (!this.needsUpdate) {
+      return;
+    }
+
+    this.context.clearRect(
+      0,
+      0,
+      400,
+      100
+    );
+
     this.context.fillStyle = `rgba(255,255,255,0.5)`;
 
     this.context.shadowColor = `rgba(255,255,255,0.25)`;

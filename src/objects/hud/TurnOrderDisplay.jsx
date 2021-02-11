@@ -86,6 +86,17 @@ export class TurnOrderDisplay extends HUDElement {
   }
 
   update(delta) {
+    if (!this.needsUpdate) {
+      return;
+    }
+
+    this.context.clearRect(
+      this.center.y + this.verticalGap,
+      this.center.y + this.unitHeight + this.verticalGap,
+      this.center.x - (this.unitWidth + this.unitSpacing) * -numUnits/2,
+      this.center.x - (this.unitWidth + this.unitSpacing) * numUnits/2
+    );
+
     this.constructPortraitOrder();
     let numUnits = this.units.length;
     for (let idx = 0; idx < this.portraits.length; idx++) {

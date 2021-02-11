@@ -74,12 +74,33 @@ export class UnitStatus extends HUDElement {
   }
 
   update(delta) {
+    if (!this.needsUpdate) {
+      return;
+    }
+
     // Get the position
     let position = this.getUnitPosition(this.unit.character);
+
+    this.context.clearRect(
+      position.above.x - this.healthWidth/2,
+      position.above.y - 35,
+      this.healthWidth + this.ticksHealthGap,
+      position.above.y + 70
+    );
+
+    // Draw stuff
     this.drawHealth(position);
     this.drawTicks(position);
     this.drawStatusEffects(position);
     //this.drawUnitTarget(position);
+
+    this.context.clearRect(
+      position.above.x - this.healthWidth,
+      position.above.y + 70,
+      this.healthWidth * 2,
+      position.feet.y / 2 - position.above.y + 70
+    );
+
     this.writeUnitUpdates(position);
 
     this.needsUpdate = false;
@@ -129,6 +150,10 @@ export class UnitStatus extends HUDElement {
   writeUnitUpdate(position, stat, value, isStatusEffect) {
     let color;
     let delta = this.activeAnimEvt.currentTimeDelta();
+    if (delta < 0.05) {
+      return;
+    }
+
     let alpha = 0.4 + delta * 6.0 / 10.0;
 
     let parsedValue;
