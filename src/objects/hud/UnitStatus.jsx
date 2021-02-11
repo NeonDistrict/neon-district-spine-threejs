@@ -17,8 +17,8 @@ export class UnitStatus extends HUDElement {
     this.imageCache = new ImageCache();
 
     this.unitPosition = null;
-    this.healthPosition = 0;
-    this.ticksPosition = 0;
+    this.healthPosition = null;
+    this.ticksPosition = null;
     this.statusEffectsMask = 0;
 
     this.registerUnitTarget();
@@ -76,6 +76,14 @@ export class UnitStatus extends HUDElement {
   update(delta) {
     if (!this.needsUpdate) {
       return;
+    }
+
+    if (this.healthPosition === null) {
+      this.healthPosition = 0;
+    }
+
+    if (this.ticksPosition === null) {
+      this.ticksPosition = 0;
     }
 
     // Get the position
