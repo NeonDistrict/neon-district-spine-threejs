@@ -182,10 +182,13 @@ export class CombatPlayer extends CombatScene {
 
           // If the action or target is invalid, disallow
           if (
-            action === false || target === false ||
-            action === null || target === null
+            action === false || action === null
           ) {
             return;
+          }
+
+          if (target === null) {
+            target = 'none'
           }
 
           // Lock the HUD
@@ -251,8 +254,7 @@ export class CombatPlayer extends CombatScene {
     this.api.runBattle({
         battleId: this.battleId,
         action:action,
-        target:target,
-        automatic:false
+        target:target
       },
       this.getCombatResponse.bind(this),
       this.handleErrorResponse.bind(this)

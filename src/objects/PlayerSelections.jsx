@@ -7,7 +7,7 @@ export class PlayerSelections {
 
   clear() {
     this.action = null;
-    this.target = 0;//null;
+    this.target = null;
     this.cards = [{},{},{}];
     this.taunted = false;
     this.taunter = null;
