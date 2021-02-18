@@ -1,0 +1,53 @@
+$white: rgba(255, 255, 255, 0.96);
+
+$black_card_bg: rgba(0, 0, 0, 0.35);
+$neon_text_grey: hsla(0,0%,70%,1);
+$neon_text_dull: hsla(0,0%,100%,.9);
+
+// Blues
+$neon_blue_bright : #b8ecff;
+$neon_blue_dull   : #87d3e6;
+// Pinks
+$neon_hot_pink  : #ff7db6; 
+$neon_dull_pink : #c23c4d;
+$neon_flour_pink: #ff64ba;
+// Reds
+$neon_red_bright  : #f54c61;
+$neon_red_dull    : #c23c4d;
+$neon_red_washed  : #c24f5e;
+// Greys
+$border_grey       : #979797;
+$border_grey_faded : #494949;
+// Greens
+$neon_green_bright: #19e4a4;
+
+/* Card Specific */
+$CARD_bg_red         : #260005;
+$CARD_bg_blue        : rgba(38, 48, 51, 0.9);
+
+$CARD_bg_border_blue : #b8ecff;
+$CARD_bg_border_red  : #d0021b;
+
+
+$hud_black               : #000000;
+$hud_white               : #FFFFFF;
+$hud_lightGray           : #ABABAB;
+$hud_halfGray            : #888888;
+$hud_darkGray            : #252525;
+$hud_neonBlue            : #0AF5F7;
+$hud_red                 : rgb(255, 0, 47);
+$hud_purple              : #812B88;
+$hud_green               : rgb(64, 190, 144);
+$hud_yellow              : #F4D360;
+$hud_desaturatedNeonBlue : #50F7E1;
+$hud_desaturatedRed      : #FF365C;
+$hud_desaturatedPurple   : #976290;
+$hud_desaturatedGreen    : #46C59C;
+$hud_desaturatedYellow   : #F4ED82;
+$hud_transparentNeonBlue : rgba(10, 245, 247, 0.40);
+$hud_transparentRed      : rgba(255, 0, 47, 0.40);
+$hud_transparentPurple   : rgba(129, 43, 136, 0.40);
+$hud_transparentGreen    : rgba(64, 190, 144, 0.40);
+$hud_transparentYellow   : rgba(244, 211, 96, 0.40);
+$hud_transparentBlack    : rgba(0, 0, 0, 0.40);
+$hud_transparentDarkGray : rgba(50, 50, 50, 0.60);

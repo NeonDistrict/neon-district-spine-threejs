@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Api from '../api/api.js';
 import Socket from '../socket/socket.js';
 import { CombatScene } from "./CombatScene.jsx";
-import { CombatHUD } from "../objects/CombatHUD.jsx";
+//import { CombatHUD } from "../objects/CombatHUD.jsx";
+import { CombatHUD } from "../objects/CombatHUD2.jsx";
 import { PlayerSelections } from "../objects/PlayerSelections.jsx";
 import { CombatAnalysis } from "./CombatAnalysis.jsx";
 
@@ -73,7 +74,8 @@ export class CombatPlayer extends CombatScene {
     this.userInterface = new CombatHUD(
       this.renderer,
       this.animationController.getActiveAnimationEventObject(),
-      this.getUnitPosition.bind(this)
+      this.getUnitPosition.bind(this),
+      this.confirmAction.bind(this)
     );
 
     // Update the HUD to use the player selection object
@@ -211,6 +213,30 @@ export class CombatPlayer extends CombatScene {
 
         }
       }
+    }
+  }
+
+  confirmAction() {
+    // Pull the action and target
+    let action = this.playerSelections.getAction();
+    let target = this.playerSelections.getTarget();
+
+    // If the action or target is invalid, disallow
+    if (
+      action === false || action === null
+    ) {
+      return;
+    }
+
+    if (target === null) {
+      target = 'none';
+    }
+
+    // Run combat
+    if (this.api) {
+      this.runCombatApi(action, target);
+    } else if (this.socket) {
+      this.runCombatSocket(action, target);
     }
   }
 
