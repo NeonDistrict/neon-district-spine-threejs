@@ -573,7 +573,9 @@ export class CombatPlayer extends CombatScene {
 
           if (_unitUpdate.hasOwnProperty('stats')) {
             for (let _prop in _unitUpdate.stats) {
-              _unit.stats[_prop] = _unitUpdate.stats[_prop];
+              if (_prop !== 'HEALTH') {
+                _unit.stats[_prop] = _unitUpdate.stats[_prop];
+              }
             }
           }
 

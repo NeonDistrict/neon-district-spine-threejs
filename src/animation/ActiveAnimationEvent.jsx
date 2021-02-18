@@ -135,14 +135,26 @@ export class ActiveAnimationEvent {
     for (let _event of block.battleEvents) {
       if (!_event.statChanges) continue;
       for (let _unitId in _event.statChanges) {
+
+        // If this unit is not defined, create the structure for it
         if (!this.currentStatChanges.hasOwnProperty(_unitId)) {
           this.currentStatChanges[_unitId] = {};
         }
+
+        // Store the stat change
         for (let _statChange in _event.statChanges[_unitId]) {
+
+          // If this stat change isn't currently stored, default
           if (!this.currentStatChanges[_unitId][_statChange]) {
-            this.currentStatChanges[_unitId][_statChange] = 0;
+            this.currentStatChanges[_unitId][_statChange] = {
+              start : _event.statChanges[_unitId][_statChange].start,
+              end   : _event.statChanges[_unitId][_statChange].end,
+              delta : 0
+            };
           }
-          this.currentStatChanges[_unitId][_statChange] += _event.statChanges[_unitId][_statChange]
+
+          // Append stat change
+          this.currentStatChanges[_unitId][_statChange].delta += _event.statChanges[_unitId][_statChange].delta;
         }
       }
     }

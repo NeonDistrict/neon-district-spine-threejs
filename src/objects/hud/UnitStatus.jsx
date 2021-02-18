@@ -141,7 +141,7 @@ export class UnitStatus extends HUDElement {
         let _arr = updates[_arrIdx];
         for (let _stat in _arr) {
           if (!_arr.hasOwnProperty(_stat)) continue;
-          let value = _arr[_stat];
+          let value = _arr[_stat].delta;
           let delta = this.activeAnimEvt.currentTimeDelta();
           let relPosition = {
             x : position.target.x + position.target.width / 2,
@@ -244,10 +244,13 @@ export class UnitStatus extends HUDElement {
     if (this.activeAnimEvt.activeStatChange(this.unit.unitId, 'HEALTH') !== false) {
       let healthStatChange = this.activeAnimEvt.activeStatChange(this.unit.unitId, 'HEALTH');
       let animDelta = this.activeAnimEvt.currentTimeDelta();
-      let prevHealth = Math.max(Math.min(this.unit.stats.HEALTH - healthStatChange, this.unit.statsMax.HEALTH), 0.0);
+
       health = (
-        prevHealth + healthStatChange * Math.max(Math.min(1.0 - animDelta * 2.0, 1.0), 0.0)
+        healthStatChange.start + healthStatChange.delta * Math.max(Math.min(1.0 - animDelta * 2.0, 1.0), 0.0)
       );
+
+      // Update this unit's health
+      this.unit.stats.HEALTH = health;
     }
 
     return Math.max(
