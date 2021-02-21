@@ -1,47 +1,21 @@
-import { HUDElement } from './HUDElement.jsx';
+import React, { Component } from "react";
+import lstyle from "../../styles/hud.scss";
 
-export class VersionDisplay extends HUDElement {
+export class VersionDisplay extends Component {
 
-  constructor(obj) {
-    super(obj);
+  constructor(props) {
+    super(props);
   }
 
-  update(delta) {
-    if (!this.needsUpdate) {
-      return;
-    }
+  render() {
+    console.log("** Rendering the Version Display **");
 
-    this.context.clearRect(
-      0,
-      0,
-      400,
-      100
+    return (
+      <h5 className={lstyle.versionDisplayWrapper}>
+        Neon District Combat Engine<br />
+        <small>Version 0.5.0</small>
+      </h5>
     );
-
-    this.context.fillStyle = `rgba(255,255,255,0.5)`;
-
-    this.context.shadowColor = `rgba(255,255,255,0.25)`;
-    this.context.shadowBlur = 4;
-
-    this.context.font = '14pt "kozuka-gothic-pr6n-bold"';
-    this.context.textAlign = 'left';
-    this.context.textBaseline = 'top';
-
-    this.context.fillText(
-      "Neon District Combat Engine",
-      this.center.x + 10,
-      this.center.y + 10
-    );
-
-    this.context.fillText(
-      "Pre-Alpha - Build v.0.4.2",
-      this.center.x + 10,
-      this.center.y + 10 + 28
-    );
-
-    this.context.shadowBlur = 0;
-
-    this.needsUpdate = false;
   }
 
 }

@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import Api from '../api/api.js';
 import Socket from '../socket/socket.js';
 import { CombatScene } from "./CombatScene.jsx";
-//import { CombatHUD } from "../objects/CombatHUD.jsx";
-import { CombatHUD } from "../objects/CombatHUD2.jsx";
+import { CombatHUD } from "../objects/CombatHUD.jsx";
 import { PlayerSelections } from "../objects/PlayerSelections.jsx";
 import { CombatAnalysis } from "./CombatAnalysis.jsx";
 
@@ -112,6 +111,7 @@ export class CombatPlayer extends CombatScene {
         this.unlockClickableRegions();
       }
 
+      this.userInterface.registerTargetRegions();
       this.userInterface.invalidate();
     }
   }
@@ -490,7 +490,6 @@ export class CombatPlayer extends CombatScene {
 
   setTeams(teams) {
     this.teams = teams;
-    this.userInterface.setTeams(this.teams);
 
     // Update all characters to include their UUIDs
     // Update all team members to link back to their character
@@ -511,6 +510,8 @@ export class CombatPlayer extends CombatScene {
         }
       }
     }
+
+    this.userInterface.setTeams(this.teams);
   }
 
   getNftUrlRoot(_unit) {
@@ -562,6 +563,9 @@ export class CombatPlayer extends CombatScene {
 
     const urlRoot = this.getNftUrlRoot(_unit);
     const src = urlRoot + _unit.metadata.nftId + '-headshot.png';
+    _unit.headImgSrc = src;
+
+    /*
     const options = {
       cache: 'no-cache',
       //mode: 'cors'
@@ -578,6 +582,7 @@ export class CombatPlayer extends CombatScene {
         }).bind(this));
         _unit.headImg.src = URL.createObjectURL(blob);
     });
+    */
   }
 
   updateTeams(teams) {

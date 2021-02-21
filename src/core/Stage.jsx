@@ -403,7 +403,7 @@ export class Stage extends SpineScene {
     let screen = this.getScreenWorldPosition();
 
     if (!screen || !character) {
-      console.log("Null character within Stage::getUnitPosition");
+      console.log("Null character or screen within Stage::getUnitPosition");
       return null;
     }
 

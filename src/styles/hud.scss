@@ -25,41 +25,214 @@
   width: 100%;
   height: 33%;
   background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,1) 12.5%);
+
+  pointer-events: auto;
+
   font: 7.5pt kozuka-gothic-pr6n-bold;
   text-transform: uppercase;
-  cursor: default;
   text-shadow: 0px 0px 10px #FFFFFF;
 
+  cursor: default;
+  margin: 0px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+
   .playerRegion {
-    position: absolute;
-    left: 0;
-    height: 100%;
-    width: 70%;
+    order: 1;
+    flex: 10;
+
+    margin: 6px 18px;
+    padding: 0;
 
     .topBorder {
-      margin: 18px;
+      margin: 12px 0 0 0;
       border-bottom: 2px solid $hud_darkGray;
+    }
+
+    &.bottomBorder {
+      border-bottom: 2px solid $hud_darkGray;
+    }
+
+    .playerControls {
+      margin: 0px 0px 6px 0px;
+
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-evenly;
+      align-items: stretch;
+
+      .activeCharacter {
+        flex: 3;
+        padding: 3px;
+      }
+
+      .defaultSelections {
+        background-color: $hud_darkGray;
+        padding: 5px;
+        margin: 3px;
+
+        flex: 3;
+      }
+
+      .cardWrapper {
+        background-color: $hud_darkGray;
+        padding: 5px;
+        margin: 3px;
+
+        flex: 10;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: stretch;
+      }
+    }
+  }
+
+  .cardSelectionWrapper {
+    margin: 5px;
+    padding: 6px;
+
+    &:hover {
+      box-shadow: 0px 0px 4px 1px rgba(255,255,255,0.3);
+      border-radius: 6px;
+    }
+
+    &.selected {
+      border-radius: 6px;
+      box-shadow: 0px 0px 4px 1px #FFFFFF;
+    }
+
+    .card {
+      width: 140px;
+      height: 140px;
+      border-radius: 4px;
+      box-shadow: 0px 0px 6px 1px #000000;
+      padding: 2px;
+
+      font: 7pt kozuka-gothic-pr6n-bold;
+      text-transform: none;
+      text-shadow: none;
+
+      &.baseAttack {
+        border: 1px solid $hud_red;
+      }
+
+      &.attackCard {
+        border: 3px solid $hud_red;
+      }
+
+      &.abilityCard {
+        border: 3px solid $hud_green;
+      }
+
+      &.effectCard {
+        border: 3px solid $hud_yellow;
+      }
+
+      &.interactCard {
+        border: 3px solid $hud_neonBlue;
+      }
     }
   }
 
   .targetRegion {
-    position: absolute;
-    right: 0;
-    height: 100%;
-    width: 30%;
+    order: 2;
+    flex: 4;
+
+    margin: 6px 18px;
+    padding: 0;
 
     .topBorder {
-      margin: 18px;
+      margin: 12px 0 0 0;
       border-bottom: 2px solid $hud_desaturatedRed;
     }
+
+    &.bottomBorder {
+      border-bottom: 2px solid $hud_desaturatedRed;
+    }
+  }
+
+  .targetControls {
+    margin: 0px 0px 6px 0px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+
+    .activeCharacter {
+      flex: 3;
+      padding: 3px;
+    }
+  }
+
+  .characterProfile {
+    width: 134px;
+    height: 134px;
+    display: block;
+
+    img {
+      max-width: 100%;
+      height: 100%;
+
+      &.flipHorizontal {
+        transform: scaleX(-1);
+      }
+    } 
+
+    &.playerProfile {
+      background: linear-gradient(180deg, rgba(36,36,36,1.0), rgba(63,88,88,1.0));
+    }
+
+    &.targetProfile {
+      background: linear-gradient(180deg, rgba(36,36,36,1.0), rgba(79,40,48,1.0));
+    }
+
+    .characterName {
+      position: relative;
+      bottom: 0;
+
+      max-width: 100%;
+      padding: 4px;
+      border: 1px solid white;
+      background-color: $hud_darkGray;
+    }
+  }
+
+  .targetCharacterControls {
+    flex: 3;
+    padding: 3px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+
+    .targetCharacterStats {
+
+    }
+
+    .targetButtons {
+
+    }
+
   }
 }
 
 .versionDisplayWrapper {
   font: 7.5pt kozuka-gothic-pr6n-bold;
   text-transform: uppercase;
-  padding: 5px;
-  margin: 0px;
+  padding: 0px;
+  margin: 5px;
   opacity: 0.5;
-  cursor: 'default';
+  cursor: default;
 }
