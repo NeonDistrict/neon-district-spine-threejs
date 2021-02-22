@@ -2,14 +2,11 @@ export class UnitSelectionFields {
 
   constructor(obj) {
     this.getUnitPosition = obj.getUnitPosition;
+    this.regions = [];
   }
 
   setTeams(teams) {
     this.teams = teams;
-    this.init();
-  }
-
-  init() {
     this.units = [];
     if (
       !this.teams ||
@@ -34,20 +31,20 @@ export class UnitSelectionFields {
       }
 
       let region = [
-        position.target.x / 2.0,
-        position.target.y / 2.0,
-        (position.target.x + position.target.width) / 2.0,
-        (position.target.y + position.target.height) / 2.0
+        Math.round(position.target.x / 2.0),
+        Math.round(position.target.y / 2.0),
+        Math.round((position.target.x + position.target.width) / 2.0),
+        Math.round((position.target.y + position.target.height) / 2.0)
       ];
 
-      window.dispatchEvent(
-        new CustomEvent("registerClickableRegion", {
-          'detail' : {
-            'option' : 'target-' + unit.unitId,
-            'region' : region
-          }
-        })
-      );
+      this.regions.push({
+        target: unit.unitId,
+        region
+      });
     }
+  }
+
+  getRegions() {
+    return this.regions;
   }
 }

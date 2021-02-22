@@ -3,7 +3,9 @@ import ReactDOM from "react-dom";
 
 import { PlayerControlsDisplay } from "./hud/PlayerControlsDisplay.jsx";
 import { VersionDisplay } from "./hud/VersionDisplay.jsx";
-import { UnitSelectionFields } from "./hud/UnitSelectionFields.jsx";
+import { PlayerTargetMap } from "./hud/PlayerTargetMap.jsx";
+
+import { UnitSelectionFields } from "./UnitSelectionFields.jsx";
 
 //import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
 //import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
@@ -30,12 +32,12 @@ export class CombatHUD {
     this.parentCanvas.parentNode.position = "relative";
     this.parentCanvas.style.position = "absolute";
     this.div.style.position = "absolute";
-    this.div.style.pointerEvents = "none"; // prevent capturing mouse clicks
 
     // Set up the unit target regions
     this.unitSelectionFields = new UnitSelectionFields({
       getUnitPosition: this.getUnitPosition
     });
+    this.target = null;
 
     // Needs update
     this.needsUpdate = true;
@@ -66,6 +68,11 @@ export class CombatHUD {
   }
 
   update(delta) {
+    if (this.playerSelections.getTarget() !== this.target) {
+      this.target = this.playerSelections.getTarget();
+      this.needsUpdate = true;
+    }
+
     if (!this.needsUpdate) {
       return;
     }
@@ -77,6 +84,10 @@ export class CombatHUD {
       (
         <div>
           <VersionDisplay />
+          <PlayerTargetMap
+            unitSelectionFields={this.unitSelectionFields}
+            playerSelections={this.playerSelections}
+          />
           <PlayerControlsDisplay
             confirmAction={this.confirmAction}
             teams={this.teams}
