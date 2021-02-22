@@ -137,6 +137,44 @@
       &.interactCard {
         border: 3px solid $hud_neonBlue;
       }
+
+      &.fillerCard {
+        border: 3px solid $hud_darkGray;
+      }
+
+      h3.title {
+        padding: 0;
+        margin: 0;
+      }
+
+      span.cardType {
+        position: relative;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 20px;
+        height: 20px;
+
+        &.abilityCardType {
+          background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Hack.png');
+          background-size: 20px 20px;
+        }
+
+        &.attackCardType {
+          background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Attack.png');
+          background-size: 20px 20px;
+        }
+
+        &.effectCardType {
+          background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Effect.png');
+          background-size: 20px 20px;
+        }
+
+        &.interactCardType {
+          background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Interact.png');
+          background-size: 20px 20px;
+        }
+      }
     }
   }
 
@@ -167,39 +205,48 @@
     align-items: stretch;
 
     .activeCharacter {
-      flex: 3;
       padding: 3px;
     }
   }
 
   .characterProfile {
     width: 134px;
-    height: 134px;
+    height: 100%;
     display: block;
 
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+
     img {
-      max-width: 100%;
-      height: 100%;
+      width: 134px;
+      height: 134px;
+      border: 0px;
+      display: block;
 
       &.flipHorizontal {
         transform: scaleX(-1);
       }
-    } 
 
-    &.playerProfile {
-      background: linear-gradient(180deg, rgba(36,36,36,1.0), rgba(63,88,88,1.0));
+      &.playerProfile {
+        background: linear-gradient(180deg, rgba(36,36,36,1.0), rgba(63,88,88,1.0));
+      }
+
+      &.targetProfile {
+        background: linear-gradient(180deg, rgba(36,36,36,1.0), rgba(79,40,48,1.0));
+      }
     }
 
-    &.targetProfile {
-      background: linear-gradient(180deg, rgba(36,36,36,1.0), rgba(79,40,48,1.0));
+    /* Hack to hide the white border around an img without a src */
+    img:not([src]){
+      content:url("data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
     }
 
     .characterName {
-      position: relative;
-      bottom: 0;
-
       max-width: 100%;
-      padding: 4px;
+      padding: 4px 8px;
       border: 1px solid white;
       background-color: $hud_darkGray;
     }
@@ -216,11 +263,60 @@
     align-items: stretch;
 
     .targetCharacterStats {
+      padding: 8px 8px;
 
+      .targetCharacterStatsHeader {
+        color: $hud_neonBlue;
+        font-size: 8pt;
+        font-style: italic;
+        text-shadow: 0px 0px 10px $hud_neonBlue;
+        padding: 0 8px;
+
+        border-bottom: 2px solid $hud_halfGray;
+      }
+
+      .targetCharacterStatsBody {
+        padding: 8px;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+        text-shadow: 0px 0px 0px;
+
+        .attribute {
+          flex: 1;
+
+          .attributeValue {
+            font-size: 10pt;
+            text-align: center;
+          }
+
+          .attributeName {
+            font-size: 7pt;
+            color: $hud_halfGray;
+          }
+        }
+      }
     }
 
     .targetButtons {
+      width: 100%;
 
+      .confirmButton {
+        float: right;
+
+        font: 10pt kozuka-gothic-pr6n-bold;
+        text-transform: uppercase;
+
+        color: white;
+        padding: 4px 16px;
+        border: 1px solid white;
+        background-color: $hud_darkGray;
+      }
     }
 
   }

@@ -88,20 +88,6 @@ export class PlayerControlsDisplay extends Component {
   render() {
     console.log("** Rendering the Player Controls Display **");
 
-    let targets = [];
-    if (this.props && this.props.teams) {
-      for (let teamKey in this.props.teams) {
-        for (let unitKey in this.props.teams[teamKey]) {
-          let unit = this.props.teams[teamKey][unitKey];
-          targets.push(
-            <span>
-              <a onClick={this.chooseTarget.bind(this, 'target-' + unit.unitId)}>{unit.metadata.nftId}</a>
-            </span>
-          );
-        }
-      }
-    }
-
     let activeCharacter = this.getActivePlayer();
     let targetCharacter = this.getTarget();
 
@@ -173,8 +159,6 @@ export class PlayerControlsDisplay extends Component {
               selectedAction={this.state.selectedAction}
               confirmCallback={this.confirmAction.bind(this)}
             />
-
-            {/*targets*/}
           </div>
         </div>
       </div>

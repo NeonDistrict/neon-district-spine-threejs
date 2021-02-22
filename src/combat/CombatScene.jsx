@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Api from '../api/api.js';
 import { Stage } from "../core/Stage.jsx";
 import { AnimationController } from "../animation/AnimationController.jsx";
-import { ImageCache } from '../objects/ImageCache.jsx';
 import { SoundManager } from '../sound/SoundManager.jsx';
 
 export class CombatScene extends Stage {
@@ -13,10 +12,6 @@ export class CombatScene extends Stage {
 
     // Specifically for effects tests
     this.effectTest = props.effectTest;
-
-    // Load the image cache early on
-    this.imageCache = new ImageCache();
-    this.imageCache.pullImages();
 
     // Sounds
     this.soundManager = new SoundManager();

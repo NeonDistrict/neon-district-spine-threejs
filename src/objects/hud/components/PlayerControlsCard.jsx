@@ -26,8 +26,10 @@ export class PlayerControlsCard extends Component {
     return (
       <div className={wrapperStyle} onClick={this.props.callback}>
         <div className={styles.join(' ')}>
-          <h3>{card.name}</h3>
-          <p>{card.effects}</p>
+          <span className={[lstyle.cardType, lstyle[card.type.toLowerCase() + 'CardType']].join(' ')}></span>
+          <h3 className={lstyle.cardTitle}>{card.name}</h3>
+          <p className={lstyle.cardEffects}>{card.effects}</p>
+          <p className={lstyle.cardExploits}>{card.exploits}</p>
         </div>
       </div>
     );
