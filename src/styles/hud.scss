@@ -117,62 +117,161 @@
       font: 7pt kozuka-gothic-pr6n-bold;
       text-transform: none;
       text-shadow: none;
+      text-align: center;
 
       &.baseAttack {
         border: 1px solid $hud_red;
+
+        .baseAttackImg {
+          position: relative;
+          top: 17.5%;
+          width: 40%;
+        }
+
+        .baseAttackTitle {
+          position: relative;
+          top: 12.5%;
+          text-transform: uppercase;
+          font-size: 150%;
+          color: $hud_red;
+        }
       }
 
       &.attackCard {
-        border: 3px solid $hud_red;
+        border: 4px solid $hud_red;
       }
 
       &.abilityCard {
-        border: 3px solid $hud_green;
+        border: 4px solid $hud_green;
       }
 
       &.effectCard {
-        border: 3px solid $hud_yellow;
+        border: 4px solid $hud_yellow;
       }
 
       &.interactCard {
-        border: 3px solid $hud_neonBlue;
+        border: 4px solid $hud_neonBlue;
       }
 
       &.fillerCard {
-        border: 3px solid $hud_darkGray;
+        border: 4px solid $hud_darkGray;
+        color: $hud_halfGray;
       }
 
-      h3.title {
+      div.cardTopRow {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: stretch;
+      }
+
+      h3.cardTitle {
         padding: 0;
         margin: 0;
+        text-align: center;
+        line-height: 1.5em;
+
+        flex: 7;
       }
 
-      span.cardType {
+      .cardTicks {
+        display: block;
         position: relative;
         top: 0;
-        left: 0;
-        display: block;
-        width: 20px;
-        height: 20px;
+        right: 3px;
+        text-align: center;
+        padding: 0;
+        margin: 0;
 
-        &.abilityCardType {
-          background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Hack.png');
-          background-size: 20px 20px;
+        flex: 1;
+
+        .cardTicksNumber {
+          display: block;
+          font-size: 125%;
+          padding: 0;
+          margin: 0;
+
+          position: absolute;
+          top: -3px;
+          right: 2px;
         }
 
-        &.attackCardType {
-          background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Attack.png');
-          background-size: 20px 20px;
+        hr.cardTicksLine {
+          position: absolute;
+          top: 12px;
+          right: -1px;
+          width: 18px;
+
+          &.baseAttack {
+            border: 1px solid $hud_red;
+          }
+
+          &.attackCard {
+            border: 1px solid $hud_red;
+          }
+
+          &.abilityCard {
+            border: 1px solid $hud_green;
+          }
+
+          &.effectCard {
+            border: 1px solid $hud_yellow;
+          }
+
+          &.interactCard {
+            border: 1px solid $hud_neonBlue;
+          }
         }
 
-        &.effectCardType {
-          background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Effect.png');
-          background-size: 20px 20px;
+        .cardTicksLabel {
+          position: absolute;
+          top: 17px;
+          right: -1px;
+          padding: 0;
+          margin: 0;
+          font-size: 75%;
+          text-transform: uppercase;
         }
+      }
 
-        &.interactCardType {
-          background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Interact.png');
-          background-size: 20px 20px;
+      .cardEffects,
+      .cardExploits {
+        margin: 15px 2px;
+        text-align: center;
+        font: 7.5pt kozuka-gothic-pr6n;
+      }
+
+      div.cardTypeWrapper {
+        flex: 1;
+
+        span.cardType {
+          position: relative;
+          top: 0;
+          left: 3px;
+          display: block;
+          width: 20px;
+          height: 20px;
+
+          &.abilityCardType {
+            background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Hack.png');
+            background-size: 20px 20px;
+          }
+
+          &.attackCardType {
+            background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Attack.png');
+            background-size: 20px 20px;
+          }
+
+          &.effectCardType {
+            background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Effect.png');
+            background-size: 20px 20px;
+          }
+
+          &.interactCardType {
+            background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Interact.png');
+            background-size: 20px 20px;
+          }
         }
       }
     }
