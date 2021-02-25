@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { PlayerControlsDisplay } from "./hud/PlayerControlsDisplay.jsx";
 import { VersionDisplay } from "./hud/VersionDisplay.jsx";
 import { PlayerTargetMap } from "./hud/PlayerTargetMap.jsx";
+import { CharacterStatuses } from "./hud/CharacterStatuses.jsx";
 
 import { UnitSelectionFields } from "./UnitSelectionFields.jsx";
 
@@ -87,6 +88,11 @@ export class CombatHUD {
           <PlayerTargetMap
             unitSelectionFields={this.unitSelectionFields}
             playerSelections={this.playerSelections}
+          />
+          <CharacterStatuses
+            unitSelectionFields={this.unitSelectionFields}
+            playerSelections={this.playerSelections}
+            activeAnimEvt={this.activeAnimEvt}
           />
           <PlayerControlsDisplay
             confirmAction={this.confirmAction}

@@ -2,6 +2,7 @@ export class UnitSelectionFields {
 
   constructor(obj) {
     this.getUnitPosition = obj.getUnitPosition;
+    this.units = [];
     this.regions = [];
   }
 
@@ -46,5 +47,15 @@ export class UnitSelectionFields {
 
   getRegions() {
     return this.regions;
+  }
+
+  getUnits() {
+    for (let unit of this.units) {
+      if (!unit.hasOwnProperty('position')) {
+        unit.position = this.getUnitPosition(unit.character);
+      }
+    }
+
+    return this.units;
   }
 }

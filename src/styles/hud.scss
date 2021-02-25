@@ -421,6 +421,35 @@
   }
 }
 
+.healthBarOuter {
+  display: block;
+  position: absolute;
+  width: 80px;
+  height: 5px;
+  background-color: $hud_transparentRed;
+
+  .healthBarFill {
+    background-color: $hud_desaturatedRed;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    display: block;
+  }
+}
+
+.characterTicksRingOuter {
+  display: block;
+  position: absolute;
+
+  .characterTicksRingBackfill {
+    stroke: $hud_transparentNeonBlue;
+  }
+
+  .characterTicksRingFill {
+    stroke: $hud_desaturatedNeonBlue;
+  }
+}
+
 .versionDisplayWrapper {
   font: 7.5pt kozuka-gothic-pr6n-bold;
   text-transform: uppercase;
