@@ -59,8 +59,6 @@ export class CharacterStatuses extends Component {
 
     let units = [];
     for (let unit of this.props.unitSelectionFields.getUnits()) {
-      console.log(unit);
-
       let percHealthRemaining = this.getHealthPosition(unit) * 100;
       let ticksRemaining = unit.ticks;
 

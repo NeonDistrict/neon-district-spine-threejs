@@ -336,6 +336,8 @@ export class CombatPlayer extends CombatScene {
     if (data.error) {
       console.log("Error:", data.error);
       this.userInterface.setError(data.error);
+    } else {
+      this.userInterface.setError(null);
     }
 
     // Handle any preparation work if needed

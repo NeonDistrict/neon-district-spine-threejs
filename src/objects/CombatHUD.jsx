@@ -6,11 +6,11 @@ import { VersionDisplay } from "./hud/VersionDisplay.jsx";
 import { PlayerTargetMap } from "./hud/PlayerTargetMap.jsx";
 import { CharacterStatuses } from "./hud/CharacterStatuses.jsx";
 import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
+import { ErrorDisplay } from "./hud/ErrorDisplay.jsx";
 
 import { UnitSelectionFields } from "./UnitSelectionFields.jsx";
 
 //import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
-//import { ErrorDisplay } from "./hud/ErrorDisplay.jsx";
 //import { ScreenCanvasOverlay } from "./hud/ScreenCanvasOverlay.jsx";
 
 export class CombatHUD {
@@ -101,6 +101,9 @@ export class CombatHUD {
           />
           <TurnOrderDisplay
             teams={this.teams}
+          />
+          <ErrorDisplay
+            error={this.error}
           />
         </div>
       ),
