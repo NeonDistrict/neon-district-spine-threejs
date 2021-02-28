@@ -5,10 +5,10 @@ import { PlayerControlsDisplay } from "./hud/PlayerControlsDisplay.jsx";
 import { VersionDisplay } from "./hud/VersionDisplay.jsx";
 import { PlayerTargetMap } from "./hud/PlayerTargetMap.jsx";
 import { CharacterStatuses } from "./hud/CharacterStatuses.jsx";
+import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
 
 import { UnitSelectionFields } from "./UnitSelectionFields.jsx";
 
-//import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
 //import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
 //import { ErrorDisplay } from "./hud/ErrorDisplay.jsx";
 //import { ScreenCanvasOverlay } from "./hud/ScreenCanvasOverlay.jsx";
@@ -98,6 +98,9 @@ export class CombatHUD {
             confirmAction={this.confirmAction}
             teams={this.teams}
             playerSelections={this.playerSelections}
+          />
+          <TurnOrderDisplay
+            teams={this.teams}
           />
         </div>
       ),

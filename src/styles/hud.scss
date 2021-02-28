@@ -450,6 +450,48 @@
   }
 }
 
+.turnOrderDisplay {
+  display: block;
+  position: absolute;
+  top: 10px;
+  margin: auto;
+  width: 100%;
+  cursor: default;
+
+  .unitTurnOrderPortrait {
+    display: inline-block;
+    position: relative;
+    top: 0;
+
+    -webkit-clip-path:polygon(12.5% 0, 100% 0, 87.5% 100%, 0% 100%);
+    clip-path:polygon(12.5% 0, 100% 0, 87.5% 100%, 0% 100%);
+    width:80px;
+    height:80px;
+    background-color: $hud_darkGray;
+
+    .unitTurnOrderPortraitImage {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-size: 90% 90%;
+      background-position: bottom center;
+      background-repeat: no-repeat;
+    }
+
+    .unitTurnOrderTicks {
+      position: absolute;
+      top: 3px;
+      right: 0px;
+
+      text-align: right;
+      color: $hud_neonBlue;
+      font-size: 9pt;
+      text-shadow: 0px 0px 10px $hud_neonBlue;
+      padding: 0 8px;
+    }
+  }
+}
+
 .versionDisplayWrapper {
   font: 7.5pt kozuka-gothic-pr6n-bold;
   text-transform: uppercase;

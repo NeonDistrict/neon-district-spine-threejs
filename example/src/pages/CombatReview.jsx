@@ -43,9 +43,11 @@ export default class CombatReview extends Component {
       'skin'      : 'Female',
       'weapon'    : 'blkoriginpulsarv16-rare',
       //'jsonFile'  : 'nfts/ai-practice/ai-practice-blkorigindemon-female-4-0-spine.json',
-      'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigindemon-female-4-0-spine.atlas',
-      //'outfit'   : ['female', 'blkorigindemon', 'common']
-    },{
+      //'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigindemon-female-4-0-spine.atlas',
+      'atlasFile' : 'spine-output/character/MediumMaleHeavySkinTest.atlas',
+      'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest.json',
+      'outfit'   : ['female', 'blkorigindemon', 'common']
+    },/*{
       'position' : 1,
       'nftId'    : "test1",
       //'nftId'    : "ai-practice-blkorigindemon-female-0",
@@ -72,15 +74,17 @@ export default class CombatReview extends Component {
       'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigingenius-male-5-0-spine.atlas',
       //'pose'     : 'ConsoleSml_BasicIdle_001',
       //'outfit'   : ['male', 'blkoriginghost', 'common']
-    },{
+    },*/{
       'position' : 4,
       'nftId'    : "test4",
       'scale'    : 'character',
       'skin'     : 'Female',
       'weapon'   : 'blkplasmaspear-legendary',
-      'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigingenius-female-4-0-spine.atlas',
+      //'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigingenius-female-4-0-spine.atlas',
+      'atlasFile' : 'spine-output/character/MediumMaleHeavySkinTest.atlas',
+      'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest.json',
       //'outfit'   : ['female', 'blkoriginheavy', 'common']
-    },
+    }/*,
     {
       'position' : 5,
       'nftId'    : "test5",
@@ -107,12 +111,13 @@ export default class CombatReview extends Component {
       'weapon'   : 'blkspecialdeathknightblade-ultrarare',
       'atlasFile' : 'nfts/ai-practice/ai-practice-blkoriginheavy-male-5-0-spine.atlas',
       //'outfit'   : ['male', 'blkorigingenius', 'common']
-    }];
+    }*/];
 
     return (
       <div>
         <div style={{"width":1280,"height":768}}>
           <NDCombatPlayer
+            baseUrl={"http://localhost:3000/"}
             width={1280}
             height={768}
             background="almond-uncontrolled-lobby-001"
