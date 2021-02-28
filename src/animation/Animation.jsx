@@ -7,6 +7,9 @@ export class Animation {
     this.characters = characters;
     this.effects = effects;
     this.soundManager = soundManager;
+
+    this.PLAY_SOUND = true;
+    this.PLAY_EFFECTS = true;
   }
 
   run(event) {
@@ -14,6 +17,11 @@ export class Animation {
   }
 
   playSound(category, tag, delay = 0.0) {
+    if (!this.PLAY_SOUND) {
+      console.debug("Not playing sound");
+      return;
+    }
+
     if (this.soundManager.hasSound(category, tag)) {
       if (delay > 0.001) {
         setTimeout(this.playSoundCall.bind(this, category, tag), delay * 1000);
@@ -35,6 +43,11 @@ export class Animation {
 
   // Play on Delay or Play Immediately
   playEffect(index, effectKey, delay = 0.001) {
+    if (!this.PLAY_EFFECTS) {
+      console.debug("Not playing effects");
+      return;
+    }
+
     if (this.effects.hasOwnProperty(index)) {
       if (delay > 0.001) {
         setTimeout(this.playEffectCall.bind(this, index, effectKey), delay * 1000);
