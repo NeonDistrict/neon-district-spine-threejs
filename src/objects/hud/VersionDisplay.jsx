@@ -1,11 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
+import { HUDComponent } from './core/HUDComponent.jsx';
 import lstyle from "../../styles/hud.scss";
 
-export class VersionDisplay extends Component {
-
-  constructor(props) {
-    super(props);
-  }
+export class VersionDisplay extends HUDComponent {
 
   render() {
     console.log("** Rendering the Version Display **");
@@ -13,7 +10,7 @@ export class VersionDisplay extends Component {
     return (
       <h5 className={lstyle.versionDisplayWrapper}>
         Neon District Combat Engine<br />
-        <small>Version 0.5.0</small>
+        <small>Alpha - Version 0.5.0</small>
       </h5>
     );
   }

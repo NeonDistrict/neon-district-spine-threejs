@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
+import { HUDComponent } from './core/HUDComponent.jsx';
 import lstyle from "../../styles/hud.scss";
 
-export class TurnOrderDisplay extends Component {
+export class TurnOrderDisplay extends HUDComponent {
 
   constructPortraitOrder() {
     if (!this.units || this.units.length === 0) {

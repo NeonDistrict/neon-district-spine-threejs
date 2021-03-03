@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
+import { HUDComponent } from '../core/HUDComponent.jsx';
 import lstyle from "../../../styles/hud.scss";
 
-export class PlayerControlsCard extends Component {
+export class PlayerControlsCard extends HUDComponent {
 
   isValidCard(card) {
     return card && card.type && ['attack','ability','effect','interact'].indexOf(card.type.toLowerCase()) >= 0;
@@ -24,6 +25,18 @@ export class PlayerControlsCard extends Component {
           <div className={styles.join(' ')}>
             <h3>Empty Card Slot</h3>
             <p>Missing Weapon Equipment</p>
+          </div>
+        </div>
+      );
+    }
+
+    if (this.hudLocked) {
+      // Get the specific card type for styles
+      styles.push(lstyle.backCard);
+
+      return (
+        <div className={lstyle.cardSelectionWrapper}>
+          <div className={styles.join(' ')}>
           </div>
         </div>
       );

@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
+import { HUDComponent } from './core/HUDComponent.jsx';
 import lstyle from "../../styles/hud.scss";
 
-export class ErrorDisplay extends Component {
+export class ErrorDisplay extends HUDComponent {
 
   restartAnimation(event) {
     event.target.classList.remove(lstyle.playAnimation);

@@ -80,9 +80,6 @@ export class CombatPlayer extends CombatScene {
     // Update the HUD to use the player selection object
     this.userInterface.setPlayerSelectionsObject(this.playerSelections);
 
-    // Capture & handle click events
-    this.canvas.addEventListener('click', this.handleCanvasClick.bind(this));
-
     // Pull the initial battle state
     if (this.battleId && this.battleId !== 'practice' && this.battleId !== 'test') {
       if (this.api) {
@@ -157,65 +154,6 @@ export class CombatPlayer extends CombatScene {
     this.clickLock = false;
   }
 
-  handleCanvasClick(e) {
-    if (this.clickableRegionsLocked()) {
-      return;
-    }
-
-    for (let _option in this.clickableRegions) {
-      let region = this.clickableRegions[_option];
-      if (
-        e.layerX >= region[0] && e.layerX <= region[2] &&
-        e.layerY >= region[1] && e.layerY <= region[3]
-      ) {
-        if (['attack','card0','card1','card2'].indexOf(_option) !== -1) {
-
-          // Make sure that the card selected is a valid choice
-          if (this.playerSelections.validateActionSelect(_option)) {
-            // Set the selected option
-            this.playerSelections.setAction(_option);
-          }
-          
-        } else if (['confirm'].indexOf(_option) !== -1) {
-
-          // Pull the action and target
-          let action = this.playerSelections.getAction();
-          let target = this.playerSelections.getTarget();
-
-          // If the action or target is invalid, disallow
-          if (
-            action === false || action === null
-          ) {
-            return;
-          }
-
-          if (target === null) {
-            target = 'none'
-          }
-
-          // Lock the HUD
-          this.lockClickableRegions();
-
-          // Run combat
-          if (this.api) {
-            this.runCombatApi(action, target);
-          } else if (this.socket) {
-            this.runCombatSocket(action, target);
-          }
-
-        } else if (_option.indexOf('target') === 0) {
-
-          // Make sure that the card selected is a valid choice
-          if (this.playerSelections.validateTargetSelect(_option)) {
-            // Set the target
-            this.playerSelections.setTarget(_option);
-          }
-
-        }
-      }
-    }
-  }
-
   confirmAction() {
     // Pull the action and target
     let action = this.playerSelections.getAction();
@@ -231,6 +169,9 @@ export class CombatPlayer extends CombatScene {
     if (target === null) {
       target = 'none';
     }
+
+    // Lock the HUD
+    this.lockClickableRegions();
 
     // Run combat
     if (this.api) {

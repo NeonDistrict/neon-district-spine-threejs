@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
+import { HUDComponent } from './core/HUDComponent.jsx';
 import lstyle from "../../styles/hud.scss";
 
-export class PlayerTargetMap extends Component {
+export class PlayerTargetMap extends HUDComponent {
 
   selectTargetCallback(target) {
     if (this.props.playerSelections.validateTargetSelect(target)) {

@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
+import { HUDComponent } from '../core/HUDComponent.jsx';
 import lstyle from "../../../styles/hud.scss";
 
-export class PlayerControlsDefaultOptions extends Component {
+export class PlayerControlsDefaultOptions extends HUDComponent {
 
   render() {
     console.log("** Rendering the Player Controls Default Options **");

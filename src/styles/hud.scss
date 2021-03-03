@@ -158,6 +158,14 @@
         color: $hud_halfGray;
       }
 
+      &.backCard {
+        border: 4px solid $hud_purple;
+        background: url('https://neon-district-season-one.s3.amazonaws.com/assets/nd-logo.png');
+        background-position: center center;
+        background-size: 75%;
+        background-repeat: no-repeat;
+      }
+
       div.cardTopRow {
         display: flex;
         flex-direction: row;
@@ -240,6 +248,7 @@
         margin: 15px 2px;
         text-align: center;
         font: 7.5pt kozuka-gothic-pr6n;
+        line-height: 1.5em;
       }
 
       div.cardTypeWrapper {
@@ -415,6 +424,11 @@
         padding: 4px 16px;
         border: 1px solid white;
         background-color: $hud_darkGray;
+
+        &:disabled {
+          border: 1px solid $hud_halfGray;
+          color: $hud_halfGray;
+        }
       }
     }
 
@@ -434,6 +448,63 @@
     position: relative;
     height: 100%;
     display: block;
+  }
+}
+
+.statusEffects {
+  display: block;
+  position: absolute;
+
+  .statusEffect {
+    height: 16px;
+    width: 16px;
+    display: none;
+    margin: 0px 2px;
+
+    &.visible {
+      display: inline-block;
+    }
+
+    &.statusEffectPoison {
+      background: url("https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Poison.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    &.statusEffectRegenerate {
+      background: url("https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Regeneration.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    &.statusEffectShield {
+      background: url("https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Shield.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    &.statusEffectTaunt {
+      background: url("https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Taunt.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    &.statusEffectCounterattack {
+      background: url("https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Counterattack.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.targetCharacterStats {
+  .statusEffects {
+    right: 30px;
   }
 }
 
@@ -498,7 +569,7 @@
   bottom: 33%;
   right: 2%;
   width: 300px;
-  height: 100px;
+  height: 60px;
   cursor: default;
   background: $hud_darkGray;
   border: 3px solid $hud_desaturatedRed;
@@ -506,6 +577,7 @@
   font: 10pt kozuka-gothic-pr6n-bold;
   text-align: center;
   padding: 10px;
+  line-height: 1.5em;
 
   opacity: 0;
   &.playAnimation {
@@ -532,4 +604,5 @@
   margin: 5px;
   opacity: 0.5;
   cursor: default;
+  line-height: 1.5em;
 }

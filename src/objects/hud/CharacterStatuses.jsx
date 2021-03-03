@@ -1,22 +1,27 @@
-import React, { Component } from "react";
+import React from "react";
+import { HUDComponent } from './core/HUDComponent.jsx';
 import lstyle from "../../styles/hud.scss";
 
 const HEALTH_BAR_WIDTH = 80;
 const TICKS_RADIUS = 10;
 const TICKS_STROKE_WIDTH = 3;
 
-export class CharacterStatuses extends Component {
+export class CharacterStatuses extends HUDComponent {
 
   getHealthPosition(unit) {
     let health = unit.stats.HEALTH;
+
+    console.log(unit.unitId, this.props.activeAnimEvt.activeStatChange(unit.unitId, 'HEALTH'), "unit.stats.HEALTH", unit.stats.HEALTH);
 
     if (this.props.activeAnimEvt && this.props.activeAnimEvt.activeStatChange(unit.unitId, 'HEALTH') !== false) {
       let healthStatChange = this.props.activeAnimEvt.activeStatChange(unit.unitId, 'HEALTH');
       let animDelta = this.props.activeAnimEvt.currentTimeDelta();
 
-      health = (
-        healthStatChange.start + healthStatChange.delta //* Math.max(Math.min(1.0 - animDelta * 2.0, 1.0), 0.0)
-      );
+      health = healthStatChange.end;
+
+      //(
+      //healthStatChange.start + healthStatChange.delta //* Math.max(Math.min(1.0 - animDelta * 2.0, 1.0), 0.0)
+      //);
 
       // Update this unit's health
       unit.stats.HEALTH = health;
@@ -67,8 +72,26 @@ export class CharacterStatuses extends Component {
         ticksRemaining = 0;
       }
 
+      let statusEffectChanges = this.props.activeAnimEvt.getActiveStatusEffectChanges(unit.unitId);
+      let hasPoison        = statusEffectChanges.POISON > 0 || unit.statusEffects.POISON > 0;
+      let hasRegenerate    = statusEffectChanges.REGENERATE > 0 || unit.statusEffects.REGENERATE > 0;
+      let hasShield        = statusEffectChanges.SHIELD > 0 || unit.statusEffects.SHIELD > 0;
+      let hasTaunt         = statusEffectChanges.TAUNT > 0 || unit.statusEffects.TAUNT > 0;
+      let hasCounterattack = statusEffectChanges.COUNTERATTACK > 0 || unit.statusEffects.COUNTERATTACK > 0;
+
       units.push(
         <div>
+          <div style={{
+            top:unit.position.above.y / 2 - 25,
+            left:(unit.position.above.x - HEALTH_BAR_WIDTH) / 2 - 5
+          }} className={lstyle.statusEffects}>
+            <span className={[lstyle.statusEffect, lstyle.statusEffectPoison, hasPoison ? lstyle.visible : ''].join(' ')}></span>
+            <span className={[lstyle.statusEffect, lstyle.statusEffectRegenerate, hasRegenerate ? lstyle.visible : ''].join(' ')}></span>
+            <span className={[lstyle.statusEffect, lstyle.statusEffectShield, hasShield ? lstyle.visible : ''].join(' ')}></span>
+            <span className={[lstyle.statusEffect, lstyle.statusEffectTaunt, hasTaunt ? lstyle.visible : ''].join(' ')}></span>
+            <span className={[lstyle.statusEffect, lstyle.statusEffectCounterattack, hasCounterattack ? lstyle.visible : ''].join(' ')}></span>
+          </div>
+
           <div style={{
             top:unit.position.above.y / 2,
             left:(unit.position.above.x - HEALTH_BAR_WIDTH) / 2

@@ -40,14 +40,42 @@ export class CombatHUD {
     });
     this.target = null;
 
+    // Teams & units
+    this.teams = null;
+    this.units = null;
+    this.currentEventIndexCached = null;
+
+    window.addEventListener('clickableRegionsLocked', () => { this.needsUpdate = true; });
+    window.addEventListener('clickableRegionsUnlocked', () => { this.needsUpdate = true; });
+
     // Needs update
     this.needsUpdate = true;
   }
 
   setTeams(teams) {
     this.teams = teams;
+    this.translateTeamsToUnits(teams);
     this.needsUpdate = true;
     this.unitSelectionFields.setTeams(teams);
+  }
+
+  translateTeamsToUnits(teams) {
+    if (!this.units || this.units.length === 0) {
+      if (
+        !teams ||
+        !teams.hasOwnProperty('one') ||
+        !teams.hasOwnProperty('two')
+      ) {
+        return;
+      }
+
+      this.units = [];
+      for (let _team of [teams.one, teams.two]) {
+        for (let _prop in _team) {
+          this.units.push(_team[_prop]);
+        }
+      }
+    }
   }
 
   registerTargetRegions() {
@@ -74,6 +102,11 @@ export class CombatHUD {
       this.needsUpdate = true;
     }
 
+    if (this.activeAnimEvt.getCurrentEventIndex() !== this.currentEventIndexCached) {
+      this.currentEventIndexCached = this.activeAnimEvt.getCurrentEventIndex();
+      this.needsUpdate = true;
+    }
+
     if (!this.needsUpdate) {
       return;
     }
@@ -97,10 +130,12 @@ export class CombatHUD {
           <PlayerControlsDisplay
             confirmAction={this.confirmAction}
             teams={this.teams}
+            units={this.units}
             playerSelections={this.playerSelections}
           />
           <TurnOrderDisplay
             teams={this.teams}
+            units={this.units}
           />
           <ErrorDisplay
             error={this.error}

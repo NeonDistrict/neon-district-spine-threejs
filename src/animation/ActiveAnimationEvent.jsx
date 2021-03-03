@@ -6,6 +6,7 @@ export class ActiveAnimationEvent {
 
     this.queue = [];
 
+    this.currentEventIndex = 0;
     this.currentEventName = null;
     this.currentStatChanges = {};
     this.currentStatusEffectChanges = {};
@@ -46,8 +47,13 @@ export class ActiveAnimationEvent {
     this.getLatestStatusEffectChanges({'battleEvents':[obj.primaryEvent,...obj.secondaryEvents]});
 
     // Determine how long to run the animation for
+    this.currentEventIndex++;
     this.currentEventName = obj.primaryEvent.name;
     this.animationEndTime = Date.now() + this.calculateAdditionalMS(characterToAnimation);
+  }
+
+  getCurrentEventIndex() {
+    return this.currentEventIndex;
   }
 
   calculateAdditionalMS(characterToAnimation) {

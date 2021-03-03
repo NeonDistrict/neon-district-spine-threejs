@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import lstyle from "../../styles/hud.scss";
+import { HUDComponent } from './core/HUDComponent.jsx';
 import { PlayerControlsDefaultOptions } from './components/PlayerControlsDefaultOptions.jsx';
 import { PlayerControlsCharacter } from './components/PlayerControlsCharacter.jsx';
 import { PlayerControlsCard } from './components/PlayerControlsCard.jsx';
 import { TargetCharacterControls } from './components/TargetCharacterControls.jsx';
 
-export class PlayerControlsDisplay extends Component {
+export class PlayerControlsDisplay extends HUDComponent {
 
   constructor(props) {
     super(props);
@@ -17,55 +18,6 @@ export class PlayerControlsDisplay extends Component {
     };
 
     this.confirmAction = props.confirmAction;
-
-    this.init();
-  }
-
-  setTeams(teams) {
-    this.teams = teams;
-    this.init();
-  }
-
-  init() {
-    this.units = [];
-    if (
-      !this.props.teams ||
-      !this.props.teams.hasOwnProperty('one') ||
-      !this.props.teams.hasOwnProperty('two')
-    ) {
-      return;
-    }
-
-    for (let _team of [this.props.teams.one, this.props.teams.two]) {
-      for (let _prop in _team) {
-        this.units.push(_team[_prop]);
-      }
-    }
-  }
-
-  getActivePlayer() {
-    if (this.units.length === 0) {
-      return {};
-    }
-
-    return this.units.reduce((acc, curr) => {
-      if (!acc) return curr;
-      if (curr.stats.HEALTH <= 0) return acc;
-      if (acc.ticks < curr.ticks) return acc;
-      if (acc.ticks == curr.ticks) {
-        if (acc.lastTurnOrder < curr.lastTurnOrder) return acc;
-        return curr;
-      }
-      return curr;
-    });
-  }
-
-  getTarget() {
-    for (let _idx in this.units) {
-      if (this.units[_idx].unitId === this.props.playerSelections.getTarget()) {
-        return this.units[_idx];
-      }
-    }
   }
 
   chooseOption(option) {
@@ -83,6 +35,11 @@ export class PlayerControlsDisplay extends Component {
       this.props.playerSelections.setTarget(option);
       this.setState({selectedTarget: option});
     }
+  }
+
+  confirmActionCapture() {
+    this.setState({selectedAction:null, selectedAction:null});
+    this.confirmAction();
   }
 
   render() {
@@ -155,9 +112,10 @@ export class PlayerControlsDisplay extends Component {
             />
 
             <TargetCharacterControls
+              activeAnimEvt={this.props.activeAnimEvt}
               character={targetCharacter}
               selectedAction={this.state.selectedAction}
-              confirmCallback={this.confirmAction.bind(this)}
+              confirmCallback={this.confirmActionCapture.bind(this)}
             />
           </div>
         </div>
