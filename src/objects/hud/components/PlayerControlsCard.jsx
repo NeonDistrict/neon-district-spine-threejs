@@ -45,8 +45,11 @@ export class PlayerControlsCard extends HUDComponent {
     // Get the specific card type for styles
     styles.push(lstyle[card.type.toLowerCase() + 'Card']);
 
+    // Disallow selecting certain types
+    let disallowSelect = (['interact','effect'].indexOf(card.type.toLowerCase()) !== -1);
+
     return (
-      <div className={wrapperStyle} onClick={this.props.callback}>
+      <div className={wrapperStyle} onClick={(disallowSelect) ? () => {} : this.props.callback}>
         <div className={styles.join(' ')}>
           <div className={lstyle.cardTopRow}>
             <div className={lstyle.cardTypeWrapper}>

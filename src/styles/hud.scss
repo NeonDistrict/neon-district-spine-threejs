@@ -41,7 +41,7 @@
 
   .playerRegion {
     order: 1;
-    flex: 10;
+    flex: 9;
 
     margin: 6px 18px;
     padding: 0;
@@ -65,7 +65,7 @@
       align-items: stretch;
 
       .activeCharacter {
-        flex: 3;
+        flex-basis: 17.5%;
         padding: 3px;
       }
 
@@ -74,7 +74,7 @@
         padding: 5px;
         margin: 3px;
 
-        flex: 3;
+        flex-basis: 20%;
       }
 
       .cardWrapper {
@@ -82,7 +82,7 @@
         padding: 5px;
         margin: 3px;
 
-        flex: 10;
+        flex-basis: 62.5%;
 
         display: flex;
         flex-direction: row;
@@ -96,6 +96,8 @@
   .cardSelectionWrapper {
     margin: 5px;
     padding: 6px;
+    width: calc(100% - 22px);
+    height: calc(100% - 22px);
 
     &:hover {
       box-shadow: 0px 0px 4px 1px rgba(255,255,255,0.3);
@@ -108,8 +110,8 @@
     }
 
     .card {
-      width: 140px;
-      height: 140px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
       border-radius: 4px;
       box-shadow: 0px 0px 6px 1px #000000;
       padding: 2px;
@@ -121,6 +123,9 @@
 
       &.baseAttack {
         border: 1px solid $hud_red;
+
+        width: calc(100% - 6px);
+        height: calc(100% - 6px);
 
         .baseAttackImg {
           position: relative;
@@ -150,7 +155,8 @@
       }
 
       &.interactCard {
-        border: 4px solid $hud_neonBlue;
+        border: 4px solid $hud_desaturatedNeonBlue;
+        color: $hud_halfGray;
       }
 
       &.fillerCard {
@@ -174,13 +180,13 @@
         align-items: stretch;
       }
 
-      h3.cardTitle {
+      .cardTitle {
         padding: 0;
         margin: 0;
         text-align: center;
         line-height: 1.5em;
-
-        flex: 7;
+        flex-basis: 65%;
+        font-size: 1.2em;
       }
 
       .cardTicks {
@@ -192,7 +198,7 @@
         padding: 0;
         margin: 0;
 
-        flex: 1;
+        flex-basis: 15%;
 
         .cardTicksNumber {
           display: block;
@@ -252,7 +258,7 @@
       }
 
       div.cardTypeWrapper {
-        flex: 1;
+        flex-basis: 15%;
 
         span.cardType {
           position: relative;
@@ -313,12 +319,12 @@
     align-items: stretch;
 
     .activeCharacter {
+      flex-basis: 35%;
       padding: 3px;
     }
   }
 
   .characterProfile {
-    width: 134px;
     height: 100%;
     display: block;
 
@@ -329,8 +335,7 @@
     align-items: stretch;
 
     img {
-      width: 134px;
-      height: 134px;
+      width: 100%;
       border: 0px;
       display: block;
 
@@ -396,7 +401,7 @@
         text-shadow: 0px 0px 0px;
 
         .attribute {
-          flex: 1;
+          flex-basis: 25%;
 
           .attributeValue {
             font-size: 10pt;

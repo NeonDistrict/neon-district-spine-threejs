@@ -113,13 +113,51 @@ export default class CombatReview extends Component {
       //'outfit'   : ['male', 'blkorigingenius', 'common']
     }*/];
 
+    function getScreenSize() {
+      let width = 1536, height = 864;
+
+      if (window.innerWidth < 1605) {
+        width = 1440;
+        height = 810;
+      }
+
+      if (window.innerWidth < 1605) {
+        width = 1366;
+        height = 768;
+      }
+
+      if (window.innerWidth < 1370) {
+        width = 1280;
+        height = 720;
+      }
+
+      if (window.innerWidth < 1285) {
+        width = 1152;
+        height = 648;
+      }
+
+      if (window.innerWidth < 1157) {
+        width = 1024;
+        height = 576;
+      }
+
+      if (window.innerWidth < 1029) {
+        width = 960;
+        height = 540;
+      }
+
+      return {width, height}
+    }
+
+    let size = getScreenSize();
+
     return (
       <div>
-        <div style={{"width":1280,"height":768}}>
+        <div style={size}>
           <NDCombatPlayer
             baseUrl={"http://localhost:3000/"}
-            width={1280}
-            height={768}
+            width={size.width}
+            height={size.height}
             background="almond-uncontrolled-lobby-001"
             characters={characters}
             //combatApi={"http://localhost:5003"}
