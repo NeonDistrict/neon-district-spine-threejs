@@ -57,14 +57,24 @@ export class TurnOrderDisplay extends HUDComponent {
 
     let portraits = [];
     for (let idx = 0; idx < this.units.length; idx++) {
-      portraits.push(
-        <div className={lstyle.unitTurnOrderPortrait}>
-          <div className={lstyle.unitTurnOrderTicks}>
-            {this.units[idx].ticks}
+      let portraitClasses = [lstyle.unitTurnOrderPortraitImage, this.units[idx] && this.units[idx].team == 'two' ? lstyle.flipHorizontal : ''].join(' ');
+
+      if (this.units[idx].state !== 'AWAKE') {
+        portraits.push(
+          <div className={lstyle.unitTurnOrderPortrait}>
+            <div className={portraitClasses} style={{backgroundImage: `url(${this.units[idx].headImgSrc})`, opacity: .5}}></div>
           </div>
-          <div className={lstyle.unitTurnOrderPortraitImage} style={{backgroundImage: `url(${this.units[idx].headImgSrc})`}}></div>
-        </div>
-      );
+        );
+      } else {
+        portraits.push(
+          <div className={lstyle.unitTurnOrderPortrait}>
+            <div className={lstyle.unitTurnOrderTicks}>
+              {this.units[idx].ticks}
+            </div>
+            <div className={portraitClasses} style={{backgroundImage: `url(${this.units[idx].headImgSrc})`}}></div>
+          </div>
+        );
+      }
     }
 
     /**

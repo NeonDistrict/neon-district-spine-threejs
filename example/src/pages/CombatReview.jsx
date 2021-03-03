@@ -43,11 +43,11 @@ export default class CombatReview extends Component {
       'skin'      : 'Female',
       'weapon'    : 'blkoriginpulsarv16-rare',
       //'jsonFile'  : 'nfts/ai-practice/ai-practice-blkorigindemon-female-4-0-spine.json',
-      //'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigindemon-female-4-0-spine.atlas',
-      'atlasFile' : 'spine-output/character/MediumMaleHeavySkinTest.atlas',
-      'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest.json',
+      'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigindemon-female-4-0-spine.atlas',
+      //'atlasFile' : 'spine-output/character/MediumMaleHeavySkinTest.atlas',
+      //'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest.json',
       'outfit'   : ['female', 'blkorigindemon', 'common']
-    },/*{
+    },{
       'position' : 1,
       'nftId'    : "test1",
       //'nftId'    : "ai-practice-blkorigindemon-female-0",
@@ -56,7 +56,7 @@ export default class CombatReview extends Component {
       'skin'     : 'Female',
       'atlasFile' : 'nfts/ai-practice/ai-practice-blkoriginghost-female-5-0-spine.atlas',
       //'outfit'   : ['male', 'blkoriginmedic', 'common']
-    },{
+    },/*{
       'position' : 2,
       'nftId'    : "79228162551158388693916474895",
       'scale'    : 'character',
@@ -80,11 +80,11 @@ export default class CombatReview extends Component {
       'scale'    : 'character',
       'skin'     : 'Female',
       'weapon'   : 'blkplasmaspear-legendary',
-      //'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigingenius-female-4-0-spine.atlas',
-      'atlasFile' : 'spine-output/character/MediumMaleHeavySkinTest.atlas',
-      'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest.json',
+      'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigingenius-female-4-0-spine.atlas',
+      //'atlasFile' : 'spine-output/character/MediumMaleHeavySkinTest.atlas',
+      //'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest.json',
       //'outfit'   : ['female', 'blkoriginheavy', 'common']
-    }/*,
+    },
     {
       'position' : 5,
       'nftId'    : "test5",
@@ -93,7 +93,7 @@ export default class CombatReview extends Component {
       'weapon'   : 'blkoriginsaltas-ultrarare',
       'atlasFile' : 'nfts/ai-practice/ai-practice-blkoriginjack-male-1-0-spine.atlas',
       //'outfit'   : ['male', 'blkoriginjack', 'common']
-    },
+    }/*,
     {
       'position' : 6,
       'nftId'    : "test6",
@@ -155,7 +155,7 @@ export default class CombatReview extends Component {
       <div>
         <div style={size}>
           <NDCombatPlayer
-            baseUrl={"http://localhost:3000/"}
+            //baseUrl={"http://localhost:3000/"}
             width={size.width}
             height={size.height}
             background="almond-uncontrolled-lobby-001"
