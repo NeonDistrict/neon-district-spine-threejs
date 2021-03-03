@@ -502,6 +502,28 @@
   }
 }
 
+.unitStatusUpdates {
+  display: block;
+  position: absolute;
+  font: 12pt kozuka-gothic-pr6n-bold;
+  color: white;
+  text-align: center;
+  text-shadow: 0px 0px 2px #000000;
+  cursor: default;
+
+  .unitStatusUpdateTicks {
+    color: $hud_desaturatedNeonBlue;
+  }
+
+  .unitStatusUpdateRed {
+    color: $hud_desaturatedRed;
+  }
+
+  .unitStatusUpdateGreen {
+    color: $hud_desaturatedGreen;
+  }
+}
+
 .targetCharacterStats {
   .statusEffects {
     right: 30px;

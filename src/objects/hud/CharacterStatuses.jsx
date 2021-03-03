@@ -59,6 +59,66 @@ export class CharacterStatuses extends HUDComponent {
     return d;       
   }
 
+  getUnitStatusUpdates(unit) {
+    let updates = [];
+    if (
+      (
+        this.activeAnimEvt.hasActiveStatChange(unit.unitId) ||
+        this.activeAnimEvt.hasActiveStatusEffectChange(unit.unitId)
+      ) && unit.knockoutAnimationPlayed !== true
+    ) {
+      let statChanges = this.activeAnimEvt.getActiveStatChanges(unit.unitId);
+      let statusEffectChanges = this.activeAnimEvt.getActiveStatusEffectChanges(unit.unitId);
+
+      let changes = [statChanges];
+      for (let _arrIdx in changes) {
+        let _arr = changes[_arrIdx];
+        for (let _stat in _arr) {
+          if (!_arr.hasOwnProperty(_stat)) continue;
+          let value = _arr[_stat].delta;
+
+          if (_stat === 'TICKS') {
+            value = (value < 0 ? '-' : '+') + Math.abs(value).toFixed(0);
+          } else {
+            value = (value < 0 ? '-' : '+') + Math.abs(value).toFixed(2);
+          }
+          //let delta = this.activeAnimEvt.currentTimeDelta();
+
+          let style = (_stat === 'TICKS') ? lstyle.unitStatusUpdateTicks : (value < 0 ? lstyle.unitStatusUpdateRed : lstyle.unitStatusUpdateGreen);
+
+          updates.push((<div className={style}>{_stat}: {value}</div>));
+        }
+      }
+
+      changes = [statusEffectChanges];
+      for (let _arrIdx in changes) {
+        let _arr = changes[_arrIdx];
+        for (let _stat in _arr) {
+          if (!_arr.hasOwnProperty(_stat)) continue;
+          let value = _arr[_stat];
+          //let delta = this.activeAnimEvt.currentTimeDelta();
+
+          let charValue = "";
+          for (let valueCounter = 0; valueCounter < Math.abs(value); valueCounter++) {
+            charValue += (value > 0) ? String.fromCharCode(0x2191) : String.fromCharCode(0x2193);
+          }
+
+          let style = (_stat === 'TAUNT' || _stat === 'POISON') ? lstyle.unitStatusUpdateRed : lstyle.unitStatusUpdateGreen;
+
+          if (_stat === 'TAUNT' || _stat === 'SHIELD') {
+            updates.push((<div className={style}>{_stat}</div>));
+          } else {
+            updates.push((<div className={style}>{charValue} {_stat}</div>));
+          }
+        }
+      }
+
+      console.log(updates);
+    }
+
+    return updates;
+  }
+
   render() {
     console.log("** Rendering the Character Status Displays **");
 
@@ -71,6 +131,8 @@ export class CharacterStatuses extends HUDComponent {
         percHealthRemaining = 0;
         ticksRemaining = 0;
       }
+
+      let unitStatusUpdates = this.getUnitStatusUpdates(unit);
 
       let statusEffectChanges = this.props.activeAnimEvt.getActiveStatusEffectChanges(unit.unitId);
       let hasPoison        = statusEffectChanges.POISON > 0 || unit.statusEffects.POISON > 0;
@@ -120,6 +182,16 @@ export class CharacterStatuses extends HUDComponent {
               stroke-width={TICKS_STROKE_WIDTH}
             />
           </svg>
+
+          <div
+            style={{
+              top:unit.position.above.y / 2 + 100,
+              left:(unit.position.above.x - HEALTH_BAR_WIDTH) / 2
+            }}
+            className={lstyle.unitStatusUpdates}
+          >
+            {unitStatusUpdates}
+          </div>
         </div>
       )
     }
