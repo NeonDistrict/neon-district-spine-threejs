@@ -49,7 +49,24 @@ export class ActiveAnimationEvent {
     // Determine how long to run the animation for
     this.currentEventIndex++;
     this.currentEventName = obj.primaryEvent.name;
+    this.currentInvokers = this.collectInvokers([obj.primaryEvent,...obj.secondaryEvents]);
     this.animationEndTime = Date.now() + this.calculateAdditionalMS(characterToAnimation);
+  }
+
+  collectInvokers(events) {
+    let invokers = [];
+    for (let evt of events) {
+      for (let invokerId of evt.invokerIds) {
+        if (invokers.indexOf(invokerId) === -1) {
+          invokers.push(invokerId);
+        }
+      }
+    }
+    return invokers;
+  }
+
+  isInvoker(unitId) {
+    return this.currentInvokers && this.currentInvokers.length > 0 && this.currentInvokers.indexOf(unitId) !== -1;
   }
 
   getCurrentEventIndex() {
@@ -228,6 +245,10 @@ export class ActiveAnimationEvent {
 
   getActiveStatusEffectChanges(unitId) {
     return this.currentStatusEffectChanges.hasOwnProperty(unitId) && this.currentStatusEffectChanges[unitId];
+  }
+
+  getCurrentEventName() {
+    return this.currentEventName;
   }
 
   currentTimeDelta() {

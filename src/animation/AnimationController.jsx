@@ -3,6 +3,7 @@ import { AttackAnimation } from './AttackAnimation.jsx';
 import { BattleCompleteAnimation } from './BattleCompleteAnimation.jsx';
 import { BoostAnimation } from './BoostAnimation.jsx';
 import { BreakAnimation } from './BreakAnimation.jsx';
+import { CardReplaceAnimation } from './CardReplaceAnimation.jsx';
 import { CleanseAnimation } from './CleanseAnimation.jsx';
 import { CounterBoostAnimation } from './CounterBoostAnimation.jsx';
 import { DamageAnimation } from './DamageAnimation.jsx';
@@ -27,6 +28,7 @@ export class AnimationController {
       'BoostEvent',
       'BreakEvent',
       'CardPlayEvent',
+      'CardReplaceEvent',
       'CleanseEvent',
       'CoinFlipEvent',
       'CounterAttackEvent',
@@ -47,6 +49,7 @@ export class AnimationController {
       'BattleCompleteEvent'   : new BattleCompleteAnimation(characters, effects, soundManager),
       'BoostEvent'            : new BoostAnimation(characters, effects, soundManager),
       'BreakEvent'            : new BreakAnimation(characters, effects, soundManager),
+      'CardReplaceEvent'      : new CardReplaceAnimation(characters, effects, soundManager),
       'CleanseEvent'          : new CleanseAnimation(characters, effects, soundManager),
       'CounterAttackEvent'    : new AttackAnimation(characters, effects, soundManager),
       'CounterBoostEvent'     : new CounterBoostAnimation(characters, effects, soundManager),

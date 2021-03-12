@@ -33,11 +33,11 @@ export class PlayerSelections {
   }
 
   validateActionSelect(_option) {
-    if (['attack','card0','card1','card2'].indexOf(_option) === -1) {
+    if (['attack','card0','card1','card2','replace'].indexOf(_option) === -1) {
       return false;
     }
 
-    if (_option === 'attack') {
+    if (_option === 'attack' || _option === 'replace') {
       return true;
     }
 
@@ -62,7 +62,7 @@ export class PlayerSelections {
   }
 
   setAction(_option) {
-    if (['attack','card0','card1','card2'].indexOf(_option) !== -1) {
+    if (['attack','card0','card1','card2','replace'].indexOf(_option) !== -1) {
       this.action = _option;
     }
   }

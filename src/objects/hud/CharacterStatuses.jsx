@@ -59,6 +59,14 @@ export class CharacterStatuses extends HUDComponent {
 
   getUnitStatusUpdates(unit) {
     let updates = [];
+
+    if (
+      this.activeAnimEvt.getCurrentEventName() === 'CardReplaceEvent' &&
+      this.activeAnimEvt.isInvoker(unit.unitId)
+    ) {
+      updates.push((<div className={lstyle.unitStatusUpdateTicks}>REPLACE CARD</div>));
+    }
+
     if (
       (
         this.activeAnimEvt.hasActiveStatChange(unit.unitId) ||

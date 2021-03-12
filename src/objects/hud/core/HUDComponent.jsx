@@ -25,6 +25,7 @@ export class HUDComponent extends Component {
     return this.props.units.reduce((acc, curr) => {
       if (!acc) return curr;
       if (curr.stats.HEALTH <= 0) return acc;
+      if (acc.state === 'UNCONSCIOUS') return curr;
       if (acc.ticks < curr.ticks) return acc;
       if (acc.ticks == curr.ticks) {
         if (acc.lastTurnOrder < curr.lastTurnOrder) return acc;

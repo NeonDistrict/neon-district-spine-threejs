@@ -25,8 +25,24 @@ export class PlayerControlsDisplay extends HUDComponent {
       if (this.props.playerSelections && this.props.playerSelections.validateActionSelect(option)) {
         this.props.playerSelections.setAction(option);
       }
-
       this.setState({selectedAction:option});
+    }
+  }
+
+  chooseReplaceOption(target) {
+    // Remove visuals
+    this.setState({selectedAction:null, selectedAction:null});
+
+    // Select replace and the correct card target
+    if (this.props.playerSelections && this.props.playerSelections.validateActionSelect('replace')) {
+      this.props.playerSelections.setAction('replace');
+
+      if (this.props.playerSelections && this.props.playerSelections.validateTargetSelect(target)) {
+        this.props.playerSelections.setTarget(target);
+
+        // Submit the action
+        this.confirmAction();
+      }
     }
   }
 
@@ -77,18 +93,21 @@ export class PlayerControlsDisplay extends HUDComponent {
               <PlayerControlsCard
                 card={this.props.playerSelections && this.props.playerSelections.getCard(0) || {}}
                 callback={this.chooseOption.bind(this, 'card0')}
+                replaceCallback={this.chooseReplaceOption.bind(this, 'card0')}
                 selected={this.state.selectedAction === 'card0'}
               />
 
               <PlayerControlsCard
                 card={this.props.playerSelections && this.props.playerSelections.getCard(1) || {}}
                 callback={this.chooseOption.bind(this, 'card1')}
+                replaceCallback={this.chooseReplaceOption.bind(this, 'card1')}
                 selected={this.state.selectedAction === 'card1'}
               />
 
               <PlayerControlsCard
                 card={this.props.playerSelections && this.props.playerSelections.getCard(2) || {}}
                 callback={this.chooseOption.bind(this, 'card2')}
+                replaceCallback={this.chooseReplaceOption.bind(this, 'card2')}
                 selected={this.state.selectedAction === 'card2'}
               />
             </div>

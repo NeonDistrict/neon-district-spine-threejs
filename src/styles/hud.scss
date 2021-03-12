@@ -291,6 +291,71 @@
         }
       }
     }
+
+    .replaceButtonWrapper {
+      z-index: 100;
+
+      display:block;
+      position: relative;
+      width:26px;
+      height:26px;
+      left: calc(50% - 13px);
+      bottom: 13px;
+      padding: 0px;
+      margin: 0px;
+
+      border-radius: 13px;
+
+      background-color: $hud_desaturatedRed;
+      box-shadow:0px 0px 5px 2px rgba(0,0,0,0.5);
+
+      transition: all 0.3s ease;
+
+      overflow: hidden;
+      white-space: nowrap;
+
+      cursor: pointer;
+
+      .replaceButton {
+        display:inline-block;
+        width:26px;
+        height:26px;
+        padding:0px;
+        margin:0px;
+
+        box-sizing:border-box;
+        border-width:3px;
+        border-style: solid;
+        border-color: $hud_desaturatedRed;
+        border-radius:100%;
+        background: -webkit-linear-gradient(-45deg, transparent 0%, transparent 46%, white 46%,  white 56%,transparent 56%, transparent 100%), -webkit-linear-gradient(45deg, transparent 0%, transparent 46%, white 46%,  white 56%,transparent 56%, transparent 100%);
+        background-color: $hud_desaturatedRed;
+        box-shadow:0px 0px 5px 2px rgba(0,0,0,0.5);
+
+        transition: all 0.3s ease;
+      }
+
+      .replaceText {
+        display: none;
+        position: relative;
+        top: calc(50% - 1em);
+        right: 0.5em;
+      }
+
+      &:hover {
+        width: 50%;
+        left: calc(25%);
+      }
+
+      &:hover .replaceButton {
+        transform: rotate(90deg);
+      }
+
+      &:hover .replaceText {
+        float: right;
+        display: inline;
+      }
+    }
   }
 
   .targetRegion {

@@ -67,6 +67,13 @@ export class PlayerControlsCard extends HUDComponent {
           <p className={lstyle.cardEffects}>{card.effects}</p>
           <p className={lstyle.cardExploits}>{card.exploits}</p>
         </div>
+
+        {card.replace ? (
+          <span className={lstyle.replaceButtonWrapper} onClick={this.props.replaceCallback}>
+            <span className={lstyle.replaceText}>Replace</span>
+            <span className={lstyle.replaceButton}></span>
+          </span>
+        ) : ""}
       </div>
     );
   }
