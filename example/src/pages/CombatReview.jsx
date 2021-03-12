@@ -32,7 +32,7 @@ export default class CombatReview extends Component {
 
   setBattleId() {
     let el = document.getElementById('battleId');
-    this.setState({'battleId' : el.value, 'playback' : false});
+    this.setState({'battleId' : el.value, 'playback' : true});
   }
 
   render() {

@@ -361,7 +361,17 @@ export class CombatPlayer extends CombatScene {
   updateBattleEvents(data) {
     // Set any initial information
     if (!this.teams && data.teams) {
-      this.setTeams(data.teams);
+      if (
+        this.playback &&
+        data.hasOwnProperty('events') && data.events && Array.isArray(data.events) &&
+        data.events.length > 0 &&  data.events[0].hasOwnProperty('teams')
+      ) {
+        // If we're playing back, we need the team state at the first event we're playing back
+        this.setTeams(data.events[0].teams);
+      } else {
+        // If we're not playing back, set the latest team data
+        this.setTeams(data.teams);
+      }
     } else if (data.teams) {
       this.updateTeams(data.teams);
     }

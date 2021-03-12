@@ -14,6 +14,18 @@ export class PlayerControlsCard extends HUDComponent {
     let styles = [lstyle.card];
     let wrapperStyle = [lstyle.cardSelectionWrapper, this.props.selected ? lstyle.selected : ''].join(' ');
 
+    if (this.hudLocked) {
+      // Get the specific card type for styles
+      styles.push(lstyle.backCard);
+
+      return (
+        <div className={lstyle.cardSelectionWrapper}>
+          <div className={styles.join(' ')}>
+          </div>
+        </div>
+      );
+    }
+
     let card = this.props.card;
 
     if (!this.isValidCard(card)) {
@@ -23,20 +35,8 @@ export class PlayerControlsCard extends HUDComponent {
       return (
         <div className={lstyle.cardSelectionWrapper}>
           <div className={styles.join(' ')}>
-            <h3>Empty Card Slot</h3>
+            <h3 className={lstyle.cardTitle}>Empty Card Slot</h3>
             <p>Missing Weapon Equipment</p>
-          </div>
-        </div>
-      );
-    }
-
-    if (this.hudLocked) {
-      // Get the specific card type for styles
-      styles.push(lstyle.backCard);
-
-      return (
-        <div className={lstyle.cardSelectionWrapper}>
-          <div className={styles.join(' ')}>
           </div>
         </div>
       );

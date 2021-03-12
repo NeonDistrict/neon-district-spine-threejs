@@ -11,8 +11,6 @@ export class CharacterStatuses extends HUDComponent {
   getHealthPosition(unit) {
     let health = unit.stats.HEALTH;
 
-    console.log(unit.unitId, this.props.activeAnimEvt.activeStatChange(unit.unitId, 'HEALTH'), "unit.stats.HEALTH", unit.stats.HEALTH);
-
     if (this.props.activeAnimEvt && this.props.activeAnimEvt.activeStatChange(unit.unitId, 'HEALTH') !== false) {
       let healthStatChange = this.props.activeAnimEvt.activeStatChange(unit.unitId, 'HEALTH');
       let animDelta = this.props.activeAnimEvt.currentTimeDelta();
@@ -112,8 +110,6 @@ export class CharacterStatuses extends HUDComponent {
           }
         }
       }
-
-      console.log(updates);
     }
 
     return updates;
