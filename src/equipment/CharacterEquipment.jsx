@@ -101,15 +101,6 @@ export class CharacterEquipment extends SpineScene {
         this.character.setSkinTone(this.props.skinTone);
       }
 
-      if (this.props["weapon"]) {
-        this.character.loadGear(
-          "weapon",
-          this.props["weapon"],
-          this.props.gender,
-          this.props["weaponRarity"]
-        );
-      }
-
       // Hide drone
       this.drone.createCanvas();
       this.drone.clearTexture();
