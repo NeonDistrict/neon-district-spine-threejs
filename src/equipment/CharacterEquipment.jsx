@@ -85,19 +85,21 @@ export class CharacterEquipment extends SpineScene {
       this.character.createCanvas();
 
       // Set all available parts
-      /*
       for (let part of ["head","body","arms","legs","weapon"]) {
-        this.character.loadGear(
-          part,
-          this.props[part],
-          this.props.gender,
-          this.props[part + "Rarity"]
-        );
+        if (!this.props.skipPart || !Array.isArray(this.props.skipPart) || this.props.skipPart.indexOf(part) === -1) {
+          this.character.loadGear(
+            part,
+            this.props[part],
+            this.props.gender,
+            this.props[part + "Rarity"]
+          );
+        }
       }
 
       // Set the skin tone
-      this.character.setSkinTone(this.props.skinTone);
-      */
+      if (!this.props.skipSkinTone) {
+        this.character.setSkinTone(this.props.skinTone);
+      }
 
       if (this.props["weapon"]) {
         this.character.loadGear(
