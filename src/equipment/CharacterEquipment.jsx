@@ -24,8 +24,8 @@ export class CharacterEquipment extends SpineScene {
     }
 
     // Preload all skeleton & atlas files
-    this.character = new SpineCharacter(this.assetManager, "character/MediumMaleHeavySkinTest.json");
-    this.drone = new SpineDrone(this.assetManager, "weapons/Blkpartnerdrone.json", drone[0], drone[1], -1);
+    this.character = new SpineCharacter(this.assetManager, this.props.jsonFile || "spine-output/character/MediumMaleHeavySkinTest.json");
+    this.drone = new SpineDrone(this.assetManager, "spine-output/weapons/Blkpartnerdrone.json", drone[0], drone[1], -1);
 
     // Begin the animation
     requestAnimationFrame(this.loadSkeletons.bind(this));
@@ -85,6 +85,7 @@ export class CharacterEquipment extends SpineScene {
       this.character.createCanvas();
 
       // Set all available parts
+      /*
       for (let part of ["head","body","arms","legs","weapon"]) {
         this.character.loadGear(
           part,
@@ -96,6 +97,7 @@ export class CharacterEquipment extends SpineScene {
 
       // Set the skin tone
       this.character.setSkinTone(this.props.skinTone);
+      */
 
       // Hide drone
       this.drone.createCanvas();

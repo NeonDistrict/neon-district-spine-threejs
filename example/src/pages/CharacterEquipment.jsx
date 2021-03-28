@@ -332,7 +332,8 @@ export default class CharacterEquipment extends Component {
       <div className="char-equip">
         <div style={{"width":680,"height":700}}>
           <NDCharacterEquipment
-            baseUrl={"https://neon-district-season-one.s3.amazonaws.com/spine-output/"}
+            baseUrl={"https://neon-district-season-one.s3.amazonaws.com/"}
+            jsonFile={'nfts/ai-practice/ai-practice-blkorigindemon-female-4-0-spine.json'}
             width={680}
             height={700}
             animation={this.state.animation}
