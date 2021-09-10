@@ -40,20 +40,20 @@ export class CharacterEquipment extends SpineScene {
           this.character.setSkinTone(nextProps["skinTone"]);
         } else if (_prop === 'gender') {
           this.character.setSkin(nextProps["gender"] === 'male' ? 'Male' : 'Female');
-          this.character.loadGear("head", nextProps["head"], nextProps["gender"], nextProps["headRarity"]);
-          this.character.loadGear("body", nextProps["body"], nextProps["gender"], nextProps["bodyRarity"]);
-          this.character.loadGear("arms", nextProps["arms"], nextProps["gender"], nextProps["armsRarity"]);
-          this.character.loadGear("legs", nextProps["legs"], nextProps["gender"], nextProps["legsRarity"]);
+          this.character.loadGear("head", nextProps["head"], nextProps["gender"], nextProps["headRarity"], nextProps["headVariant"]);
+          this.character.loadGear("body", nextProps["body"], nextProps["gender"], nextProps["bodyRarity"], nextProps["bodyVariant"]);
+          this.character.loadGear("arms", nextProps["arms"], nextProps["gender"], nextProps["armsRarity"], nextProps["armsVariant"]);
+          this.character.loadGear("legs", nextProps["legs"], nextProps["gender"], nextProps["legsRarity"], nextProps["legsVariant"]);
         } else if (_prop.indexOf("head") !== -1) {
-          this.character.loadGear("head", nextProps["head"], nextProps["gender"], nextProps["headRarity"]);
+          this.character.loadGear("head", nextProps["head"], nextProps["gender"], nextProps["headRarity"], nextProps["headVariant"]);
         } else if (_prop.indexOf("body") !== -1) {
-          this.character.loadGear("body", nextProps["body"], nextProps["gender"], nextProps["bodyRarity"]);
+          this.character.loadGear("body", nextProps["body"], nextProps["gender"], nextProps["bodyRarity"], nextProps["bodyVariant"]);
         } else if (_prop.indexOf("arms") !== -1) {
-          this.character.loadGear("arms", nextProps["arms"], nextProps["gender"], nextProps["armsRarity"]);
+          this.character.loadGear("arms", nextProps["arms"], nextProps["gender"], nextProps["armsRarity"], nextProps["armsVariant"]);
         } else if (_prop.indexOf("legs") !== -1) {
-          this.character.loadGear("legs", nextProps["legs"], nextProps["gender"], nextProps["legsRarity"]);
+          this.character.loadGear("legs", nextProps["legs"], nextProps["gender"], nextProps["legsRarity"], nextProps["legsVariant"]);
         } else if (_prop.indexOf("weapon") !== -1) {
-          this.character.loadGear("weapon", nextProps["weapon"], nextProps["gender"], nextProps["weaponRarity"]);
+          this.character.loadGear("weapon", nextProps["weapon"], nextProps["gender"], nextProps["weaponRarity"], nextProps["weaponVariant"]);
 
           // Create the Drone object if needed
           if (nextProps["weapon"] && this.isDroneWeapon(nextProps["weapon"])) {
@@ -91,7 +91,8 @@ export class CharacterEquipment extends SpineScene {
             part,
             this.props[part],
             this.props.gender,
-            this.props[part + "Rarity"]
+            this.props[part + "Rarity"],
+            this.props[part + "Variant"]
           );
         }
       }

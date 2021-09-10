@@ -250,7 +250,7 @@ export class SpineCharacter {
     return cca.colorCanvas(this.canvas, this.defaultImage, this.skinTone || 1, this.gender || 'male');
   }
 
-  loadGear(slot, jsonPath, _gender = 'female', _rarity = 'common') {
+  loadGear(slot, jsonPath, _gender = 'female', _rarity = 'common', _variant = '000') {
     if (!this.isValidSlot(slot) && slot !== 'all')
       throw `Invalid slot: ${slot}`;
 
@@ -286,7 +286,7 @@ export class SpineCharacter {
 
     // Weapon case
     if (slot === 'weapon' && WEAPONS_TO_ANIMATIONS.hasOwnProperty(jsonPathOriginal)) {
-      return this.loadWeapon(jsonPathOriginal, jsonPath, _rarity);
+      return this.loadWeapon(jsonPathOriginal, jsonPath, _rarity, _variant);
     }
 
     this.loadJson(jsonPath, ((response) => {
@@ -322,6 +322,10 @@ export class SpineCharacter {
 
             // Load the texture
             let url = jsonPath.substr(0, jsonPath.lastIndexOf('/')) + "/" + gender + "/" + rarity + "/" + part + ".png";
+            if (_variant !== '000') {
+              url = jsonPath.substr(0, jsonPath.lastIndexOf('/')) + "/" + _variant + "/" + gender + "/" + rarity + "/" + part + ".png";
+            }
+
             this.loadTexture(url, this.assetToSlotMapping[part]);
           }
           break;
@@ -331,7 +335,7 @@ export class SpineCharacter {
     }).bind(this))
   }
 
-  loadWeapon(key, jsonPath, rarity) {
+  loadWeapon(key, jsonPath, rarity, _variant = "000") {
     let part = WEAPONS_TO_ANIMATIONS[key];
     if (this.weaponsMapping.hasOwnProperty(part)) {
       // First, change the animation to that idle area
@@ -352,10 +356,10 @@ export class SpineCharacter {
         } else {
           if (this.isSlotAvailable(weaponPart)) {
             console.log("Weapon Part Found")
-            this.loadWeaponImage(weaponPart, jsonPath, rarity);
+            this.loadWeaponImage(weaponPart, jsonPath, rarity, _variant);
           } else {
             console.log("Weapon Part Not Found")
-            setTimeout(this.loadWeaponImage.bind(this, weaponPart, jsonPath, rarity), 1);
+            setTimeout(this.loadWeaponImage.bind(this, weaponPart, jsonPath, rarity, _variant), 1);
           }
         }
       }
@@ -364,12 +368,15 @@ export class SpineCharacter {
     }
   }
 
-  loadWeaponImage(weaponPart, jsonPath, rarity) {
+  loadWeaponImage(weaponPart, jsonPath, rarity, _variant = "000") {
     // Wipe that area clean
     this.clearTexture(weaponPart);
 
     // Load the texture
     let url = jsonPath.substr(0, jsonPath.lastIndexOf('/')) + "/" + rarity + ".png";
+    if (_variant !== '000') {
+      url = jsonPath.substr(0, jsonPath.lastIndexOf('/')) + "/" + _variant + "/" + rarity + ".png";
+    }
     this.loadTexture(url, weaponPart);
   }
 

@@ -6,19 +6,24 @@ export default class CharacterEquipment extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      'animation'     : 'Unarmed_BasicIdle_001',
-      'gender'        : 'male',
-      'skin-tone'     : 1,
-      'head-suit'     : '',
-      'head-rarity'   : 'common',
-      'body-suit'     : '',
-      'body-rarity'   : 'common',
-      'arms-suit'     : '',
-      'arms-rarity'   : 'common',
-      'legs-suit'     : '',
-      'legs-rarity'   : 'common',
-      'weapon'        : '',
-      'weapon-rarity' : 'common'
+      'animation'      : 'Unarmed_BasicIdle_001',
+      'gender'         : 'male',
+      'skin-tone'      : 1,
+      'head-suit'      : '',
+      'head-rarity'    : 'common',
+      'head-variant'   : '000',
+      'body-suit'      : '',
+      'body-rarity'    : 'common',
+      'body-variant'   : '000',
+      'arms-suit'      : '',
+      'arms-rarity'    : 'common',
+      'arms-variant'   : '000',
+      'legs-suit'      : '',
+      'legs-rarity'    : 'common',
+      'legs-variant'   : '000',
+      'weapon'         : '',
+      'weapon-rarity'  : 'common',
+      'weapon-variant' : '000'
     };
   }
 
@@ -51,21 +56,26 @@ export default class CharacterEquipment extends Component {
     }
 
     let ids = {
-      "animation"     : "char-equip-animation",
-      "gender"        : "char-equip-gender",
-      "skin-tone"     : "char-equip-skin-tone",
-      "head-suit"     : "char-equip-head",
-      "head-rarity"   : "char-equip-head-rarity",
-      "body-suit"     : "char-equip-body",
-      "body-rarity"   : "char-equip-body-rarity",
-      "arms-suit"     : "char-equip-arms",
-      "arms-rarity"   : "char-equip-arms-rarity",
-      "legs-suit"     : "char-equip-legs",
-      "legs-rarity"   : "char-equip-legs-rarity",
-      "weapon"        : "char-equip-weapon",
-      "weapon-rarity" : "char-equip-weapon-rarity",
-      "all-suit"      : "char-equip-all",
-      "all-rarity"    : "char-equip-all-rarity"
+      "animation"      : "char-equip-animation",
+      "gender"         : "char-equip-gender",
+      "skin-tone"      : "char-equip-skin-tone",
+      "head-suit"      : "char-equip-head",
+      "head-rarity"    : "char-equip-head-rarity",
+      "head-variant"   : "char-equip-head-variant",
+      "body-suit"      : "char-equip-body",
+      "body-rarity"    : "char-equip-body-rarity",
+      "body-variant"   : "char-equip-body-variant",
+      "arms-suit"      : "char-equip-arms",
+      "arms-rarity"    : "char-equip-arms-rarity",
+      "arms-variant"   : "char-equip-arms-variant",
+      "legs-suit"      : "char-equip-legs",
+      "legs-rarity"    : "char-equip-legs-rarity",
+      "legs-variant"   : "char-equip-legs-variant",
+      "weapon"         : "char-equip-weapon",
+      "weapon-rarity"  : "char-equip-weapon-rarity",
+      "weapon-variant" : "char-equip-weapon-variant",
+      "all-suit"       : "char-equip-all",
+      "all-rarity"     : "char-equip-all-rarity"
     };
 
     for (let _idx in ids) {
@@ -99,6 +109,37 @@ export default class CharacterEquipment extends Component {
         }
       }
 
+      // Update available variants for suit
+      if (_idx.indexOf('-suit') !== -1 && this.suits.hasOwnProperty(value)) {
+        let availableVariants = this.suits[value].variants;
+        let name = _idx.replace('-suit','-variant');
+        let el = document.getElementById(ids[name]);
+        if (el) {
+          let selected = el.value; // save selected to determine if we pre-select it
+          el.innerHTML = '';
+
+          // Determine which rarity we're looking at
+          let bodyPart = _idx.replace('-suit', '');
+          let selectedRarity = 'common';
+          {
+            let els = document.getElementsByName(ids[_idx.replace('-suit','-rarity')]);
+            for (let el of els) {
+              if (el.checked) {
+                selectedRarity = el.value.toLowerCase();
+              }
+            }
+          }
+
+          // Get all variants
+          let variantIndex = selectedRarity + '-' + bodyPart;
+          for (let variant of (availableVariants.hasOwnProperty(variantIndex) ? availableVariants[variantIndex] : ["000"])) {
+            let option = new Option(variant, variant, false, selected === variant);
+            option.name = name;
+            el.appendChild(option);
+          }
+        }
+      }
+
       // Update available rarities for weapon
       if (_idx === 'weapon' && this.weapons.hasOwnProperty(value)) {
         let availableRarities = this.weapons[value].rarities;
@@ -122,6 +163,35 @@ export default class CharacterEquipment extends Component {
               el.checked = true;
               break;
             }
+          }
+        }
+      }
+
+      // Update available variants for weapon
+      if (_idx === 'weapon' && this.weapons.hasOwnProperty(value)) {
+        let availableVariants = this.weapons[value].variants;
+        let name = _idx + '-variant';
+        let el = document.getElementById(ids[name]);
+        if (el) {
+          let selected = el.value; // save selected to determine if we pre-select it
+          el.innerHTML = '';
+
+          // Determine which rarity we're looking at
+          let selectedRarity = 'common';
+          {
+            let els = document.getElementsByName(ids[_idx  + '-rarity']);
+            for (let el of els) {
+              if (el.checked) {
+                selectedRarity = el.value.toLowerCase().replace(' ', '');
+              }
+            }
+          }
+
+          // Get all variants
+          for (let variant of availableVariants[selectedRarity]) {
+            let option = new Option(variant, variant, false, selected === variant);
+            option.name = name;
+            el.appendChild(option);
           }
         }
       }
@@ -152,19 +222,52 @@ export default class CharacterEquipment extends Component {
       "none" : {
         "name" : "None",
         "slug" : "",
-        "rarity" : []
+        "rarity" : [],
+        "variants" : []
       }
     };
+
     for (let set of EquipmentSets.sets) {
       if (!suits.hasOwnProperty(set[0])) {
         suits[set[0]] = {
           'slug'     : set[0],
           'name'     : set[2],
-          'rarities' : []
+          'rarities' : [],
+          'variants' : {
+            "common-head"    : ["000"],
+            "common-body"    : ["000"],
+            "common-legs"    : ["000"],
+            "common-arms"    : ["000"],
+            "uncommon-head"  : ["000"],
+            "uncommon-body"  : ["000"],
+            "uncommon-legs"  : ["000"],
+            "uncommon-arms"  : ["000"],
+            "rare-head"      : ["000"],
+            "rare-body"      : ["000"],
+            "rare-legs"      : ["000"],
+            "rare-arms"      : ["000"],
+            "ultrarare-head" : ["000"],
+            "ultrarare-body" : ["000"],
+            "ultrarare-legs" : ["000"],
+            "ultrarare-arms" : ["000"],
+            "legendary-head" : ["000"],
+            "legendary-body" : ["000"],
+            "legendary-legs" : ["000"],
+            "legendary-arms" : ["000"]
+          }
         };
       }
 
       suits[set[0]].rarities.push(set[1]);
+
+      // See if there are variants to add
+      for (let bodyPart of ["head", "body", "legs", "arms"]) {
+        let variantIndex = set[1].toLowerCase().replace(' ', '') + "-" + bodyPart;
+        let variantKey = (set[0] + "-" + variantIndex).toLowerCase();
+        if (EquipmentSets.skins.hasOwnProperty(variantKey)) {
+          suits[set[0]].variants[variantIndex] = ["000", ...EquipmentSets.skins[variantKey]];
+        }
+      }
     }
 
     return suits;
@@ -175,19 +278,35 @@ export default class CharacterEquipment extends Component {
       "none" : {
         "name" : "Unarmed",
         "slug" : "",
-        "rarity" : []
+        "rarity" : [],
+        "variants" : []
       }
     };
+
     for (let set of EquipmentSets.weapons) {
       if (!weapons.hasOwnProperty(set[0])) {
         weapons[set[0]] = {
           'slug'     : set[0],
           'name'     : set[2],
-          'rarities' : []
+          'rarities' : [],
+          'variants' : {
+            "common"    : ["000"],
+            "uncommon"  : ["000"],
+            "rare"      : ["000"],
+            "ultrarare" : ["000"],
+            "legendary" : ["000"]
+          }
         };
       }
 
       weapons[set[0]].rarities.push(set[1]);
+
+      // See if there are variants to add
+      let variantIndex = set[1].toLowerCase().replace(' ', '');
+      let variantKey = (set[0] + "-" + variantIndex).toLowerCase();
+      if (EquipmentSets.skins.hasOwnProperty(variantKey)) {
+        weapons[set[0]].variants[variantIndex] = ["000", ...EquipmentSets.skins[variantKey]];
+      }
     }
 
     return weapons;
@@ -207,6 +326,11 @@ export default class CharacterEquipment extends Component {
           {options}
         </select>
         {this.backForwardButtons("char-equip-" + field)}
+
+        <select name={"char-equip-" + field + "-variant"} id={"char-equip-" + field + "-variant"} onChange={this.updateState.bind(this, field)}>
+          <option name={"char-equip-" + field + "-variant"} value={"000"}>000</option>
+        </select>
+        {this.backForwardButtons("char-equip-" + field + "-variant")}
       </div>
     );
   }
@@ -225,6 +349,11 @@ export default class CharacterEquipment extends Component {
           {options}
         </select>
         {this.backForwardButtons("char-equip-weapon")}
+
+        <select name={"char-equip-weapon-variant"} id={"char-equip-weapon-variant"} onChange={this.updateState.bind(this, 'weapon')}>
+          <option name={"char-equip-weapon-variant"} value={"000"}>000</option>
+        </select>
+        {this.backForwardButtons("char-equip-weapon-variant")}
       </div>
     );
   }
@@ -333,7 +462,7 @@ export default class CharacterEquipment extends Component {
         <div style={{"width":680,"height":700}}>
           <NDCharacterEquipment
             baseUrl={"https://neon-district-season-one.s3.amazonaws.com/"}
-            jsonFile={'spine-output/character/MediumMaleHeavySkinTest-6-spine.json'}
+            jsonFile={'spine-output/character/MediumMaleHeavySkinTest-1-spine.json'}
             width={680}
             height={700}
             animation={this.state.animation}
@@ -341,14 +470,19 @@ export default class CharacterEquipment extends Component {
             skinTone={this.state["skin-tone"]}
             head={this.state["head-suit"]}
             headRarity={this.toRaritySlug(this.state["head-rarity"])}
+            headVariant={this.state["head-variant"]}
             body={this.state["body-suit"]}
             bodyRarity={this.toRaritySlug(this.state["body-rarity"])}
+            bodyVariant={this.state["body-variant"]}
             arms={this.state["arms-suit"]}
             armsRarity={this.toRaritySlug(this.state["arms-rarity"])}
+            armsVariant={this.state["arms-variant"]}
             legs={this.state["legs-suit"]}
             legsRarity={this.toRaritySlug(this.state["legs-rarity"])}
+            legsVariant={this.state["legs-variant"]}
             weapon={this.state["weapon"]}
             weaponRarity={this.toRaritySlug(this.state["weapon-rarity"])}
+            weaponVariant={this.state["weapon-variant"]}
           />
         </div>
         <div className="char-equip-options">
