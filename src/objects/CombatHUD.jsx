@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 import { PlayerControlsDisplay } from "./hud/PlayerControlsDisplay.jsx";
 import { VersionDisplay } from "./hud/VersionDisplay.jsx";
+import { SettingsDisplay } from "./hud/SettingsDisplay.jsx";
 import { PlayerTargetMap } from "./hud/PlayerTargetMap.jsx";
 import { CharacterStatuses } from "./hud/CharacterStatuses.jsx";
 import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
@@ -14,8 +15,9 @@ import { UnitSelectionFields } from "./UnitSelectionFields.jsx";
 //import { ScreenCanvasOverlay } from "./hud/ScreenCanvasOverlay.jsx";
 
 export class CombatHUD {
-  constructor(renderer, activeAnimEvt, getUnitPosition, confirmAction) {
+  constructor(renderer, soundManager, activeAnimEvt, getUnitPosition, confirmAction) {
     this.renderer = renderer;
+    this.soundManager = soundManager;
     this.parentCanvas = this.renderer.domElement;
     this.activeAnimEvt = activeAnimEvt;
     this.getUnitPosition = getUnitPosition;
@@ -118,6 +120,9 @@ export class CombatHUD {
       (
         <div>
           <VersionDisplay />
+          <SettingsDisplay
+            soundManager={this.soundManager}
+          />
           <PlayerTargetMap
             unitSelectionFields={this.unitSelectionFields}
             playerSelections={this.playerSelections}

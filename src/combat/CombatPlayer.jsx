@@ -17,6 +17,7 @@ export class CombatPlayer extends CombatScene {
     this.playback      = props.hasOwnProperty('playback') ? props.playback : true;
     this.teamId        = props.teamId;
     this.createOptions = props.createOptions;
+    this.perks         = props.perks;
 
     this.nextTeam;
     this.nextUnit;
@@ -72,6 +73,7 @@ export class CombatPlayer extends CombatScene {
     // Draw Game UI elements
     this.userInterface = new CombatHUD(
       this.renderer,
+      this.soundManager,
       this.animationController.getActiveAnimationEventObject(),
       this.getUnitPosition.bind(this),
       this.confirmAction.bind(this)

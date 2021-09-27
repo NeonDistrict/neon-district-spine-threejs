@@ -42,12 +42,53 @@ export default class CombatReview extends Component {
       'scale'     : 'character',
       'skin'      : 'Female',
       'weapon'    : 'blkoriginpulsarv16-rare',
+      'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest-1-spine.json',
+      //'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigindemon-female-4-0-spine.atlas',
+      //'atlasFile' : 'spine-output/character/MediumMaleHeavySkinTest.atlas',
+      //'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest.json',
+      'outfit'   : ['female', 'blkorigindemon', 'common']
+    },{
+      'position' : 1,
+      'nftId'    : "test1",
+      'scale'    : 'character',
+      'skin'     : 'Female',
+      'weapon'   : 'blkoriginwristbox-legendary',
+      'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest-1-spine.json',
+      'outfit'   : ['female', 'blkoriginheavy', 'common']
+    },{
+      'position' : 4,
+      'nftId'    : "test4",
+      'scale'    : 'character',
+      'skin'     : 'Female',
+      'weapon'   : 'blkplasmaspear-legendary',
+      'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest-1-spine.json',
+      //'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigingenius-female-4-0-spine.atlas',
+      //'atlasFile' : 'spine-output/character/MediumMaleHeavySkinTest.atlas',
+      //'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest.json',
+      'outfit'   : ['female', 'blkoriginheavy', 'common']
+    },{
+      'position' : 5,
+      'nftId'    : "test5",
+      'scale'    : 'character',
+      'skin'     : 'Male',
+      'weapon'   : 'blkoriginsaltas-ultrarare',
+      'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest-1-spine.json',
+      'outfit'   : ['male', 'blkoriginghost', 'common']
+    }];
+
+    /*
+    let characters = [{
+      'position'  : 0,
+      'nftId'     : "test0",
+      'scale'     : 'character',
+      'skin'      : 'Female',
+      'weapon'    : 'blkoriginpulsarv16-rare',
       //'jsonFile'  : 'nfts/ai-practice/ai-practice-blkorigindemon-female-4-0-spine.json',
       'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigindemon-female-4-0-spine.atlas',
       //'atlasFile' : 'spine-output/character/MediumMaleHeavySkinTest.atlas',
       //'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest.json',
       'outfit'   : ['female', 'blkorigindemon', 'common']
-    },{
+    },*//*{
       'position' : 1,
       'nftId'    : "test1",
       //'nftId'    : "ai-practice-blkorigindemon-female-0",
@@ -56,7 +97,7 @@ export default class CombatReview extends Component {
       'skin'     : 'Female',
       'atlasFile' : 'nfts/ai-practice/ai-practice-blkoriginghost-female-5-0-spine.atlas',
       //'outfit'   : ['male', 'blkoriginmedic', 'common']
-    },/*{
+    },*//*{
       'position' : 2,
       'nftId'    : "79228162551158388693916474895",
       'scale'    : 'character',
@@ -74,7 +115,7 @@ export default class CombatReview extends Component {
       'atlasFile' : 'nfts/ai-practice/ai-practice-blkorigingenius-male-5-0-spine.atlas',
       //'pose'     : 'ConsoleSml_BasicIdle_001',
       //'outfit'   : ['male', 'blkoriginghost', 'common']
-    },*/{
+    },*//*{
       'position' : 4,
       'nftId'    : "test4",
       'scale'    : 'character',
@@ -84,7 +125,7 @@ export default class CombatReview extends Component {
       //'atlasFile' : 'spine-output/character/MediumMaleHeavySkinTest.atlas',
       //'jsonFile'  : 'spine-output/character/MediumMaleHeavySkinTest.json',
       //'outfit'   : ['female', 'blkoriginheavy', 'common']
-    },
+    }*//*,
     {
       'position' : 5,
       'nftId'    : "test5",
@@ -93,7 +134,7 @@ export default class CombatReview extends Component {
       'weapon'   : 'blkoriginsaltas-ultrarare',
       'atlasFile' : 'nfts/ai-practice/ai-practice-blkoriginjack-male-1-0-spine.atlas',
       //'outfit'   : ['male', 'blkoriginjack', 'common']
-    }/*,
+    }*//*,
     {
       'position' : 6,
       'nftId'    : "test6",
@@ -111,7 +152,7 @@ export default class CombatReview extends Component {
       'weapon'   : 'blkspecialdeathknightblade-ultrarare',
       'atlasFile' : 'nfts/ai-practice/ai-practice-blkoriginheavy-male-5-0-spine.atlas',
       //'outfit'   : ['male', 'blkorigingenius', 'common']
-    }*/];
+    }];*/
 
     function getScreenSize() {
       let width = 1536, height = 864;
@@ -156,6 +197,7 @@ export default class CombatReview extends Component {
         <div style={size}>
           <NDCombatPlayer
             //baseUrl={"http://localhost:3000/"}
+            //baseUrl={"https://neon-district-season-one.s3.amazonaws.com/"}
             width={size.width}
             height={size.height}
             background="almond-uncontrolled-lobby-001"
@@ -166,14 +208,21 @@ export default class CombatReview extends Component {
             battleId={this.state.battleId}
             teamId={1}
             key={this.state.battleId}
-            createOptions={{
-              "aiTeam" : {
-                "0" : {"test":"test"}/*,
-                "1" : {"test":"test"},
-                "2" : {"test":"test"},
-                "3" : {"test":"test"}*/
-              }
+            perks={{
+              "music" : [
+                "bt-laurel-canyon-loop",
+                "bt-laurel-canyon-night-loop",
+                "bt-laurel-canyon-lunar-loop"
+              ]
             }}
+            //createOptions={{
+            //  "aiTeam" : {
+            //    "0" : {"test":"test"}/*,
+            //    "1" : {"test":"test"},
+            //    "2" : {"test":"test"},
+            //    "3" : {"test":"test"}*/
+            //  }
+            //}}
           />
         </div>
         {this.generateBattleIdField()}

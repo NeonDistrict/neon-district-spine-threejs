@@ -10,7 +10,7 @@ export class VersionDisplay extends HUDComponent {
     return (
       <h5 className={lstyle.versionDisplayWrapper}>
         Neon District Combat Engine<br />
-        <small>Alpha - Version 0.5.0</small>
+        <small>Alpha - Version 0.5.1</small>
       </h5>
     );
   }

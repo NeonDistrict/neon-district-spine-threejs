@@ -209,6 +209,27 @@ module.exports = {
       "type": "precombat",
       "placement": "loop",
       "path": "music/season_1/music_combat_quarter_vicesquad_precombat_loop.mp3"
+    },
+    "bt-laurel-canyon-loop": {
+      "tag": "bt-laurel-canyon-loop",
+      "location": "general",
+      "type": "combat",
+      "placement": "loop",
+      "path": "music/bt/3._Laurel_Canyon_Night_Drive_Mastered.wav"
+    },
+    "bt-laurel-canyon-night-loop": {
+      "tag": "bt-laurel-canyon-night-loop",
+      "location": "general",
+      "type": "combat",
+      "placement": "loop",
+      "path": "music/bt/3._Laurel_Canyon_Night_Drive_Night_Mode.wav"
+    },
+    "bt-laurel-canyon-lunar-loop": {
+      "tag": "bt-laurel-canyon-lunar-loop",
+      "location": "general",
+      "type": "combat",
+      "placement": "loop",
+      "path": "music/bt/3._Laurel_Canyon_Night_Drive_Lunar_Mode_v2.wav"
     }
   },
   "weapons": {

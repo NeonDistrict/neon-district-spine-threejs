@@ -14,7 +14,7 @@ export class CombatScene extends Stage {
     this.effectTest = props.effectTest;
 
     // Sounds
-    this.soundManager = new SoundManager();
+    this.soundManager = new SoundManager(props.perks && props.perks.music);
 
     // Internal objects
     this.animationController = null;

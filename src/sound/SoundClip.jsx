@@ -3,6 +3,9 @@ export class SoundClip {
     // Constants
     this.SOUND_EFFECTS_ROOT_SRC = "https://neon-district-season-one.s3.amazonaws.com/sound-effects/";
 
+    // Keep track of values
+    this.path = path;
+
     // Load the file
     this.audio = new Audio(this.SOUND_EFFECTS_ROOT_SRC + path);
     this.audio.crossOrigin = "anonymous";
@@ -12,6 +15,10 @@ export class SoundClip {
     // Set defaults
     this.setLoop(loop);
     this.setVolume(volume);
+  }
+
+  getPath() {
+    return this.path;
   }
 
   cleanUpAudio() {
