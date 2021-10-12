@@ -385,8 +385,8 @@ export class SpineCharacter {
     return slot && slot.attachment;
   }
 
-  loadFullOutfit(jsonPath, _gender = 'female', _rarity = 'common') {
-    this.loadGear('all', jsonPath, _gender, _rarity);
+  loadFullOutfit(jsonPath, _gender = 'female', _rarity = 'common', _variant = '000') {
+    this.loadGear('all', jsonPath, _gender, _rarity, _variant);
   }
 
   loadJson(url, callback) {

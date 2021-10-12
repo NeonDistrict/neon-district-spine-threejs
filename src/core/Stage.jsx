@@ -388,7 +388,8 @@ export class Stage extends SpineScene {
           this.characters[index].spine.loadFullOutfit(
             url,
             this.characters[index].outfit[0].toLowerCase(),
-            this.characters[index].outfit[2].toLowerCase()
+            this.characters[index].outfit[2].toLowerCase(),
+            this.characters[index].outfit.length >= 4 ? this.characters[index].outfit[3].toLowerCase() : '000'
           );
         }
       }
