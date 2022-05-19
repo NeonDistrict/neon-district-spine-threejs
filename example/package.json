@@ -5,6 +5,7 @@
   "license": "ISC",
   "private": true,
   "dependencies": {
+    "pizza-juice": "https://github.com/NeonDistrict/pizza-juice#main",
     "neon-district-spine-threejs": "link:..",
     "prop-types": "^15.6.2",
     "react": "^16.13.1",
