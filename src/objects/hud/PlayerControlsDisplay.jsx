@@ -1,5 +1,8 @@
 import React from "react";
 import lstyle from "../../styles/hud.scss";
+
+import { Flex } from 'pizza-juice';
+
 import { HUDComponent } from './core/HUDComponent.jsx';
 import { PlayerControlsDefaultOptions } from './components/PlayerControlsDefaultOptions.jsx';
 import { PlayerControlsCharacter } from './components/PlayerControlsCharacter.jsx';
@@ -85,7 +88,7 @@ export class PlayerControlsDisplay extends HUDComponent {
             {/* Attack, and eventually, Interact */}
             <PlayerControlsDefaultOptions
               callback={this.chooseOption.bind(this, 'attack')}
-              selectedAction={this.state.selectedAction}
+              selected={this.state.selectedAction}
             />
 
             {/* Cards */}

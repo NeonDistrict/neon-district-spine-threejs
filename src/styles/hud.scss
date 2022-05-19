@@ -1,21 +1,6 @@
 @import 'color';
 
-@font-face {
-  font-family: "kozuka-gothic-pr6n";
-  src: url("https://neon-district-season-one.s3.amazonaws.com/fonts/KOZGOPR6N-REGULAR.OTF");
-}
-@font-face {
-  font-family: "kozuka-gothic-pr6n-lighter";
-  src: url("https://neon-district-season-one.s3.amazonaws.com/fonts/KOZGOPR6N-LIGHT.OTF");
-}
-@font-face {
-  font-family: "kozuka-gothic-pr6n-bold";
-  src: url("https://neon-district-season-one.s3.amazonaws.com/fonts/KOZGOPR6N-BOLD.OTF");
-}
-@font-face {
-  font-family: "kozuka-gothic-pr6n-bolder";
-  src: url("https://neon-district-season-one.s3.amazonaws.com/fonts/KOZGOPR6N-HEAVY.OTF");
-}
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap');
 
 .playerControlsWrapper {
   box-sizing: unset;
@@ -27,9 +12,8 @@
   height: 33%;
   background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,1) 12.5%);
 
-  font: 7.5pt kozuka-gothic-pr6n-bold;
+  font: 7.5pt Titillium Web;
   text-transform: uppercase;
-  text-shadow: 0px 0px 10px #FFFFFF;
 
   cursor: default;
   margin: 0px;
