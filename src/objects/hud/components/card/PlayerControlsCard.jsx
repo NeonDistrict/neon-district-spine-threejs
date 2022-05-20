@@ -22,14 +22,17 @@ export class PlayerControlsCard extends HUDComponent {
     let styles = [lstyle.card];
 
     if (this.hudLocked) {
-      // Get the specific card type for styles
-      styles.push(lstyle.backCard);
-
       return (
         <Flex
           align="center"
           justify="center"
-          css={{ size: 194, bg: "$grey-900", border: "2px solid #11EEF1" }}
+          css={{
+            size: 194,
+            bg: "$grey-900",
+            // FIXME: It should be inner shadow.
+            border: "2px solid",
+            borderImage: "linear-gradient(74.28deg, #11EEF1, #F70835) 1"
+          }}
         >
           <Image
             src="https://cdn.discordapp.com/attachments/915271999843074109/976934304980541450/Vector_1.png"
@@ -45,6 +48,7 @@ export class PlayerControlsCard extends HUDComponent {
       // Get the specific card type for styles
       styles.push(lstyle.fillerCard);
 
+      // TODO: Design for missing card
       return (
         <div className={lstyle.cardSelectionWrapper}>
           <div className={styles.join(" ")}>
@@ -63,48 +67,33 @@ export class PlayerControlsCard extends HUDComponent {
       ["interact", "effect"].indexOf(card.type.toLowerCase()) !== -1;
 
     return (
-      <>
-        <S.Wrapper
-          variant={card.type.toLowerCase()}
-          selected={this.props.selected}
-          onClick={disallowSelect ? () => {} : this.props.callback}
-        >
-          <Flex direction="column" gap={1}>
-            <Text size="sm" weight="medium">
-              {card.name}
+      // TODO: Design for replace card
+      <S.Wrapper
+        variant={card.type.toLowerCase()}
+        selected={this.props.selected}
+        onClick={disallowSelect ? () => {} : this.props.callback}
+      >
+        <Flex direction="column" gap={1}>
+          <Text size="sm" weight="medium">
+            {card.name}
+          </Text>
+          <Divider css={{ $$color: "$colors$white" }} />
+          <Text size="sm" transform="normal" css={{ color: "$grey-400" }}>
+            {card.effects}
+          </Text>
+          {card.exploits && (
+            <Text size="sm" transform="normal" css={{ color: "$pink-500" }}>
+              {card.exploits}
             </Text>
-            <Divider css={{ $$color: "$colors$white" }} />
-            <Text size="sm" transform="normal" css={{ color: "$grey-400" }}>
-              {card.effects}
-            </Text>
-            {card.exploits && (
-              <Text size="sm" transform="normal" css={{ color: "$pink-500" }}>
-                {card.exploits}
-              </Text>
-            )}
-          </Flex>
-          <Flex justify="between">
-            <Text>{card.type}</Text>
-            <Box css={{ br: "$full", bg: "$grey-700", p: "$1" }}>
-              <Text size="xs">{card.tickCost}</Text>
-            </Box>
-          </Flex>
-        </S.Wrapper>
-
-        <div>
-          {card.replace ? (
-            <span
-              className={lstyle.replaceButtonWrapper}
-              onClick={this.props.replaceCallback}
-            >
-              <span className={lstyle.replaceText}>Replace</span>
-              <span className={lstyle.replaceButton}></span>
-            </span>
-          ) : (
-            ""
           )}
-        </div>
-      </>
+        </Flex>
+        <Flex justify="between">
+          <Text>{card.type}</Text>
+          <Box css={{ br: "$full", bg: "$grey-700", p: "$1" }}>
+            <Text size="xs">{card.tickCost}</Text>
+          </Box>
+        </Flex>
+      </S.Wrapper>
     );
   }
 }

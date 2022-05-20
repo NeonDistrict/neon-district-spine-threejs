@@ -9,29 +9,28 @@ export const Wrapper = styled("div", {
   size: 194,
   p: "$4",
 
-  $$color: "#E9323A",
-
-  boxShadow: "inset 0px 0px 0px 2px $$color",
+  $$innerBorder: "inset 0px 0px 0px 2px rgb($$color)",
+  boxShadow: "$$innerBorder",
 
   variants: {
     variant: {
       attack: {
-        $$color: "#E9323A"
+        $$color: "233, 50, 58"
       },
       ability: {
-        $$color: "#66BA93"
+        $$color: "102, 186, 147"
       },
       effect: {
-        $$color: "#EFD372"
+        $$color: "239, 211, 114"
       },
       interact: {
-        $$color: "#83F4E1"
+        $$color: "131, 244, 225"
       }
     },
 
     selected: {
       true: {
-        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"
+        boxShadow: "$$innerBorder, 0px 4px 38px 20px rgba($$color, 0.25)"
       },
       false: {}
     }
