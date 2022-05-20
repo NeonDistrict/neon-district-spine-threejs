@@ -2,7 +2,14 @@ import React from "react";
 import { HUDComponent } from "../../core/HUDComponent.jsx";
 import lstyle from "../../../../styles/hud.scss";
 
-import { Text, Box, Flex, Divider, Image } from "pizza-juice";
+import { AttackIcon } from "./icon/AttackIcon.jsx";
+import { InteractIcon } from "./icon/InteractIcon.jsx";
+import { AbilityIcon } from "./icon/AbilityIcon.jsx";
+import { EffectIcon } from "./icon/EffectIcon.jsx";
+
+import { NdLogo } from "./icon/NdLogo.jsx";
+
+import { Text, Box, Flex, Divider } from "pizza-juice";
 import * as S from "./styles";
 
 export class PlayerControlsCard extends HUDComponent {
@@ -19,6 +26,13 @@ export class PlayerControlsCard extends HUDComponent {
   render() {
     console.log("** Rendering the Player Controls Card **");
 
+    const iconMap = {
+      attack: <AttackIcon />,
+      interact: <InteractIcon />,
+      ability: <AbilityIcon />,
+      effect: <EffectIcon />
+    };
+
     let styles = [lstyle.card];
 
     if (this.hudLocked) {
@@ -34,15 +48,13 @@ export class PlayerControlsCard extends HUDComponent {
             borderImage: "linear-gradient(74.28deg, #11EEF1, #F70835) 1"
           }}
         >
-          <Image
-            src="https://cdn.discordapp.com/attachments/915271999843074109/976934304980541450/Vector_1.png"
-            css={{ w: 120, h: 64 }}
-          />
+          <NdLogo />
         </Flex>
       );
     }
 
     let card = this.props.card;
+    const cardType = card.type.toLowerCase();
 
     if (!this.isValidCard(card)) {
       // Get the specific card type for styles
@@ -69,7 +81,7 @@ export class PlayerControlsCard extends HUDComponent {
     return (
       // TODO: Design for replace card
       <S.Wrapper
-        variant={card.type.toLowerCase()}
+        variant={cardType}
         selected={this.props.selected}
         onClick={disallowSelect ? () => {} : this.props.callback}
       >
@@ -78,17 +90,24 @@ export class PlayerControlsCard extends HUDComponent {
             {card.name}
           </Text>
           <Divider css={{ $$color: "$colors$white" }} />
-          <Text size="sm" transform="normal" css={{ color: "$grey-400" }}>
-            {card.effects}
-          </Text>
-          {card.exploits && (
-            <Text size="sm" transform="normal" css={{ color: "$pink-500" }}>
-              {card.exploits}
+
+          <Flex direction="column" gap={2}>
+            <Text size="sm" transform="normal" css={{ color: "$grey-400" }}>
+              {card.effects}
             </Text>
-          )}
+            {card.exploits && (
+              <Text size="sm" transform="normal" css={{ color: "$pink-500" }}>
+                {card.exploits}
+              </Text>
+            )}
+          </Flex>
         </Flex>
-        <Flex justify="between">
-          <Text>{card.type}</Text>
+
+        <Flex justify="between" align="center">
+          <Flex gap={2} align="center">
+            {iconMap[cardType]}
+            <Text>{cardType}</Text>
+          </Flex>
           <Box css={{ br: "$full", bg: "$grey-700", p: "$1" }}>
             <Text size="xs">{card.tickCost}</Text>
           </Box>
