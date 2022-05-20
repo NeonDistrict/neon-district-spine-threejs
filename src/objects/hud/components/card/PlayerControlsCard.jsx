@@ -106,10 +106,14 @@ export class PlayerControlsCard extends HUDComponent {
         <Flex justify="between" align="center">
           <Flex gap={2} align="center">
             {iconMap[cardType]}
-            <Text>{cardType}</Text>
+            <Text size="sm" weight="medium">
+              {cardType}
+            </Text>
           </Flex>
           <Box css={{ br: "$full", bg: "$grey-700", p: "$1" }}>
-            <Text size="xs">{card.tickCost}</Text>
+            <Text size="xs" weight="medium">
+              {card.tickCost}
+            </Text>
           </Box>
         </Flex>
       </S.Wrapper>
