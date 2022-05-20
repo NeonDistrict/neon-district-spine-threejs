@@ -1,10 +1,7 @@
 import React from "react";
 import lstyle from "../../styles/hud.scss";
 
-import { Flex } from 'pizza-juice';
-
 import { HUDComponent } from './core/HUDComponent.jsx';
-import { PlayerControlsDefaultOptions } from './components/PlayerControlsDefaultOptions.jsx';
 import { PlayerControlsCharacter } from './components/PlayerControlsCharacter.jsx';
 import { PlayerControlsCard } from './components/card/PlayerControlsCard.jsx';
 import { TargetCharacterControls } from './components/TargetCharacterControls.jsx';
@@ -86,9 +83,15 @@ export class PlayerControlsDisplay extends HUDComponent {
             />
 
             {/* Attack, and eventually, Interact */}
-            <PlayerControlsDefaultOptions
-              callback={this.chooseOption.bind(this, 'attack')}
+            <PlayerControlsCard
+              card={{
+                name: "Base Attack",
+                type: "ATTACK",
+                tickCost: 40
+              }}
+              callback={this.chooseOption.bind(this, "attack")}
               selected={this.state.selectedAction}
+              baseAttack
             />
 
             {/* Cards */}

@@ -35,7 +35,7 @@ export class PlayerControlsCard extends HUDComponent {
 
     let styles = [lstyle.card];
 
-    if (this.hudLocked) {
+    if (!this.props.baseAttack && this.hudLocked) {
       return (
         <Flex
           align="center"
