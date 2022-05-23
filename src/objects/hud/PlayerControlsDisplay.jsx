@@ -1,20 +1,21 @@
 import React from "react";
 import lstyle from "../../styles/hud.scss";
 
-import { HUDComponent } from './core/HUDComponent.jsx';
-import { PlayerControlsCharacter } from './components/PlayerControlsCharacter.jsx';
-import { PlayerControlsCard } from './components/card/PlayerControlsCard.jsx';
-import { TargetCharacterControls } from './components/TargetCharacterControls.jsx';
+import { HUDComponent } from "./core/HUDComponent.jsx";
+import { PlayerControlsCharacter } from "./components/player-control/PlayerControlsCharacter.jsx";
+import { PlayerControlsCard } from "./components/card/PlayerControlsCard.jsx";
+import { TargetCharacterControls } from "./components/TargetCharacterControls.jsx";
+
+import { Flex, Text, Box, Divider } from "pizza-juice";
 
 export class PlayerControlsDisplay extends HUDComponent {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedAction : null,
-      selectedTarget : null,
-      activeCharacter : null
+      selectedAction: null,
+      selectedTarget: null,
+      activeCharacter: null
     };
 
     this.confirmAction = props.confirmAction;
@@ -22,22 +23,31 @@ export class PlayerControlsDisplay extends HUDComponent {
 
   chooseOption(option) {
     if (this.state.selectedAction !== option) {
-      if (this.props.playerSelections && this.props.playerSelections.validateActionSelect(option)) {
+      if (
+        this.props.playerSelections &&
+        this.props.playerSelections.validateActionSelect(option)
+      ) {
         this.props.playerSelections.setAction(option);
       }
-      this.setState({selectedAction:option});
+      this.setState({ selectedAction: option });
     }
   }
 
   chooseReplaceOption(target) {
     // Remove visuals
-    this.setState({selectedAction:null, selectedAction:null});
+    this.setState({ selectedAction: null, selectedAction: null });
 
     // Select replace and the correct card target
-    if (this.props.playerSelections && this.props.playerSelections.validateActionSelect('replace')) {
-      this.props.playerSelections.setAction('replace');
+    if (
+      this.props.playerSelections &&
+      this.props.playerSelections.validateActionSelect("replace")
+    ) {
+      this.props.playerSelections.setAction("replace");
 
-      if (this.props.playerSelections && this.props.playerSelections.validateTargetSelect(target)) {
+      if (
+        this.props.playerSelections &&
+        this.props.playerSelections.validateTargetSelect(target)
+      ) {
         this.props.playerSelections.setTarget(target);
 
         // Submit the action
@@ -47,14 +57,17 @@ export class PlayerControlsDisplay extends HUDComponent {
   }
 
   chooseTarget(option) {
-    if (this.props.playerSelections && this.props.playerSelections.validateTargetSelect(option)) {
+    if (
+      this.props.playerSelections &&
+      this.props.playerSelections.validateTargetSelect(option)
+    ) {
       this.props.playerSelections.setTarget(option);
-      this.setState({selectedTarget: option});
+      this.setState({ selectedTarget: option });
     }
   }
 
   confirmActionCapture() {
-    this.setState({selectedAction:null, selectedAction:null});
+    this.setState({ selectedAction: null, selectedAction: null });
     this.confirmAction();
   }
 
@@ -65,17 +78,40 @@ export class PlayerControlsDisplay extends HUDComponent {
     let targetCharacter = this.getTarget();
 
     return (
-      <div className={lstyle.playerControlsWrapper}>
-        <div className={[lstyle.playerRegion, lstyle.bottomBorder].join(' ')}>
-
+      <Flex
+        // className={lstyle.playerControlsWrapper}
+        justify="between"
+        gap={4}
+        css={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          w: "$full",
+          h: "33%"
+        }}
+      >
+        <Flex
+          direction="column"
+          gap={2}
+          css={{
+            bg: "rgba(14, 14, 14, 0.8)",
+            py: "$2",
+            px: "$4"
+          }}
+        >
           {/* Top Border */}
-          <div className={lstyle.topBorder}>
+          <Text weight="medium" css={{ color: "$pink-500" }}>
             Player
-          </div>
+          </Text>
+
+          <Box css={{ color: "$grey-400", p: 0, m: 0 }}>
+            <Divider />
+            <Divider css={{ w: "8%", $$thickness: "2px" }} />
+          </Box>
 
           {/* Middle Panel */}
-          <div className={lstyle.playerControls}>
-
+          <Flex gap={1}>
             {/* Player Profile */}
             <PlayerControlsCharacter
               character={activeCharacter}
@@ -95,57 +131,62 @@ export class PlayerControlsDisplay extends HUDComponent {
             />
 
             {/* Cards */}
-            <div className={lstyle.cardWrapper}>
-              <PlayerControlsCard
-                card={this.props.playerSelections && this.props.playerSelections.getCard(0) || {}}
-                callback={this.chooseOption.bind(this, 'card0')}
-                replaceCallback={this.chooseReplaceOption.bind(this, 'card0')}
-                selected={this.state.selectedAction === 'card0'}
-              />
-
-              <PlayerControlsCard
-                card={this.props.playerSelections && this.props.playerSelections.getCard(1) || {}}
-                callback={this.chooseOption.bind(this, 'card1')}
-                replaceCallback={this.chooseReplaceOption.bind(this, 'card1')}
-                selected={this.state.selectedAction === 'card1'}
-              />
-
-              <PlayerControlsCard
-                card={this.props.playerSelections && this.props.playerSelections.getCard(2) || {}}
-                callback={this.chooseOption.bind(this, 'card2')}
-                replaceCallback={this.chooseReplaceOption.bind(this, 'card2')}
-                selected={this.state.selectedAction === 'card2'}
-              />
-            </div>
-
-          </div>
-
-        </div>
-        <div className={[lstyle.targetRegion, lstyle.bottomBorder].join(' ')}>
-
-          {/* Top Border */}
-          <div className={lstyle.topBorder}>
-            Target
-          </div>
-
-          {/* Middle Panel */}
-          <div className={lstyle.targetControls}>
-            {/* Player Profile */}
-            <PlayerControlsCharacter
-              character={targetCharacter}
-              isTarget={true}
+            <PlayerControlsCard
+              card={
+                (this.props.playerSelections &&
+                  this.props.playerSelections.getCard(0)) ||
+                {}
+              }
+              callback={this.chooseOption.bind(this, "card0")}
+              replaceCallback={this.chooseReplaceOption.bind(this, "card0")}
+              selected={this.state.selectedAction === "card0"}
             />
 
-            <TargetCharacterControls
-              activeAnimEvt={this.props.activeAnimEvt}
-              character={targetCharacter}
-              selectedAction={this.state.selectedAction}
-              confirmCallback={this.confirmActionCapture.bind(this)}
+            <PlayerControlsCard
+              card={
+                (this.props.playerSelections &&
+                  this.props.playerSelections.getCard(1)) ||
+                {}
+              }
+              callback={this.chooseOption.bind(this, "card1")}
+              replaceCallback={this.chooseReplaceOption.bind(this, "card1")}
+              selected={this.state.selectedAction === "card1"}
             />
-          </div>
-        </div>
-      </div>
+
+            <PlayerControlsCard
+              card={
+                (this.props.playerSelections &&
+                  this.props.playerSelections.getCard(2)) ||
+                {}
+              }
+              callback={this.chooseOption.bind(this, "card2")}
+              replaceCallback={this.chooseReplaceOption.bind(this, "card2")}
+              selected={this.state.selectedAction === "card2"}
+            />
+          </Flex>
+        </Flex>
+      </Flex>
     );
   }
-
 }
+
+// <div className={[lstyle.targetRegion, lstyle.bottomBorder].join(" ")}>
+//   {/* Top Border */}
+//   <div className={lstyle.topBorder}>Target</div>
+
+//   {/* Middle Panel */}
+//   <div className={lstyle.targetControls}>
+//     {/* Player Profile */}
+//     <PlayerControlsCharacter
+//       character={targetCharacter}
+//       isTarget={true}
+//     />
+
+//     <TargetCharacterControls
+//       activeAnimEvt={this.props.activeAnimEvt}
+//       character={targetCharacter}
+//       selectedAction={this.state.selectedAction}
+//       confirmCallback={this.confirmActionCapture.bind(this)}
+//     />
+//   </div>
+// </div>

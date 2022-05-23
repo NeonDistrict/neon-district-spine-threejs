@@ -11,6 +11,8 @@ import { ErrorDisplay } from "./hud/ErrorDisplay.jsx";
 
 import { UnitSelectionFields } from "./UnitSelectionFields.jsx";
 
+import { Box } from 'pizza-juice'
+
 //import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
 //import { ScreenCanvasOverlay } from "./hud/ScreenCanvasOverlay.jsx";
 
@@ -118,7 +120,11 @@ export class CombatHUD {
 
     ReactDOM.render(
       (
-        <div>
+        <Box css={{
+            font: "7.5px 'Titillium Web', sans-serif",
+            textTransform: "uppercase",
+            margin: 0,
+        }}>
           <VersionDisplay />
           <SettingsDisplay
             soundManager={this.soundManager}
@@ -145,7 +151,7 @@ export class CombatHUD {
           <ErrorDisplay
             error={this.error}
           />
-        </div>
+        </Box>
       ),
       this.div
     );

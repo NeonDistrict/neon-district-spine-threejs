@@ -26,8 +26,8 @@ export const NdLogo = () => {
           y2="0.183588"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#11EEF1" />
-          <stop offset="1" stop-color="#F70835" />
+          <stop stopColor="#11EEF1" />
+          <stop offset="1" stopColor="#F70835" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_413_556"
@@ -37,8 +37,8 @@ export const NdLogo = () => {
           y2="0.183588"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#11EEF1" />
-          <stop offset="1" stop-color="#F70835" />
+          <stop stopColor="#11EEF1" />
+          <stop offset="1" stopColor="#F70835" />
         </linearGradient>
       </defs>
     </svg>
