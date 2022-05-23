@@ -1,9 +1,9 @@
 import React from "react";
 import lstyle from "../../styles/hud.scss";
+
 import { HUDComponent } from './core/HUDComponent.jsx';
-import { PlayerControlsDefaultOptions } from './components/PlayerControlsDefaultOptions.jsx';
 import { PlayerControlsCharacter } from './components/PlayerControlsCharacter.jsx';
-import { PlayerControlsCard } from './components/PlayerControlsCard.jsx';
+import { PlayerControlsCard } from './components/card/PlayerControlsCard.jsx';
 import { TargetCharacterControls } from './components/TargetCharacterControls.jsx';
 
 export class PlayerControlsDisplay extends HUDComponent {
@@ -83,9 +83,15 @@ export class PlayerControlsDisplay extends HUDComponent {
             />
 
             {/* Attack, and eventually, Interact */}
-            <PlayerControlsDefaultOptions
-              callback={this.chooseOption.bind(this, 'attack')}
-              selectedAction={this.state.selectedAction}
+            <PlayerControlsCard
+              card={{
+                name: "Base Attack",
+                type: "ATTACK",
+                tickCost: 40
+              }}
+              callback={this.chooseOption.bind(this, "attack")}
+              selected={this.state.selectedAction}
+              baseAttack
             />
 
             {/* Cards */}
