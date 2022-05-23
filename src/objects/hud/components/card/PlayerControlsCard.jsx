@@ -9,7 +9,8 @@ import { EffectIcon } from "./icon/EffectIcon.jsx";
 
 import { NdLogo } from "./icon/NdLogo.jsx";
 
-import { Text, Box, Flex, Divider } from "pizza-juice";
+import { Text, Box, Flex, Divider, Button } from "pizza-juice";
+
 import * as S from "./styles";
 
 export class PlayerControlsCard extends HUDComponent {
@@ -25,6 +26,8 @@ export class PlayerControlsCard extends HUDComponent {
 
   render() {
     console.log("** Rendering the Player Controls Card **");
+
+    const card = this.props.card;
 
     const iconMap = {
       attack: <AttackIcon />,
@@ -53,7 +56,6 @@ export class PlayerControlsCard extends HUDComponent {
       );
     }
 
-    let card = this.props.card;
     const cardType = card.type.toLowerCase();
 
     if (!this.isValidCard(card)) {
@@ -71,15 +73,10 @@ export class PlayerControlsCard extends HUDComponent {
       );
     }
 
-    // Get the specific card type for styles
-    styles.push(lstyle[card.type.toLowerCase() + "Card"]);
-
     // Disallow selecting certain types
-    let disallowSelect =
-      ["interact", "effect"].indexOf(card.type.toLowerCase()) !== -1;
+    let disallowSelect = ["interact", "effect"].indexOf(cardType) !== -1;
 
     return (
-      // TODO: Design for replace card
       <S.Wrapper
         variant={cardType}
         selected={this.props.selected}
@@ -99,6 +96,15 @@ export class PlayerControlsCard extends HUDComponent {
               <Text size="sm" transform="normal" css={{ color: "$pink-500" }}>
                 {card.exploits}
               </Text>
+            )}
+            {/* TODO: Figma Design for replace card */}
+            {card.replace && (
+              <Button
+                onClick={this.props.replaceCallback}
+                css={{ alignSelf: "center" }}
+              >
+                Replace
+              </Button>
             )}
           </Flex>
         </Flex>
