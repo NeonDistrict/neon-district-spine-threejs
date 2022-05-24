@@ -1,10 +1,9 @@
 import React from "react";
-import lstyle from "../../styles/hud.scss";
 
 import { HUDComponent } from "./core/HUDComponent.jsx";
 import { PlayerControlsCharacter } from "./components/player-control/PlayerControlsCharacter.jsx";
 import { PlayerControlsCard } from "./components/card/PlayerControlsCard.jsx";
-import { TargetCharacterControls } from "./components/TargetCharacterControls.jsx";
+import { TargetCharacterControls } from "./components/target-control/TargetCharacterControls.jsx";
 
 import { Flex, Text, Box, Divider } from "pizza-juice";
 
@@ -80,7 +79,6 @@ export class PlayerControlsDisplay extends HUDComponent {
     return (
       <Flex
         // className={lstyle.playerControlsWrapper}
-        justify="between"
         align="center"
         gap={4}
         css={{
@@ -166,6 +164,33 @@ export class PlayerControlsDisplay extends HUDComponent {
             />
           </Flex>
         </Flex>
+
+        <Flex
+          direction="column"
+          gap={2}
+          css={{
+            w: "33%",
+            bg: "rgba(14, 14, 14, 0.8)",
+            pt: "$4",
+            pb: "$6",
+            px: "$4"
+          }}
+        >
+          <Text weight="medium" css={{ color: "$pink-500" }}>
+            {targetCharacter ? "Target" : "Select your Target"}
+          </Text>
+
+          <Box>
+            <Box css={{ h: 1, w: "$full", bg: "$grey-700" }} />
+            <Box css={{ h: 2, w: "18%", bg: "$grey-700" }} />
+          </Box>
+
+          <TargetCharacterControls
+            activeAnimEvt={this.props.activeAnimEvt}
+            targetCharacter={targetCharacter}
+            confirmCallback={this.confirmActionCapture.bind(this)}
+          />
+        </Flex>
       </Flex>
     );
   }
@@ -183,11 +208,4 @@ export class PlayerControlsDisplay extends HUDComponent {
 //       isTarget={true}
 //     />
 
-//     <TargetCharacterControls
-//       activeAnimEvt={this.props.activeAnimEvt}
-//       character={targetCharacter}
-//       selectedAction={this.state.selectedAction}
-//       confirmCallback={this.confirmActionCapture.bind(this)}
-//     />
-//   </div>
 // </div>
