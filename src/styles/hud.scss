@@ -1,29 +1,8 @@
-@import 'color';
+@import "color";
 
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap");
 
 .playerControlsWrapper {
-  box-sizing: unset;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 33%;
-  background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,1) 12.5%);
-
-  font: 7.5pt Titillium Web;
-  text-transform: uppercase;
-
-  cursor: default;
-  margin: 0px;
-
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: stretch;
-
   .playerRegion {
     order: 1;
     flex: 9;
@@ -85,13 +64,13 @@
     height: calc(100% - 22px);
 
     &:hover {
-      box-shadow: 0px 0px 4px 1px rgba(255,255,255,0.3);
+      box-shadow: 0px 0px 4px 1px rgba(255, 255, 255, 0.3);
       border-radius: 6px;
     }
 
     &.selected {
       border-radius: 6px;
-      box-shadow: 0px 0px 4px 1px #FFFFFF;
+      box-shadow: 0px 0px 4px 1px #ffffff;
     }
 
     .card {
@@ -151,7 +130,7 @@
 
       &.backCard {
         border: 4px solid $hud_purple;
-        background: url('https://neon-district-season-one.s3.amazonaws.com/assets/nd-logo.png');
+        background: url("https://neon-district-season-one.s3.amazonaws.com/assets/nd-logo.png");
         background-position: center center;
         background-size: 75%;
         background-repeat: no-repeat;
@@ -180,6 +159,8 @@
         top: 0;
         right: 3px;
         text-align: center;
+        font-size: 125%;
+        padding: 0;
         padding: 0;
         margin: 0;
 
@@ -187,8 +168,6 @@
 
         .cardTicksNumber {
           display: block;
-          font-size: 125%;
-          padding: 0;
           margin: 0;
 
           position: absolute;
@@ -254,22 +233,22 @@
           height: 20px;
 
           &.abilityCardType {
-            background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Hack.png');
+            background: url("https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Hack.png");
             background-size: 20px 20px;
           }
 
           &.attackCardType {
-            background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Attack.png');
+            background: url("https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Attack.png");
             background-size: 20px 20px;
           }
 
           &.effectCardType {
-            background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Effect.png');
+            background: url("https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Effect.png");
             background-size: 20px 20px;
           }
 
           &.interactCardType {
-            background: url('https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Interact.png');
+            background: url("https://neon-district-season-one.s3.amazonaws.com/assets/V5/64w/1x/Interact.png");
             background-size: 20px 20px;
           }
         }
@@ -279,10 +258,10 @@
     .replaceButtonWrapper {
       z-index: 100;
 
-      display:block;
+      display: block;
       position: relative;
-      width:26px;
-      height:26px;
+      width: 26px;
+      height: 26px;
       left: calc(50% - 13px);
       bottom: 13px;
       padding: 0px;
@@ -291,7 +270,7 @@
       border-radius: 13px;
 
       background-color: $hud_desaturatedRed;
-      box-shadow:0px 0px 5px 2px rgba(0,0,0,0.5);
+      box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
 
       transition: all 0.3s ease;
 
@@ -301,20 +280,30 @@
       cursor: pointer;
 
       .replaceButton {
-        display:inline-block;
-        width:26px;
-        height:26px;
-        padding:0px;
-        margin:0px;
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        padding: 0px;
+        margin: 0px;
 
-        box-sizing:border-box;
-        border-width:3px;
+        box-sizing: border-box;
+        border-width: 3px;
         border-style: solid;
         border-color: $hud_desaturatedRed;
-        border-radius:100%;
-        background: -webkit-linear-gradient(-45deg, transparent 0%, transparent 46%, white 46%,  white 56%,transparent 56%, transparent 100%), -webkit-linear-gradient(45deg, transparent 0%, transparent 46%, white 46%,  white 56%,transparent 56%, transparent 100%);
+        border-radius: 100%;
+        background: -webkit-linear-gradient(
+            -45deg,
+            transparent 0%,
+            transparent 46%,
+            white 46%,
+            white 56%,
+            transparent 56%,
+            transparent 100%
+          ),
+          -webkit-linear-gradient(45deg, transparent 0%, transparent 46%, white
+                46%, white 56%, transparent 56%, transparent 100%);
         background-color: $hud_desaturatedRed;
-        box-shadow:0px 0px 5px 2px rgba(0,0,0,0.5);
+        box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
 
         transition: all 0.3s ease;
       }
@@ -394,17 +383,25 @@
       }
 
       &.playerProfile {
-        background: linear-gradient(180deg, rgba(36,36,36,1.0), rgba(63,88,88,1.0));
+        background: linear-gradient(
+          180deg,
+          rgba(36, 36, 36, 1),
+          rgba(63, 88, 88, 1)
+        );
       }
 
       &.targetProfile {
-        background: linear-gradient(180deg, rgba(36,36,36,1.0), rgba(79,40,48,1.0));
+        background: linear-gradient(
+          180deg,
+          rgba(36, 36, 36, 1),
+          rgba(79, 40, 48, 1)
+        );
       }
     }
 
     /* Hack to hide the white border around an img without a src */
-    img:not([src]){
-      content:url("data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
+    img:not([src]) {
+      content: url("data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
     }
 
     .characterName {
@@ -486,7 +483,6 @@
         }
       }
     }
-
   }
 }
 
@@ -612,10 +608,10 @@
     position: relative;
     top: 0;
 
-    -webkit-clip-path:polygon(12.5% 0, 100% 0, 87.5% 100%, 0% 100%);
-    clip-path:polygon(12.5% 0, 100% 0, 87.5% 100%, 0% 100%);
-    width:80px;
-    height:80px;
+    -webkit-clip-path: polygon(12.5% 0, 100% 0, 87.5% 100%, 0% 100%);
+    clip-path: polygon(12.5% 0, 100% 0, 87.5% 100%, 0% 100%);
+    width: 80px;
+    height: 80px;
     background-color: $hud_darkGray;
 
     .unitTurnOrderPortraitImage {
@@ -704,21 +700,21 @@
   margin: 5px;
   padding: 1px;
   background-color: grey;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 
 .settingSet {
-  align-items:stretch;
-  box-sizing:border-box;
-  color:rgb(33, 37, 41);
-  display:flex;
-  flex-wrap:wrap;
-  line-height:24px;
-  position:relative;
-  text-align:left;
-  text-size-adjust:100%;
-  -webkit-box-align:stretch;
-  -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+  align-items: stretch;
+  box-sizing: border-box;
+  color: rgb(33, 37, 41);
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 24px;
+  position: relative;
+  text-align: left;
+  text-size-adjust: 100%;
+  -webkit-box-align: stretch;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .settingSetGroupPrepend {
@@ -745,8 +741,9 @@
   user-select: none;
   border: 1px solid transparent;
   line-height: 1.5;
-  border-radius: .25rem;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   color: #6c757d;
   background-color: transparent;
   background-image: none;
@@ -771,10 +768,12 @@
   line-height: 1.5;
   color: #495057;
   vertical-align: middle;
-  background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right .75rem center;
+  background: #fff
+    url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E")
+    no-repeat right 0.75rem center;
   background-size: 8px 10px;
   border: 1px solid #ced4da;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   appearance: none;
   position: relative;
   -webkit-box-flex: 1;
@@ -783,4 +782,3 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-
