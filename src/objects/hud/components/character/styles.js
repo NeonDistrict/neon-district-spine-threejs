@@ -51,27 +51,15 @@ export const Bottom = styled("div", {
 });
 
 export const Typename = styled("div", {
+  maxW: "66%",
+
   fontWeight: "$medium",
   color: "$pink-500",
   letterSpacing: "0.05em",
   textTransform: "uppercase",
-
+  color: "$white",
   fontSize: "$md",
-  lineHeight: "24px",
-
-  /**
-   * Variants
-   */
-  variants: {
-    /**
-     * Empty variant
-     */
-    empty: {
-      true: {
-        color: "$white"
-      }
-    }
-  }
+  lineHeight: "24px"
 });
 
 export const Info = styled("span", {
