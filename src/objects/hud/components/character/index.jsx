@@ -9,19 +9,20 @@ export const Character = ({ active = false, character, enemy }) => {
     "https://neon-district-cdn.s3.amazonaws.com/empty-state/no-character.png";
 
   // FIXME: Connect character data to this component
-  const type = false;
+  const type = character && character.type;
 
   const emptyMessage = enemy ? "Select your target" : "Empty";
 
   return (
     <S.Wrapper active={active}>
       <Image
-        src={emptyCharacterImg}
-        alt={emptyMessage}
+        // FIXME: add .? later
+        src={(character && character.headShotImg) || emptyCharacterImg}
+        alt={(character && character.name) || emptyMessage}
         css={{
           h: 198,
-          ...(enemy && { transform: "scaleX(-1)" }),
-          filter: "brightness(25%)"
+          filter: "brightness(33%)",
+          ...(enemy && { transform: "scaleX(-1)" })
         }}
       />
 

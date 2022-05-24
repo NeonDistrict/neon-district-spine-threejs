@@ -9,7 +9,7 @@ export class TargetCharacterControls extends HUDComponent {
   render() {
     console.log("** Rendering the Target Character Controls **");
 
-    const stats = false;
+    const stats = this.props.character && this.props.character.stats;
 
     // TODO: Status effects
     // let statusEffectChanges = this.props.activeAnimEvt && this.props.activeAnimEvt.getActiveStatusEffectChanges(unit.unitId);
@@ -32,14 +32,15 @@ export class TargetCharacterControls extends HUDComponent {
 
         <Flex direction="column" justify="between" css={{ flex: 1 }}>
           <Grid columns={2} gapX={4} gapY={1}>
-            <Stat label="HP" value={stats.HEALTH || 0} />
-            <Stat label="STL" value={stats.STEALTH || 0} />
-            <Stat label="ATK" value={stats.ATTACK || 0} />
-            <Stat label="MEC" value={stats.MECH || 0} />
-            <Stat label="DEF" value={stats.DEFENSE || 0} />
-            <Stat label="TAC" value={stats.TACTICS || 0} />
-            <Stat label="NAN" value={stats.NANO || 0} />
-            <Stat label="HAC " value={stats.HACKING || 0} />
+            {/* FIXME: add .? later */}
+            <Stat label="HP" value={(stats && stats.HEALTH) || 0} />
+            <Stat label="STL" value={(stats && stats.STEALTH) || 0} />
+            <Stat label="ATK" value={(stats && stats.ATTACK) || 0} />
+            <Stat label="MEC" value={(stats && stats.MECH) || 0} />
+            <Stat label="DEF" value={(stats && stats.DEFENSE) || 0} />
+            <Stat label="TAC" value={(stats && stats.TACTICS) || 0} />
+            <Stat label="NAN" value={(stats && stats.NANO) || 0} />
+            <Stat label="HAC " value={(stats && stats.HACKING) || 0} />
           </Grid>
 
           <Button
