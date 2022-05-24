@@ -118,20 +118,19 @@ export class CombatHUD {
 
     console.log("** Rendering the Entire HUD **");
 
-    // reset css
-    const x = globalCss({
+    const cssReset = globalCss({
       "*, *:before, *:after": {
         boxSizing: "border-box",
       },
     });
-    x();
-
+    cssReset();
+    
     ReactDOM.render(
       (
         <Box css={{
-            font: "7.5px 'Titillium Web', sans-serif",
-            textTransform: "uppercase",
-            margin: 0,
+          font: "7.5px 'Titillium Web', sans-serif",
+          textTransform: "uppercase",
+          margin: 0,
         }}>
           <VersionDisplay />
           <SettingsDisplay
