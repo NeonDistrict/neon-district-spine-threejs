@@ -19,9 +19,7 @@ export class PlayerControlsCharacter extends HUDComponent {
         <Character
           character={this.props.character}
           alt={
-            this.props.character.metadata
-              ? this.props.character.metadata.name
-              : "Empty"
+            this.props.character.metadata && this.props.character.metadata.name
           }
         />
       </Box>
