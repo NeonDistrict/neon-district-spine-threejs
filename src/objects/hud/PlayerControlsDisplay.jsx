@@ -81,14 +81,14 @@ export class PlayerControlsDisplay extends HUDComponent {
       <Flex
         // className={lstyle.playerControlsWrapper}
         justify="between"
+        align="center"
         gap={4}
         css={{
           position: "absolute",
           bottom: 0,
           left: 0,
           right: 0,
-          w: "$full",
-          h: "33%"
+          w: "$full"
         }}
       >
         <Flex
@@ -96,7 +96,8 @@ export class PlayerControlsDisplay extends HUDComponent {
           gap={2}
           css={{
             bg: "rgba(14, 14, 14, 0.8)",
-            py: "$2",
+            pt: "$4",
+            pb: "$6",
             px: "$4"
           }}
         >
@@ -105,13 +106,13 @@ export class PlayerControlsDisplay extends HUDComponent {
             Player
           </Text>
 
-          <Box css={{ color: "$grey-400", p: 0, m: 0 }}>
-            <Divider />
-            <Divider css={{ w: "8%", $$thickness: "2px" }} />
+          <Box>
+            <Box css={{ h: 1, w: "$full", bg: "$grey-700" }} />
+            <Box css={{ h: 2, w: "18%", bg: "$grey-700" }} />
           </Box>
 
           {/* Middle Panel */}
-          <Flex gap={1}>
+          <Flex gap={1} css={{ h: 198, w: "$full" }}>
             {/* Player Profile */}
             <PlayerControlsCharacter
               character={activeCharacter}
@@ -126,7 +127,7 @@ export class PlayerControlsDisplay extends HUDComponent {
                 tickCost: 40
               }}
               callback={this.chooseOption.bind(this, "attack")}
-              selected={this.state.selectedAction}
+              selected={this.state.selectedAction === "attack"}
               baseAttack
             />
 

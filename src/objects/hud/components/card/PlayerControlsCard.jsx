@@ -44,7 +44,7 @@ export class PlayerControlsCard extends HUDComponent {
           align="center"
           justify="center"
           css={{
-            w: 194,
+            w: 198,
             bg: "$grey-900",
             p: "$4",
             // FIXME: It should be inner shadow.

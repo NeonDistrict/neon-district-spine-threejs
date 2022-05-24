@@ -11,7 +11,7 @@ import { ErrorDisplay } from "./hud/ErrorDisplay.jsx";
 
 import { UnitSelectionFields } from "./UnitSelectionFields.jsx";
 
-import { Box } from 'pizza-juice'
+import { Box, globalCss } from 'pizza-juice'
 
 //import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
 //import { ScreenCanvasOverlay } from "./hud/ScreenCanvasOverlay.jsx";
@@ -117,6 +117,14 @@ export class CombatHUD {
     this.needsUpdate = false;
 
     console.log("** Rendering the Entire HUD **");
+
+    // reset css
+    const x = globalCss({
+      "*, *:before, *:after": {
+        boxSizing: "border-box",
+      },
+    });
+    x();
 
     ReactDOM.render(
       (

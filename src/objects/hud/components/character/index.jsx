@@ -8,6 +8,7 @@ export const Character = ({ active, character }) => {
   const emptyCharacterImg =
     "https://neon-district-cdn.s3.amazonaws.com/empty-state/no-character.png";
 
+  // FIXME: Connect character data to this component
   const type = character.type || "genius";
 
   return (
@@ -15,7 +16,7 @@ export const Character = ({ active, character }) => {
       <Image
         src={character.headImgSrc || emptyCharacterImg}
         alt={character.name || "Empty"}
-        css={{ w: "$full" }}
+        css={{ h: 198 }}
       />
 
       <S.Overlay>
