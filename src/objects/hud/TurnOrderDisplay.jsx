@@ -72,6 +72,7 @@ export class TurnOrderDisplay extends HUDComponent {
             <CharacterPortrait
               character={this.units[idx]}
               enemy={this.units[idx].team === "two"}
+              active={idx === 0}
             />
           </Box>
         );
@@ -88,6 +89,7 @@ export class TurnOrderDisplay extends HUDComponent {
             <CharacterPortrait
               character={this.units[idx]}
               enemy={this.units[idx].team === "two"}
+              active={idx === 0}
             />
           </Box>
         );
