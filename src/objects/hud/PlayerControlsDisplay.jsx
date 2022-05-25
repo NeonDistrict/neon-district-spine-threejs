@@ -1,12 +1,10 @@
+import { Box, Flex, Text } from "pizza-juice";
 import React from "react";
-
-import { HUDComponent } from "./core/HUDComponent.jsx";
-import { PlayerControlsCharacter } from "./components/player-control/PlayerControlsCharacter.jsx";
-import { PlayerControlsCard } from "./components/card/PlayerControlsCard.jsx";
-import { TargetCharacterControls } from "./components/target-control/TargetCharacterControls.jsx";
-
 import { BattleComplete } from "./components/battle-complete/index.jsx";
-import { Flex, Text, Box } from "pizza-juice";
+import { PlayerControlsCard } from "./components/card/PlayerControlsCard.jsx";
+import { PlayerControlsCharacter } from "./components/PlayerControlsCharacter.jsx";
+import { TargetCharacterControls } from "./components/TargetCharacterControls.jsx";
+import { HUDComponent } from "./core/HUDComponent.jsx";
 
 export class PlayerControlsDisplay extends HUDComponent {
   constructor(props) {

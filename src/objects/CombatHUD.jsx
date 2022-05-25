@@ -1,6 +1,6 @@
+import { Box, globalCss } from "pizza-juice";
 import React from "react";
 import ReactDOM from "react-dom";
-
 import { CharacterStatuses } from "./hud/CharacterStatuses.jsx";
 import { ErrorDisplay } from "./hud/ErrorDisplay.jsx";
 import { PlayerControlsDisplay } from "./hud/PlayerControlsDisplay.jsx";
@@ -9,8 +9,6 @@ import { SettingsDisplay } from "./hud/SettingsDisplay.jsx";
 import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
 import { VersionDisplay } from "./hud/VersionDisplay.jsx";
 import { UnitSelectionFields } from "./UnitSelectionFields.jsx";
-
-import { Box, globalCss } from "pizza-juice";
 
 //import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
 //import { ScreenCanvasOverlay } from "./hud/ScreenCanvasOverlay.jsx";
