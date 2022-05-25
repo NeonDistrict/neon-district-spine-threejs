@@ -1,5 +1,5 @@
+import { Box, Flex, Text } from "pizza-juice";
 import React from "react";
-import lstyle from "../../styles/hud.scss";
 import { BattleComplete } from "./components/battle-complete/index.jsx";
 import { PlayerControlsCard } from "./components/card/PlayerControlsCard.jsx";
 import { PlayerControlsCharacter } from "./components/PlayerControlsCharacter.jsx";
@@ -87,16 +87,43 @@ export class PlayerControlsDisplay extends HUDComponent {
     let targetCharacter = this.getTarget();
 
     return (
-      <div className={lstyle.playerControlsWrapper}>
+      <Flex
+        // className={lstyle.playerControlsWrapper}
+        align="center"
+        gap={4}
+        css={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          w: "$full"
+        }}
+      >
         {this.state.battleComplete && (
           <BattleComplete winner={this.state.winner} owner={this.state.owner} />
         )}
-        <div className={[lstyle.playerRegion, lstyle.bottomBorder].join(" ")}>
+        <Flex
+          direction="column"
+          gap={2}
+          css={{
+            bg: "rgba(14, 14, 14, 0.8)",
+            pt: "$4",
+            pb: "$6",
+            px: "$4"
+          }}
+        >
           {/* Top Border */}
-          <div className={lstyle.topBorder}>Player</div>
+          <Text weight="medium" css={{ color: "$pink-500" }}>
+            Player
+          </Text>
+
+          <Box>
+            <Box css={{ h: 1, w: "$full", bg: "$grey-700" }} />
+            <Box css={{ h: 2, w: "18%", bg: "$grey-700" }} />
+          </Box>
 
           {/* Middle Panel */}
-          <div className={lstyle.playerControls}>
+          <Flex gap={1} css={{ h: 198, w: "$full" }}>
             {/* Player Profile */}
             <PlayerControlsCharacter
               character={activeCharacter}
@@ -111,68 +138,73 @@ export class PlayerControlsDisplay extends HUDComponent {
                 tickCost: 40
               }}
               callback={this.chooseOption.bind(this, "attack")}
-              selected={this.state.selectedAction}
+              selected={this.state.selectedAction === "attack"}
               baseAttack
             />
 
             {/* Cards */}
-            <div className={lstyle.cardWrapper}>
-              <PlayerControlsCard
-                card={
-                  (this.props.playerSelections &&
-                    this.props.playerSelections.getCard(0)) ||
-                  {}
-                }
-                callback={this.chooseOption.bind(this, "card0")}
-                replaceCallback={this.chooseReplaceOption.bind(this, "card0")}
-                selected={this.state.selectedAction === "card0"}
-              />
-
-              <PlayerControlsCard
-                card={
-                  (this.props.playerSelections &&
-                    this.props.playerSelections.getCard(1)) ||
-                  {}
-                }
-                callback={this.chooseOption.bind(this, "card1")}
-                replaceCallback={this.chooseReplaceOption.bind(this, "card1")}
-                selected={this.state.selectedAction === "card1"}
-              />
-
-              <PlayerControlsCard
-                card={
-                  (this.props.playerSelections &&
-                    this.props.playerSelections.getCard(2)) ||
-                  {}
-                }
-                callback={this.chooseOption.bind(this, "card2")}
-                replaceCallback={this.chooseReplaceOption.bind(this, "card2")}
-                selected={this.state.selectedAction === "card2"}
-              />
-            </div>
-          </div>
-        </div>
-        <div className={[lstyle.targetRegion, lstyle.bottomBorder].join(" ")}>
-          {/* Top Border */}
-          <div className={lstyle.topBorder}>Target</div>
-
-          {/* Middle Panel */}
-          <div className={lstyle.targetControls}>
-            {/* Player Profile */}
-            <PlayerControlsCharacter
-              character={targetCharacter}
-              isTarget={true}
+            <PlayerControlsCard
+              card={
+                (this.props.playerSelections &&
+                  this.props.playerSelections.getCard(0)) ||
+                {}
+              }
+              callback={this.chooseOption.bind(this, "card0")}
+              replaceCallback={this.chooseReplaceOption.bind(this, "card0")}
+              selected={this.state.selectedAction === "card0"}
             />
 
-            <TargetCharacterControls
-              activeAnimEvt={this.props.activeAnimEvt}
-              character={targetCharacter}
-              selectedAction={this.state.selectedAction}
-              confirmCallback={this.confirmActionCapture.bind(this)}
+            <PlayerControlsCard
+              card={
+                (this.props.playerSelections &&
+                  this.props.playerSelections.getCard(1)) ||
+                {}
+              }
+              callback={this.chooseOption.bind(this, "card1")}
+              replaceCallback={this.chooseReplaceOption.bind(this, "card1")}
+              selected={this.state.selectedAction === "card1"}
             />
-          </div>
-        </div>
-      </div>
+
+            <PlayerControlsCard
+              card={
+                (this.props.playerSelections &&
+                  this.props.playerSelections.getCard(2)) ||
+                {}
+              }
+              callback={this.chooseOption.bind(this, "card2")}
+              replaceCallback={this.chooseReplaceOption.bind(this, "card2")}
+              selected={this.state.selectedAction === "card2"}
+            />
+          </Flex>
+        </Flex>
+
+        <Flex
+          direction="column"
+          gap={2}
+          css={{
+            w: "33%",
+            bg: "rgba(14, 14, 14, 0.8)",
+            pt: "$4",
+            pb: "$6",
+            px: "$4"
+          }}
+        >
+          <Text weight="medium" css={{ color: "$pink-500" }}>
+            {targetCharacter ? "Target" : "Select your Target"}
+          </Text>
+
+          <Box>
+            <Box css={{ h: 1, w: "$full", bg: "$grey-700" }} />
+            <Box css={{ h: 2, w: "18%", bg: "$grey-700" }} />
+          </Box>
+
+          <TargetCharacterControls
+            activeAnimEvt={this.props.activeAnimEvt}
+            targetCharacter={targetCharacter}
+            confirmCallback={this.confirmActionCapture.bind(this)}
+          />
+        </Flex>
+      </Flex>
     );
   }
 }

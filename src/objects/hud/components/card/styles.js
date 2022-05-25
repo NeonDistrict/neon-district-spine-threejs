@@ -6,11 +6,13 @@ export const Wrapper = styled("div", {
   justifyContent: "space-between",
   bg: "$grey-900",
 
-  size: 194,
+  w: 198,
   p: "$4",
 
   $$innerBorder: "inset 0px 0px 0px 2px rgb($$color)",
   boxShadow: "$$innerBorder",
+
+  transition: "all 0.22s ease-in-out",
 
   variants: {
     variant: {
@@ -30,7 +32,8 @@ export const Wrapper = styled("div", {
 
     selected: {
       true: {
-        boxShadow: "$$innerBorder, 0px 4px 38px 20px rgba($$color, 0.25)"
+        boxShadow: "$$innerBorder, 0px 4px 38px 20px rgba($$color, 0.25)",
+        transform: "translateY(-15px)"
       },
       false: {}
     }

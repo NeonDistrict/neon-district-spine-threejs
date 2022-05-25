@@ -44,8 +44,9 @@ export class PlayerControlsCard extends HUDComponent {
           align="center"
           justify="center"
           css={{
-            size: 194,
+            w: 198,
             bg: "$grey-900",
+            p: "$4",
             // FIXME: It should be inner shadow.
             border: "2px solid",
             borderImage: "linear-gradient(74.28deg, #11EEF1, #F70835) 1"
