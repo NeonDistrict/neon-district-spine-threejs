@@ -1,11 +1,10 @@
+import { Box, Flex, Text } from "pizza-juice";
 import React from "react";
-
-import { HUDComponent } from "./core/HUDComponent.jsx";
-import { PlayerControlsCharacter } from "./components/player-control/PlayerControlsCharacter.jsx";
+import { BattleComplete } from "./components/battle-complete/index.jsx";
 import { PlayerControlsCard } from "./components/card/PlayerControlsCard.jsx";
-import { TargetCharacterControls } from "./components/target-control/TargetCharacterControls.jsx";
-
-import { Flex, Text, Box, Divider } from "pizza-juice";
+import { PlayerControlsCharacter } from "./components/PlayerControlsCharacter.jsx";
+import { TargetCharacterControls } from "./components/TargetCharacterControls.jsx";
+import { HUDComponent } from "./core/HUDComponent.jsx";
 
 export class PlayerControlsDisplay extends HUDComponent {
   constructor(props) {
@@ -14,10 +13,21 @@ export class PlayerControlsDisplay extends HUDComponent {
     this.state = {
       selectedAction: null,
       selectedTarget: null,
-      activeCharacter: null
+      activeCharacter: null,
+      battleComplete: false,
+      winner: null,
+      owner: null
     };
 
     this.confirmAction = props.confirmAction;
+
+    window.addEventListener("battleComplete", ({ detail }) => {
+      this.setState({
+        battleComplete: true,
+        winner: detail.winner,
+        owner: detail.owner
+      });
+    });
   }
 
   chooseOption(option) {
@@ -89,6 +99,9 @@ export class PlayerControlsDisplay extends HUDComponent {
           w: "$full"
         }}
       >
+        {this.state.battleComplete && (
+          <BattleComplete winner={this.state.winner} owner={this.state.owner} />
+        )}
         <Flex
           direction="column"
           gap={2}
@@ -195,17 +208,3 @@ export class PlayerControlsDisplay extends HUDComponent {
     );
   }
 }
-
-// <div className={[lstyle.targetRegion, lstyle.bottomBorder].join(" ")}>
-//   {/* Top Border */}
-//   <div className={lstyle.topBorder}>Target</div>
-
-//   {/* Middle Panel */}
-//   <div className={lstyle.targetControls}>
-//     {/* Player Profile */}
-//     <PlayerControlsCharacter
-//       character={targetCharacter}
-//       isTarget={true}
-//     />
-
-// </div>

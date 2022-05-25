@@ -1,23 +1,26 @@
-import React, { Component } from "react";
-import Api from '../api/api.js';
-import Socket from '../socket/socket.js';
-import { CombatScene } from "./CombatScene.jsx";
+import Api from "../api/api.js";
 import { CombatHUD } from "../objects/CombatHUD.jsx";
 import { PlayerSelections } from "../objects/PlayerSelections.jsx";
+import Socket from "../socket/socket.js";
 import { CombatAnalysis } from "./CombatAnalysis.jsx";
+import { CombatScene } from "./CombatScene.jsx";
 
 export class CombatPlayer extends CombatScene {
   constructor(props) {
     super(props);
 
+    this.state = {
+      owner: null
+    };
+
     // Keep track of combat information
-    this.combatApi     = props.combatApi;
-    this.combatSocket  = props.combatSocket;
-    this.battleId      = props.battleId;
-    this.playback      = props.hasOwnProperty('playback') ? props.playback : true;
-    this.teamId        = props.teamId;
+    this.combatApi = props.combatApi;
+    this.combatSocket = props.combatSocket;
+    this.battleId = props.battleId;
+    this.playback = props.hasOwnProperty("playback") ? props.playback : true;
+    this.teamId = props.teamId;
     this.createOptions = props.createOptions;
-    this.perks         = props.perks;
+    this.perks = props.perks;
 
     this.nextTeam;
     this.nextUnit;
@@ -55,19 +58,39 @@ export class CombatPlayer extends CombatScene {
     this.clickLock = true;
 
     // Monitor changes to clickable regions
-    window.addEventListener('registerClickableRegion', this.handleClickableRegion.bind(this));
-    window.addEventListener('unregisterClickableRegion', this.handleRemoveClickableRegion.bind(this));
-    window.addEventListener('lockClickableRegions', this.lockClickableRegions.bind(this));
-    window.addEventListener('unlockClickableRegions', this.unlockClickableRegions.bind(this));
-    window.addEventListener('eventBlockComplete', this.moveToNextEventBlock.bind(this));
+    window.addEventListener(
+      "registerClickableRegion",
+      this.handleClickableRegion.bind(this)
+    );
+    window.addEventListener(
+      "unregisterClickableRegion",
+      this.handleRemoveClickableRegion.bind(this)
+    );
+    window.addEventListener(
+      "lockClickableRegions",
+      this.lockClickableRegions.bind(this)
+    );
+    window.addEventListener(
+      "unlockClickableRegions",
+      this.unlockClickableRegions.bind(this)
+    );
+    window.addEventListener(
+      "eventBlockComplete",
+      this.moveToNextEventBlock.bind(this)
+    );
   }
 
   componentDidMount() {
     super.componentDidMount(arguments);
 
     // Initialize with the background music
-    if (this.soundManager.hasSound('music', 'aspire-combat-loop')) {
-      this.combatMusic = this.soundManager.play('music', 'aspire-combat-loop', 0.15, true);
+    if (this.soundManager.hasSound("music", "aspire-combat-loop")) {
+      this.combatMusic = this.soundManager.play(
+        "music",
+        "aspire-combat-loop",
+        0.15,
+        true
+      );
     }
 
     // Draw Game UI elements
@@ -83,13 +106,20 @@ export class CombatPlayer extends CombatScene {
     this.userInterface.setPlayerSelectionsObject(this.playerSelections);
 
     // Pull the initial battle state
-    if (this.battleId && this.battleId !== 'practice' && this.battleId !== 'test') {
+    if (
+      this.battleId &&
+      this.battleId !== "practice" &&
+      this.battleId !== "test"
+    ) {
       if (this.api) {
         this.getCombatApi();
       } else if (this.socket) {
         this.getCombatSocket();
       }
-    } else if (this.battleId && (this.battleId === 'practice' || this.battleId === 'test')) {
+    } else if (
+      this.battleId &&
+      (this.battleId === "practice" || this.battleId === "test")
+    ) {
       if (this.api) {
         this.createCombatApi();
       } else if (this.socket) {
@@ -99,7 +129,7 @@ export class CombatPlayer extends CombatScene {
   }
 
   componentDidUpdate() {
-    if (super.hasOwnProperty('componentDidUpdate')) {
+    if (super.hasOwnProperty("componentDidUpdate")) {
       super.componentDidUpdate(arguments);
     }
 
@@ -121,7 +151,7 @@ export class CombatPlayer extends CombatScene {
 
   handleRemoveClickableRegion(e) {
     if (this.clickableRegions.hasOwnProperty(e.detail.option)) {
-      delete this.clickableRegions[e.detail.option];      
+      delete this.clickableRegions[e.detail.option];
     }
   }
 
@@ -133,15 +163,16 @@ export class CombatPlayer extends CombatScene {
     console.log("Clickable regions are locked");
 
     // Alert the HUD
-    window.dispatchEvent(
-      new CustomEvent("clickableRegionsLocked", {})
-    );
+    window.dispatchEvent(new CustomEvent("clickableRegionsLocked", {}));
 
     this.clickLock = true;
   }
 
   unlockClickableRegions(e) {
-    if (e && e.detail && e.detail.event === 'BattleCompleteEvent' || this.battleComplete) {
+    if (
+      (e && e.detail && e.detail.event === "BattleCompleteEvent") ||
+      this.battleComplete
+    ) {
       console.log("Battle completed, will not unlock clickable regions");
       return;
     }
@@ -149,9 +180,7 @@ export class CombatPlayer extends CombatScene {
     console.log("Clickable regions are unlocked");
 
     // Alert the HUD
-    window.dispatchEvent(
-      new CustomEvent("clickableRegionsUnlocked", {})
-    );
+    window.dispatchEvent(new CustomEvent("clickableRegionsUnlocked", {}));
 
     this.clickLock = false;
   }
@@ -162,14 +191,12 @@ export class CombatPlayer extends CombatScene {
     let target = this.playerSelections.getTarget();
 
     // If the action or target is invalid, disallow
-    if (
-      action === false || action === null
-    ) {
+    if (action === false || action === null) {
       return;
     }
 
     if (target === null) {
-      target = 'none';
+      target = "none";
     }
 
     // Lock the HUD
@@ -185,11 +212,12 @@ export class CombatPlayer extends CombatScene {
 
   getCombatApi() {
     if (!this.battleId) {
-      console.log("No battle ID provided.")
+      console.log("No battle ID provided.");
       return;
     }
 
-    this.api.getBattle({
+    this.api.getBattle(
+      {
         battleId: this.battleId
       },
       this.getCombatResponse.bind(this),
@@ -199,11 +227,12 @@ export class CombatPlayer extends CombatScene {
 
   createCombatApi() {
     if (!this.teamId) {
-      console.log("No team ID provided.")
+      console.log("No team ID provided.");
       return;
     }
 
-    this.api.createBattle({
+    this.api.createBattle(
+      {
         teamId: this.teamId,
         createOptions: this.createOptions
       },
@@ -214,16 +243,17 @@ export class CombatPlayer extends CombatScene {
 
   runCombatApi(action, target) {
     if (!this.battleId) {
-      console.log("No battle ID provided.")
+      console.log("No battle ID provided.");
       return;
     }
 
     this.playerSelections.clear();
 
-    this.api.runBattle({
+    this.api.runBattle(
+      {
         battleId: this.battleId,
-        action:action,
-        target:target
+        action: action,
+        target: target
       },
       this.getCombatResponse.bind(this),
       this.handleErrorResponse.bind(this)
@@ -232,7 +262,7 @@ export class CombatPlayer extends CombatScene {
 
   getCombatSocket() {
     if (!this.battleId) {
-      console.log("No battle ID provided.")
+      console.log("No battle ID provided.");
       return;
     }
 
@@ -241,7 +271,7 @@ export class CombatPlayer extends CombatScene {
 
   createCombatSocket() {
     if (!this.teamId) {
-      console.log("No team ID provided.")
+      console.log("No team ID provided.");
       return;
     }
 
@@ -250,13 +280,13 @@ export class CombatPlayer extends CombatScene {
 
   runCombatSocket(action, target) {
     if (!this.battleId) {
-      console.log("No battle ID provided.")
+      console.log("No battle ID provided.");
       return;
     }
 
     this.playerSelections.clear();
 
-    this.socket.run(this.battleId, {action, target});
+    this.socket.run(this.battleId, { action, target });
   }
 
   getCombatResponse(response) {
@@ -264,8 +294,8 @@ export class CombatPlayer extends CombatScene {
     if (
       !response ||
       !response.data ||
-      !response.data.hasOwnProperty('data') ||
-      !response.data.hasOwnProperty('status') ||
+      !response.data.hasOwnProperty("data") ||
+      !response.data.hasOwnProperty("status") ||
       response.data.status !== 200
     ) {
       console.error("Could not retrieve battle information:");
@@ -285,7 +315,13 @@ export class CombatPlayer extends CombatScene {
 
     // Handle any preparation work if needed
     if (this.battleId != data.battleId) {
-      console.warn("Setting new Battle ID (" + data.battleId + ") from previous (" + this.battleId + ")");
+      console.warn(
+        "Setting new Battle ID (" +
+          data.battleId +
+          ") from previous (" +
+          this.battleId +
+          ")"
+      );
 
       // Update the battle ID
       this.battleId = data.battleId;
@@ -295,11 +331,12 @@ export class CombatPlayer extends CombatScene {
         this.socket.connectToChannel(this.battleId);
       }
 
+      this.setState({ owner: data.owner });
       // Emit event for any front-end to capture data
       window.dispatchEvent(
         new CustomEvent("getBattleInformation", {
-          'detail' : {
-            'battleId' : data.battleId
+          detail: {
+            battleId: data.battleId
           }
         })
       );
@@ -325,8 +362,8 @@ export class CombatPlayer extends CombatScene {
     if (
       !response ||
       !response.data ||
-      !response.data.hasOwnProperty('data') ||
-      !response.data.hasOwnProperty('status') ||
+      !response.data.hasOwnProperty("data") ||
+      !response.data.hasOwnProperty("status") ||
       response.data.status !== 200
     ) {
       console.error("Could not retrieve battle information:");
@@ -346,7 +383,11 @@ export class CombatPlayer extends CombatScene {
     }
 
     // If we received an error back but still have selections, unlock
-    if (!this.battleComplete && this.playerSelections.hasSelections() && data.hasOwnProperty('error')) {
+    if (
+      !this.battleComplete &&
+      this.playerSelections.hasSelections() &&
+      data.hasOwnProperty("error")
+    ) {
       this.unlockClickableRegions();
     }
 
@@ -365,8 +406,11 @@ export class CombatPlayer extends CombatScene {
     if (!this.teams && data.teams) {
       if (
         this.playback &&
-        data.hasOwnProperty('events') && data.events && Array.isArray(data.events) &&
-        data.events.length > 0 &&  data.events[0].hasOwnProperty('teams')
+        data.hasOwnProperty("events") &&
+        data.events &&
+        Array.isArray(data.events) &&
+        data.events.length > 0 &&
+        data.events[0].hasOwnProperty("teams")
       ) {
         // If we're playing back, we need the team state at the first event we're playing back
         this.setTeams(data.events[0].teams);
@@ -388,7 +432,7 @@ export class CombatPlayer extends CombatScene {
 
     // Determine if we have new events to render
     let hasNewEvents = false;
-    if (data.hasOwnProperty('events')) {
+    if (data.hasOwnProperty("events")) {
       for (let _block of data.events) {
         if (this.eventBlocksIds.indexOf(_block.uuid) === -1) {
           // Add event blocks to the record
@@ -423,7 +467,7 @@ export class CombatPlayer extends CombatScene {
 
     // Determine if we have new events to render
     let last_block_uuid;
-    if (data.hasOwnProperty('events')) {
+    if (data.hasOwnProperty("events")) {
       for (let _block of data.events) {
         if (this.eventBlocksIds.indexOf(_block.uuid) === -1) {
           // Add event blocks to the record
@@ -472,15 +516,18 @@ export class CombatPlayer extends CombatScene {
   getNftUrlRoot(_unit) {
     let urlRoot = "https://neon-district-season-one.s3.amazonaws.com/nfts/";
     if (
-      _unit && typeof _unit === 'object' && _unit.hasOwnProperty('character') &&
-      _unit.character.hasOwnProperty('nftId') && _unit.character.nftId.indexOf('ai-practice') === 0
+      _unit &&
+      typeof _unit === "object" &&
+      _unit.hasOwnProperty("character") &&
+      _unit.character.hasOwnProperty("nftId") &&
+      _unit.character.nftId.indexOf("ai-practice") === 0
     ) {
       return urlRoot + "ai-practice/";
     }
 
     if (
-      window.location.href.indexOf('https://portal.neondistrict.io') === 0 ||
-      window.location.href.indexOf('https://rc.portal.neondistrict.io') === 0
+      window.location.href.indexOf("https://portal.neondistrict.io") === 0 ||
+      window.location.href.indexOf("https://rc.portal.neondistrict.io") === 0
     ) {
       return urlRoot + "mainnet/";
     } else {
@@ -517,7 +564,7 @@ export class CombatPlayer extends CombatScene {
     */
 
     const urlRoot = this.getNftUrlRoot(_unit);
-    const src = urlRoot + _unit.metadata.nftId + '-headshot.png';
+    const src = urlRoot + _unit.metadata.nftId + "-headshot.png";
     _unit.headImgSrc = src;
 
     /*
@@ -545,37 +592,41 @@ export class CombatPlayer extends CombatScene {
       for (let _unitIdx in this.teams[_teamIdx]) {
         let _unit = this.teams[_teamIdx][_unitIdx];
 
-        if (teams && teams.hasOwnProperty(_teamIdx) && teams[_teamIdx].hasOwnProperty(_unitIdx)) {
+        if (
+          teams &&
+          teams.hasOwnProperty(_teamIdx) &&
+          teams[_teamIdx].hasOwnProperty(_unitIdx)
+        ) {
           let _unitUpdate = teams[_teamIdx][_unitIdx];
 
           // Update all stats
-          if (_unitUpdate.hasOwnProperty('ticks')) {
+          if (_unitUpdate.hasOwnProperty("ticks")) {
             _unit.ticks = _unitUpdate.ticks;
           }
 
-          if (_unitUpdate.hasOwnProperty('lastTurnOrder')) {
+          if (_unitUpdate.hasOwnProperty("lastTurnOrder")) {
             _unit.lastTurnOrder = _unitUpdate.lastTurnOrder;
           }
 
-          if (_unitUpdate.hasOwnProperty('stats')) {
+          if (_unitUpdate.hasOwnProperty("stats")) {
             for (let _prop in _unitUpdate.stats) {
-              if (_prop !== 'HEALTH') {
+              if (_prop !== "HEALTH") {
                 _unit.stats[_prop] = _unitUpdate.stats[_prop];
               }
             }
           }
 
-          if (_unitUpdate.hasOwnProperty('state')) {
+          if (_unitUpdate.hasOwnProperty("state")) {
             _unit.state = _unitUpdate.state;
           }
 
-          if (_unitUpdate.hasOwnProperty('statsMax')) {
+          if (_unitUpdate.hasOwnProperty("statsMax")) {
             for (let _prop in _unitUpdate.statsMax) {
               _unit.statsMax[_prop] = _unitUpdate.statsMax[_prop];
             }
           }
 
-          if (_unitUpdate.hasOwnProperty('statusEffects')) {
+          if (_unitUpdate.hasOwnProperty("statusEffects")) {
             for (let _prop in _unitUpdate.statusEffects) {
               _unit.statusEffects[_prop] = _unitUpdate.statusEffects[_prop];
             }
@@ -589,7 +640,8 @@ export class CombatPlayer extends CombatScene {
 
   renderEventBlocks() {
     // Get the next block
-    let nextIndex = 1 + this.eventBlocksIds.indexOf(this.lastRenderedEventBlockUuid);
+    let nextIndex =
+      1 + this.eventBlocksIds.indexOf(this.lastRenderedEventBlockUuid);
 
     // If this block is beyond the last block, then we're done
     if (nextIndex >= this.eventBlocks.length) {
@@ -614,16 +666,23 @@ export class CombatPlayer extends CombatScene {
 
   moveToNextEventBlock() {
     // When we're done, update the last rendered event block, and render the next block
-    if ((1 + this.eventBlocksIds.indexOf(this.lastRenderedEventBlockUuid)) < this.eventBlocks.length) {
-      this.lastRenderedEventBlockUuid = this.eventBlocks[1 + this.eventBlocksIds.indexOf(this.lastRenderedEventBlockUuid)].uuid;
+    if (
+      1 + this.eventBlocksIds.indexOf(this.lastRenderedEventBlockUuid) <
+      this.eventBlocks.length
+    ) {
+      this.lastRenderedEventBlockUuid = this.eventBlocks[
+        1 + this.eventBlocksIds.indexOf(this.lastRenderedEventBlockUuid)
+      ].uuid;
     }
 
     this.renderEventBlocks();
   }
 
   checkBattleComplete(block) {
-    if ((block.battleEvents.filter((_evt) => _evt.name === 'BattleCompleteEvent')).length > 0) {
-
+    if (
+      block.battleEvents.filter(_evt => _evt.name === "BattleCompleteEvent")
+        .length > 0
+    ) {
       let winner;
       for (let idx = 0; idx < block.battleEvents.length; idx++) {
         let event = block.battleEvents[idx];
@@ -635,8 +694,9 @@ export class CombatPlayer extends CombatScene {
       // Alert the HUD
       window.dispatchEvent(
         new CustomEvent("battleComplete", {
-          'detail' : {
-            'winner' : winner
+          detail: {
+            winner: winner,
+            owner: this.state.owner
           }
         })
       );
@@ -646,15 +706,23 @@ export class CombatPlayer extends CombatScene {
 
       // Play victory music
       this.combatMusic.stop();
-      if (this.soundManager.hasSound('music', 'aspire-combat-loop')) {
-        this.combatMusic = this.soundManager.play('music', 'aspire-combat-victory', 0.15, false);
+      if (this.soundManager.hasSound("music", "aspire-combat-loop")) {
+        this.combatMusic = this.soundManager.play(
+          "music",
+          "aspire-combat-victory",
+          0.15,
+          false
+        );
       }
     }
   }
 
   postAnimationCleanup() {
     if (!this.battleComplete) {
-        if (this.playerSelections.hasSelections() && CombatAnalysis.hasTaunt(this.nextUnit)) {
+      if (
+        this.playerSelections.hasSelections() &&
+        CombatAnalysis.hasTaunt(this.nextUnit)
+      ) {
         let taunter = CombatAnalysis.getTaunter(this.nextUnit);
 
         // Make sure that the card selected is a valid choice
@@ -670,5 +738,4 @@ export class CombatPlayer extends CombatScene {
       }
     }
   }
-
 }

@@ -1,14 +1,13 @@
-import React, { Component } from "react";
+import { Box, globalCss } from "pizza-juice";
+import React from "react";
 import ReactDOM from "react-dom";
-
-import { PlayerControlsDisplay } from "./hud/PlayerControlsDisplay.jsx";
-import { VersionDisplay } from "./hud/VersionDisplay.jsx";
-import { SettingsDisplay } from "./hud/SettingsDisplay.jsx";
-import { PlayerTargetMap } from "./hud/PlayerTargetMap.jsx";
 import { CharacterStatuses } from "./hud/CharacterStatuses.jsx";
-import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
 import { ErrorDisplay } from "./hud/ErrorDisplay.jsx";
-
+import { PlayerControlsDisplay } from "./hud/PlayerControlsDisplay.jsx";
+import { PlayerTargetMap } from "./hud/PlayerTargetMap.jsx";
+import { SettingsDisplay } from "./hud/SettingsDisplay.jsx";
+import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
+import { VersionDisplay } from "./hud/VersionDisplay.jsx";
 import { UnitSelectionFields } from "./UnitSelectionFields.jsx";
 
 import { Box, Flex, globalCss } from 'pizza-juice'
@@ -17,7 +16,13 @@ import { Box, Flex, globalCss } from 'pizza-juice'
 //import { ScreenCanvasOverlay } from "./hud/ScreenCanvasOverlay.jsx";
 
 export class CombatHUD {
-  constructor(renderer, soundManager, activeAnimEvt, getUnitPosition, confirmAction) {
+  constructor(
+    renderer,
+    soundManager,
+    activeAnimEvt,
+    getUnitPosition,
+    confirmAction
+  ) {
     this.renderer = renderer;
     this.soundManager = soundManager;
     this.parentCanvas = this.renderer.domElement;
@@ -26,7 +31,7 @@ export class CombatHUD {
     this.confirmAction = confirmAction;
 
     // Create the HUD canvas
-    this.div = document.createElement('div');
+    this.div = document.createElement("div");
     this.div.width = this.parentCanvas.width;
     this.div.height = this.parentCanvas.height;
 
@@ -49,8 +54,12 @@ export class CombatHUD {
     this.units = null;
     this.currentEventIndexCached = null;
 
-    window.addEventListener('clickableRegionsLocked', () => { this.needsUpdate = true; });
-    window.addEventListener('clickableRegionsUnlocked', () => { this.needsUpdate = true; });
+    window.addEventListener("clickableRegionsLocked", () => {
+      this.needsUpdate = true;
+    });
+    window.addEventListener("clickableRegionsUnlocked", () => {
+      this.needsUpdate = true;
+    });
 
     // Needs update
     this.needsUpdate = true;
@@ -67,8 +76,8 @@ export class CombatHUD {
     if (!this.units || this.units.length === 0) {
       if (
         !teams ||
-        !teams.hasOwnProperty('one') ||
-        !teams.hasOwnProperty('two')
+        !teams.hasOwnProperty("one") ||
+        !teams.hasOwnProperty("two")
       ) {
         return;
       }
@@ -106,7 +115,9 @@ export class CombatHUD {
       this.needsUpdate = true;
     }
 
-    if (this.activeAnimEvt.getCurrentEventIndex() !== this.currentEventIndexCached) {
+    if (
+      this.activeAnimEvt.getCurrentEventIndex() !== this.currentEventIndexCached
+    ) {
       this.currentEventIndexCached = this.activeAnimEvt.getCurrentEventIndex();
       this.needsUpdate = true;
     }
@@ -120,9 +131,10 @@ export class CombatHUD {
 
     const cssReset = globalCss({
       "*, *:before, *:after": {
-        boxSizing: "border-box",
-      },
+        boxSizing: "border-box"
+      }
     });
+
     cssReset();
 
     ReactDOM.render(
@@ -163,9 +175,8 @@ export class CombatHUD {
           />
         </Box>
       ),
+
       this.div
     );
   }
-
-
 }
