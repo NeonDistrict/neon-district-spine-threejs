@@ -4,7 +4,13 @@ import * as S from "./styles";
 
 import { Image } from "pizza-juice";
 
-export const Character = ({ active = false, character, enemy }) => {
+export const Character = ({
+  active = false,
+  character,
+  enemy,
+  size = 198,
+  css
+}) => {
   const emptyCharacterImg =
     "https://neon-district-cdn.s3.amazonaws.com/empty-state/no-character.png";
 
@@ -14,13 +20,13 @@ export const Character = ({ active = false, character, enemy }) => {
   const emptyMessage = enemy ? "Select your target" : "Empty";
 
   return (
-    <S.Wrapper active={active}>
+    <S.Wrapper active={active} css={css}>
       <Image
         // FIXME: add .? later
-        src={(character && character.headShotImg) || emptyCharacterImg}
+        src={(character && character.headImgSrc) || emptyCharacterImg}
         alt={(character && character.name) || emptyMessage}
         css={{
-          h: 198,
+          h: size,
           filter: "brightness(33%)",
           ...(enemy && { transform: "scaleX(-1)" })
         }}

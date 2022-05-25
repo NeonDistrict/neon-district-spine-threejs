@@ -11,7 +11,7 @@ import { ErrorDisplay } from "./hud/ErrorDisplay.jsx";
 
 import { UnitSelectionFields } from "./UnitSelectionFields.jsx";
 
-import { Box, globalCss } from 'pizza-juice'
+import { Box, Flex, globalCss } from 'pizza-juice'
 
 //import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
 //import { ScreenCanvasOverlay } from "./hud/ScreenCanvasOverlay.jsx";
@@ -124,18 +124,25 @@ export class CombatHUD {
       },
     });
     cssReset();
-    
+
     ReactDOM.render(
       (
         <Box css={{
-          font: "7.5px 'Titillium Web', sans-serif",
+          font: "7.5px 'titillium Web', sans-serif",
           textTransform: "uppercase",
           margin: 0,
         }}>
-          <VersionDisplay />
-          <SettingsDisplay
-            soundManager={this.soundManager}
-          />
+          <Flex justify="between">
+            <VersionDisplay />
+            <SettingsDisplay
+              soundManager={this.soundManager}
+              />
+            <TurnOrderDisplay
+              teams={this.teams}
+              units={this.units}
+              />
+          </Flex>
+
           <PlayerTargetMap
             unitSelectionFields={this.unitSelectionFields}
             playerSelections={this.playerSelections}
@@ -150,10 +157,6 @@ export class CombatHUD {
             teams={this.teams}
             units={this.units}
             playerSelections={this.playerSelections}
-          />
-          <TurnOrderDisplay
-            teams={this.teams}
-            units={this.units}
           />
           <ErrorDisplay
             error={this.error}
