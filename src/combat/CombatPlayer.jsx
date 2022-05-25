@@ -9,6 +9,10 @@ export class CombatPlayer extends CombatScene {
   constructor(props) {
     super(props);
 
+    this.state = {
+      owner: null
+    };
+
     // Keep track of combat information
     this.combatApi = props.combatApi;
     this.combatSocket = props.combatSocket;
@@ -327,6 +331,7 @@ export class CombatPlayer extends CombatScene {
         this.socket.connectToChannel(this.battleId);
       }
 
+      this.setState({ owner: data.owner });
       // Emit event for any front-end to capture data
       window.dispatchEvent(
         new CustomEvent("getBattleInformation", {
@@ -690,7 +695,8 @@ export class CombatPlayer extends CombatScene {
       window.dispatchEvent(
         new CustomEvent("battleComplete", {
           detail: {
-            winner: winner
+            winner: winner,
+            owner: this.state.owner
           }
         })
       );
