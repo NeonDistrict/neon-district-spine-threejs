@@ -1,7 +1,5 @@
+import { Box, Flex, Text } from "pizza-juice";
 import React from "react";
-
-import { Text, Box, Flex } from "pizza-juice";
-
 import { Neutral } from "./icon/Neutral.jsx";
 
 export const Stat = ({ label, value }) => {
