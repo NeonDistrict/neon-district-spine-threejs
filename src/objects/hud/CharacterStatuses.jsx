@@ -1,10 +1,12 @@
 import React from "react";
+import { HUDComponent } from "./core/HUDComponent.jsx";
 import lstyle from "../../styles/hud.scss";
 import { StatusCard } from "./components/status-cards/index.jsx";
-import { HUDComponent } from "./core/HUDComponent.jsx";
 
-const HEALTH_BAR_WIDTH = 80;
-const TICKS_RADIUS = 10;
+import { Box } from "pizza-juice";
+
+const HEALTH_BAR_WIDTH = 64;
+const TICKS_RADIUS = 12;
 const TICKS_STROKE_WIDTH = 3;
 
 export class CharacterStatuses extends HUDComponent {
@@ -157,6 +159,7 @@ export class CharacterStatuses extends HUDComponent {
     for (let unit of this.props.unitSelectionFields.getUnits()) {
       let percHealthRemaining = this.getHealthPosition(unit) * 100;
       let ticksRemaining = unit.ticks;
+      const enemy = unit.team === "two";
 
       if (unit.state === "UNCONSCIOUS") {
         percHealthRemaining = 0;
@@ -164,8 +167,6 @@ export class CharacterStatuses extends HUDComponent {
       }
 
       let unitStatusUpdates = this.getUnitStatusUpdates(unit);
-
-      console.log({ unitStatusUpdates });
 
       let statusEffectChanges = this.props.activeAnimEvt.getActiveStatusEffectChanges(
         unit.unitId
@@ -228,40 +229,57 @@ export class CharacterStatuses extends HUDComponent {
             ></span>
           </div>
 
-          <div
+          {/* Hp Bar */}
+          <Box
             style={{
               top: unit.position.above.y / 2,
               left: (unit.position.above.x - HEALTH_BAR_WIDTH) / 2
             }}
-            className={lstyle.healthBarOuter}
-          >
-            <span
-              style={{
-                width: Math.round(percHealthRemaining) + "%"
-              }}
-              className={lstyle.healthBarFill}
-            ></span>
-          </div>
-
-          <svg
-            style={{
-              top: unit.position.above.y / 2 + 8,
-              left: unit.position.above.x / 2 - TICKS_RADIUS
+            css={{
+              position: "absolute",
+              w: 80,
+              h: 5
             }}
-            className={lstyle.characterTicksRingOuter}
-            height={TICKS_RADIUS * 2}
-            width={TICKS_RADIUS * 2}
           >
-            <circle
-              className={lstyle.characterTicksRingBackfill}
+            <Box
+              as="span"
+              css={{
+                w: `${Math.round(percHealthRemaining)}%`,
+                bg: enemy ? "$red-500" : "$green-500",
+                position: "relative",
+                h: "100%"
+              }}
+            />
+          </Box>
+
+          {/* Tick bar */}
+          <Box
+            as="svg"
+            css={{
+              position: "absolute",
+              h: TICKS_RADIUS * 2,
+              w: TICKS_RADIUS * 2,
+              top: unit.position.above.y / 2 + 8,
+              left: enemy
+                ? unit.position.above.x / 2 + 26
+                : unit.position.above.x / 2 - (HEALTH_BAR_WIDTH - 32)
+            }}
+          >
+            <Box
+              as="circle"
               stroke-width={TICKS_STROKE_WIDTH}
               fill="transparent"
               r={TICKS_RADIUS - TICKS_STROKE_WIDTH}
               cx={TICKS_RADIUS}
               cy={TICKS_RADIUS}
+              css={{
+                stroke: enemy
+                  ? "rgba(255, 94, 124, 0.2)"
+                  : "rgba(140, 190, 114, 0.2)"
+              }}
             />
-            <path
-              className={lstyle.characterTicksRingFill}
+            <Box
+              as="path"
               d={this.describeArc(
                 TICKS_RADIUS,
                 TICKS_RADIUS,
@@ -271,8 +289,11 @@ export class CharacterStatuses extends HUDComponent {
               )}
               fill="transparent"
               stroke-width={TICKS_STROKE_WIDTH}
+              css={{
+                stroke: enemy ? "$red-500" : "$green-500"
+              }}
             />
-          </svg>
+          </Box>
 
           <div
             style={{

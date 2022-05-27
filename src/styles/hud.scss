@@ -586,11 +586,11 @@
   position: absolute;
 
   .characterTicksRingBackfill {
-    stroke: $hud_transparentNeonBlue;
+    stroke: rgba(255, 94, 124, 0.2);
   }
 
   .characterTicksRingFill {
-    stroke: $hud_desaturatedNeonBlue;
+    stroke: "#FF5E7C";
   }
 }
 
