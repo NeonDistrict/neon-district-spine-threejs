@@ -35,21 +35,6 @@ export const Top = styled("div", {
   pb: "0"
 });
 
-export const Center = styled("div", {
-  d: "flex",
-  justify: "center",
-  align: "center",
-  px: "$3"
-});
-
-export const Bottom = styled("div", {
-  d: "flex",
-  justify: "flex-end",
-
-  p: "$3",
-  pt: "0"
-});
-
 export const Typename = styled("div", {
   maxW: "66%",
 
@@ -60,27 +45,4 @@ export const Typename = styled("div", {
   color: "$white",
   fontSize: "$md",
   lineHeight: "24px"
-});
-
-export const Info = styled("span", {
-  fontSize: "$sm",
-  fontWeight: "$medium",
-  color: "$white",
-  lineHeight: "24px",
-  letterSpacing: "0.05em",
-  textTransform: "uppercase"
-});
-
-export const Index = styled("div", {
-  d: "flex",
-  justify: "center",
-  align: "center",
-  bg: "$pink-500",
-  color: "$white",
-  fontWeight: "$medium",
-  userSelect: "none",
-
-  fontSize: "$md",
-  lineHeight: 24,
-  size: 32
 });

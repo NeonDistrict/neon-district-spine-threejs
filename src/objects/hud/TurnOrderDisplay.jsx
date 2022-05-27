@@ -1,15 +1,17 @@
 import React from "react";
-import { HUDComponent } from './core/HUDComponent.jsx';
+import { HUDComponent } from "./core/HUDComponent.jsx";
 import lstyle from "../../styles/hud.scss";
 
-export class TurnOrderDisplay extends HUDComponent {
+import { Box, Flex } from "pizza-juice";
+import { CharacterPortrait } from "./components/character-portrait/index.jsx";
 
+export class TurnOrderDisplay extends HUDComponent {
   constructPortraitOrder() {
     if (!this.units || this.units.length === 0) {
       if (
         !this.props.teams ||
-        !this.props.teams.hasOwnProperty('one') ||
-        !this.props.teams.hasOwnProperty('two')
+        !this.props.teams.hasOwnProperty("one") ||
+        !this.props.teams.hasOwnProperty("two")
       ) {
         return;
       }
@@ -57,36 +59,58 @@ export class TurnOrderDisplay extends HUDComponent {
 
     let portraits = [];
     for (let idx = 0; idx < this.units.length; idx++) {
-      let portraitClasses = [lstyle.unitTurnOrderPortraitImage, this.units[idx] && this.units[idx].team == 'two' ? lstyle.flipHorizontal : ''].join(' ');
-
-      if (this.units[idx].state !== 'AWAKE') {
+      if (this.units[idx].state !== "AWAKE") {
         portraits.push(
-          <div className={lstyle.unitTurnOrderPortrait}>
-            <div className={portraitClasses} style={{backgroundImage: `url(${this.units[idx].headImgSrc})`, opacity: .5}}></div>
-          </div>
+          <Box
+            css={{
+              position: "relative",
+              top: 0,
+              width: 80,
+              height: 80
+            }}
+          >
+            <CharacterPortrait
+              character={this.units[idx]}
+              enemy={this.units[idx].team === "two"}
+              active={idx === 0}
+            />
+          </Box>
         );
       } else {
         portraits.push(
-          <div className={lstyle.unitTurnOrderPortrait}>
-            <div className={lstyle.unitTurnOrderTicks}>
-              {this.units[idx].ticks}
-            </div>
-            <div className={portraitClasses} style={{backgroundImage: `url(${this.units[idx].headImgSrc})`}}></div>
-          </div>
+          <Box
+            css={{
+              position: "relative",
+              top: 0,
+              width: 80,
+              height: 80
+            }}
+          >
+            <CharacterPortrait
+              character={this.units[idx]}
+              enemy={this.units[idx].team === "two"}
+              active={idx === 0}
+            />
+          </Box>
         );
       }
     }
 
     /**
-    
+
     **/
 
     return (
-      <div className={lstyle.turnOrderDisplay} style={{left: `calc(50% - ${40*this.units.length}px)`}}>
+      <Flex
+        gap={4}
+        css={{
+          position: "absolute",
+          top: 0,
+          left: `calc(50% - ${40 * this.units.length}px)`
+        }}
+      >
         {portraits}
-      </div>
+      </Flex>
     );
-
   }
-
 }
