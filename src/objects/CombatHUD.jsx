@@ -1,4 +1,4 @@
-import { Box, globalCss } from "pizza-juice";
+import { Box, Flex, globalCss } from "pizza-juice";
 import React from "react";
 import ReactDOM from "react-dom";
 import { CharacterStatuses } from "./hud/CharacterStatuses.jsx";
@@ -9,8 +9,6 @@ import { SettingsDisplay } from "./hud/SettingsDisplay.jsx";
 import { TurnOrderDisplay } from "./hud/TurnOrderDisplay.jsx";
 import { VersionDisplay } from "./hud/VersionDisplay.jsx";
 import { UnitSelectionFields } from "./UnitSelectionFields.jsx";
-
-import { Box, Flex, globalCss } from 'pizza-juice'
 
 //import { UnitStatusDisplay } from "./hud/UnitStatusDisplay.jsx";
 //import { ScreenCanvasOverlay } from "./hud/ScreenCanvasOverlay.jsx";
@@ -138,44 +136,36 @@ export class CombatHUD {
     cssReset();
 
     ReactDOM.render(
-      (
-        <Box css={{
+      <Box
+        css={{
           font: "7.5px 'titillium Web', sans-serif",
           textTransform: "uppercase",
-          margin: 0,
-        }}>
-          <Flex justify="between">
-            <VersionDisplay />
-            <SettingsDisplay
-              soundManager={this.soundManager}
-              />
-            <TurnOrderDisplay
-              teams={this.teams}
-              units={this.units}
-              />
-          </Flex>
+          margin: 0
+        }}
+      >
+        <Flex justify="between">
+          <VersionDisplay />
+          <SettingsDisplay soundManager={this.soundManager} />
+          <TurnOrderDisplay teams={this.teams} units={this.units} />
+        </Flex>
 
-          <PlayerTargetMap
-            unitSelectionFields={this.unitSelectionFields}
-            playerSelections={this.playerSelections}
-          />
-          <CharacterStatuses
-            unitSelectionFields={this.unitSelectionFields}
-            playerSelections={this.playerSelections}
-            activeAnimEvt={this.activeAnimEvt}
-          />
-          <PlayerControlsDisplay
-            confirmAction={this.confirmAction}
-            teams={this.teams}
-            units={this.units}
-            playerSelections={this.playerSelections}
-          />
-          <ErrorDisplay
-            error={this.error}
-          />
-        </Box>
-      ),
-
+        <PlayerTargetMap
+          unitSelectionFields={this.unitSelectionFields}
+          playerSelections={this.playerSelections}
+        />
+        <CharacterStatuses
+          unitSelectionFields={this.unitSelectionFields}
+          playerSelections={this.playerSelections}
+          activeAnimEvt={this.activeAnimEvt}
+        />
+        <PlayerControlsDisplay
+          confirmAction={this.confirmAction}
+          teams={this.teams}
+          units={this.units}
+          playerSelections={this.playerSelections}
+        />
+        <ErrorDisplay error={this.error} />
+      </Box>,
       this.div
     );
   }
