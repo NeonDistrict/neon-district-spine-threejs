@@ -6,12 +6,12 @@ export default class BackgroundReview extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      'background' : 'training-room-001'
+      'background' : 'almond-uncontrolled-lobby-001'
     };
   }
 
   componentDidMount() {
-    document.getElementById("background-selection").value = 'training-room-001';
+    document.getElementById("background-selection").value = 'almond-uncontrolled-lobby-001';
   }
 
   updateState(id) {
