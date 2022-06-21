@@ -17,8 +17,7 @@
     "build": "rollup -c",
     "example": "rollup -c && cd ./example/ && yarn install && yarn start",
     "start": "concurrently \"rollup -c -w;\" \"cd ./example/ && yarn start\"",
-    "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build"
+    "prepare": "yarn run build"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
